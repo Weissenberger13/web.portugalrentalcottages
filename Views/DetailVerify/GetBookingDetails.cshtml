@@ -71,6 +71,8 @@
                             </span>
                         </a>
                     </li>
+
+                    @if (Model.Bookings.Count > 0) { 
                     <li>
                         <a href="#step-2" class="blueBg">
                             <label class="stepNumber">2</label>
@@ -81,10 +83,10 @@
                             </span>
                         </a>
                     </li>
+                    }
 
-                    @if (Model.Bookings != null)
-                    {
-                        foreach (var booking in Model.Bookings)
+                   
+                        @foreach (var booking in Model.Bookings)
                         {
                             <li>
                                 <a href="#step-@dynamicStepsTop" class="blueBg">
@@ -155,10 +157,14 @@
                             <h2 class="StepTitle" class="toTranslate">Customer</h2>
                             @Html.Partial("~/Views/BookingProcessPartialViews/AddCustomerPartial.cshtml", Model.Customer)
                         </div>
+
+                    @if (Model.Bookings.Count > 0)
+                    {
                         <div id="step-2">
                             <h2 class="StepTitle" class="toTranslate">Customer Banking Detail</h2>
                             @Html.Partial("~/Views/BookingProcessPartialViews/AddCustomerBankDetailPartial.cshtml", Model.CustomerBankDetail)
                         </div>
+                        }
 
                         @{
                             var bookingCount = 0;

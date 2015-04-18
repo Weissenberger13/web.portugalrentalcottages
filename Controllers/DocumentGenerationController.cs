@@ -233,11 +233,16 @@ namespace BootstrapVillas.Controllers
                 theDocumentDataInstance.GetPRCDocumentData(PRCDocumentData.PRCReturnDataTableWrapperTypes.CustomerByCustomerID,
                     customer.CustomerID)); //works*/
             //CUSTOMER BANK DETAILS
-            tablesForMerge_PreMerge.Add(
-                theDocumentDataInstance.GetPRCDocumentData(
-                    PRCDocumentData.PRCReturnDataTableWrapperTypes.CustomerBankDetailByCustomerID, customer.CustomerID));
+            
+            
+            
             if (booking != null)
             {
+                tablesForMerge_PreMerge.Add(
+                theDocumentDataInstance.GetPRCDocumentData(
+                    PRCDocumentData.PRCReturnDataTableWrapperTypes.CustomerBankDetailByCustomerID, customer.CustomerID));
+
+
                 //COMMISSION FOR YEAR            
                 var TotalCommisssion = new DataTable();
                 TotalCommisssion.Columns.Add("TotalCommissionThisYear");

@@ -39,9 +39,14 @@ namespace BootstrapVillas.Content.EmailTemplates
         {
 
             EmailTemplate theTemplate;
-            using(PortugalVillasContext db = new PortugalVillasContext())
-            {                
+            EmailTemplate Header;
+            EmailTemplate Footer;
+
+            using (PortugalVillasContext db = new PortugalVillasContext())
+            {
                 theTemplate = db.EmailTemplates.Find(EmailTemplateID);
+                Header = db.EmailTemplates.Find(1);
+                Footer = db.EmailTemplates.Find(2);
             }
             theAsposeMessage = new MailMessage();
             Property property = new Property();
@@ -80,10 +85,10 @@ namespace BootstrapVillas.Content.EmailTemplates
                 //theMainBody = new EmailOutType(EmailOutType.EmailOutEmailType.BookingAndBookingExtraSelectionConfirm);
             }
 
-            
-          
 
-         
+
+
+
 
 
             //customer
@@ -115,32 +120,48 @@ namespace BootstrapVillas.Content.EmailTemplates
             //subject
             //           
             theAsposeMessage.Subject = theTemplate.EmailSubject;
-            theAsposeMessage.HtmlBody = theTemplate.EmailTemplateBodyHTML;
-             
-           //get correct email according to emailEnumID
+            theAsposeMessage.HtmlBody = "";
 
+            //get correct email according to emailEnumID
+
+
+            var temp = "";
             //string merges
-            if (bookingToggle == true)
+
+            //booking request optional
+            if (bookingToggle == true && EmailTemplateID == 17)
             {
-                var temp = String.Format(theAsposeMessage.HtmlBody, customerFullName, property.LegacyReference, bookingStartDate, bookingEndDate, numberOfNights);              
+                temp = String.Format(theTemplate.EmailTemplateBodyHTML, customerFullName, property.LegacyReference, bookingStartDate, bookingEndDate, numberOfNights);
             }
+
+            //booking request forms standard
+            else if (bookingToggle == true // && EmailTemplateID == 3 || EmailTemplateID == 4 || EmailTemplateID == 5 || EmailTemplateID == 6
+                )
+            {
+                temp = String.Format(theTemplate.EmailTemplateBodyHTML, customerFullName, property.LegacyReference, booking.BookingPRCReference, ((DateTime)booking.FinalRentalPaymentDueDate).ToString("dd/MM/yyyy"));
+            }
+
 
             else if (bookingExtraToggle == true)
             {
-                var temp = String.Format(theAsposeMessage.HtmlBody, customerFullName, prcRef, bookingExtraSelection.BookingExtraSelectionID);
-                
+                temp = String.Format(theTemplate.EmailTemplateBodyHTML, customerFullName, prcRef, bookingExtraSelection.BookingExtraSelectionID);
+
             }
             else if (combinedServicesToggle == true)
             {
-                var temp = String.Format(theAsposeMessage.HtmlBody, customerFullName, booking.BookingID);
-              
+                temp = String.Format(theTemplate.EmailTemplateBodyHTML, customerFullName, booking.BookingID);
+
             }
 
 
 
 
-            //set the footer
-            theAsposeMessage.HtmlBody += new EmailOutType(EmailOutType.EmailOutEmailType.Footer).body;
+
+
+            //set the body
+            var completeEmail = Header.EmailTemplateBodyHTML + temp + Footer.EmailTemplateBodyHTML;
+
+            theAsposeMessage.HtmlBody = completeEmail;
 
 
         }
@@ -196,7 +217,7 @@ namespace BootstrapVillas.Content.EmailTemplates
             FinalBookingInstructions = 5,
             StandardErrorToCustomer = 6,
             BookingRequestFormUK = 7,
-            BookingRequestFormEU = 8,            
+            BookingRequestFormEU = 8,
             BookingFinalPaymentReciept = 10,
             BookingFinalInstructions = 11,
             BookingBreakageDepositRefundNoDamage = 12,

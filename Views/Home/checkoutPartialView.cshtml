@@ -181,8 +181,19 @@
 
                 if (BookingExtraSelections != null)
                 {
+                    
+                    var extras = new List<BookingExtra>();
+                        
+                    using(PortugalVillasContext db = new PortugalVillasContext())
+                    {
+                        extras = db.BookingExtras.ToList();
+                    }
+                    
+                    
                     foreach (var booking in BookingExtraSelections)
                     {
+                        var extra = extras.Where(x => x.BookingExtraID.Equals(booking.BookingExtraID)).FirstOrDefault();
+                        
                         string startDate = "", endDate = "";
                         decimal price = booking.BESPrice ?? 0.00M;
                         decimal extraPrice = booking.BESExtraServicesPrice ?? 0.00M;
@@ -198,7 +209,7 @@
 
                         <div class="itemContainer">
                             <div class="itemImage">
-                                <img src="~/ExtraImages/@booking.BookingExtraPRCReference/mainImage/@booking.BookingExtraPRCReference@_Imagejpg">
+                                <img src="~/ExtraImages/@booking.BookingExtraPRCReference/@extra.LegacyReference/mainImage/@extra.LegacyReference@_Imagejpg">
                             </div>
                             <ul>
                                 <li><css-decorator class="toTranslate">Name:</css-decorator> <span style="font-weight: bold">@BookingExtraSelection.GetBookingExtrasFromBookingExtraSelection(booking).BookingExtraName</span></li>
