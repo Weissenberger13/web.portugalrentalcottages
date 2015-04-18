@@ -1,0 +1,195 @@
+﻿@model IEnumerable<BootstrapVillas.Models.Event>
+@using BootstrapVillas.Models;
+
+@{
+    ViewBag.Title = "Events Index";
+
+
+    var booking = (Booking)ViewBag.Booking;
+    var bes = (BookingExtraSelection)ViewBag.BookingExtraSelection;
+
+    long id = 0;
+
+    if (booking != null)
+    {
+        id = booking.BookingID;
+    }
+    else if (bes != null)
+    {
+        id = bes.BookingExtraSelectionID;
+    }
+
+
+    AjaxOptions options = new AjaxOptions
+    {
+        UpdateTargetId = "TopEditorWindow",
+        InsertionMode = InsertionMode.Replace,
+        LoadingElementId = "spinner",
+
+    };
+
+    AjaxOptions deleteOptions = new AjaxOptions
+    {
+        UpdateTargetId = "TopEditorWindow",
+        InsertionMode = InsertionMode.Replace,
+        LoadingElementId = "spinner",
+        OnSuccess = "alert('Deleted');",
+        Confirm = "Are you sure you want to delete?"
+
+
+    };
+
+
+    AjaxOptions bookingOptions = new AjaxOptions
+    {
+        UpdateTargetId = "TopEditorWindow",
+        InsertionMode = InsertionMode.Replace,
+        LoadingElementId = "spinner",
+        OnSuccess = "showBookingParts()"
+
+    };
+
+
+    AjaxOptions besOptions = new AjaxOptions
+    {
+        UpdateTargetId = "TopEditorWindow",
+        InsertionMode = InsertionMode.Replace,
+        LoadingElementId = "spinner",
+        OnSuccess = "showBesParts()"
+
+    };
+
+
+    <script type="text/javascript">
+        function showBookingParts() {
+            var id = '@id';
+            $.ajax({
+                url: '@Url.Action("Index", "BookingParticipant")',
+                data: { "bookingID": id },
+                type: "GET",
+                success: function (result) { $('#BottomEditorWindow').html(result); },
+                error: function () { alert('That did not work second call'); }
+            });
+        };
+
+        function showBesParts() {
+            $.ajax({
+                url: '@Url.Action("Index", "BookingExtraParticipant")',
+                data: { "BookingExtraSelectionId": '@id' },
+                type: "GET",
+                success: function (result) { $('#BottomEditorWindow').html(result); },
+                error: function () { alert('That did not work second call'); }
+            });
+        };
+
+    </script>
+
+}
+
+
+@{
+    if (booking != null)
+    {
+        <h2>Events Index - BookingID: @booking.BookingID || PRC Ref: @booking.BookingPRCReference</h2>
+        @*Booking Buttons*@
+        <div class="row-fluid">
+            @*Back Menu*@
+            @Ajax.ActionLink("Return to Booking", "SingleBookingIndex", "Booking", new { bookingID = @booking.BookingID }, bookingOptions)
+
+            <input type="button" value="View Booking Events and Documents" id="BookingViewEvents" />
+
+        </div>
+    }
+    else if (bes != null)
+    {
+
+        <h2>Add Event To Booking Extra - ID: @bes.BookingExtraSelectionID || PRC Ref: @bes.BookingExtraPRCReference - @bes.BookingExtra.BookingExtraName </h2>
+
+        <div class="row-fluid">
+            @*Create*@
+            @Ajax.ActionLink("Return to Booking Extra", "Edit", "BookingExtraSelection", new { BookingExtraSelectionId = @bes.BookingExtraSelectionID }, besOptions)
+
+            <input type="button" value="View Extra Events And Documents" id="BookingViewEvents" />
+
+        </div>
+
+        <div class="clearfix"></div>
+
+
+    }
+
+
+}
+
+@*<p>
+        @Html.ActionLink("Create New", "Create")
+    </p>*@
+<table id="example" class="display" cellspacing="0" width="100%">
+    <thead>
+        <tr>
+            @*<th>
+                    @Html.DisplayNameFor(model => model.CaseID)
+                </th>*@
+            <th>
+                Event Name
+            </th>
+            <th>
+                Date Event Run
+            </th>
+            <th>
+                Document
+            </th>
+            <th>
+                Remove
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                @*  <td>
+                        @Html.DisplayFor(modelItem => item.CaseID)
+                    </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.EventType.EventTypeName)
+                </td>
+                <td>
+                    @Convert.ToDateTime(item.WhenCreated).ToString("dd/MM/yyyy HH.mm.ss")
+                </td>
+
+                <td>
+
+
+                    @if (item.Documents.Count > 0)
+                    {
+                        if (item.Documents.FirstOrDefault() != null)
+                        {
+                            if (item.Documents.FirstOrDefault().DocumentBLOB != null)
+                            {
+                                @Html.ActionLink("Download This PDF", "ReturnPDFDocument", "Document", new { id = item.Documents.FirstOrDefault().DocumentID }, null)
+                            }
+                        }
+
+                    }
+                </td>
+
+                <td>@Ajax.ActionLink("Delete", "Delete", new { id = item.EventID, bookingID = item.BookingID, besID = item.BookingExtraSelectionID }, deleteOptions)</td>
+            </tr>
+        }
+    </tbody>
+</table>
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $(document).ready(function () {
+            $('#example').DataTable();
+            $('#BottomEditorWindow').hide();
+            $('#TopEditorWindow').animate({ height: '100%' }, 500);
+
+
+        });
+    });
+</script>

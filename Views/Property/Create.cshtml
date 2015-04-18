@@ -1,0 +1,538 @@
+﻿@model BootstrapVillas.Models.Property
+
+@{
+    ViewBag.Title = "Create";
+
+
+    AjaxOptions optionsCreate= new AjaxOptions
+    {
+        UpdateTargetId = "TopEditorWindow",
+        InsertionMode = InsertionMode.Replace,
+        LoadingElementId = "spinner",
+        OnSuccess = "alert('Property has been created!');  $('#BottomEditorWindow').empty();"
+    };
+
+
+
+  
+
+    var yesNoListDDL = new Dictionary<string, string>();
+    yesNoListDDL.Add("", "");
+    yesNoListDDL.Add("Yes", "Yes");
+    yesNoListDDL.Add("No", "No");
+
+    var ActiveListDDL = new Dictionary<string, string>();
+    ActiveListDDL.Add("true", "true");
+    ActiveListDDL.Add("false", "false");
+
+    var ChangeoverDayListDDL = new Dictionary<string, string>();
+    ChangeoverDayListDDL.Add("Saturday", "Saturday");
+    ChangeoverDayListDDL.Add("Sunday", "Sunday");
+    ChangeoverDayListDDL.Add("Monday", "Monday");
+    ChangeoverDayListDDL.Add("Tuesday", "Tuesday");
+    ChangeoverDayListDDL.Add("Wednesday", "Wednesday");
+    ChangeoverDayListDDL.Add("Thursday", "Thursday");
+    ChangeoverDayListDDL.Add("Friday", "Friday");
+
+    var poolTypeListDDL = new Dictionary<string, string>();
+    poolTypeListDDL.Add("", "");
+    poolTypeListDDL.Add("Shared", "Shared");
+    poolTypeListDDL.Add("Private", "Private");
+    
+}
+<h2>Create</h2>
+
+@using (Ajax.BeginForm("Create", "Property", optionsCreate))
+{
+
+    <fieldset>
+        <legend>Property</legend>
+
+        @Html.HiddenFor(model => model.PropertyID)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.LegacyReference)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.LegacyReference)
+            @Html.ValidationMessageFor(model => model.LegacyReference)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PropertyOwnerID, "PropertyOwner")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("PropertyOwnerID", String.Empty)
+            @Html.ValidationMessageFor(model => model.PropertyOwnerID)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PropertyOwnerRepresentativeID, "PropertyOwnerRepresentative")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("PropertyOwnerRepresentativeID", String.Empty)
+            @Html.ValidationMessageFor(model => model.PropertyOwnerRepresentativeID)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PropertyTypeID, "PropertyType")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("PropertyTypeID", String.Empty)
+            @Html.ValidationMessageFor(model => model.PropertyTypeID)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PropertyTownID, "PropertyTown")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("PropertyTownID", String.Empty)
+            @Html.ValidationMessageFor(model => model.PropertyTownID)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PropertyVacationTypeID, "PropertyVacationType")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("PropertyVacationTypeID", String.Empty)
+            @Html.ValidationMessageFor(model => model.PropertyVacationTypeID)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.HomeawayReference)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.HomeawayReference)
+            @Html.ValidationMessageFor(model => model.HomeawayReference)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PropertyName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PropertyName)
+            @Html.ValidationMessageFor(model => model.PropertyName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.FullDescription)
+        </div>
+        <div class="editor-field">
+            <textarea name="FullDescription" rows="10"></textarea>
+            @Html.ValidationMessageFor(model => model.FullDescription)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ChangeOverDay)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("ChangeOverDay", new SelectList(ChangeoverDayListDDL, "Key", "Value"), new { id = "ChangeOverDay", @class = "input-small", @style = "height: auto !important; width:auto;" })
+            @*@Html.EditorFor(model => model.ChangeOverDay)
+                @Html.ValidationMessageFor(model => model.ChangeOverDay)*@
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ChangeoverNotes)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ChangeoverNotes)
+            @Html.ValidationMessageFor(model => model.ChangeoverNotes)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Pets)
+        </div>
+        <div class="editor-field">
+            @* @Html.EditorFor(model => model.Pets)
+                @Html.ValidationMessageFor(model => model.Pets)*@
+            @Html.DropDownList("Pets", new SelectList(yesNoListDDL, "Key", "Value"), new { id = "Pets", @class = "input-small", @style = "height: auto !important; width:auto;" })
+
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Parking)
+        </div>
+        <div class="editor-field">
+            @*@Html.EditorFor(model => model.Parking)
+                @Html.ValidationMessageFor(model => model.Parking)*@
+            @Html.DropDownList("Parking", new SelectList(yesNoListDDL, "Key", "Value"), new { id = "Parking", @class = "input-small", @style = "height: auto !important; width:auto;" })
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.DisabledAccess)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("DisabledAccess", new SelectList(yesNoListDDL, "Key", "Value"), new { id = "DisabledAccess", @class = "input-small", @style = "height: auto !important; width:auto;" })
+            @Html.ValidationMessageFor(model => model.DisabledAccess)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Smoking)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("Smoking", new SelectList(yesNoListDDL, "Key", "Value"), new { id = "Smoking", @class = "input-small", @style = "height: auto !important; width:auto;" })
+            @Html.ValidationMessageFor(model => model.Smoking)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.SwimmingPool)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("SwimmingPool", new SelectList(yesNoListDDL, "Key", "Value"), new { id = "SwimmingPool", @class = "input-small", @style = "height: auto !important; width:auto;" })
+            @Html.ValidationMessageFor(model => model.SwimmingPool)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.SwimmingPoolType)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("SwimmingPoolType", new SelectList(poolTypeListDDL, "Key", "Value"), new { id = "SwimmingPoolType", @class = "input-small", @style = "height: auto !important; width:auto;" })
+            @Html.ValidationMessageFor(model => model.SwimmingPoolType)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.HeatedPool)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("HeatedPool", new SelectList(yesNoListDDL, "Key", "Value"), new { id = "HeatedPool", @class = "input-small", @style = "height: auto !important; width:auto;" })
+            @Html.ValidationMessageFor(model => model.HeatedPool)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Heating)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("Heating", new SelectList(yesNoListDDL, "Key", "Value"), new { id = "Heating", @class = "input-small", @style = "height: auto !important; width:auto;" })
+            @Html.ValidationMessageFor(model => model.Heating)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.AirConditioning)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("AirConditioning", new SelectList(yesNoListDDL, "Key", "Value"), new { id = "AirConditioning", @class = "input-small", @style = "height: auto !important; width:auto;" })
+            @Html.ValidationMessageFor(model => model.AirConditioning)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.InternetAccess)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("InternetAccess", new SelectList(yesNoListDDL, "Key", "Value"), new { id = "InternetAccess", @class = "input-small", @style = "height: auto !important; width:auto;" })
+            @Html.ValidationMessageFor(model => model.InternetAccess)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.HiFi)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("HiFi", new SelectList(yesNoListDDL, "Key", "Value"), new { id = "HiFi", @class = "input-small", @style = "height: auto !important; width:auto;" })
+            @Html.ValidationMessageFor(model => model.HiFi)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.TV)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("TV", new SelectList(yesNoListDDL, "Key", "Value"), new { id = "TV", @class = "input-small", @style = "height: auto !important; width:auto;" })
+            @Html.ValidationMessageFor(model => model.TV)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Bedrooms)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Bedrooms)
+            @Html.ValidationMessageFor(model => model.Bedrooms)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Bathrooms)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Bathrooms)
+            @Html.ValidationMessageFor(model => model.Bathrooms)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.MaxGuests)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.MaxGuests)
+            @Html.ValidationMessageFor(model => model.MaxGuests)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.SofaBeds)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.SofaBeds)
+            @Html.ValidationMessageFor(model => model.SofaBeds)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ExtraBeds)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ExtraBeds)
+            @Html.ValidationMessageFor(model => model.ExtraBeds)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Cots)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Cots)
+            @Html.ValidationMessageFor(model => model.Cots)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.HighChair)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.HighChair)
+            @Html.ValidationMessageFor(model => model.HighChair)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Other)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Other)
+            @Html.ValidationMessageFor(model => model.Other)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.MapURL)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.MapURL)
+            @Html.ValidationMessageFor(model => model.MapURL)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.GPSCoordinatesLongitude)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.GPSCoordinatesLongitude)
+            @Html.ValidationMessageFor(model => model.GPSCoordinatesLongitude)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.GPSCoordinatesLatitude)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.GPSCoordinatesLatitude)
+            @Html.ValidationMessageFor(model => model.GPSCoordinatesLatitude)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.LegacySynopsis1)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.LegacySynopsis1)
+            @Html.ValidationMessageFor(model => model.LegacySynopsis1)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.LegacySynopsis2)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.LegacySynopsis2)
+            @Html.ValidationMessageFor(model => model.LegacySynopsis2)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.LegacySynopsis3)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.LegacySynopsis3)
+            @Html.ValidationMessageFor(model => model.LegacySynopsis3)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PriceSynopsis)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PriceSynopsis)
+            @Html.ValidationMessageFor(model => model.PriceSynopsis)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Exclusive)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("Exclusive", new SelectList(ActiveListDDL, "Key", "Value"), new { id = "Exclusive", @class = "input-small", @style = "height: auto !important; width:auto;" })
+            @Html.ValidationMessageFor(model => model.Exclusive)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.FullAddress)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.FullAddress)
+            @Html.ValidationMessageFor(model => model.FullAddress)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.HouseName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.HouseName)
+            @Html.ValidationMessageFor(model => model.HouseName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.HouseNumber)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.HouseNumber)
+            @Html.ValidationMessageFor(model => model.HouseNumber)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.AddressLine1)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.AddressLine1)
+            @Html.ValidationMessageFor(model => model.AddressLine1)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.AddressLine2)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.AddressLine2)
+            @Html.ValidationMessageFor(model => model.AddressLine2)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Town)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Town)
+            @Html.ValidationMessageFor(model => model.Town)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Postcode)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Postcode)
+            @Html.ValidationMessageFor(model => model.Postcode)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.County)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.County)
+            @Html.ValidationMessageFor(model => model.County)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Country)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Country)
+            @Html.ValidationMessageFor(model => model.Country)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PropertyTelephone)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PropertyTelephone)
+            @Html.ValidationMessageFor(model => model.PropertyTelephone)
+        </div>
+
+        @*  <div class="editor-label">
+                @Html.LabelFor(model => model.WhenCreated)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.WhenCreated)
+                @Html.ValidationMessageFor(model => model.WhenCreated)
+            </div>*@
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Active)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("Active", new SelectList(ActiveListDDL, "Key", "Value"), new { id = "Active", @class = "input-small", @style = "height: auto !important; width:auto;" })
+            @Html.ValidationMessageFor(model => model.Active)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Alarm)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("Alarm", new SelectList(yesNoListDDL, "Key", "Value"), new { id = "Alarm", @class = "input-small", @style = "height: auto !important; width:auto;" })
+            @Html.ValidationMessageFor(model => model.Alarm)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.BBQ)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("BBQ", new SelectList(yesNoListDDL, "Key", "Value"), new { id = "BBQ", @class = "input-small", @style = "height: auto !important; width:auto;" })
+            @Html.ValidationMessageFor(model => model.BBQ)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.DirectionsFromAirport)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.DirectionsFromAirport)
+            @Html.ValidationMessageFor(model => model.DirectionsFromAirport)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.WhoUpdated)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.WhoUpdated)
+            @Html.ValidationMessageFor(model => model.WhoUpdated)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.IsFeatured)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.IsFeatured)
+            @Html.ValidationMessageFor(model => model.IsFeatured)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.IsSale)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.IsSale)
+            @Html.ValidationMessageFor(model => model.IsSale)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Deposit_GBP_)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Deposit_GBP_)
+            @Html.ValidationMessageFor(model => model.Deposit_GBP_)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.BreakageDeposit_GBP_)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.BreakageDeposit_GBP_)
+            @Html.ValidationMessageFor(model => model.BreakageDeposit_GBP_)
+        </div>
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

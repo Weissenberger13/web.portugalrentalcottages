@@ -1,0 +1,148 @@
+﻿@model IEnumerable<BootstrapVillas.Models.PropertyEntity>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Content/Admin/_AdminLayout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.PropertyEntityType.PropertyEntityTypeName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Property.LegacyReference)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PropertyEntitySummaryDescription)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PropertyEntityName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PropertyEntityDescription1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PropertyEntityDescription2)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PropertyEntityDescription3)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PropertyEntityDescription4)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PropertyEntityDescription5)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PropertyEntityDescription6)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PropertyEntityDescription7)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PropertyEntityDescription8)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PropertyEntityDescription9)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PropertyEntityDescription10)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PropertyEntityDescription11)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PropertyEntityDescription12)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PropertyEntityDescription13)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PropertyEntityDescription14)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PropertyEntityDescription15)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.WhenCreated)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.PropertyEntityType.PropertyEntityTypeName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Property.LegacyReference)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PropertyEntitySummaryDescription)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PropertyEntityName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PropertyEntityDescription1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PropertyEntityDescription2)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PropertyEntityDescription3)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PropertyEntityDescription4)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PropertyEntityDescription5)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PropertyEntityDescription6)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PropertyEntityDescription7)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PropertyEntityDescription8)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PropertyEntityDescription9)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PropertyEntityDescription10)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PropertyEntityDescription11)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PropertyEntityDescription12)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PropertyEntityDescription13)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PropertyEntityDescription14)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PropertyEntityDescription15)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.WhenCreated)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.PropertyEntityID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.PropertyEntityID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.PropertyEntityID })
+        </td>
+    </tr>
+}
+
+</table>

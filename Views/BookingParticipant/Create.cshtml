@@ -1,0 +1,103 @@
+﻿@model BootstrapVillas.Models.BookingParticipant
+
+@{
+    ViewBag.Title = "Create";
+}
+@{
+
+
+    AjaxOptions createOptions = new AjaxOptions
+    {
+        UpdateTargetId = "BottomEditorWindow",
+        InsertionMode = InsertionMode.Replace,
+        LoadingElementId = "spinner"
+    };
+}
+
+<h2>Create</h2>
+
+
+
+@using (Ajax.BeginForm("Create", "BookingParticipant", createOptions)) { 
+
+    <fieldset>
+        <legend>BookingParticipant</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.BookingID, "Booking")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("BookingID", String.Empty)
+            @Html.ValidationMessageFor(model => model.BookingID)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.BookingParticipantTitle)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.BookingParticipantTitle)
+            @Html.ValidationMessageFor(model => model.BookingParticipantTitle)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.BookingParticipantFirstName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.BookingParticipantFirstName)
+            @Html.ValidationMessageFor(model => model.BookingParticipantFirstName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.BookingParticipantMiddleName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.BookingParticipantMiddleName)
+            @Html.ValidationMessageFor(model => model.BookingParticipantMiddleName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.BookingParticipantLastName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.BookingParticipantLastName)
+            @Html.ValidationMessageFor(model => model.BookingParticipantLastName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.BookingParticipantDOB)
+        </div>
+        <div class="editor-field">
+            <input type="text" id="BookingParticipantDOB" name="BookingParticipantDOB" class="date-picker" />
+            @Html.ValidationMessageFor(model => model.BookingParticipantDOB)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.BookingParticipantChild)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.BookingParticipantChild)
+            @Html.ValidationMessageFor(model => model.BookingParticipantChild)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.BookingParticipantInfant)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.BookingParticipantInfant)
+            @Html.ValidationMessageFor(model => model.BookingParticipantInfant)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.BookingParticipantAge)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.BookingParticipantAge)
+            @Html.ValidationMessageFor(model => model.BookingParticipantAge)
+        </div>
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+

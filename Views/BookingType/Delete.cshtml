@@ -1,0 +1,34 @@
+﻿@model BootstrapVillas.Models.BookingType
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Content/Admin/_AdminLayout.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>BookingType</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.BookingType1)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.BookingType1)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.BookingTypeDescription)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.BookingTypeDescription)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}

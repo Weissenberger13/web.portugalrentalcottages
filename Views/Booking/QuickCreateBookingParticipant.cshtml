@@ -1,0 +1,48 @@
+﻿@using System.Diagnostics
+@using BootstrapVillas.Models
+@model List<BootstrapVillas.Models.BookingParticipant>
+
+@{
+    var makeValid = "makeValid";
+    
+}
+
+<div class="row-fluid lightGrey" id=div1>
+    <fieldset>
+        <legend><css-decorator class="toTranslate">Please Enter The Name Of Everyone Who Will Be Participating On The Booking</css-decorator></legend>
+
+
+        @for (int i = 0; i < 15; i++)
+        {
+
+                     
+        <!-- Begin Form -->
+       
+            <div class="row-fluid">
+
+                <input type="hidden" name="bookingparticipants[@i].BookingParticipantID" />
+
+                <div class="span4">
+                    <label><css-decorator class="toTranslate">First Name</css-decorator></label>
+                    <input type="text" placeholder="e.g John" name="bookingparticipants[@i].BookingParticipantFirstName" id="bookingparticipants[@i].BookingParticipantFirstName" class="span12 @{ if (i == 0) { @makeValid  }  } ">
+                </div>
+
+                <div class="span4">
+                    <label for="LastName"><css-decorator class="toTranslate">Last Name</css-decorator></label>
+                    <input type="text" placeholder="e.g Doe" name="bookingparticipants[@i].BookingParticipantLastName" id="bookingparticipants[@i].BookingParticipantLastName" class="span12 @{ if (i == 0) { @makeValid   }  }">
+                </div>
+
+
+                <div class="span4">
+                    <label for="BookingParticipantAge"><css-decorator class="toTranslate">Age</css-decorator></label>
+                    <input type="text" id="bookingparticipants[@i].BookingParticipantAge" placeholder="e.g 18" name="bookingparticipants[@i].BookingParticipantAge" class="span12 @{ if (i  == 0) { @makeValid    }  }" />
+                </div>
+
+            </div>
+
+
+        }
+
+    </fieldset>
+
+</div>

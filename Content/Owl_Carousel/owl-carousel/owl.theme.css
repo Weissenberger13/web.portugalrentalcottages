@@ -1,0 +1,199 @@
+/*
+* 	Owl Carousel Owl Demo Theme 
+*	v1.24
+*/
+
+/* Styling Next and Prev buttons */
+
+.owl-theme .owl-controls .owl-buttons div {
+    color: #FFF;
+    display: inline-block;
+    zoom: 1;
+    *display: inline; /*IE7 life-saver */
+    margin: 5px;
+    padding: 15px 10px 15px;
+    font-size: 12px;
+    -webkit-border-radius: 30px;
+    -moz-border-radius: 30px;
+    border-radius: 3px;
+    background: #666;
+    filter: Alpha(Opacity=50); /*IE7 fix*/
+    opacity: 0.5;
+}
+
+/*.owl-prev {
+    position:absolute;
+    float:left;
+    left:0;
+    top:40%;
+}
+
+.owl-next {
+    position:absolute;
+    float:right;
+    clear:left;
+    right:0;
+    top:40%;
+}*/
+/* Clickable class fix problem with hover on touch devices */
+/* Use it for non-touch hover action */
+.owl-theme .owl-controls.clickable .owl-buttons div:hover {
+    filter: Alpha(Opacity=100); /*IE7 fix*/
+    opacity: 1;
+    text-decoration: none;
+}
+
+/* Styling Pagination*/
+
+.owl-theme .owl-controls .owl-page {
+    display: inline-block;
+    zoom: 1;
+    *display: inline; /*IE7 life-saver */
+}
+
+ /* Pagination controls */
+
+.owl-theme .owl-controls {
+    margin: 0;
+    text-align: center;
+    position: relative;
+    z-index: 5000;
+}
+
+/************************************************************
+        HomeCarousel / Large Feature Banner pagination styling
+    *************************************************************/
+
+#HomeCarousel .owl-controls {
+    margin: -45px 0 10px 0;
+    text-align: center;
+    position: relative;
+    z-index: 5000;
+}
+
+#HomeCarousel .owl-controls .owl-page span {
+    display: block;
+    width: 9px; /*width of pagination*/
+    height: 9px; /*height of pagination*/
+    margin: 5px 5px;
+    filter: Alpha(Opacity=50); /*IE7 fix*/
+    opacity: 1;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px;
+    border: 1px solid #fff;
+}
+
+#HomeCarousel .owl-controls .owl-page.active span,
+#HomeCarousel .owl-controls.clickable .owl-page:hover span {
+    filter: Alpha(Opacity=100); /*IE7 fix*/
+    opacity: 1;
+    background-color: #fff;
+}
+
+/************************************************************
+        Featured Properties Carousel pagination styling
+    *************************************************************/
+
+#FeaturedPropertyCarousel .owl-controls .owl-page span {
+    display: block;
+    width: 9px; /*width of pagination*/
+    height: 9px; /*height of pagination*/
+    margin: 5px 5px;
+    filter: Alpha(Opacity=50); /*IE7 fix*/
+    opacity: 1;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px;
+    border: 1px solid #999;
+}
+
+#FeaturedPropertyCarousel .owl-controls .owl-page.active span,
+#FeaturedPropertyCarousel .owl-controls.clickable .owl-page:hover span {
+    filter: Alpha(Opacity=100); /*IE7 fix*/
+    opacity: 1;
+    background: #999;
+}
+
+
+
+/************************************************************
+        HomePage Reviews Carousel pagination styling
+    *************************************************************/
+
+#ReviewCarousel .owl-controls .owl-page span {
+    display: block;
+    width: 9px; /*width of pagination*/
+    height: 9px; /*height of pagination*/
+    margin: 5px 5px;
+    filter: Alpha(Opacity=50); /*IE7 fix*/
+    opacity: 1;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px;
+    border: 1px solid #999;
+}
+
+#ReviewCarousel .owl-controls .owl-page.active span,
+#ReviewCarousel .owl-controls.clickable .owl-page:hover span {
+    filter: Alpha(Opacity=100); /*IE7 fix*/
+    opacity: 1;
+    background: #999;
+}
+
+/************************************************************
+        Full Propety Page Photo Carousel pagination styling
+*************************************************************/
+
+#FullPropertyCarousel {
+    position:relative;
+}
+
+#FullPropertyCarousel .owl-controls {
+    margin: 0;
+    bottom:10px;
+    right:10px;
+    text-align: center;
+    position: Absolute;
+    z-index: 5000;
+}
+
+#FullPropertyCarousel .owl-controls .owl-page span {
+    display: block;
+    width: 9px; /*width of pagination*/
+    height: 9px; /*height of pagination*/
+    margin: 5px 3px;
+    filter: Alpha(Opacity=50); /*IE7 fix*/
+    opacity: 1;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px;
+    border: 1px solid #fff;
+}
+
+#FullPropertyCarousel .owl-controls .owl-page.active span,
+#FullPropertyCarousel .owl-controls.clickable .owl-page:hover span {
+    filter: Alpha(Opacity=100); /*IE7 fix*/
+    opacity: 1;
+    background: #fff;
+}
+
+
+/* If PaginationNumbers is true */
+
+.owl-theme .owl-controls .owl-page span.owl-numbers {
+    height: auto;
+    width: auto;
+    color: #FFF;
+    padding: 2px 10px;
+    font-size: 12px;
+    -webkit-border-radius: 30px;
+    -moz-border-radius: 30px;
+    border-radius: 30px;
+}
+
+/* preloading images */
+.owl-item.loading {
+    min-height: 150px;
+    background: url(AjaxLoader.gif) no-repeat center center;
+}

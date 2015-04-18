@@ -1,0 +1,99 @@
+﻿@model BootstrapVillas.Models.AccountTransaction
+@using BootstrapVillas.Models;
+
+@{
+    ViewBag.Title = "Edit";
+
+
+    var accountOwner = (IEnumerable<SelectListItem>)ViewBag.PropertyOwnerAccount;
+    
+}
+
+<h2>Account Transaction Edit</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>AccountTransaction</legend>
+
+        @Html.HiddenFor(model => model.AccountTransactionID)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.BookingID, "Booking")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("BookingID", String.Empty)
+            @Html.ValidationMessageFor(model => model.BookingID)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.BookingExtraSelectionID, "BookingExtraSelection")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("BookingExtraSelectionID", String.Empty)
+            @Html.ValidationMessageFor(model => model.BookingExtraSelectionID)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.TransactionAmount)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.TransactionAmount)
+            @Html.ValidationMessageFor(model => model.TransactionAmount)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.TransactionNote)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.TransactionNote)
+            @Html.ValidationMessageFor(model => model.TransactionNote)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Paid)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Paid)
+            @Html.ValidationMessageFor(model => model.Paid)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.AccountID)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.PropertyOwnerAccount, accountOwner, "---- Select owner account ----")
+            @Html.ValidationMessageFor(model => model.AccountID)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.TransactionReference)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.TransactionReference)
+            @Html.ValidationMessageFor(model => model.TransactionReference)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.TransactionDate)
+        </div>
+        <div class="editor-field">
+            <input type="text" id="TransactionDate" name="TransactionDate" class="date-picker" value="@Model.TransactionDate" />
+            @Html.ValidationMessageFor(model => model.TransactionDate)
+        </div>
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

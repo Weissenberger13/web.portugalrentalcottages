@@ -1,0 +1,89 @@
+﻿@model BootstrapVillas.Models.Comment
+
+@{
+    ViewBag.Title = "Edit";
+
+
+    var ActiveListDDL = new Dictionary<string, string>();
+    ActiveListDDL.Add("", "");
+    ActiveListDDL.Add("true", "true");
+    ActiveListDDL.Add("false", "false");
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Comment</legend>
+
+        @Html.HiddenFor(model => model.CommentID)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PropertyID, "Property")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("PropertyID", String.Empty)
+            @Html.ValidationMessageFor(model => model.PropertyID)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Username)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Username)
+            @Html.ValidationMessageFor(model => model.Username)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.StarRating)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.StarRating)
+            @Html.ValidationMessageFor(model => model.StarRating)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.StartdateOfStay)
+        </div>
+        <div class="editor-field">            
+            <input type="text" id="StartdateOfStay" name="StartdateOfStay" class="date-picker" value=@Convert.ToDateTime(Model.StartdateOfStay).ToString("dd/MM/yyyy") />            
+            @Html.ValidationMessageFor(model => model.StartdateOfStay)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.EnddateOfStay)
+        </div>
+        <div class="editor-field">
+            <input type="text" id="EnddateOfStay" name="EnddateOfStay" class="date-picker" value=@Convert.ToDateTime(Model.EnddateOfStay).ToString("dd/MM/yyyy") />
+            @Html.ValidationMessageFor(model => model.EnddateOfStay)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Approved)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("Approved", new SelectList(ActiveListDDL, "Key", "Value", Model.Approved), new { id = "Approved", @class = "input-small", @style = "height: auto !important; width:auto;" })
+            @Html.ValidationMessageFor(model => model.Approved)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Text)
+        </div>
+        <div class="editor-field">
+            <textarea name="Text" id="Text" rows="7">@Model.Text</textarea>                        
+            @Html.ValidationMessageFor(model => model.Text)
+        </div>
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+

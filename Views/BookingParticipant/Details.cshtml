@@ -1,0 +1,87 @@
+﻿@model BootstrapVillas.Models.BookingParticipant
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>BookingParticipant</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Booking.BookingPRCReference)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Booking.BookingPRCReference)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.BookingParticipantTitle)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.BookingParticipantTitle)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.BookingParticipantFirstName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.BookingParticipantFirstName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.BookingParticipantMiddleName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.BookingParticipantMiddleName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.BookingParticipantLastName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.BookingParticipantLastName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.BookingParticipantDOB)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.BookingParticipantDOB)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.BookingParticipantChild)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.BookingParticipantChild)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.BookingParticipantInfant)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.BookingParticipantInfant)
+    </div>
+    
+
+    <div class="display-label">
+        @Html.LabelFor(model => model.BookingParticipantAge)
+    </div>
+    <div class="display-field">
+        @Html.EditorFor(model => model.BookingParticipantAge)
+        @Html.ValidationMessageFor(model => model.BookingParticipantAge)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.BookingParticipantWhenCreated)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.BookingParticipantWhenCreated)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.BookingParticipantID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

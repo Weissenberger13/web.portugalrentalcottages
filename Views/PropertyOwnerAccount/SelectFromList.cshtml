@@ -1,0 +1,423 @@
+﻿@using BootstrapVillas.Content.Classes
+@using BootstrapVillas.Models
+@model BootstrapVillas.Models.PropertyOwnerAccount
+
+@{
+
+    var accountOwner = (IEnumerable<SelectListItem>)ViewBag.PropertyOwnerAccount;
+    var transactionsforThisAccount = (IEnumerable<AccountTransaction>)ViewBag.Transactions;
+    var bookingsWTran = (List<BookingAndRelatedTransactions>)ViewBag.BookingsWTrans;
+    var bookingsPaid = (List<BookingAndRelatedTransactions>) ViewBag.BookingsPaid;
+}
+
+
+
+@if (Model != null)
+{
+    <h2>OwnerID:@Model.PropertyOwner.PropertyOwnerID || AccountID:@Model.AccountID || Account for @Model.PropertyOwner.OwnerFirstName @Model.PropertyOwner.OwnerLastName</h2>
+    <h5>Properties owned</h5>
+    <ul>
+        @foreach (var prop in Model.PropertyOwner.Properties)
+        {
+            <li>@prop.LegacyReference - @prop.HouseName</li>
+        }
+    </ul>
+
+}
+
+
+
+
+    @* THIS IS THE SCROLL TO SECTION DROPDOWN *@
+
+    <div class="row-fluid">
+        <div class="span12 lightGrey">
+            <h4>Account To View:@Html.DropDownList("AccountOwner", accountOwner, "---- Select owner account ----")</h4>
+
+            <div class="cont"></div>
+            <div class="grid-title">
+                <div class="pull-left">
+                    <div class="icon-title"><i class="fa fa-fw fa-calendar"></i></div>
+                    <span><css-decorator class="toTranslate">Account Details</css-decorator></span>
+                </div>
+            </div>
+
+            <div class="row-fluid">
+
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>
+                                Customer Name
+                            </th>
+                            <th>
+                                All time Sum Total Paid £
+                            </th>
+                            <th>
+                                All time Entered But Not 'Paid' £
+                            </th>
+                            <th>
+                                Sum Total Paid Last 30 Days £
+                            </th>
+                            <th>
+                                Sum Total Paid Last 90 Days £
+                            </th>
+                            <th>
+                                Sum Total Paid Last 365 Days £
+                            </th>
+
+                            <th>
+                                Last Payment Date
+                            </th>
+                            <th>
+                                Last Payment Amount
+                            </th>
+
+
+                    </thead>
+                    <tbody>
+                        <tr>
+                            @if (Model != null)
+                            {
+                                <td>@Model.PropertyOwner.OwnerFirstName @Model.PropertyOwner.OwnerLastName</td>
+                                <td>@Model.AccountTransactions.Where(x => x.Paid).Sum(x => x.TransactionAmount)</td>
+                                <td>@Model.AccountTransactions.Where(x => !x.Paid).Sum(x => x.TransactionAmount)</td>
+                                <td>@Model.AccountTransactions.Where(x => x.Paid).Where(x=>x.WhenCreated >= DateTime.Now.AddDays(-30)).Sum(x => x.TransactionAmount)</td>
+                                <td>@Model.AccountTransactions.Where(x => x.Paid).Where(x=>x.WhenCreated >= DateTime.Now.AddDays(-90)).Sum(x => x.TransactionAmount)</td>
+                                <td>@Model.AccountTransactions.Where(x => x.Paid).Where(x=>x.WhenCreated >= DateTime.Now.AddDays(-365)).Sum(x => x.TransactionAmount)</td>
+                                <td>@Model.AccountTransactions.Max(x => x.WhenCreated).ToString()</td>
+                                <td>
+                                    @if (Model.AccountTransactions.Count > 0)
+                                    {
+                                        @Model.AccountTransactions.OrderByDescending(x => x.WhenCreated).FirstOrDefault().TransactionAmount;
+                                    }
+                                </td>
+                            }
+                        </tr>
+                    </tbody>
+                </table>
+
+
+            </div>
+
+            <!--All recent transactions-->
+            <div class="cont"></div>
+            <div class="grid-title">
+                <div class="pull-left">
+                    <div class="icon-title"><i class="fa fa-fw fa-calendar"></i></div>
+                    <span><css-decorator class="toTranslate">Account Transactions</css-decorator></span>
+                </div>
+            </div>
+
+            <div class="row-fluid">
+
+                <table id="example" class="display" cellspacing="0" width="100%">
+                    <thead>
+                        <tr>
+                            <th>
+                                Booking PRCReference
+                            </th>
+                            <th>
+                                Legacy Reference
+                            </th>
+                            <th>
+                                Booking Start Date
+                            </th>
+                            @* <th>
+                                    @Html.DisplayNameFor(model => model.BookingExtraSelection.BookingExtraPRCReference)
+                                </th>*@
+
+                            <th>
+                                Booking Remittance Amount (Total)
+                            </th>
+                            <th>
+                                TransactionAmount
+                            </th>
+                            <th>
+                                TransactionNote
+                            </th>
+                            <th>
+                                Paid?
+                            </th>
+                            <th>
+                                AccountID
+                            </th>
+                            <th>
+                                TransactionReference
+                            </th>
+                            <th>
+                                TransactionDate
+                            </th>
+                            <th>
+                                WhenCreated
+                            </th>
+                            <th>
+                                WhoCreated
+                            </th>
+                            <th>
+                                Voided
+                            </th>
+                            <th>
+                                VoidedDate
+                            </th>
+                            <th>
+                                WhoVoided
+                            </th>
+                            <th></th>
+                        </tr>
+                    </thead>
+
+                    @if (transactionsforThisAccount != null)
+                    {
+                        <tbody>
+
+                            @foreach (var item in transactionsforThisAccount)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Booking.BookingPRCReference)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Booking.Property.LegacyReference)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Booking.StartDate)
+                                    </td>
+                                    @*<td>
+                                            @Html.DisplayFor(modelItem => item.BookingExtraSelection.BookingExtraPRCReference)
+                                        </td>*@
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Booking.RemittanceAmount)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.TransactionAmount)
+                                    </td>
+
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.TransactionNote)
+                                    </td>
+                                    <td>
+                                        @item.Paid.ToString()
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.AccountID)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.TransactionReference)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.TransactionDate)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.WhenCreated)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.WhoCreated)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Voided)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.VoidedDate)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.WhoVoided)
+                                    </td>
+                                    <td>
+                                        @*   $1$       @Html.ActionLink("Edit", "Edit", new { id = item.AccountTransactionID }) |#1#
+                                            @Html.ActionLink("Details", "Details", new { id = item.AccountTransactionID }) |
+                                            $1$               @Html.ActionLink("Delete", "Delete", new { id = item.AccountTransactionID })#1#
+                                            @Html.ActionLink("Void", "VoidTransaction", new { id = item.AccountTransactionID })*@
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    }
+                </table>
+
+
+            </div>
+
+            @*Bookings unpaid*@
+            <!--All recent transactions-->
+            <div class="cont"></div>
+            <div class="grid-title">
+                <div class="pull-left">
+                    <div class="icon-title"><i class="fa fa-fw fa-calendar"></i></div>
+                    <span><css-decorator class="toTranslate">Unpaid Bookings</css-decorator></span>
+                </div>
+            </div>
+            <div class="row-fluid">
+
+                <table id="example2" class="display" cellspacing="0" width="100%">
+                    <thead>
+                        <tr>
+                            <th>
+                                Booking PRCReference
+                            </th>
+                            <th>
+                                Legacy Reference
+                            </th>
+                            <th>
+                                Booking Start Date
+                            </th>
+                            <th>
+                                Booking End Date
+                            </th>
+                            <th>
+                                Booking Remittance Amount (Total)
+                            </th>
+                            <th>
+                                Total Amount Paid Against Booking
+                            </th>
+                        </tr>
+                    </thead>
+
+                    @if (bookingsWTran != null)
+                    {
+                        <tbody>
+                            @foreach (var booking in bookingsWTran)
+                            {
+                                <tr>
+                                    <td>
+                                        @booking.booking.BookingPRCReference
+                                    </td>
+                                    <td>
+                                        @booking.booking.Property.LegacyReference
+                                    </td>
+                                    <td>
+                                        @booking.booking.StartDate
+                                    </td>
+                                    <td>
+                                        @booking.booking.EndDate
+                                    </td>
+
+                                    <td>
+                                        @booking.booking.RemittanceAmount
+                                    </td>
+                                    <td>
+                                        @booking.transactions.Sum(x => x.TransactionAmount)
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    }
+                </table>
+
+
+            </div>
+            
+            
+            
+            @*Bookings paid*@
+            <!--All recent transactions-->
+            <div class="cont"></div>
+            <div class="grid-title">
+                <div class="pull-left">
+                    <div class="icon-title"><i class="fa fa-fw fa-calendar"></i></div>
+                    <span><css-decorator class="toTranslate">Paid Bookings</css-decorator></span>
+                </div>
+            </div>
+            <div class="row-fluid">
+
+                <table id="example3" class="display" cellspacing="0" width="100%">
+                    <thead>
+                        <tr>
+                            <th>
+                                Booking PRCReference
+                            </th>
+                            <th>
+                                Legacy Reference
+                            </th>
+                            <th>
+                                Booking Start Date
+                            </th>
+                            <th>
+                                Booking End Date
+                            </th>
+                            <th>
+                                Booking Remittance Amount (Total)
+                            </th>
+                            <th>
+                                Total Amount Paid Against Booking
+                            </th>
+                        </tr>
+                    </thead>
+
+                    @if (bookingsPaid != null)
+                    {
+                        <tbody>
+                            @foreach (var booking in bookingsPaid)
+                            {
+                                <tr>
+                                    <td>
+                                        @booking.booking.BookingPRCReference
+                                    </td>
+                                    <td>
+                                        @booking.booking.Property.LegacyReference
+                                    </td>
+                                    <td>
+                                        @booking.booking.StartDate
+                                    </td>
+                                    <td>
+                                        @booking.booking.EndDate
+                                    </td>
+
+                                    <td>
+                                        @booking.booking.RemittanceAmount
+                                    </td>
+                                    <td>
+                                        @booking.transactions.Sum(x => x.TransactionAmount)
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    }
+                </table>
+
+
+            </div>
+
+
+        </div>
+    </div>
+
+
+
+
+
+    <script type="text/javascript">
+        $('#example').DataTable();
+        $('#example2').DataTable();
+        $('#example3').DataTable();
+        $('#BottomEditorWindow').show();
+        $('#BottomEditorWindow').animate({ height: '0%' }, 500);
+        $('#TopEditorWindow').animate({ height: '100%' }, 500);
+
+
+        $('#AccountOwner').on('change', function () {
+
+
+            var accountID = $("#AccountOwner").val();
+
+            $("#spinner").show();
+
+            //request
+            $.ajax({
+                url: '@Url.Action("SelectFromList", "PropertyOwnerAccount")',
+                data: { "id": accountID },
+                type: "POST",
+                success: function (result) {
+                    $('#TopEditorWindow').html(result);
+                    //get the pricing
+                },
+                error: function () { alert('That did not work please try again'); }
+            });
+
+        });
+
+
+
+    </script>
+
+

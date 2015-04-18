@@ -1,0 +1,190 @@
+﻿@model BootstrapVillas.Models.BookingExtra
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>BookingExtra</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.isHalfDayTour)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.isHalfDayTour)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.BookingExtraType.ExtraTypeName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.BookingExtraType.ExtraTypeName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.BookingExtraSubTypeID)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.BookingExtraSubTypeID)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.LegacyReference)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.LegacyReference)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Active)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Active)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.TopLevelItem)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.TopLevelItem)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.MaxPersons)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.MaxPersons)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.BookingExtraName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.BookingExtraName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.BookingExtraDescription)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.BookingExtraDescription)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.FullSynopsis1)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.FullSynopsis1)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.FullSynopsis2)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.FullSynopsis2)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.FullSynopsis3)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.FullSynopsis3)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.HTMLContent)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.HTMLContent)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.PriceSynopsis)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PriceSynopsis)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.WhenCreated)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.WhenCreated)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Price)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Price)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.PriceTimespan)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PriceTimespan)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.PriceSymbol)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PriceSymbol)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.LowSeasonPrice)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.LowSeasonPrice)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.MidSeasonPrice)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.MidSeasonPrice)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.HighSeasonPrice)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.HighSeasonPrice)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.PeakSeasonPrice)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PeakSeasonPrice)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.CarSeatPrice)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CarSeatPrice)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ExtraLuggageCostPerPiece)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ExtraLuggageCostPerPiece)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.DetourCost)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DetourCost)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.BookingExtraID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

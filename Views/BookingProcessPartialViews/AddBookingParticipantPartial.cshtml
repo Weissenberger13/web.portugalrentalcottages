@@ -1,0 +1,75 @@
+﻿@using System.Diagnostics
+@using BootstrapVillas.Models
+@model List<BootstrapVillas.Models.BookingParticipant>
+
+@{
+
+    ViewBag.Title = "CreateBooking";
+
+    int viewCount = 0;
+
+    var StepNo = ViewData["StepNo"];
+    int latestBookingParticipant = (int)ViewData["latestBookingParticipant"];
+    var loopNo = (int)ViewData["loopNo"];
+    int counter = latestBookingParticipant += 15;
+
+    string divID = "bookingParticipantDiv" + loopNo.ToString();
+    string makeValid = "makeValid";
+
+}
+
+
+<div class="row-fluid lightGrey" id=@divID>
+    <fieldset>
+        <legend><css-decorator class="toTranslate">Please Enter The Name Of Everyone Who Will Be Participating On The Booking</css-decorator></legend>
+
+
+        @for (int i = latestBookingParticipant - 15; i < counter; i++)
+        {
+            
+                var participantNumber = @i + 1;
+          
+          
+
+            <h4>Add participant @participantNumber  :</h4>
+        <!-- Begin Form -->
+
+            @*<div class="span4">
+                    <label>Title</label>
+                    <select name="bookingparticipants[@i].BookingParticipantTitle" id="BookingParticipantTitle">
+                        <option value="">- Select -</option>
+                        <option>Mr</option>
+                        <option>Mrs</option>
+                        <option>Ms</option>
+                        <option>Master</option>
+                    </select>
+                </div>*@
+            
+            <input type="hidden" value="@StepNo" name="bookingparticipants[@i].StepNo" />
+    <input type="hidden" value="@participantNumber" name="bookingparticipants[@i].BookingParticipantNumber" />
+         <div class="row-fluid">
+            
+                <div class="span4">
+                    <label><css-decorator class="toTranslate">First Name</css-decorator></label>
+                    <input type="text" placeholder="e.g John" name="bookingparticipants[@i].BookingParticipantFirstName" id="bookingparticipants[@i].BookingParticipantFirstName" class="span12 @{ if (i % 15 == 0) { @makeValid  }  } ">
+                </div>
+
+                <div class="span4">
+                    <label for="LastName"><css-decorator class="toTranslate">Last Name</css-decorator></label>
+                    <input type="text" placeholder="e.g Doe" name="bookingparticipants[@i].BookingParticipantLastName" id="bookingparticipants[@i].BookingParticipantLastName" class="span12 @{ if (i % 15 == 0) { @makeValid   }  }">
+                </div>
+
+                
+                <div class="span4">
+                    <label for="BookingParticipantAge"><css-decorator class="toTranslate">Age</css-decorator></label>
+                    <input type="text" id="bookingparticipants[@i].BookingParticipantAge" placeholder="e.g 18" name="bookingparticipants[@i].BookingParticipantAge" class="span12 @{ if (i % 15 == 0) { @makeValid    }  }" />
+                </div>
+
+            </div>
+
+
+        }
+
+    </fieldset>
+
+</div>

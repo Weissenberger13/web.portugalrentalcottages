@@ -1,0 +1,694 @@
+﻿@model BootstrapVillas.Models.BookingExtraSelection
+@using BootstrapVillas.Models;
+
+
+@{
+    ViewBag.Title = "Create";
+
+    int viewCount = 0;
+
+
+    IEnumerable<PropertyTypeServicesChargeInstance> instanceExtraCharges = PropertyTypeServicesChargeInstance.GetExtraTypeServicesChargeInstances();
+    long? BookingExtraTypeID = Model.GetBookingExtraTypeIDFromBookingExtraSelection();
+
+    var StepNo = ViewData["StepNo"];
+    viewCount = Convert.ToInt16(ViewData["Count"]);
+    var loopNo = (int)ViewData["loopNo"];
+    var booking = (Booking)ViewData["booking"];
+
+    decimal price = Model.BESPrice ?? 0.00M;
+    decimal extraPrice = Model.BESExtraServicesPrice ?? 0.00M;
+
+    var totalPrice = price + extraPrice;
+
+    string divID = "BESDiv" + loopNo;
+
+    <div class="row-fluid" id="@divID">
+
+
+        <input type="hidden" value="@StepNo" name="bookingExtraSelections[@viewCount].StepNo" id="bookingExtraSelections[@viewCount].StepNo" />
+        <input type="hidden" id="bookingExtraSelections[@viewCount].BookingExtraID" class="BookingExtraID_ToPost" name="bookingExtraSelections[@viewCount].BookingExtraID" value="@Model.BookingExtraID" />
+
+        @*Car rental*@
+
+
+        @if (BookingExtraTypeID == 1)
+        {
+
+            <b><css-decorator class="toTranslate">Car Rental Details</css-decorator></b>
+
+            <div class="row-fluid" style="margin-bottom: 20px;">
+
+                <div class="span12">
+                    <div class="span6">
+                        <label><i class="fa fa-fw fa-calendar"></i><css-decorator class="toTranslate">Start Date</css-decorator></label>
+                        <input style="height: 35px;" type="text" class="date-picker span12 makeValid" name="bookingExtraSelections[@viewCount].ExtraRentalDate" id="bookingExtraSelections[@viewCount].ExtraRentalDate" value="@DateTime.Parse(Model.ExtraRentalDate.ToString()).ToString("dd/MM/yyyy")" placeholder="dd/mm/yyyy" />
+                    </div>
+                    <div class="span6">
+                        <label><i class="fa fa-fw fa-calendar"></i><css-decorator class="toTranslate">End Date</css-decorator></label>
+                        <input style="height: 35px;" type="text" class="date-picker span12 makeValid" name="bookingExtraSelections[@viewCount].ExtraReturnDate" id="bookingExtraSelections[@viewCount].ExtraReturnDate" value="@DateTime.Parse(Model.ExtraReturnDate.ToString()).ToString("dd/MM/yyyy")" placeholder="dd/mm/yyyy" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="row-fluid" style="margin-bottom: 20px;">
+                <div class="span12">
+                    <div class="span6">
+                        <label>Pick Up Location / Address</label>
+                        <textarea rows="3" name="PickupLocation" id="PickupLocation">
+                            AutoJulio Office- Rua General Amilcar Mota nº 43, Pólo de São Cristóvão - 2500-209 Caldas da Rainha - Portugal
+                        </textarea>
+                    </div>
+
+                    <div class="span6">
+                        <label>Drop Off Location / Address</label>
+                        <textarea rows="3" name="DropoffLocation" id="DropoffLocation">
+                            AutoJulio Office- Rua General Amilcar Mota nº 43, Pólo de São Cristóvão - 2500-209 Caldas da Rainha - Portugal
+                        </textarea>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="row-fluid" style="margin-top: 20px;">
+                <div class="span6">
+                    <label for="FlightArrivalTime"><css-decorator class="toTranslate">Collection Time</css-decorator></label>
+                    <input type="text" id="bookingExtraSelections[@viewCount].FlightArrivalTime" name="bookingExtraSelections[@viewCount].FlightArrivalTime" class="span12" />
+                </div>
+
+                <div class="span6">
+                    <label for="FlightDepartureTime"><css-decorator class="toTranslate">Vehicle Return Time</css-decorator></label>
+                    <input type="text" id="bookingExtraSelections[@viewCount].FlightDepartureTime" name="bookingExtraSelections[@viewCount].FlightDepartureTime" class="span12" />
+                </div>
+            </div>
+
+
+            <div class="row-fluid" style="margin-top: 20px;">
+                <div class="span4">
+                    <!-- checkbox 1 -->
+                    <label><css-decorator class="toTranslate">Child Seats*</css-decorator></label>
+                    <select class="input-small childseats span12" id="bookingExtraSelections[@viewCount].childSeats" name="bookingExtraSelections[@viewCount].NumberOfChildseats">
+                        <option value="">- No of Child Seats -</option>
+                        <option>0</option>
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                        <option>6</option>
+                        <option>7</option>
+                        <option>8</option>
+                        <option>9</option>
+                        <option>10</option>
+                        <option>11</option>
+                        <option>12</option>
+                        <option>13</option>
+                        <option>14</option>
+                        <option>15</option>
+                    </select>
+                    <br />
+                    <strong>*<css-decorator class="toTranslate">Child Seats @@GB£@instanceExtraCharges.Where(x => x.PropertyTypeServicesID.Equals(12)).FirstOrDefault().ServicePriceGBP.ToString() per day</css-decorator></strong>
+                </div>
+
+                <div class="span4">
+                    <label><css-decorator class="toTranslate">Number of passengers</css-decorator></label>
+                    <select name="bookingExtraSelections[@viewCount].NumberOfGuests" id="bookingExtraSelections[@viewCount].NumberOfGuests" class="numberOfGuests makeValid span12">
+                        <option value="">- No of Passengers -</option>
+                        <option>0</option>
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                        <option>6</option>
+                        <option>7</option>
+                        <option>8</option>
+                        <option>9</option>
+                        <option>10</option>
+                        <option>11</option>
+                        <option>12</option>
+                        <option>13</option>
+                        <option>14</option>
+                        <option>15</option>
+                    </select>
+                </div>
+
+
+                <div class="span4">
+                    <label for="NoOfDaysHire"><css-decorator class="toTranslate">No of days hire</css-decorator></label>
+                    <input type="text" name="bookingExtraSelections[@viewCount].NumberOfDays" readonly value="@Model.NumberOfDays" class="span12" />
+                </div>
+
+            </div>
+
+
+
+            <div class="row-fluid" style="margin-top: 20px;">
+                <div class="span6">
+                    <label for="DrivingLicenceNumber"><css-decorator class="toTranslate">Driving Licence Number</css-decorator></label>
+                    <input type="text" name="bookingExtraSelections[@viewCount].DrivingLicenceNumber" class="makeValid span12" />
+                </div>
+
+                <div class="span6">
+                    <label for="DrivingLicenceNumber2"><css-decorator class="toTranslate">Second Driver - Driving Licence Number</css-decorator></label>
+                    <input type="text" name="bookingExtraSelections[@viewCount].DrivingLicenceNumber2" class="makeValid span12" />
+                </div>
+            </div>
+
+
+
+
+
+
+
+            <div class="row-fluid">
+                <div class="span12">
+                    <label for="DrivingLicenceNumber2"><css-decorator class="toTranslate">Any Special Requests or Queries</css-decorator></label>
+                    <textarea rows="3" class="span12" name="bookingExtraSelections[@viewCount].@Model.BESSpecialRequests" id="bookingExtraSelections[@viewCount].@Model.BESSpecialRequests" value="@Model.BESSpecialRequests" placeholder="Additional requests & queries"></textarea>
+                </div>
+            </div>
+
+
+
+
+        }
+
+
+        @*//Van tour*@
+        @if (BookingExtraTypeID == 4)
+        {
+
+            <b><css-decorator class="toTranslate">Tour Details</css-decorator></b>
+
+
+            <div class="row-fluid" style="margin-top: 20px;">
+                <div class="span6">
+                    <label for="FlightArrival"><css-decorator class="toTranslate">Date Of Tour</css-decorator></label>
+                    <input type="text" name="bookingExtraSelections[@viewCount].ExtraRentalDate" class="span12 date-picker makeValid" value="@DateTime.Parse(Model.ExtraRentalDate.ToString()).ToString("dd/MM/yyyy")" />
+                </div>
+
+                <div class="span6">
+                    <label for="FlightArrivalTime"><css-decorator class="toTranslate">Pick Up Time</css-decorator></label>
+                    <input type="text" id="bookingExtraSelections[@viewCount].FlightArrivalTime" name="bookingExtraSelections[@viewCount].FlightArrivalTime" class="span12" />
+
+                </div>
+            </div>
+
+            <div class="row-fluid" style="margin-top: 20px;">
+                <div class="span6">
+                    <label><css-decorator class="toTranslate">Pick Up Location / Address</css-decorator></label>
+                    <textarea rows="3" name="bookingExtraSelections[@viewCount].PickupLocation" class="span12">
+                        @Model.PickupLocation
+                    </textarea>
+                </div>
+
+
+                <div class="span6">
+                    <label><css-decorator class="toTranslate">Drop Off Location / Address</css-decorator></label>
+                    <textarea rows="3" name="bookingExtraSelections[@viewCount].DropoffLocation" class="span12">
+                        @Model.DropoffLocation
+                    </textarea>
+
+                </div>
+            </div>
+
+
+
+
+            <div class="row-fluid" style="margin-top: 20px;">
+                <div class="span6">
+                    <label><css-decorator class="toTranslate">Lead Passenger Name</css-decorator></label>
+                    @*same ids as other modals *@
+                    <input type="text" name="bookingExtraSelections[@viewCount].LeadPassengerName" class="makeValid span12" />
+                </div>
+
+                <div class="span6">
+                    <label><css-decorator class="toTranslate">Number of Child seats</css-decorator>*</label>
+                    @*same ids as other modals *@
+                    <select name="bookingExtraSelections[@viewCount].NumberOfChildseats" class="childseats span12">
+                        @{
+            for (var i = 0; i < 6; i++)
+            {
+                <option value=@i.ToString()>@i</option>
+            }
+                        }
+                    </select>
+                    <strong>*<css-decorator class="toTranslate">Child Seats @@GB£@instanceExtraCharges.Where(x => x.PropertyTypeServicesID.Equals(9)).FirstOrDefault().ServicePriceGBP.ToString() per seat each way</css-decorator></strong>
+
+                </div>
+            </div>
+
+
+
+            <div class="row-fluid" style="margin-top: 20px;">
+                <div class="span4">
+
+                    <label><css-decorator class="toTranslate">Passengers - Adults</css-decorator></label>
+                    @*same ids as other modals *@
+                    <select name="bookingExtraSelections[@viewCount].NumberOfAdults" id="bookingExtraSelections[@viewCount].NumberOfAdults" class="adults makeValid span12">
+                        @{
+            for (var i = 1; i < 16; i++)
+            {
+                <option value=@i.ToString()>@i</option>
+            }
+                        }
+                    </select>
+                </div>
+
+
+
+                <div class="span4">
+                    <label><css-decorator class="toTranslate">Passengers - Children</css-decorator></label>
+                    @*same ids as other modals *@
+                    <select name="bookingExtraSelections[@viewCount].NumberOfChildren" class="children makeValid span12">
+                        @{
+            for (var i = 0; i < 16; i++)
+            {
+                <option value=@i.ToString()>@i</option>
+            }
+                        }
+                    </select>
+                </div>
+
+
+
+                <div class="span4">
+                    <label><css-decorator class="toTranslate">Passengers - Infants</css-decorator></label>
+                    @*same ids as other modals *@
+                    <select name="bookingExtraSelections[@viewCount].NumberOfInfants" class="infants makeValid span12">
+                        @{
+            for (var i = 0; i < 16; i++)
+            {
+                <option value=@i.ToString()>@i</option>
+            }
+                        }
+
+                    </select>
+                </div>
+            </div>
+
+
+            <div class="row-fluid" style="margin-top: 20px;">
+                <div class="span12">
+                    <label><css-decorator class="toTranslate">Any special requests or comments</css-decorator></label>
+                    <textarea class="span12" rows="7" name="bookingExtraSelections[@viewCount].BESSpecialRequests" id="bookingExtraSelections[@viewCount].BESSpecialRequests" value="@Model.BESSpecialRequests"></textarea>
+                </div>
+            </div>
+
+        }
+
+
+
+
+
+        @*//airport transfer *@
+        @if (BookingExtraTypeID == 3)
+        {
+
+
+            List<AirportDestination>
+                apd = AirportDestination.GetAllAirportDestinations().ToList();
+            List<SelectListItem>
+                airportDestinations = new List<SelectListItem>
+                    ();
+
+            foreach (var airportDestination in apd)
+            {
+                airportDestinations.Add(new SelectListItem { Text = @airportDestination.AirportPickupLocationName, Value = @airportDestination.AirportPickupLocationID.ToString() })
+                    ;
+            }
+
+            <b><css-decorator class="toTranslate">Airport Transfer Details</css-decorator></b>
+            <div class="row-fluid" style="margin-top: 20px;">
+                <div class="span12">
+                    <label><css-decorator class="toTranslate">What will your destination be?</css-decorator></label>
+                    <div class="editor-field">
+                        @{
+            var nameID = "bookingExtraSelections[" + viewCount + "].AirportPickupLocationID";
+                        }
+                        @Html.DropDownList(nameID, airportDestinations)
+                        @Html.ValidationMessageFor(model => model.AirportPickupLocationID)
+                    </div>
+                </div>
+            </div>
+
+            <div class="row-fluid" style="margin-top: 20px;">
+                <div class="span12">
+                    <div class="span6">
+                        <label><i class="fa fa-fw fa-calendar"></i><css-decorator class="toTranslate">Start Date</css-decorator></label>
+                        <input style="height: 35px;" type="text" class="date-picker span12 makeValid" name="bookingExtraSelections[@viewCount].ExtraRentalDate" id="bookingExtraSelections[@viewCount].ExtraRentalDate" value="@DateTime.Parse(Model.ExtraRentalDate.ToString()).ToString("dd/MM/yyyy")" placeholder="dd/mm/yyyy" />
+                    </div>
+                    <div class="span6">
+                        <label><i class="fa fa-fw fa-calendar"></i><css-decorator class="toTranslate">End Date</css-decorator></label>
+                        <input style="height: 35px;" type="text" class="date-picker span12 makeValid" name="bookingExtraSelections[@viewCount].ExtraReturnDate" id="bookingExtraSelections[@viewCount].ExtraReturnDate" value="@DateTime.Parse(Model.ExtraReturnDate.ToString()).ToString("dd/MM/yyyy")" placeholder="dd/mm/yyyy" />
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row-fluid" style="margin-top: 20px;">
+                <div class="span12">
+                    <div class="span3">
+                        <label for="FlightNumberArrival"><css-decorator class="toTranslate">Flight Number Arrival</css-decorator></label>
+                        <input type="text" name="bookingExtraSelections[@viewCount].FlightNumberArrival" class="span12" placeholder="e.g. ABC1234" />
+                    </div>
+
+                    <div class="span3">
+                        <label for="FlightNumberDeparture"><css-decorator class="toTranslate">Flight Number Departure</css-decorator></label>
+                        <input type="text" name="bookingExtraSelections[@viewCount].FlightNumberDeparture" class="span12" placeholder="e.g. ABC1234" />
+                    </div>
+
+                    <div class="span3">
+                        <label for="FlightDeparture"><css-decorator class="toTranslate">Flight Arrival Time</css-decorator></label>
+                        <input type="text" name="bookingExtraSelections[@viewCount].FlightArrivalTime" placeholder="e.g. 10.00am" class="span12" />
+                    </div>
+                    <div class="span3">
+                        <label for="FlightArrival"><css-decorator class="toTranslate">Flight Departure Time</css-decorator></label>
+                        <input type="text" name="bookingExtraSelections[@viewCount].FlightDepartureTime" placeholder="e.g. 10.00am" class="span12" />
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row-fluid" style="margin-top: 20px;">
+                <div class="span12">
+                    <div class="span6">
+                        <label><css-decorator class="toTranslate">Pick Up Location / Address</css-decorator></label>
+                        @*same ids as other modals *@
+                        <textarea rows="3" name="bookingExtraSelections[@viewCount].PickupLocation" class="span12">@Model.PickupLocation
+                    </textarea>
+                </div>
+
+                <div class="span6">
+                    <label><css-decorator class="toTranslate">Drop Off Location / Address</css-decorator></label>
+                    @*same ids as other modals *@
+                    <textarea rows="3" name="bookingExtraSelections[@viewCount].DropoffLocation" class="span12">@Model.DropoffLocation
+                </textarea>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+            <div class="row-fluid" style="margin-top: 20px;">
+                <div class="span12">
+                    <div class="span6">
+                        <label for="ArrivalTerminal"><css-decorator class="toTranslate">Arrival Terminal No.</css-decorator></label>
+                        <select name="bookingExtraSelections[@viewCount].FlightArrivalTerminalNumber" class="span12 makeValid">
+                            <option>Terminal Unknown At This Time</option>
+                            <option>Terminal 1</option>
+                            <option>Terminal 2</option>
+                        </select>
+                    </div>
+
+                    <div class="span6">
+                        <label for="DepartureTerminal"><css-decorator class="toTranslate">Departure Terminal No.</css-decorator></label>
+                        <select name="bookingExtraSelections[@viewCount].FlightDepartureTeminalNumber" class="span12 makeValid">
+                            <option>Terminal Unknown At This Time</option>
+                            <option>Terminal 1</option>
+                            <option>Terminal 2</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+            <div class="row-fluid" style="margin-top: 20px;">
+                <div class="span12">
+                    <div class="span4">
+                        <label><css-decorator class="toTranslate">Passengers - Adults</css-decorator></label>
+                        <select name="bookingExtraSelections[@viewCount].NumberOfAdults" id="bookingExtraSelections[@viewCount].NumberOfAdults" class="span12 adults makeValid">
+                            @{
+            for (var i = 1; i < 16; i++)
+            {
+                <option value=@i.ToString()>@i</option>
+            }
+                            }
+                        </select>
+                    </div>
+
+
+
+                    <div class="span4">
+                        <label><css-decorator class="toTranslate">Passengers - Children</css-decorator></label>
+
+                        <select name="bookingExtraSelections[@viewCount].NumberOfChildren" class="span12 children makeValid">
+                            @{
+            for (var i = 0; i < 16; i++)
+            {
+                <option value=@i.ToString()>@i</option>
+            }
+                            }
+                        </select>
+                    </div>
+
+                    <label><css-decorator class="toTranslate">Passengers - Infants</css-decorator></label>
+
+                    <div class="span4">
+                        <select name="bookingExtraSelections[@viewCount].NumberOfInfants" class="span12 infants makeValid">
+                            @{
+            for (var i = 0; i < 16; i++)
+            {
+                <option value=@i.ToString()>@i</option>
+            }
+                            }
+
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
+            <div class="row-fluid" style="margin-top: 20px;">
+                <div class="span12">
+                    <label><css-decorator class="toTranslate">Number of Child* seats - £10 per seat</css-decorator>*</label>
+                    <select name="bookingExtraSelections[@viewCount].NumberOfChildseats" class="span12 childseats makeValid">
+                        @{
+            for (var i = 0; i < 6; i++)
+            {
+                <option value=@i.ToString()>@i</option>
+            }
+                        }
+                    </select><br />
+                    <strong><css-decorator class="toTranslate">*Child Seats @@GB£@instanceExtraCharges.Where(x => x.PropertyTypeServicesID.Equals(9)).FirstOrDefault().ServicePriceGBP.ToString() per seat each way</strong>
+                </div>
+            </div>
+
+            <div class="row-fluid" style="margin-top: 20px;">
+                <div class="span12">
+                    <label><css-decorator class="toTranslate">No of detours</css-decorator>** </label>
+                    <select name="bookingExtraSelections[@viewCount].Detours" class="span12 detours makeValid">
+                        @{
+            for (var i = 0; i < 6; i++)
+            {
+                <option value=@i.ToString()>@i</option>
+            }
+                        }
+
+                    </select><br />
+                    <strong>
+                        **<css-decorator class="toTranslate">
+                            Any special detours within 15 mile of destination charged extra @@GB£@instanceExtraCharges.Where(x => x.PropertyTypeServicesID.Equals(8)).FirstOrDefault().ServicePriceGBP.ToString() each way.
+                            This means when the client is collected from Lisbon city instead of the Airport, then the charge is levied one way, if  the departure day drop off is the Airport. If to a non-airport location, then charged both ways.
+                            N.B It is also levied when there is a stop over to collect the local rental car each way on arrival and departure day.
+                        </css-decorator>
+                    </strong>
+                </div>
+            </div>
+
+            <div class="row-fluid" style="margin-top: 20px;">
+                <div class="span12">
+                    <label><css-decorator class="toTranslate">Extra pieces of luggage (standard 1 per person)</css-decorator>***</label>
+                    <select name="bookingExtraSelections[@viewCount].PiecesOfLuggage" class="span12 luggage makeValid">
+                        @{
+            for (var i = 0; i < 6; i++)
+            {
+                <option value=@i.ToString()>@i</option>
+            }
+                        }
+
+                    </select><br />
+                    <strong>***<css-decorator class="toTranslate">Extra luggage is @@GB £@instanceExtraCharges.Where(x => x.PropertyTypeServicesID.Equals(10)).FirstOrDefault().ServicePriceGBP.ToString() per suitcase each way. Allowed maximum baggage is 1 suitcase +1 hand luggage per adult</css-decorator>.</strong>
+                </div>
+            </div>
+
+            <div class="row-fluid" style="margin-top: 20px;">
+                <div class="span12">
+                    <label for="ArrivalTerminal"><css-decorator class="toTranslate">Special Requests</css-decorator></label>
+                    <textarea rows="7" name="bookingExtraSelections[@viewCount].BESSpecialRequests" class="span12" id="bookingextraselections[@viewCount].besspecialrequests"></textarea>
+                </div>
+            </div>
+
+
+
+
+
+        }
+
+
+        @*//wine tours*@
+        @if (BookingExtraTypeID == 2)
+        {
+
+
+            <b><css-decorator class="toTranslate">Wine Tasting Tour Details</css-decorator></b>
+
+                    <!--/row-->
+            <div class="row-fluid" style="margin-top: 20px;">
+                <div class="span6">
+                    <label for="FlightArrival"><css-decorator class="toTranslate">Date Of Tour</css-decorator></label>
+                    <input type="text" name="bookingExtraSelections[@viewCount].ExtraRentalDate" class="span12 date-picker makeValid" value="@DateTime.Parse(Model.ExtraRentalDate.ToString()).ToString("dd/MM/yyyy")" />
+                </div>
+
+                <div class="span6">
+                    <label><css-decorator class="toTranslate">Number of Child Seats</css-decorator>*</label>
+                    @*same ids as other modals *@
+                    <select name="bookingExtraSelections[@viewCount].NumberOfChildseats" class="span12 childseats makeValid">
+                        @{
+            for (var i = 0; i < 6; i++)
+            {
+                <option value=@i.ToString()>@i</option>
+            }
+                        }
+
+                    </select><br />
+                    <strong>*<css-decorator class="toTranslate">Child Seats @@GB£@instanceExtraCharges.Where(x => x.PropertyTypeServicesID.Equals(9)).FirstOrDefault().ServicePriceGBP.ToString() per seat each way</css-decorator></strong>
+                </div>
+            </div>
+
+            <div class="row-fluid" style="margin-top: 20px;">
+                <div class="span6">
+                    <label><css-decorator class="toTranslate">Pick Up Location / Address</css-decorator></label>
+                    <textarea rows="3" name="bookingExtraSelections[@viewCount].PickupLocation" value="@Model.PickupLocation" class="span12">
+                        @{
+            if (booking != null)
+            {
+                @booking.Property.LegacyReference
+
+            }
+                        }
+
+                    </textarea>
+                </div>
+
+
+                <div class="span6">
+                    <label><css-decorator class="toTranslate">Drop Off Location / Address</css-decorator></label>
+                    <textarea rows="3" name="bookingExtraSelections[@viewCount].DropoffLocation" value="@Model.DropoffLocation" class="span12">
+                        @{
+            if (booking != null)
+            {
+                @booking.Property.LegacyReference
+
+            }
+                        }
+                    </textarea>
+
+                </div>
+            </div>
+
+
+
+
+
+            <div class="row-fluid" style="margin-top: 20px;">
+                <div class="span4">
+
+                    <label><css-decorator class="toTranslate">Passengers - Adults</css-decorator></label>
+                    @*same ids as other modals *@
+                    <select name="bookingExtraSelections[@viewCount].NumberOfAdults" id="bookingExtraSelections[@viewCount].NumberOfAdults" class="adults makeValid span12">
+                        @{
+            for (var i = 1; i < 16; i++)
+            {
+                <option value=@i.ToString()>@i</option>
+            }
+                        }
+                    </select>
+                </div>
+
+
+
+                <div class="span4">
+                    <label><css-decorator class="toTranslate">Passengers - Children</css-decorator></label>
+                    @*same ids as other modals *@
+                    <select name="bookingExtraSelections[@viewCount].NumberOfChildren" class="children makeValid span12">
+                        @{
+            for (var i = 0; i < 16; i++)
+            {
+                <option value=@i.ToString()>@i</option>
+            }
+                        }
+                    </select>
+                </div>
+
+
+
+                <div class="span4">
+                    <label><css-decorator class="toTranslate">Passengers - Infants</css-decorator></label>
+                    @*same ids as other modals *@
+                    <select name="bookingExtraSelections[@viewCount].NumberOfInfants" class="infants makeValid span12">
+                        @{
+            for (var i = 0; i < 16; i++)
+            {
+                <option value=@i.ToString()>@i</option>
+            }
+                        }
+
+                    </select>
+                </div>
+            </div>
+
+
+
+
+
+            <div class="row-fluid" style="margin-top: 20px;">
+                <div class="span12">
+                    <label><css-decorator class="toTranslate">Any special requests or comments</css-decorator></label>
+                    <textarea class="span12" rows="7" name="bookingExtraSelections[@viewCount].BESSpecialRequests" id="bookingExtraSelections[@viewCount].BESSpecialRequests" value="@Model.BESSpecialRequests"></textarea>
+                </div>
+            </div>
+
+
+        }
+
+
+
+
+        @{
+            <script>
+                $(document).ready(function () {
+                    $(".adults").val("@Model.NumberOfAdults");
+                    $(".children").val("@Model.NumberOfChildren");
+                    $(".infants").val("@Model.NumberOfInfants");
+                    $(".childseats").val("@Model.NumberOfChildseats");
+                    $(".numberOfGuests").val("@Model.NumberOfGuests");
+                    $(".detours").val("@Model.Detours");
+                    $(".luggage").val("@Model.PiecesOfLuggage");
+
+                });
+            </script>
+
+
+            viewCount++;
+        }
+
+    </div>
+
+
+
+
+
+
+
+}

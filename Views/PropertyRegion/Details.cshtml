@@ -1,0 +1,29 @@
+﻿@model BootstrapVillas.Models.PropertyRegion
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>PropertyRegion</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.RegionName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.RegionName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.RegionCode)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.RegionCode)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.PropertyRegionID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

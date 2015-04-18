@@ -1,0 +1,100 @@
+﻿@*REMEMBER THIS TEMPLATE NEEDS ALL STYLING LINKING PULLED IN FROM _Layout*@
+
+@***************************************************@
+@*Created by Nadav 'Endoftheworldasweknowit' Drewee 29/12/2012 *@
+@***************************************************@
+
+@* code to pull  from name address cookie/session fields if fields are populated*@
+
+@{
+    //we look if 'FirstName' has a value, if so we pull it back into this form
+    //foreach...
+    
+    
+}
+
+
+
+@*Inputs *@
+
+        
+        <a id="sectionStandardCustomerInputs" class="section"  name="sectionStandardCustomerInputs"></a>
+					<div id="bookingForm" class="whiteBg">
+
+                        <h13>Booking Form</h13>
+                     
+                           <div class="description">
+                           Please enter your details if you haven't already
+                           </div>
+
+                    <table cellspacing="7" style="margin-top:30px;">
+                        <tr>
+                            <td>
+                                <div class="NameTitle">
+                                    <label>Title*</label></div>
+                            </td>
+                            
+                            <td><span class="Booking">
+                                    <select name="NameTitle" id="NameTitle">
+                                
+                                        <option>Mr</option>
+                                        <option>Ms</option>
+                                        <option>Mrs</option>
+
+                                    </select> 
+                                </span></td>
+                        
+                        
+                        </tr>
+                        
+                        <tr>
+                            <td><div class="FirstName">First Name*</div></td>
+                            <td> @Html.TextBox("FirstName")</td>
+                        </tr>
+
+                        <tr>
+                            <td><div class="LastName">Last Name*</div></td>
+                            <td> @Html.TextBox("LastName")</td>
+                        </tr>
+
+                        <tr>
+                            <td><div class="Address">Address*</div></td>
+                            <td>@Html.TextBox("Address1")</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td><div class="Address">@Html.TextBox("Address2")</div></td>
+                        </tr>
+                  
+                        <tr>
+                            <td><div class="Zip">Post/Zip*</div></td>
+                            <td> @Html.TextBox("Post Code")</td>
+                        </tr>
+
+                        <tr>
+                            <td><div class="Country">Country*</div></td>
+                            <td>@Html.TextBox("Country")</td>
+                        </tr>
+
+                        <tr>
+                            <td><div class="Email">Email*</div></td>
+                            <td> @Html.TextBox("Email")</td>
+                        </tr>
+
+                        <tr>
+                            <td><div class="Telephone">Telephone</div></td>
+                            <td>@Html.TextBox("Telephone")</td>
+                        </tr>
+                         
+                        <tr>
+                            <td><div class="Mobile">Mobile</div></td> 
+                            <td>@Html.TextBox("Mobile")</td>
+                        </tr>
+
+                    </table>
+                       
+                      
+
+                        <div class="clear"></div>
+
+                    </div>

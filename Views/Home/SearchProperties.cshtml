@@ -1,0 +1,25 @@
+﻿@using BootstrapVillas.Models;
+@using BootstrapVillas.Content.Classes;
+@using PagedList.Mvc;
+@using PagedList;
+
+@model Property
+
+
+   
+@{
+    PagedList<Property> matchingProperties = ViewBag.MatchingProperties;
+}
+
+
+
+@{
+    if(matchingProperties != null && matchingProperties.Count > 0)
+    {
+        Html.RenderPartial(matchingProperties.Count > 0 ? "PropertyResultsPartialView" : "ResultsErrorPartialView");
+    }
+    else
+    {
+        Html.RenderPartial("ResultsErrorPartialView");
+    }
+}

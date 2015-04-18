@@ -1,0 +1,110 @@
+﻿@model BootstrapVillas.Models.CustomerBankDetail
+
+@{
+    ViewBag.Title = "Edit";
+    
+        AjaxOptions options = new AjaxOptions
+    {
+        UpdateTargetId = "BottomEditorWindow",
+        InsertionMode = InsertionMode.Replace,
+        LoadingElementId = "spinner",
+
+    };
+}
+
+<h2>Edit</h2>
+
+@using (Ajax.BeginForm("Edit", "CustomerBankDetail", options )) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>CustomerBankDetail</legend>
+
+        @Html.HiddenFor(model => model.CustomerBankDetailID)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.NameOnAccount)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.NameOnAccount)
+            @Html.ValidationMessageFor(model => model.NameOnAccount)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.IBAN)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.IBAN)
+            @Html.ValidationMessageFor(model => model.IBAN)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.SwiftCode_BIC)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.SwiftCode_BIC)
+            @Html.ValidationMessageFor(model => model.SwiftCode_BIC)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.BankName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.BankName)
+            @Html.ValidationMessageFor(model => model.BankName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.BankAddressLine1)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.BankAddressLine1)
+            @Html.ValidationMessageFor(model => model.BankAddressLine1)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.BankAddressLine2)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.BankAddressLine2)
+            @Html.ValidationMessageFor(model => model.BankAddressLine2)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.CustomerID)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.CustomerID)
+            @Html.ValidationMessageFor(model => model.CustomerID)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.SortCode)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.SortCode)
+            @Html.ValidationMessageFor(model => model.SortCode)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Account)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Account)
+            @Html.ValidationMessageFor(model => model.Account)
+        </div>
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

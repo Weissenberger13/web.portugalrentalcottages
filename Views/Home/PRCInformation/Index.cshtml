@@ -1,0 +1,136 @@
+﻿@model IEnumerable<BootstrapVillas.Models.PRCInformation>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Content/Admin/_AdminLayout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.PRCCompanyName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PRCAddress)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PRCCountry)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PRCOfficePhone)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PRCFax)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PRCMobile1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PRCMobile2)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PRCEmail1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PRCEmail2)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PRCEmail3)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PRCURL1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PRCURL2)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NameOnAccount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IBAN)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SwiftCode_BIC)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BankName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BankAddressLine1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BankAddressLine2)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.PRCCompanyName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PRCAddress)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PRCCountry)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PRCOfficePhone)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PRCFax)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PRCMobile1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PRCMobile2)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PRCEmail1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PRCEmail2)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PRCEmail3)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PRCURL1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PRCURL2)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NameOnAccount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IBAN)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SwiftCode_BIC)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BankName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BankAddressLine1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BankAddressLine2)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.PRCInformationID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.PRCInformationID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.PRCInformationID })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,65 @@
+﻿@model BootstrapVillas.Models.EntityTypeDetailField
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Content/Admin/_AdminLayout.cshtml";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>EntityTypeDetailField</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.EntityType.EntityTypeName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.EntityType.EntityTypeName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.EntityTypeDetailFieldName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.EntityTypeDetailFieldName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.EntityTypeDetailFieldDescription)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.EntityTypeDetailFieldDescription)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.EntityTypeDetailFieldNotes)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.EntityTypeDetailFieldNotes)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.EntityTypeDetailFieldTypeID)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.EntityTypeDetailFieldTypeID)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.EntityTypeDetailFieldPrice)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.EntityTypeDetailFieldPrice)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.EntityTypeDetailFieldCurrency)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.EntityTypeDetailFieldCurrency)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.EntityTypeDetailFieldID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

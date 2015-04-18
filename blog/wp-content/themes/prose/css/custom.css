@@ -1,0 +1,177 @@
+#inner {
+	margin: 0px 0px 0px 0px;
+	clear: both;
+	}
+#nav {
+	background: #ffffff;
+	width: 938px;
+	color: #666666;
+	margin: 0 auto 0;
+	padding:0px 0px 0px 0px;
+	text-transform: none;
+	clear: both;
+	overflow: hidden;
+	}
+#content {
+	float: left;
+	width: 400px;
+	margin: 0 10px 0 0px;
+	padding: 0;
+	}
+.full-width-content #content {
+	width: 870px;
+	min-height: 500px;
+	margin: 0 20px 0 20px;
+	padding: 0 20px 0 20px;
+	border: none;
+	}
+#sidebar {
+	width: 348px;
+	min-height: 400px;
+	font-size: 13px;
+	display: inline;
+background: #ffffff;
+	}
+#sidebar img {
+	float: right;
+	margin: 0px
+	}
+
+.sidebar-content #content, .content-sidebar #content {
+	width: 560px;
+	margin: 0;
+	padding: 0;
+	}
+
+#sidebar-alt {
+	width:160px;
+min-height:630px;
+	color: #ffffff;
+	background: #ffffff;
+	font-size:10px;
+	font-weight: normal;
+
+}
+#sidebar-nav {
+	background: url(/wp-content/uploads/lines_bannistersidebar.jpg) repeat-y left bottom;
+}
+#sidebar-alt a {
+	color: #ffffff;
+	font-weight: bold;
+	border-bottom: 0px solid #ffffff;
+}
+#content .post, #content .page {
+	margin: 0 0 15px 0;
+	padding: 15px 0 10px 0;
+	border-bottom: 0px dotted #AAAAAA;
+	overflow: hidden;
+	}
+#content h1 { 
+   color:#cb3b3b;
+font-weight: normal;
+  } 
+
+#content h3 {
+	color:#cb3b3b;
+font-size:18px;
+font-weight:bold;
+	}
+#content h3 a{
+	color:#cb3b3b;
+font-size:18px;
+font-weight:bold;
+	}
+#white {
+	background: #ffffff;
+}
+#sidebar-alt .widget {
+	margin: 0 0 0px 0;
+	padding: 0;
+	}
+.widget-wrap h2 {
+color:#cb3b3b;	
+font-size:16px;
+	padding-top: 10px;
+	}
+h2 {
+	color:#cb3b3b;
+font-size:16px;
+	}
+
+.widget featuredpost h2 {
+	color:#cb3b3b;
+font-size:16px;
+	padding-top: 10px;
+	}
+
+#sidebar-alt ul {
+	margin: 0 0 1px 0;
+	padding: 0 0px 1px 0px;
+ 	word-wrap: break-word;
+ 	border-bottom: 0px solid #8b0e04;
+	}
+#sidebar-alt ul a:hover {
+	text-decoration: none;
+	}
+#sidebar-alt ul a: a:visited a:hover {
+	text-decoration: none;
+	}
+#sidebar li, #sidebar-alt li, #footer-widgeted li {
+	margin: 0 0 1px 0;
+	padding: 0 3px 1px 3px;
+ 	word-wrap: break-word;
+ 	border-bottom: 0px solid #8b0e04;
+	}
+#sidebar-alt ul ul, #sidebar-alt ol ol {
+	background:#e2c3c1;	
+	margin: 0;
+	padding: 0 0px 0px 5px;
+ 	border-bottom: 0px solid #8b0e04;
+	}
+#sidebar-alt ul ul a, #sidebar-alt ol ol a {
+	color: #8b0e04;
+	font-weight:normal;
+ 	border-bottom: 3px solid #e2c3c1;
+	}
+#sidebar-alt ul ul a:focus, #sidebar-alt ol ol a:focus {
+	font-weight:bold;
+	}
+
+#left {
+	width: 270px;
+	float: left;
+	margin: 0;
+	padding: 5px 5px 5px 5px;
+	}
+
+#right {
+	width: 270px;
+	float: right;
+	margin: 0;
+	padding: 5px 5px 5px 5px;
+	}
+#leftsmall {
+	width: 176px;
+	float: left;
+	margin: 0;
+	padding: 5px 5px 5px 5px;
+	}
+#midsmall {
+	width: 177px;
+	float: left;
+	margin: 0;
+	padding: 5px 5px 5px 5px;
+	}
+
+#rightsmall {
+	width: 177px;
+	float: right;
+	margin: 0;
+	padding: 5px 5px 5px 5px;
+	}
+#footer .gototop {
+	width: 195px;
+	float: left;
+	margin: 0;
+	padding: 0 0 0 5px;
+	}

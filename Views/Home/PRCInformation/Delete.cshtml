@@ -1,0 +1,146 @@
+﻿@model BootstrapVillas.Models.PRCInformation
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Content/Admin/_AdminLayout.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>PRCInformation</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.PRCCompanyName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PRCCompanyName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.PRCAddress)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PRCAddress)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.PRCCountry)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PRCCountry)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.PRCOfficePhone)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PRCOfficePhone)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.PRCFax)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PRCFax)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.PRCMobile1)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PRCMobile1)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.PRCMobile2)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PRCMobile2)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.PRCEmail1)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PRCEmail1)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.PRCEmail2)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PRCEmail2)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.PRCEmail3)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PRCEmail3)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.PRCURL1)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PRCURL1)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.PRCURL2)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PRCURL2)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.NameOnAccount)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.NameOnAccount)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.IBAN)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.IBAN)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.SwiftCode_BIC)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.SwiftCode_BIC)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.BankName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.BankName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.BankAddressLine1)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.BankAddressLine1)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.BankAddressLine2)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.BankAddressLine2)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}

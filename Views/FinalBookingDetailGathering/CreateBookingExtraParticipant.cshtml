@@ -1,0 +1,181 @@
+﻿@model BootstrapVillas.Models.BookingExtraParticipant
+@using BootstrapVillas.Models;
+
+@{
+    ViewBag.Title = "CreateBookingExtraParticipant";
+    BookingExtraSelection currentBookingExtraSelection = (BookingExtraSelection)Session["CurrentBookingExtraDataGathering"];
+    long? BookingExtraTypeID = currentBookingExtraSelection.GetBookingExtraTypeIDFromBookingExtraSelection();
+}
+
+
+
+
+
+ 
+
+<div class="row-fluid">
+    <div class="span7 offset1 whiteBg" style="position: relative;">
+        <div class="row-fluid">
+            <!-- Page Title -->
+            <h4><i class="fa fa-fw fa-check"></i>Please enter your details:</h4>
+            <a href="~/Views/FinalBookingDetailGathering/CreateBookingExtraParticipant.cshtml">~/Views/FinalBookingDetailGathering/CreateBookingExtraParticipant.cshtml</a>
+            <br />
+
+            @*Car rental*@
+
+            @if (BookingExtraTypeID == 1)
+            {
+
+                Html.BeginForm("CreateBookingExtraParticipant", "FinalBookingDetailGathering", FormMethod.Post, new { @class = "aFormToValidate" });
+                
+                    @Html.AntiForgeryToken();
+                    @Html.ValidationSummary(true);
+   
+                        
+<div class="row-fluid">
+                                <div class="span12 lightGrey">
+                                    <div class="row-fluid">
+                                        <b class="pull-left">Car Rental Details*</b>
+                                        <label class="label label-info pull-right" style="margin: 0;">Driver</label>
+                                    </div>
+                                    <div class="row-fluid Driver01">
+                                        <div class="span2 Driver1Title">
+                                            <label for="Driver1Title">Title</label>
+                                            <select name="BookingExtraParticipantTitle" class="span12 makeValid">
+                                                <option value="">- Select -</option>
+                                                <option>Mr</option>
+                                                <option>Mrs</option>
+                                                <option>Ms</option>
+                                            </select>
+                                        </div>
+                                        <!--/span-->
+                                        <div class="span5">
+                                            <label for="Driver1LastName">First Name</label>
+                                            <input type="text" name="BookingExtraParticipantFirstName" class="span12 DriverFirstName makeValid">
+                                        </div>
+                                        <!--/span-->
+                                        <div class="span5">
+                                            <label for="Driver1LastName">Last Name</label>
+                                            <input type="text" name="BookingExtraParticipantLastName" class="span12 DriverLastName makeValid">
+                                        </div>
+                                        <!--/span-->
+                                    </div>
+                                    <div class="row-fluid">
+                                        <label><i class="fa fa-fw fa-calendar"></i>Date of Birth</label>
+                                        <input type="text" class="date-picker makeValid" id="BookingExtraParticipantDOB" placeholder="DD/MM/YYYY" name="BookingExtraParticipantDOB" />
+
+                                        <!--/span-->
+                                    </div>
+                                    <!--/row-->
+                                    <div class="row-fluid">
+                                        <div class="span12">
+                                            <label for="License1">Driving License No.</label>
+                                            <input type="text" name="BookingExtraParticipantDriversLicenceNo" class="span12 License makeValid">
+                                        </div>
+                                        <!--/span-->
+                                    </div>
+                                    <div class="row-fluid">
+                                        <div class="span12">
+                                            <label for="Passport1">Passport No.</label>
+                                            <input type="text" name="BookingExtraParticipantDriversPassportNo" class="span12 Passport makeValid">
+                                        </div>
+                                        <!--/span-->
+                                    </div>
+
+                               <div class="row-fluid">
+                                   <input type="submit"   class="btn btn-info span12" name="submitBookingExtraPart" value="Add this participant and add another"/>  
+                                   <input type="submit"   class="btn btn-info span12" name="submitBookingExtraPart" value="Add this participant and finish" /> 
+                                </div>
+                                   
+                                     </div>
+                                </div>
+                
+                Html.EndForm();
+                
+            }
+
+            @if (BookingExtraTypeID != 1)
+            {
+
+                Html.BeginForm("CreateBookingExtraParticipant", "FinalBookingDetailGathering", FormMethod.Post);
+
+                @Html.AntiForgeryToken();
+                @Html.ValidationSummary(true);
+                    
+<!-- Begin Form -->
+
+<div class="row-fluid">
+
+                                <div class="span2 BookingParticipantTitle">
+                                    <label>Title</label>
+                                    <select name="BookingExtraParticipantTitle" id="BookingExtraParticipantTitle" class="span12">
+                                        <option>- Select -</option>
+                                        <option>Mr</option>
+                                        <option>Mrs</option>
+                                        <option>Ms</option>
+                                        <option>Master</option>
+                                    </select>
+                                </div>
+
+                                <!--/span-->
+                                <div class="span5">
+                                    <label>First Name</label>
+                                    <input type="text" name="BookingExtraParticipantFirstName" id="BookingExtraParticipantFirstName" class="span12 FirstName">
+                                </div>
+
+                                <!--/span-->
+                                <div class="span5">
+                                    <label for="LastName">Last Name</label>
+                                    <input type="text" name="BookingExtraParticipantLastName" id="BookingExtraParticipantLastName" class="span12 LastName">
+                                </div>
+                                <!--/span-->
+                            </div>
+<!--/row-->
+<div class="row-fluid">
+
+                                <div class="editor-label">
+                                    @Html.LabelFor(model => model.BookingExtraParticipantDOB)
+                    </div>
+                                <div class="editor-field">
+                                     <input type="text" class="date-picker"  id="BookingExtraParticipantDOB" placeholder="DD/MM/YYYY" name="BookingExtraParticipantDOB" />
+                                    @Html.ValidationMessageFor(model => model.BookingExtraParticipantDOB)
+                    </div>
+                                <!--/span-->
+                            </div>
+
+<input type="hidden" value="Add" name="AddAnother" id="AddAnother"/>
+                    
+
+<p>
+                        
+                        <input type="submit" name="submitBookingExtraPart" value="Add this participant and add another"/>  
+                        <input type="submit" name="submitBookingExtraPart" value="Add this participant and finish" /> 
+                       
+                    </p>
+
+                    
+              
+
+                Html.EndForm();
+
+                }
+
+            
+        </div>
+
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,90 @@
+﻿@using BootstrapVillas.Models
+@{
+    ViewBag.Title = "AddBookingEvent";
+    //only pass in correct event types //booking or bes or both
+
+    var bookingID = 0;
+    if(ViewBag.Bookingid != null)
+    {bookingID = (int)ViewBag.Bookingid;}
+    
+    List<EventType> theEventsToAdd;
+    
+    if (ViewBag.EventTypeDDL.Equals(null))
+    {
+        theEventsToAdd = new List<EventType>();
+    }
+    else
+    {
+        theEventsToAdd = (List<EventType>)ViewBag.EventTypeDDL;
+    }
+
+    theEventsToAdd = theEventsToAdd.OrderBy(x => x.EventTypeName).ToList();
+    
+
+}
+
+<h2>Add Event To BookingID: @bookingID </h2>
+
+
+
+
+
+
+
+<input type="hidden" id="BookingID" name="BookingID" readonly value="@bookingID" />
+
+@Html.DropDownList("EventTypeID", new SelectList(theEventsToAdd, "EventTypeID", "EventTypeName"), new { id = "EventTypeID", @class = "input-small", @style = "height: auto !important; width:auto;" })
+
+<p>
+    <input type="submit" id="AddBookingEvent" name="AddBookingEvent" value="Add this event" />
+</p>
+
+
+<script type="text/javascript">
+
+    $('#AddBookingEvent').on('click', function () {
+        //delete existing
+
+      
+
+        //get all vars
+        var id = $('#BookingID').val(); 
+        var eventid = $('#EventTypeID option:selected').val();    
+
+        //request
+        $.ajax({
+            url: '@Url.Action("AddBookingEvent", "Event")',
+            data: {
+                "BookingID": id,
+                'EventTypeID': eventid
+            },
+            type: "POST",
+            success: function (result) {
+                alert('Event added!');
+                $('#BottomEditorWindow').html(result);
+
+                ViewEvents(id);
+
+            },
+            error: function () { alert('That did not work please try again'); }
+        });
+
+    });
+
+   
+    function ViewEvents(id) {
+        
+
+
+        $.ajax({
+            url: '@Url.Action("EventIndexBooking", "Event")',
+            data: { "bookingID": id },
+            type: "GET",
+            success: function (result) {
+                $('#TopEditorWindow').html(result);
+            },
+            error: function () { alert('That did not work please try again'); }
+        });
+    }
+
+</script>

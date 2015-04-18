@@ -1,0 +1,81 @@
+﻿@model BootstrapVillas.Models.CustomerBankDetail
+
+
+@{
+    ViewBag.Title = "ManageCustomerBankDetail";
+}
+
+@using (Html.BeginForm("ManageCustomerBankDetail", "Account", FormMethod.Post, new { @class = "aFormToValidate" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <div class="row-fluid">
+        <div class="span7 offset1 whiteBg" style="position: relative;">
+            <div class="row-fluid">
+                <!-- Page Title -->
+                <h4><i class="fa fa-fw fa-check"></i><css-decorator class="toTranslate">Manage your banking details:</css-decorator></h4>
+                <br />
+                <!-- Begin Form -->
+                
+                @Html.HiddenFor(model => model.CustomerBankDetailID)
+
+                <div class="row-fluid">
+                    <div class="span12">
+                        <label for="Account"><css-decorator class="toTranslate">Name on account</css-decorator></label>
+                        <input type="text" name="NameOnAccount" id="NameOnAccount" class="span12 Account makeValid" placeholder="e.g. Mr James Taylor" value="@Model.NameOnAccount">
+                    </div>
+
+                    <div class="row-fluid">
+                        <div class="span8">
+                            <label for="Account"><css-decorator class="toTranslate">Account No. (UK & Ireland)</css-decorator></label>
+                            <input type="text" name="Account" id="Account" class="span12 Account makeValid" placeholder="e.g. 31926819" value="@Model.Account">
+                        </div>
+                        <!--/span-->
+                        <div class="span4">
+                            <label for="sortCode"><css-decorator class="toTranslate">Sort Code (UK & Ireland)</css-decorator></label>
+                            <input type="text" name="SortCode" id="SortCode" class="span12 sortCode" placeholder="e.g. 601613" value="@Model.SortCode">
+                        </div>
+                    </div>
+                    <div class="row-fluid">
+                        <div class="span12">
+                            <label for="IBAN"><css-decorator class="toTranslate">IBAN (International)<</css-decorator>/label>
+                            <input type="text" name="IBAN" id="IBAN" class="span12 IBAN" placeholder="e.g. GB12NWBK01234567891234" value="@Model.IBAN">
+                        </div>
+                        <!--/span-->
+                    </div>
+                    <div class="row-fluid">
+                        <div class="span6">
+                            <label for="SWIFT"><css-decorator class="toTranslate">SWIFT / BIC</css-decorator></label>
+                            <input type="text" name="SwiftCode_BIC" id="SwiftCode_BIC" class="span12 SWIFT" value="@Model.SwiftCode_BIC">
+                        </div>
+                        <div class="span6">
+                            <label for="BankName"><css-decorator class="toTranslate">Bank Name</css-decorator></label>
+                            <input type="text" name="BankName" id="BankName" class="span12 makeValid" value="@Model.BankName">
+                        </div>
+                        
+                        <div class="span6">
+                            <label for="BankName"><css-decorator class="toTranslate">Bank Address 1</css-decorator></label>
+                            <input type="text" name="BankAddressLine1" id="BankAddressLine1" class="span12" value="@Model.BankAddressLine1">
+                        </div>
+                        
+                        <div class="span6">
+                            <label for="BankName"><css-decorator class="toTranslate">Bank Address 2</css-decorator></label>
+                            <input type="text" name="BankAddressLine2" id="BankAddressLine2" class="span12" value="@Model.BankAddressLine2">
+                        </div>
+                        <!--/span-->
+                        @*   <div class="span6">
+                                <label for="BIC">BIC (Bank Identifier Code)</label>
+                                <input type="text" name="BIC" id="BIC" class="span12 BIC">
+                            </div>
+                            <!--/span-->*@
+                    </div>
+                 
+
+                    <input type="submit" class="btn btn-info" value="Update" />
+                </div>
+            </div>
+        </div>
+    </div>
+}
+

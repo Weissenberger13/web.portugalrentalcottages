@@ -1,0 +1,69 @@
+﻿@using BootstrapVillas.Models
+
+@{
+	<!-- View Methods -->
+    @*Get the current appID for the bing translator*@
+    string AppID = System.Web.HttpContext.Current.Application["TranslateToken"].ToString();
+
+    List<SelectListItem> langs = new List<SelectListItem>();
+    langs.Add(new SelectListItem { Text = "en", Value = "en", Selected = true });
+    langs.Add(new SelectListItem { Text = "fr", Value = "fr" });
+    langs.Add(new SelectListItem { Text = "de", Value = "de" });
+    langs.Add(new SelectListItem { Text = "es", Value = "es" });
+    langs.Add(new SelectListItem { Text = "pt", Value = "pt" });
+    langs.Add(new SelectListItem { Text = "ru", Value = "ru" });
+    langs.Add(new SelectListItem { Text = "el", Value = "el" });
+
+    BookingExtraSelection currentBookingExtraSelection = (BookingExtraSelection)Session["CurrentBookingExtraDataGathering"];
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title</title>
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    @*Main Stylesheet*@
+    <link rel="stylesheet" href="~/Content/style.css">
+
+
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+
+    <script src="~/Scripts/jquery.validate.js"></script>
+
+
+    <script type="text/javascript">
+
+
+        $(document).ready(function () {
+
+            jQuery.validator.addClassRules("makeValid", {
+                required: true,
+                minlength: 2
+            });
+        });
+
+        $('.aFormToValidate').validate({});
+    </script>
+    </head>
+    <body>
+        
+       
+        
+        <form method="post" id="theForm" class="aFormToValidate" name="theForm">
+
+            <input type="text" class="makeValid" id="FirstName" name="FirstName" />
+
+            <button type="submit">Submit</button>
+
+        </form>
+
+        @RenderBody()
+    </body>
+
+
+
+</html>

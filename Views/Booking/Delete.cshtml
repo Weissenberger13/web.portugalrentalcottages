@@ -1,0 +1,299 @@
+﻿@model BootstrapVillas.Models.Booking
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>Booking</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Property.LegacyReference)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Property.LegacyReference)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Customer.Title)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Customer.Title)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.BookingGUID)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.BookingGUID)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.BookingParentContainer.OverallBookingReference)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.BookingParentContainer.OverallBookingReference)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.BookingPRCReference)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.BookingPRCReference)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.HomeawayReference)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.HomeawayReference)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.BookingPrice)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.BookingPrice)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.InitialDeposit)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.InitialDeposit)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.BreakageDepositRemittancePaidDate)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.BreakageDepositRemittancePaidDate)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.CommissionAmount)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CommissionAmount)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.RemittanceAmount)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.RemittanceAmount)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.FinalRentalPayment)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.FinalRentalPayment)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.BreakageDeposit)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.BreakageDeposit)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.RentalBalanceDueDate)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.RentalBalanceDueDate)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.BreakageDepositDueDate)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.BreakageDepositDueDate)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Cancelled)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Cancelled)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Confirmed)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Confirmed)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.StartDate)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.StartDate)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.EndDate)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.EndDate)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.CheckInTime)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CheckInTime)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.CheckOutTime)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CheckOutTime)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.NumberOfNights)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.NumberOfNights)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.BookingTypeID)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.BookingTypeID)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.NumberOfGuests)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.NumberOfGuests)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.NumberOfAdults)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.NumberOfAdults)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.NumberOfChildren)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.NumberOfChildren)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.NumberOfInfants)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.NumberOfInfants)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.TotalNumberOfMinors)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.TotalNumberOfMinors)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.CreationDate)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CreationDate)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.WhoUpdated)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.WhoUpdated)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Test)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Test)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.DocumentID)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DocumentID)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.PackageID)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PackageID)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.SpecialRequests)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.SpecialRequests)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.NoOfTowelsRequested)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.NoOfTowelsRequested)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.MidVactionCleaning)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.MidVactionCleaning)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.SwimmingPoolHeating)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.SwimmingPoolHeating)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ExtraLininSet)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ExtraLininSet)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.BookingCurrencyConversionPrice)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.BookingCurrencyConversionPrice)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.BookingCurrencyConversionSymbol)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.BookingCurrencyConversionSymbol)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}

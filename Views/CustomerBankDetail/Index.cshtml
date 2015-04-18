@@ -1,0 +1,97 @@
+﻿@model IEnumerable<BootstrapVillas.Models.CustomerBankDetail>
+
+@{
+    ViewBag.Title = "Index";
+
+    AjaxOptions options = new AjaxOptions
+    {
+        UpdateTargetId = "BottomEditorWindow",
+        InsertionMode = InsertionMode.Replace,
+        LoadingElementId = "spinner",
+
+    };
+
+    AjaxOptions deleteOptions = new AjaxOptions
+    {
+        UpdateTargetId = "BottomEditorWindow",
+        InsertionMode = InsertionMode.Replace,
+        LoadingElementId = "spinner",
+        Confirm = "Are you sure you want to delete this?"
+    };
+    
+}
+
+<h2>Customer Bank Details</h2>
+
+<p>
+    @Ajax.ActionLink("Create New", "Create", options)
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.NameOnAccount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IBAN)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SwiftCode_BIC)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BankName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BankAddressLine1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BankAddressLine2)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CustomerID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SortCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Account)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.NameOnAccount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IBAN)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SwiftCode_BIC)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BankName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BankAddressLine1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BankAddressLine2)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CustomerID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SortCode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Account)
+        </td>
+        <td>
+            @Ajax.ActionLink("Edit", "Edit", "CustomerBankDetail",   new { id=item.CustomerBankDetailID }, options) |          
+            @Ajax.ActionLink("Delete", "Delete", "CustomerBankDetail", new { id = item.CustomerBankDetailID }, deleteOptions)
+        </td>
+    </tr>
+}
+
+</table>

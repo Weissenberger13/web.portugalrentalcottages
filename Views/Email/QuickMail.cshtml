@@ -1,0 +1,21 @@
+﻿@{
+    ViewBag.Title = "QuickMail";
+    Layout = "~/Views/Shared/_AdminLayoutBackend.cshtml";
+}
+
+<h1>QUICKMAIL</h1>
+@{ Html.BeginForm();}
+
+<label>To:</label>
+<input type="text" name="emailTo" style="width:50%;" />
+<br/>
+<label>Message:</label>
+<input type="text" name="message" style="height:200px; width:100%;" />
+<br/>
+
+<p>
+    <input type="submit"  value="Send mail" />
+</p>
+
+@{ Html.EndForm(); }
+

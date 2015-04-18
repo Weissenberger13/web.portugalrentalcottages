@@ -1,0 +1,22 @@
+﻿@model BootstrapVillas.Models.NewsletterParticipant
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>NewsletterParticipant</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.NewsletterParticipantEmail)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.NewsletterParticipantEmail)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.NewsletterParticipantID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

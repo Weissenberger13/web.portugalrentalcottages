@@ -1,0 +1,54 @@
+﻿@model BootstrapVillas.Models.BookingExtraAttribute
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>BookingExtraAttribute</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.BookingExtra.LegacyReference)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.BookingExtra.LegacyReference)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.AttributeName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.AttributeName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.AttributeContent)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.AttributeContent)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.AttributeOrder)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.AttributeOrder)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.BookingExtraType.ExtraTypeName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.BookingExtraType.ExtraTypeName)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}

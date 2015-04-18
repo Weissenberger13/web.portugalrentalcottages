@@ -1,0 +1,50 @@
+﻿@model BootstrapVillas.Models.PropertyOwnerRepresentative
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>PropertyOwnerRepresentative</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.PropertyOwnerRepresentativeName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PropertyOwnerRepresentativeName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.PropertyOwnerRepresentativeContactNumberLandline)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PropertyOwnerRepresentativeContactNumberLandline)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.PropertyOwnerRepresentativeContactNumberMobile)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PropertyOwnerRepresentativeContactNumberMobile)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.PropertyOwnerRepresentativeContactEmail)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PropertyOwnerRepresentativeContactEmail)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.WhenCreated)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.WhenCreated)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.PropertyOwnerRepresentativeID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

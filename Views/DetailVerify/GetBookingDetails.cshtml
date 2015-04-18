@@ -1,0 +1,796 @@
+﻿@using System.Web.UI.WebControls
+@using BootstrapVillas.Models
+@model BootstrapVillas.Models.ViewModels.FinalBookingDetailViewModel
+@{
+   
+    /*  Booking booking = ViewBag.aBooking;
+      Customer customer = ViewBag.aCustomer;
+      CustomerBankDetail bank = ViewBag.BankDetail;
+      BookingExtraSelection bes = ViewBag.aBes;
+  */
+
+    string CustomerSessionExist = "notExist";
+    if (Session["prc_customer"] != null)
+    {
+        CustomerSessionExist = "Exists";
+    }
+
+    string customerBankSessionExist = "notExist";
+    if (Session["prc_customerBankingDetail"] != null)
+    {
+        customerBankSessionExist = "Exists";
+    }
+
+    int dynamicStepsTop = 3; //starts at 3
+    int dynamicStepsBottom = 3;
+    int latestBookingParticipant = 0;
+
+    ViewBag.BookingIterator = 1;
+    ViewBag.BESIterator = 1;
+
+
+    int validatonBookingCountCurrent = 0;
+    int validatonBESCountCurrent = 0;
+
+}
+<div class="row-fluid">
+    <div class="span10 offset1" id="section1">
+        <!-- sub navigation with social media etc. -->
+
+    </div>
+</div>
+
+
+<div class="row-fluid" style="border-bottom: 1px solid #ddd; margin-bottom: 20px;">
+    <div class="wizard">
+        <a><span class="badge">1</span>Property</a>
+        <a><span class="badge">2</span>Other Services</a>
+        <a><span class="badge badge-inverse">3</span>Cart</a>
+        <a class="current"><span class="badge">4</span> Complete</a>
+    </div>
+    <h2>Please confirm your booking details:</h2>
+</div>
+
+
+<div class="row-fluid">
+    @{ Html.BeginForm("GetBookingDetails", "DetailVerify", FormMethod.Post, new { id = "form1" }); }
+
+
+
+    <div class="row-fluid">
+        <div class="span10 offset1">
+            <div id="wizard" class="swMain">
+                <ul>
+                    <li>
+                        <a href="#step-1" class="blueBg">
+                            <label class="stepNumber">1</label>
+                            <span class="stepDesc">
+                                <css-decorator class="toTranslate">Step 1</css-decorator>
+                                <br />
+                                <small class="toTranslate">Customer</small>
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#step-2" class="blueBg">
+                            <label class="stepNumber">2</label>
+                            <span class="stepDesc">
+                                <css-decorator class="toTranslate">Step 2</css-decorator>
+                                <br />
+                                <small class="toTranslate">Payment Details</small>
+                            </span>
+                        </a>
+                    </li>
+
+                    @if (Model.Bookings != null)
+                    {
+                        foreach (var booking in Model.Bookings)
+                        {
+                            <li>
+                                <a href="#step-@dynamicStepsTop" class="blueBg">
+                                    <label class="stepNumber">@dynamicStepsTop</label>
+                                    <span class="stepDesc">
+                                        <css-decorator class="toTranslate">Step @dynamicStepsTop</css-decorator>                                        
+                                            <br />
+                                            <small class="toTranslate">Booking @booking.Property.LegacyReference</small>
+</span>
+                                </a>
+                            </li>
+
+
+                            dynamicStepsTop++;
+
+
+
+                            <li>
+                                <a href="#step-@dynamicStepsTop" class="blueBg">
+                                    <css-decorator class="stepNumber">@dynamicStepsTop</css-decorator>
+                                    <span class="stepDesc">
+                                        <css-decorator class="toTranslate">
+                                            Step @dynamicStepsTop
+                                        </css-decorator>
+                                            <br />
+                                            <small class="toTranslate">Add participants @booking.Property.LegacyReference</small>
+</span>
+                                </a>
+                            </li>
+
+
+                            dynamicStepsTop++;
+                        }
+                    }
+
+
+
+                    @if (Model.BookingExtraSelections != null)
+                    {
+                        foreach (var bes in Model.BookingExtraSelections)
+                        {
+                            <li>
+                                <a href="#step-@dynamicStepsTop" class="blueBg">
+                                    <css-decorator class="stepNumber">@dynamicStepsTop</css-decorator>
+                                    <span class="stepDesc">
+                                        <css-decorator class="toTranslate">
+                                            Step @dynamicStepsTop
+                                        </css-decorator>
+                            
+                                            <br />
+                                            <small><css-decorator class="toTranslate">Booking Extra @bes.BookingExtra.LegacyReference</css-decorator></small>
+</span>
+                                </a>
+                            </li>
+
+                            dynamicStepsTop++;
+                            validatonBESCountCurrent++;
+                        }
+                    }
+
+
+                </ul>
+
+                @*ACTUAL CONTENT AREAS*@
+                <div class="row-fluid">
+                    <div class="span12">
+                        <div id="step-1" class="center">
+                            <h2 class="StepTitle" class="toTranslate">Customer</h2>
+                            @Html.Partial("~/Views/BookingProcessPartialViews/AddCustomerPartial.cshtml", Model.Customer)
+                        </div>
+                        <div id="step-2">
+                            <h2 class="StepTitle" class="toTranslate">Customer Banking Detail</h2>
+                            @Html.Partial("~/Views/BookingProcessPartialViews/AddCustomerBankDetailPartial.cshtml", Model.CustomerBankDetail)
+                        </div>
+
+                        @{
+                            var bookingCount = 0;
+                            Booking bookingToPassToBES = null;
+
+                            if (Model.Bookings.Count > 0)
+                            {
+                               bookingToPassToBES =  Model.Bookings.First();
+                            }
+                        }
+                        @foreach (var booking in Model.Bookings)
+                        {
+                            var cleanPrice = booking.CleaningPostVisitPrice ?? 0.00M;
+                            var linenPrice = booking.ExtraLininSetPrice ?? 0.00M;
+                            var heatingPrice = booking.HeatingPrice ?? 0.00M;
+                            var midCleanPrice = booking.MidVactionCleaningPrice ?? 0.00M;
+                            var swimHeatPrice = booking.SwimmingPoolHeatingPrice ?? 0.00M;
+                            var towelsPrice = booking.TowelsPrice ?? 0.00M;
+
+                            decimal extraPrice = cleanPrice + linenPrice + heatingPrice + midCleanPrice + swimHeatPrice + towelsPrice;
+                            
+                            <div id="step-@dynamicStepsBottom">
+                                <h2 class="StepTitle toTranslate">Property Booking - Price:£@booking.BookingPrice - Extra Services:£@extraPrice </h2>
+                                @Html.Partial("~/Views/BookingProcessPartialViews/AddBookingPartial.cshtml", booking, new ViewDataDictionary(ViewData) { { "StepNo", dynamicStepsBottom }, { "bookingCount", bookingCount }, { "loopNo", validatonBookingCountCurrent } })
+                            </div>
+
+                            var lastBookingStep = dynamicStepsBottom;
+                            dynamicStepsBottom++;
+                            validatonBookingCountCurrent++;
+
+                            <div id="step-@dynamicStepsBottom">
+                                <h2 class="StepTitle toTranslate">Property Booking Participants</h2>
+                                @Html.Partial("~/Views/BookingProcessPartialViews/AddBookingParticipantPartial.cshtml", Model.BookingParticipants, new ViewDataDictionary(ViewData) { { "StepNo", lastBookingStep }, { "latestBookingParticipant", latestBookingParticipant }, { "loopNo", validatonBESCountCurrent } })
+                            </div>
+
+                            latestBookingParticipant += 15;
+                            dynamicStepsBottom++;
+                            validatonBESCountCurrent++;
+
+                            bookingCount++;
+
+                        }
+
+                        @{ var besCount = 0;}
+                        @foreach (var bes in Model.BookingExtraSelections)
+                        {
+
+                            decimal price = bes.BESPrice ?? 0.00M;
+                            decimal extraPrice = bes.BESExtraServicesPrice ?? 0.00M;
+
+                            var totalPrice = price + extraPrice;
+                            
+                            <div id="step-@dynamicStepsBottom">
+                                <h2 class="StepTitle toTranslate">Extra booking - Price:£@price -  Extra Services:£@extraPrice for @bes.BookingExtra.BookingExtraName</h2>
+                                @Html.Partial("~/Views/BookingProcessPartialViews/AddBookingExtraSelectionPartial.cshtml", bes, new ViewDataDictionary(ViewData) { { "StepNo", dynamicStepsBottom }, { "count", besCount }, { "loopNo", validatonBESCountCurrent }, {"booking", bookingToPassToBES} })
+                            </div>
+
+                            dynamicStepsBottom++;
+                            besCount++;
+
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @{Html.EndForm();}
+</div>
+
+
+
+
+
+<script type="text/javascript">
+    //SCRIPT FOR CUSTOMER VALIDATION - AddCustomerPartial
+
+    var customerEmails;
+
+
+    //get data from webAPI
+    $.ajax({
+        url: "/api/CustomerAPI/GetAllCustomerAndLoginEmailAddresses",
+        type: "GET",
+        async: false,
+        dataType: "json",
+        success: function (data) {
+            customerEmails = data;
+        }
+    });
+
+    $("#EmailAddress").on("input", function () {
+
+        $.each(customerEmails, function (i, item) {
+
+            if ($("#EmailAddress").val().toLowerCase().trim() == item.Email.toLowerCase().trim())
+            {
+                if ('@CustomerSessionExist' == 'notExist') {
+                    alert("Can't use that customer email, it's already in the system!! Please either login or use a different email address!");
+                    DisableNext(); //don't allow them to proceed
+                   
+                }
+
+            }
+
+        });
+
+
+    });
+
+</script>
+
+
+
+
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        ////FOR EMAIL VALIDATION
+        //var customerEmails;
+
+        ////get data from webAPI
+        //$.ajax({
+        //    url: "/api/CustomerAPI/GetAllCustomerAndLoginEmailAddresses",
+        //    type: "GET",
+        //    async: false,
+        //    dataType: "json",
+        //    success: function (data) {
+        //        customerEmails = data;
+        //    }
+        //});
+
+
+        // $("#example-advanced-form").jWizard();
+        $('#wizard').smartWizard({
+            transitionEffect: 'fade',
+            onFinish: onFinishCallback,
+            onShowStep: leaveAStepCallback
+
+
+
+
+        });
+
+        //to trigger validation
+        $('#customerDiv').click();
+             
+
+        $('#wizard').css('text-align', 'center');
+   
+        //WHEN COMPLETE - USES THE var customerEmails declared above
+        function onFinishCallback() {
+
+            var disabled = $(".buttonFinish").is(":disabled");
+
+            if (disabled == false) {
+
+                if ($('#form1').valid()) {
+
+                    //check the email hasn't been used already and if it has that the customer is logged in
+                    $.each(customerEmails, function (i, item) {
+
+                        if ($("#EmailAddress").val().toLowerCase().trim() == item.Email.toLowerCase().trim()) {
+
+                            //if there's no session they haven't logged in..so reject them
+                            if ('@CustomerSessionExist' == 'notExist') {
+                                alert("Can't use that email, it's already in the system!!");
+                                event.preventDefault();
+                            }
+                        }
+                        else {
+                           $('#form1').submit();
+                        }
+
+                    });
+
+                    
+                }
+            }
+
+        }
+
+
+        //$(".buttonFinish").click(function() {
+
+        //    var disabled = $(".buttonFinish").is(":disabled");
+
+        //    if (disabled != false) {
+
+        //        if ($('#form1').valid()) {
+
+        //            //check the email hasn't been used already and if it has that the customer is logged in
+
+        //                    $('#form1').submit();
+        //        }
+        //    }
+
+            
+
+        //});
+
+
+    });
+
+   
+
+
+    function DisableNext() {
+        $("#wizard .buttonNext").hide();
+    }
+
+
+    $("#customerDiv").on("click focus keypress change keyup blur", function (e) {
+
+        $("#wizard .buttonNext").hide();
+        $("label[generated='true']").remove();
+
+        var test = $('#customerDiv .makeValid');
+        var isValid = true;
+
+        test.each(function () {
+            /* alert(this.name);*/
+            if ($(this).valid()) {
+
+            } else {
+                isValid = false;
+            }
+
+        });
+
+
+        if (isValid == true) {
+            //now test the email again!
+            $("#wizard .buttonNext").show();
+
+            $.each(customerEmails, function (i, item) {
+
+                if ($("#EmailAddress").val().toLowerCase().trim() == item.Email.toLowerCase().trim()) {
+                    if ('@CustomerSessionExist' == 'notExist') {
+                        alert("Can't use that customer email, it's already in the system!! Please either login or use a different email address!");
+                        DisableNext(); //don't allow them to proceed
+
+                    }
+                    else
+                    {
+                       
+                    }
+
+                }
+
+            });
+          
+        }
+
+    });
+    //end customer Div
+
+    $("#customerBankDetailDiv").on("click focus keypress change keyup blur", function (e) {
+
+        $("#wizard .buttonNext").hide();
+        $("label[generated='true']").remove();
+
+        var test = $('#customerBankDetailDiv .makeValid');
+        var isValid = true;
+
+        test.each(function () {
+            /* alert(this.name);*/
+            if ($(this).valid()) {
+
+            } else {
+                isValid = false;
+            }
+
+        });
+
+
+        if (isValid == true) {
+            $("#wizard .buttonNext").toggle();
+        }
+
+    });
+
+
+    $("#bookingDiv0").on("click focus keypress change keyup blur", function (e) {
+
+        $("#wizard .buttonNext").hide();
+        $("label[generated='true']").remove();
+
+        var test = $('#bookingDiv0 .makeValid');
+        var isValid = true;
+
+        test.each(function () {
+
+            if ($(this).valid()) {
+
+            } else {
+                isValid = false;
+            }
+
+        });
+
+
+        if (isValid == true) {
+            $("#wizard .buttonNext").toggle();
+        }
+
+    });
+
+
+    $("#bookingDiv1").on("click focus keypress change keyup blur", function (e) {
+
+        $("#wizard .buttonNext").hide();
+        $("label[generated='true']").remove();
+
+        var test = $('#bookingDiv1 .makeValid');
+        var isValid = true;
+
+        test.each(function () {
+            /* alert(this.name);*/
+            if ($(this).valid()) {
+
+            } else {
+                isValid = false;
+            }
+
+        });
+
+
+        if (isValid == true) {
+            $("#wizard .buttonNext").toggle();
+        }
+
+    });
+
+
+    $("#bookingDiv2").on("click focus keypress change keyup blur", function (e) {
+
+        $("#wizard .buttonNext").hide();
+        $("label[generated='true']").remove();
+
+        var test = $('#bookingDiv2 .makeValid');
+        var isValid = true;
+
+        test.each(function () {
+            /* alert(this.name);*/
+            if ($(this).valid()) {
+
+            } else {
+                isValid = false;
+            }
+
+        });
+
+
+        if (isValid == true) {
+            $("#wizard .buttonNext").toggle();
+        }
+
+    });
+
+
+
+    //parts
+
+
+    $("#bookingParticipantDiv0").on("click focus keypress change keyup blur", function (e) {
+
+        $("#wizard .buttonNext").hide();
+        $("label[generated='true']").remove();
+
+        var test = $('#bookingParticipantDiv0 .makeValid');
+        var isValid = true;
+
+        test.each(function () {
+            /* alert(this.name);*/
+            if ($(this).valid()) {
+
+            } else {
+                isValid = false;
+            }
+
+        });
+
+
+        if (isValid == true) {
+            $("#wizard .buttonNext").toggle();
+        }
+
+    });
+
+    $("#bookingParticipantDiv1").on("click focus keypress change keyup blur", function (e) {
+
+        $("#wizard .buttonNext").hide();
+        $("label[generated='true']").remove();
+
+        var test = $('#bookingParticipantDiv1 .makeValid');
+        var isValid = true;
+
+        test.each(function () {
+            /* alert(this.name);*/
+            if ($(this).valid()) {
+
+            } else {
+                isValid = false;
+            }
+
+        });
+
+
+        if (isValid == true) {
+            $("#wizard .buttonNext").toggle();
+        }
+
+    });
+
+
+
+    $("#BESDiv0").on("click focus keypress change keyup blur", function (e) {
+
+        $("#wizard .buttonNext").hide();
+        $("label[generated='true']").remove();
+
+        var test = $('#BESDiv0 .makeValid');
+        var isValid = true;
+
+        test.each(function () {
+            /* alert(this.name);*/
+            if ($(this).valid()) {
+
+            } else {
+                isValid = false;
+            }
+
+        });
+
+
+        if (isValid == true) {
+            $("#wizard .buttonNext").toggle();
+        }
+
+    });
+
+
+
+    $("#BESDiv1").on("click focus keypress change keyup blur", function (e) {
+
+        $("#wizard .buttonNext").hide();
+        $("label[generated='true']").remove();
+
+        var test = $('#BESDiv1 .makeValid');
+        var isValid = true;
+
+        test.each(function () {
+            /* alert(this.name);*/
+            if ($(this).valid()) {
+
+            } else {
+                isValid = false;
+            }
+
+        });
+
+
+        if (isValid == true) {
+            $("#wizard .buttonNext").toggle();
+        }
+
+    });
+
+
+
+    $("#BESDiv2").on("click focus keypress change keyup blur", function (e) {
+
+        $("#wizard .buttonNext").hide();
+        $("label[generated='true']").remove();
+
+        var test = $('#BESDiv2 .makeValid');
+        var isValid = true;
+
+        test.each(function () {
+            /* alert(this.name);*/
+            if ($(this).valid()) {
+
+            } else {
+                isValid = false;
+            }
+
+        });
+
+
+        if (isValid == true) {
+            $("#wizard .buttonNext").toggle();
+        }
+
+    });
+
+
+    $("#BESDiv3").on("click focus keypress change keyup blur", function (e) {
+
+        $("#wizard .buttonNext").hide();
+        $("label[generated='true']").remove();
+
+        var test = $('#BESDiv3 .makeValid');
+        var isValid = true;
+
+        test.each(function () {
+            /* alert(this.name);*/
+            if ($(this).valid()) {
+
+            } else {
+                isValid = false;
+            }
+
+        });
+
+
+        if (isValid == true) {
+            $("#wizard .buttonNext").toggle();
+        }
+
+    });
+
+
+    /*
+        function RunBookingValidationScript(bookingDivName) {
+            $(bookingDivName).on("change", function (e) {
+
+                alert(bookingDivName);
+
+                $("#wizard .buttonNext").hide();
+                $("label[generated='true']").remove();
+
+                var test = $(bookingDivName + ' .makeValid');
+                var isValid = true;
+
+                test.each(function () {
+                    /* alert(this.name);#1#
+                    if ($(this).valid()) {
+
+                    } else {
+                        isValid = false;
+                    }
+
+                });
+
+                if (isValid == true) {
+                    $("#wizard .buttonNext").toggle();
+                }
+
+            });
+        }*/
+
+
+
+
+
+    /*
+     $(".buttonNext").on("click", function (e) {
+
+            $(".buttonNext").preventDefault();
+            alert('ok');
+
+
+            var test = $('#customerDiv .makeValid');
+            var isValid = true;
+            test.each(function () {
+                alert(this.name);
+                if ($(this).valid()) {
+
+                } else {
+                    isValid = false;
+                }
+
+            });
+
+            if (!isValid) {
+                e.preventDefault();
+            }
+
+            });
+    */
+
+
+    //trigger validation
+    function leaveAStepCallback(obj, context) {
+
+
+        $('#customerDiv').click();
+        $('#bookingDiv0').click();
+        $('#bookingDiv1').click();
+        $('#bookingDiv2').click();
+        $('#bookingDiv3').click();
+        $('#bookingDiv4').click();
+
+        $('#bookingParticipantDiv0').click();
+        $('#bookingParticipantDiv1').click();
+        $('#bookingParticipantDiv2').click();
+
+        $('#BESDiv0').click();
+        $('#BESDiv1').click();
+
+
+        if (context.toStep == '1') {
+            if ('@CustomerSessionExist' == 'notExist') {
+                $("#wizard .buttonNext").hide();
+
+            } else {
+                
+                $("#wizard .buttonNext").show();
+            }
+
+        }
+        else if (context.toStep == '2') {
+            if ('@customerBankSessionExist' == 'notExist') {
+                $("#wizard .buttonNext").hide();
+            
+            } else {
+ 
+                $("#wizard .buttonNext").show();
+            }
+
+        }
+    };
+
+
+</script>
+
+
+
+
+
+
+

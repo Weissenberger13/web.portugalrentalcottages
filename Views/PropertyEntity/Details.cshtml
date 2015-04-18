@@ -1,0 +1,156 @@
+﻿@model BootstrapVillas.Models.PropertyEntity
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Content/Admin/_AdminLayout.cshtml";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>PropertyEntity</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.PropertyEntityType.PropertyEntityTypeName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PropertyEntityType.PropertyEntityTypeName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Property.LegacyReference)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Property.LegacyReference)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.PropertyEntitySummaryDescription)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PropertyEntitySummaryDescription)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.PropertyEntityName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PropertyEntityName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.PropertyEntityDescription1)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PropertyEntityDescription1)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.PropertyEntityDescription2)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PropertyEntityDescription2)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.PropertyEntityDescription3)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PropertyEntityDescription3)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.PropertyEntityDescription4)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PropertyEntityDescription4)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.PropertyEntityDescription5)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PropertyEntityDescription5)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.PropertyEntityDescription6)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PropertyEntityDescription6)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.PropertyEntityDescription7)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PropertyEntityDescription7)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.PropertyEntityDescription8)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PropertyEntityDescription8)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.PropertyEntityDescription9)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PropertyEntityDescription9)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.PropertyEntityDescription10)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PropertyEntityDescription10)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.PropertyEntityDescription11)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PropertyEntityDescription11)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.PropertyEntityDescription12)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PropertyEntityDescription12)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.PropertyEntityDescription13)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PropertyEntityDescription13)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.PropertyEntityDescription14)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PropertyEntityDescription14)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.PropertyEntityDescription15)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PropertyEntityDescription15)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.WhenCreated)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.WhenCreated)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.PropertyEntityID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

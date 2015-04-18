@@ -1,0 +1,127 @@
+﻿@model BootstrapVillas.Models.BookingExtraSelection
+@using BootstrapVillas.Models
+
+
+@{
+    ViewBag.Title = "Tour Extra Modal Window";
+
+    Booking booking = (Booking)ViewData["booking"];
+    List<PropertyTypeServicesChargeInstance> instanceExtraCharges = (List < PropertyTypeServicesChargeInstance >) ViewData["extraServiceCharges"];
+    
+}
+
+
+
+
+<!-- Modal -->
+<div id="tourModal" class="modal hide fade modalBookingIDJquery" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 id="myModalLabel"><css-decorator class="toTranslate">Please Enter Your Details:</css-decorator></h3>
+    </div>
+  
+    @{Html.BeginForm("AddExtraFormBookingToSession", "PropertyView", FormMethod.Post, new { @class = "aFormToValidate modalForm", @name = "tourForm", @id="tourForm" } );}
+    
+    <div class="modal-body">
+       
+        <div class="modal-form">  
+            
+            <div class="row-fluid">
+            <div class="span12">
+
+               <input type="hidden" id="BookingExtraID" class="BookingExtraID_ToPost" name="BookingExtraID" value=""/>
+  
+
+                <label><css-decorator class="toTranslate">Date Of Tour</css-decorator></label>
+                @*same ids as other modals *@
+                <input type="text" class="date-picker makeValid" name="ExtraRentalDate" id="ExtraRentalDate" placeholder="DD/MM/YY">                      
+
+@*
+                <label>Pick Up Location / Address</label>
+  
+                <textarea rows="3" name="PickupLocation" id="PickupLocation" class=" makeValid">@{
+    if (booking != null)
+    {
+        @booking.Property.LegacyReference
+        ;
+    }
+}</textarea>
+
+                <label>Drop Off Location / Address</label>
+                     
+                <textarea rows="3" name="DropoffLocation" id="DropoffLocation" class="makeValid">@{
+    if (booking != null)
+    {
+        @booking.Property.LegacyReference
+        ;
+    }
+}</textarea>*@
+
+
+                <label><css-decorator class="toTranslate">Passengers - Adults</css-decorator></label>
+      
+                           <select name="NumberOfAdults">
+                               @{
+                                   for (var i = 1; i < 16; i++ )
+                                   { <option value=@i.ToString()>@i</option>}
+                               }
+                            
+                          </select>
+
+
+                <label><css-decorator class="toTranslate">Passengers - Children</css-decorator></label>
+              
+                           <select name="NumberOfChildren">
+                             @{
+                                   for (var i = 0; i < 16; i++ )
+                                   {
+                                        <option value=@i.ToString()>@i</option>}
+                                   }
+                </select>
+
+
+               <label><css-decorator class="toTranslate">Passengers - Infants</css-decorator></label>
+          
+                           <select name="NumberOfInfants">
+                              @{
+                                   for (var i = 0; i < 16; i++ )
+                                   { <option value=@i.ToString()>@i</option>}
+                              }
+
+                 </select>
+
+
+                <label><css-decorator class="toTranslate">Number of Child seats*</css-decorator></label>
+                <select name="NumberOfChildseats">
+                    @{
+                        for (var i = 0; i < 6; i++)
+                        {
+                            <option value=@i.ToString()>@i</option>}
+                    }
+
+                </select><br />
+                <strong><css-decorator class="toTranslate">Child seats can be ordered extra @@GB£@instanceExtraCharges.Where(x => x.PropertyTypeServicesID.Equals(9)).FirstOrDefault().ServicePriceGBP.ToString() per seat each way</css-decorator></strong>
+                <br /><br />
+
+                <label><css-decorator class="toTranslate">Any special requests or comments</css-decorator></label>
+            
+                            <textarea rows="5" name="SpecialRequests"></textarea> 
+
+
+
+
+            </div>
+         </div>
+
+        </div>
+
+    </div>      
+                    
+      <div class="modal-footer">
+            <button class="btn" data-dismiss="modal" aria-hidden="true"><css-decorator class="toTranslate">Close</css-decorator></button>
+        <button type="submit" class="btn btn-info submit" value="Confirm"><css-decorator class="toTranslate">Confirm</css-decorator></button>
+        </div> 
+     @{Html.EndForm();}
+</div>
+
+    

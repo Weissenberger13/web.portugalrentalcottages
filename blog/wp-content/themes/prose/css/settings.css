@@ -1,0 +1,273 @@
+/* This file is auto-generated from the settings page. Any direct edits here will be lost if the settings page is saved */
+body {
+	color: ;
+	font-family: ;
+	font-size: ;
+	line-height: ;
+}
+a, a:visited {
+	color: ;
+	text-decoration: ;
+}
+a:hover {
+	color: ;
+	text-decoration: ;
+}
+#wrap {
+	background-color: ;
+	background-color: ;
+	margin:  auto ;
+	padding: ;
+	border:   ;
+	-moz-border-radius: ;
+	-khtml-border-radius: ;
+	-webkit-border-radius: ;
+	border-radius: ;
+	-moz-box-shadow: ;
+	-webkit-box-shadow: ;
+}
+#header {
+	height: ;
+	background-color: ;
+}
+#title-area {
+	width: ;
+}
+#title-area #title  {
+	padding-top: ;
+	padding-left: ;
+}
+.header-image #title-area, .header-image #title-area #title, .header-image #title-area #title a {
+	width: ;
+	height: ;
+}
+#title-area #title a, #title-area #title a:hover {
+	color: ;
+	font-family: ;
+	font-size: ;
+	line-height: ;
+}
+#title-area #description {
+	color: ;
+	font-family: ;
+	font-size: ;
+	padding-left: ;
+	padding-top: ;
+	font-style: ;
+}
+#header .widget-area {
+	width: ;
+}
+#nav {
+	background-color: ;
+	background-color: ;
+	font-family: ;
+	font-size: ;
+	border:   ;
+	width: 940px;
+}
+#nav ul {
+	width: 940px;
+	border:   ;
+}
+#nav li a {
+	background-color: ;
+	background-color: ;
+	color: ;
+	text-decoration: ;
+}
+#nav li.right a, #nav li.rss a, #nav li.twitter a {
+	color: ;
+}
+#nav li a:hover, #nav li a:active, #nav .current_page_item a, #nav .current-menu-item a {
+	background-color: ;
+	background-color: ;
+	color: ;
+	text-decoration: ;
+}
+#nav li.right a:hover, #nav li.rss a:hover, #nav li.twitter a:hover {
+	color: ;
+}
+#nav li li a, #nav li li a:link, #nav li li a:visited {
+	background-color: ;
+	background-color: ;
+	color: ;
+}
+#nav li li a:hover, #nav li li a:active {
+	background-color: ;
+	background-color: ;
+	color: ;
+}
+#subnav {
+	background-color: ;
+	background-color: ;
+	font-family: ;
+	font-size: ;
+	border:   ;
+	width: 940px;
+}
+#subnav ul {
+	width: 940px;
+	border:   ;
+}
+#subnav li a {
+	background-color: ;
+	background-color: ;
+	color: ;
+	text-decoration: ;
+}
+#subnav li a:hover, #subnav li a:active, #subnav .current_page_item a, #subnav .current-menu-item a {
+	background-color: ;
+	background-color: ;
+	color: ;
+	text-decoration: ;
+}
+#subnav li li a, #subnav li li a:link, #subnav li li a:visited {
+	background-color: ;
+	background-color: ;
+	color: ;
+}
+#subnav li li a:hover, #subnav li li a:active {
+	background-color: ;
+	background-color: ;
+	color: ;
+}
+.breadcrumb {
+	color: ;
+	text-transform: ;
+	font-size: ;
+	border-bottom:   ;
+}
+.post-info {
+	background-color: ;
+	background-color: ;
+	color: ;
+	text-transform: ;
+	font-size: ;
+}
+.post-meta {
+	background-color: ;
+	background-color: ;
+	color: ;
+	text-transform: ;
+	font-size: ;
+}
+#content blockquote {
+	color: ;
+	font-family: ;
+	font-style: ;
+	background-color: ;
+	background-color: ;
+	border:   ;
+}
+#content p.notice {
+	color: ;
+	font-family: ;
+	font-style: ;
+	background-color: ;
+	background-color: ;
+	border:   ;
+}
+#content h1, #content h2, #content h3, #content h4, #content h5, #content h6 {
+	font-family: ;
+	font-style: ;
+	font-weight: ;
+	text-transform: ;
+}
+#content h1 {
+	font-size: ;
+	color: ;
+}
+#content h2 {
+	font-size: ;
+	color: ;
+}
+#content h2 a, #content h2 a:visited {
+	color: ;
+	text-decoration: ;
+}
+#content h2 a:hover {
+	color: ;
+	text-decoration: ;
+}
+#content h3 {
+	font-size: ;
+	color: ;
+}
+#content h4 {
+	font-size: ;
+	color: ;
+}
+#content h5 {
+	font-size: ;
+	color: ;
+}
+#content h6 {
+	font-size: ;
+	color: ;
+}
+#sidebar h4, #sidebar-alt h4 {
+	color: ;
+	font-family: ;
+	font-size: ;
+	font-style: ;
+	font-weight: ;
+	border-bottom:   ;
+	text-transform: ;
+}
+#footer-widgeted {
+	background-color: ;
+	background-color: ;
+	border:   ;
+}
+#footer-widgeted h4 {
+	color: ;
+	font-family: ;
+	font-size: ;
+	font-style: ;
+	font-weight: ;
+	border-bottom:   ;
+	text-transform: ;
+}
+#footer-widgeted a, #footer-widgeted a:visited, #footer-widgeted li a, #footer-widgeted li a:visited {
+	color: ;
+	text-decoration: ;
+}
+#footer-widgeted a:hover, #footer-widgeted li a:hover {
+	color: ;
+	text-decoration: ;
+}
+#footer {
+	color: ;
+	font-size: ;
+	font-weight: ;
+	text-transform: ;
+}
+#footer a, #footer a:visited {
+	color: ;
+	text-decoration: ;
+}
+#footer a:hover {
+	color: ;
+	text-decoration: ;
+}
+.s, #author, #email, #url, #comment, .enews #subbox, .prose-input {
+	color: ;
+	font-family: ;
+	font-style: ;
+	background-color: ;
+	background-color: ;
+	border:   ;
+}
+#submit, .searchsubmit, .enews #subbutton, #content .gform_footer .button, .reply a, .reply a:visited, .prose-button {
+	background-color: ;
+	background-color: ;
+	color: ;
+	text-transform: ;
+	font-family: ;
+	font-size: ;
+}
+#submit:hover, .searchsubmit:hover, .enews #subbutton:hover, .gform_footer .button:hover, .reply a:hover, .prose-button:hover {
+	background-color: ;
+	background-color: ;
+}

@@ -1,0 +1,63 @@
+﻿@model BootstrapVillas.Models.BookingExternal
+
+@{
+    ViewBag.Title = "Create";
+
+    AjaxOptions options = new AjaxOptions
+    {
+        UpdateTargetId = "TopEditorWindow",
+        InsertionMode = InsertionMode.Replace,
+        LoadingElementId = "spinner",
+        OnSuccess = "alert('Created!')"
+
+
+    };
+}
+
+<h2>Create</h2>
+
+@using (Ajax.BeginForm("Create", "BookingExternal", FormMethod.Post, options))
+{
+
+    <fieldset>
+        <legend>Booking External</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.StartDate)
+        </div>
+        <div class="editor-field">
+            <input type="text" class="makeValid date-picker" name="StartDate" required />
+            @Html.ValidationMessageFor(model => model.StartDate)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.EndDate)
+        </div>
+        <div class="editor-field">
+            <input type="text" class="makeValid date-picker" name="End" required />
+            @Html.ValidationMessageFor(model => model.EndDate)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PropertyID, "Property")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("PropertyID", String.Empty)
+            @Html.ValidationMessageFor(model => model.PropertyID)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Notes)
+        </div>
+        <div class="editor-field">
+            <textarea rows="5" class="makeValid date-picker" name="End" required></textarea>
+            @Html.ValidationMessageFor(model => model.Notes)
+        </div>
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+
+}
+

@@ -1,0 +1,47 @@
+﻿@model BootstrapVillas.Models.BookingExtraSelection
+@using BootstrapVillas.Models
+
+
+@{
+    ViewBag.Title = "ReplyMessage";
+}
+
+<!-- Modal -->
+<div id="replyMessageModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-header">
+        <a class="close" data-dismiss="modal" aria-hidden="true"><i class="fa fa-fw fa-times"></i></a>
+        <h3 id="myModalLabel"><i class="fa fa-fw fa-comment"></i>Leave Your Reply</h3>
+    </div>
+
+    <div class="modal-body">
+        <div class="modal-form form-horizontal">
+            <div class="row-fluid" style="margin-bottom: 20px;">
+                <div class="span12">
+                    <div class="span6">
+                        
+                        @{Html.BeginForm("Create", "Comment", FormMethod.Post, new { @class = "aFormToValidate" });}
+
+                        <input type="hidden" name="CommentID" id="CommentID" value="CurrentCommentID" />
+
+                        <input style="height: 35px;" type="text" class="span12" name="Username" id="Username" placeholder="First Name">
+                    </div>
+                    <div class="span6">
+                        <input style="height: 35px;" type="text" class="span12" name="Text" id="Text" placeholder="Last Name">
+                    </div>
+                </div>
+            </div>
+            <div class="row-fluid">
+                <div class="span12">
+                    <textarea class="span12" placeholder="Leave your comment" rows="5"></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Submit buttons -->
+
+    <div class="modal-footer">
+        <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+        <button type="submit" class="btn btn-success" value="Submit">Submit</button>
+    </div>
+
+</div>

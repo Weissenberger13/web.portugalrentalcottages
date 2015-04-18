@@ -1,0 +1,135 @@
+﻿@model BootstrapVillas.Models.PropertyPricing
+
+@{
+    ViewBag.Title = "Edit";
+}
+@{
+ 
+
+    AjaxOptions options = new AjaxOptions
+    {
+        UpdateTargetId = "BottomEditorWindow",
+        InsertionMode = InsertionMode.Replace,
+        LoadingElementId = "spinner", 
+    };
+}
+
+<h2>Edit</h2>
+
+@using (Ajax.BeginForm("Edit", "PropertyPricing", options)) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>PropertyPricing</legend>
+
+        @Html.HiddenFor(model => model.PropertyPricingID)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PropertyID, "Property")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("PropertyID", String.Empty)
+            @Html.ValidationMessageFor(model => model.PropertyID)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PropertyPricingTypeID, "PropertyPricingType")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("PropertyPricingTypeID", String.Empty)
+            @Html.ValidationMessageFor(model => model.PropertyPricingTypeID)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.YearPricingStarts)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.YearPricingStarts)
+            @Html.ValidationMessageFor(model => model.YearPricingStarts)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.YearPricingEnds)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.YearPricingEnds)
+            @Html.ValidationMessageFor(model => model.YearPricingEnds)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.RollingPricing_NoYears_)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.RollingPricing_NoYears_)
+            @Html.ValidationMessageFor(model => model.RollingPricing_NoYears_)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Price)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Price)
+            @Html.ValidationMessageFor(model => model.Price)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PricingName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PricingName)
+            @Html.ValidationMessageFor(model => model.PricingName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PricingNotes)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PricingNotes)
+            @Html.ValidationMessageFor(model => model.PricingNotes)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PricingStartDate) MONTH-DAY
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PricingStartDate)
+            @Html.ValidationMessageFor(model => model.PricingStartDate)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PricingEndDate) MONTH-DAY
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PricingEndDate)
+            @Html.ValidationMessageFor(model => model.PricingEndDate)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PriceUnit)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PriceUnit)
+            @Html.ValidationMessageFor(model => model.PriceUnit)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PriceSymbol)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PriceSymbol)
+            @Html.ValidationMessageFor(model => model.PriceSymbol)
+        </div>
+
+
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

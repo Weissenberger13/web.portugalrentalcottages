@@ -1,0 +1,159 @@
+﻿@*Script for booking dates*@
+
+
+@using BootstrapVillas.Models
+@using BootstrapVillas.Content.Classes;
+
+@*
+@{
+  NO DATES WILL BE BLOCKED OUT IF THIS IS COMMENTED OUT
+    
+    ViewBag.Title = "FullPropertyResult";
+    Property theProperty = ViewBag.FullPropertyResultProperty;
+    theProperty.CreatePriceRange();
+  
+
+    List<PropertyPricing> thePropertyPriceRange = PropertyPricing.GetPricingByPropertyID(theProperty.PropertyID);
+
+    PRCImageCollection ImageCollection = ViewBag.ImageCollection;
+
+    //passed from 'Home' Controller - see method for FullPropertyResult
+    BookingCalendar BookingCalDates = ViewBag.BookingCalDates;
+   
+
+
+
+
+
+
+
+<script type="text/javascript">
+
+    $(document).ready(function() {
+        $(function() {
+
+            //var disabledDays = ["11-21-2012", "11-24-2012", "9-27-2011", "9-28-2011", "9-3-2011", "9-17-2011", "9-2-2011", "9-3-2011", "9-4-2011", "9-5-2011"];
+
+            var disabledDays = [];
+
+
+            @foreach (var abookingDate  in BookingCalDates.bookingDates)
+            {
+
+                string thePushString = "disabledDays.push('" + abookingDate.bookingDate.ToString("M-d-yyyy") + "');";
+                @Html.Raw(thePushString)
+            }
+
+                                            @*
+                //@Html.Raw("disabledDays.push('1-22-2012');")
+                //@Html.Raw("disabledDays.push('12-1-2012');")
+                //disabledDays.push("11-23-2012");
+                //disabledDays.push("12-23-2012");
+                              
+
+            function disableAllTheseDays(date) {
+                var m = date.getMonth(), d = date.getDate(), y = date.getFullYear();
+                for (i = 0; i < disabledDays.length; i++) {
+                    if ($.inArray((m + 1) + '-' + d + '-' + y, disabledDays) != -1) {
+                        return [false];
+                    }
+                }
+                return [true];
+            }
+
+
+               
+            $("#StartBookingDate1").datepicker(
+                {
+                    //add JSON
+                    dateFormat: 'mm-dd-yy',
+                    beforeShowDay: disableAllTheseDays,
+                    changeMonth: false,
+                    changeYear: true,
+                    numberOfMonths: [4,3],
+                    showButtonPanel: true
+                });
+                
+
+
+            $("#EndBookingDate1").datepicker(
+                {
+                    //add JSON
+                    dateFormat: 'mm-dd-yy',
+                    beforeShowDay: disableAllTheseDays,
+                    changeMonth: false,
+                    changeYear: true
+                });
+
+        });
+            
+
+        $(function() {
+            $("#map1").gMap({
+                markers: [{
+                    latitude: @theProperty.GPSCoordinatesLatitude,
+                    longitude: @theProperty.GPSCoordinatesLongitude,
+                    popup: true,
+                    icon: {image: "Images/map_pin1.png",
+                        iconsize: [26, 46],
+                        iconanchor: [12,46],
+                        infowindowanchor: [12, 0]
+                    },
+                }],
+                zoom: 14
+            });
+        });
+
+
+
+
+    });
+
+</script>
+*@
+<script type="text/javascript">
+
+    $(document).ready(function() {
+        $(function() {
+
+
+  $(".StartBookingDate1").datepicker(
+                {
+                    //add JSON
+                    dateFormat: 'dd-mm-yy',
+                    //beforeShowDay: disableAllTheseDays,
+                    changeMonth: false,
+                    changeYear: true,
+                    showButtonPanel: true
+                });
+                
+
+
+            $("#EndBookingDate1").datepicker(
+                {
+                    //add JSON
+                    dateFormat: 'dd-mm-yy',
+                    //beforeShowDay: disableAllTheseDays,
+                    changeMonth: false,
+                    changeYear: true
+                });
+        });
+    });
+
+
+</script>
+@*Just divs - the main page calling this view will provide the 'form element *@
+
+      <!-- Availability Calendar Section -->
+        
+       <a id="sectionStandardCustomerInputs" class="section"  name="sectionStandardCustomerInputs"></a>
+		            
+           
+  
+            <div style="float:left;" class="StartBookingDate1"/>
+           
+
+
+
+
+   <!-- End Availability Calendar Section -->

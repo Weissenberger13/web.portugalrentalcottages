@@ -1,0 +1,155 @@
+﻿@using System.Collections
+@using System.Security.Cryptography.X509Certificates
+@using BootstrapVillas.Models
+@model IEnumerable<BootstrapVillas.Models.Customer>
+
+@{
+    ViewBag.Title = "Home Page";
+    Layout = null;
+
+    AjaxOptions options = new AjaxOptions();
+    options.HttpMethod = "POST"; 
+    options.OnBegin = "OnBegin";
+    options.OnComplete = "OnComplete";
+    options.OnFailure = "OnFailure";
+    options.OnSuccess = "OnSuccess";
+    options.LoadingElementId = "divProgress";
+    options.LoadingElementDuration = 1500;
+    options.UpdateTargetId = "divResponse";
+    options.InsertionMode = InsertionMode.Replace;
+
+    var currentCustomer = ViewData["currentCustomer"];
+
+    List<SelectListItem> ListOfItems = new List<SelectListItem>();
+    
+    foreach (var item in Model.OrderBy(x=>x.LastName))
+    {
+        ListOfItems.Add(new SelectListItem { Text = item.FirstName + " " + item.LastName, Value = item.CustomerID.ToString() });
+
+    }
+    
+    
+         
+    
+}
+@*jquery library*@
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+@*jQuery UI - Date Picker*@
+<script src="~/Scripts/jquery-ui-1.10.3.custom/js/jquery-ui-1.10.3.custom.min.js"></script>
+@*ajax*@
+<script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+
+
+
+<h2>@ViewBag.Message</h2>
+
+    @using (Ajax.BeginForm("ProcessForm", "TestAjax", FormMethod.Post, options))
+    {
+        <input id="submitToAjax" type="submit" value="Ajax PsBk Click" />
+       
+            @Html.DropDownList("CustomerID", ListOfItems, new { id = "customerDropdown", @class = "test" })
+            
+        <br/>
+        
+        
+     
+        <div>
+            @Ajax.ActionLink("Click to process action link", "ProcessLink", options)
+        </div>
+    }
+
+
+
+<button id="testAjaxButton">Click to do Ajax!!</button>
+
+<div id="divProgress" style="display: none">progress is happening, this will disappear when request complete!</div>
+<div id="divResponse"></div>
+<div id="divMsg"></div>
+<div id="results"></div>
+
+
+@Html.Partial("CustomerEdit", currentCustomer);
+
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        $("#divProgress").css("display", "none");
+    });
+
+
+    function OnBegin() {
+        $("#divMsg").append("<h3>Beginning Ajax request.</h3>");
+    }
+
+    function OnComplete() {
+        $("#divMsg").append("<h3>Completing Ajax request.</h3>");
+    }
+
+    function OnSuccess() {
+        $("#divMsg").append("<h3>Ajax request successful.</h3>");
+    }
+
+    function OnFailure() {
+        $("#divMsg").append("<h3>Ajax request failed.</h3>");
+    }
+
+</script>
+
+
+<script type="text/javascript">
+
+
+
+    $('#testAjaxButton').click(function () {
+
+    });
+
+
+    $('#submitToAjax').click(function () {
+        $("#customerEdit").replaceWith("");
+     });
+
+
+
+    $('#customerDropdown').on('change', function () {     
+
+      
+        var customerID = $("#customerDropdown").val();
+        $.ajax({
+            url: '@Url.Action("GetACustomer","TestAjax")',
+            data: { "CustomerID": customerID },
+            type: "GET",
+            success: function (result) { $('#customerEdit').html(result); },
+            error: function () { alert('boooo'); }
+
+        });
+
+    });
+
+/*
+
+    $(document).ready(function () {
+        $("#customerDropdown").change(function () {
+
+            var dropdownval = $("#customerDropdown").val();
+
+            alert(val);
+
+              $.ajax({
+                type: "POST",
+                url: "TestAjax/GetACustomer?CustomerID=" + dropdownval,
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (data) {
+                    alert(data["Response"]);
+                }
+            });
+        });
+
+
+    });
+*/
+</script>  
+

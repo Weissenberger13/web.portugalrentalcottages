@@ -1,0 +1,36 @@
+﻿@using BootstrapVillas.Models;
+@using BootstrapVillas.Content.Classes;
+@model BookingExtra
+
+@{
+            //scripts
+
+}
+
+<form action="\Home\BookWineTour">
+
+    <label>
+
+    <select data-autopostback="true" class="span12">
+        @*generate lists*@
+
+        <option selected="selected">- Select a Service -</option>
+
+        @{
+            foreach (var extratype in BookingExtra.GetBookingExtraTypes())
+            {
+            <option value="@extratype.BookingExtraTypeID" >@extratype.ExtraTypeName</option>
+            
+            }
+     
+        }
+
+    </select>
+
+</label>
+
+
+
+
+
+</form>

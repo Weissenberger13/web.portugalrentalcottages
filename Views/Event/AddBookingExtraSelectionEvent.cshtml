@@ -1,0 +1,86 @@
+﻿@using BootstrapVillas.Models
+@{
+    ViewBag.Title = "AddBookingEvent";
+    //only pass in correct event types //booking or bes or both
+
+
+    var besID = (long)ViewBag.BesID;
+    
+    List<EventType> theEventsToAdd;
+    if (ViewBag.EventTypeDDL.Equals(null))
+    {
+        theEventsToAdd = new List<EventType>();
+    }
+    else
+    {
+        theEventsToAdd = (List<EventType>)ViewBag.EventTypeDDL;
+        theEventsToAdd = theEventsToAdd.OrderBy(x => x.EventSubTypeID).ThenBy(x=>x.EventTypeName).ToList();
+    }
+
+
+
+
+
+}
+
+
+  <h2>Add Event To BookingExtraID: @besID </h2>
+
+
+
+@Html.DropDownList("EventTypeID", new SelectList(theEventsToAdd, "EventTypeID", "EventTypeName"), new { id = "EventTypeID", @class = "input-small", @style = "height: auto !important; width:auto;" })
+
+<input type="hidden" id="BookingExtraSelectionID" name="BookingExtraSelectionID" readonly value="@besID" />
+<p>
+    <input type="submit" id="AddBookingExtraSelectionEvent" name="AddBookingExtraSelectionEvent" value="Add this event" />
+</p>
+
+
+
+<script type="text/javascript">
+
+    $('#AddBookingExtraSelectionEvent').on('click', function () {
+        //delete existing
+
+
+
+        //get all vars
+        var id = $('#BookingExtraSelectionID').val();
+        var eventid = $('#EventTypeID option:selected').val();
+
+        //request
+        $.ajax({
+            url: '@Url.Action("AddBookingExtraSelectionEvent", "Event")',
+            data: {
+                "BookingExtraSelectionID": id,
+                'EventTypeID': eventid
+            },
+            type: "POST",
+            success: function (result) {               
+                $('#BottomEditorWindow').html(result);
+
+                ViewEvents(id);
+
+            },
+            error: function () { alert('That did not work please try again'); }
+        });
+
+    });
+
+
+    function ViewEvents(id) {
+
+        alert('Event Added');
+
+        $.ajax({
+            url: '@Url.Action("EventIndexBookingExtraSelection", "Event")',
+            data: { "besID": id },
+            type: "GET",
+            success: function (result) {
+                $('#TopEditorWindow').html(result);
+            },
+            error: function () { alert('That did not work please try again'); }
+        });
+    }
+
+</script>

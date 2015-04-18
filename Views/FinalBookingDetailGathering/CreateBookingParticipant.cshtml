@@ -1,0 +1,90 @@
+﻿@model BootstrapVillas.Models.BookingParticipant
+@using BootstrapVillas.Models;
+
+@{
+    ViewBag.Title = "CreateBooking";
+
+    Booking currentBooking = (Booking)Session["CurrentBookingDataGathering"];
+}
+
+@using (Html.BeginForm("CreateBookingParticipant", "FinalBookingDetailGathering", FormMethod.Post, new { @class = "aFormToValidate" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Please Enter The Name Of Everyone Who Will Be Participating On The Booking</legend>
+
+        <input type="hidden" value="@currentBooking.BookingID" name="BookingID" id="BookingID" />
+
+        <div class="row-fluid">
+            <div class="span7 offset1 whiteBg" style="position: relative;">
+                <div class="row-fluid">
+                    <!-- Page Title -->
+                    <h4><i class="fa fa-fw fa-check"></i>Add participants:</h4>
+                    <br />
+                    <!-- Begin Form -->
+
+                     <div class="row-fluid">
+
+                                <div class="span2 NameTitle">
+                                    <label>Title</label>
+                                    <select name="BookingParticipantTitle" id="BookingParticipantTitle" class="span12 makeValid">
+                                        <option value="">- Select -</option>
+                                        <option>Mr</option>
+                                        <option>Mrs</option>
+                                        <option>Ms</option>
+                                        <option>Master</option>
+                                    </select>
+                                </div>
+
+                                <!--/span-->
+                                <div class="span5">
+                                    <label>First Name</label>
+                                    <input type="text" name="BookingParticipantFirstName" id="BookingParticipantFirstName" class="span12 FirstName makeValid">
+                                </div>
+
+                                <!--/span-->
+                                <div class="span5">
+                                    <label for="LastName">Last Name</label>
+                                    <input type="text" name="BookingParticipantLastName" id="BookingParticipantLastName" class="span12 LastName makeValid">
+                                </div>
+                                <!--/span-->
+                            </div>
+                            <!--/row-->
+                            <div class="row-fluid">
+
+                                <div class="editor-label">
+                                    @Html.LabelFor(model => model.BookingParticipantDOB)
+                                </div>
+                                <div class="editor-field" >
+                                    <input type="text" class="date-picker makeValid" id="BookingParticipantDOB" placeholder="DD/MM/YYYY" name="BookingParticipantDOB" />
+                                    @Html.ValidationMessageFor(model => model.BookingParticipantDOB)
+                                </div>
+                                <!--/span-->
+                            </div>
+
+
+                    <p>
+                       
+                        <input type="submit" name="bookingExtraSubmit" value="Add this participant and add another" />  
+                        <input type="submit" name="bookingExtraSubmit" value="Add this participant and finish"/> 
+                    </p>
+
+
+                </div>
+                
+            </div>
+        </div>
+
+
+    </fieldset>
+    
+    
+   
+}
+
+
+
+
+

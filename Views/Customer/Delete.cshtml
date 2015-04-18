@@ -1,0 +1,180 @@
+﻿@model BootstrapVillas.Models.Customer
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>Customer</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Title)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Title)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.FirstName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.FirstName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.MiddleName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.MiddleName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.LastName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.LastName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.DOB)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DOB)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.EmailAddress)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.EmailAddress)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.AltEmailAddress)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.AltEmailAddress)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.DayTimeTelephone)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DayTimeTelephone)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.HomeTelephone)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.HomeTelephone)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.MobileTelephone)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.MobileTelephone)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.AltTelephone)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.AltTelephone)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.CompanyTelephone)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CompanyTelephone)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Address1)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Address1)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Address2)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Address2)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Town)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Town)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Postcode)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Postcode)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.County)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.County)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Country)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Country)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Test)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Test)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.WhoUpdated)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.WhoUpdated)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.CreationDate)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CreationDate)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.PreferredCurrency)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PreferredCurrency)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.PreferredCurrencySymbol)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PreferredCurrencySymbol)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}

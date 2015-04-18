@@ -1,0 +1,295 @@
+﻿@using BootstrapVillas.Models
+@using BootstrapVillas.Content.Classes;
+
+
+@{
+    ViewBag.Title = "FinalBookingCheckout";
+}
+
+@section DocumentReady {
+
+    <script type="text/javascript">
+
+        $(".selectedStart").datepicker(
+                            {
+                                //add JSON
+                                dateFormat: 'dd-mm-yy',
+                                //beforeShowDay: disableAllTheseDays,
+                                changeMonth: false,
+                                changeYear: true,
+                                showButtonPanel: true
+                            });
+
+        $(".selectedEnd").datepicker(
+                        {
+                            //add JSON
+                            dateFormat: 'dd-mm-yy',
+                            //beforeShowDay: disableAllTheseDays,
+                            changeMonth: false,
+                            changeYear: true,
+                            showButtonPanel: true
+                        });
+    </script>
+
+    <script>(function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_GB/all.js#xfbml=1";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
+    </script>
+    <script>!function (d, s, id) { var js, fjs = d.getElementsByTagName(s)[0]; if (!d.getElementById(id)) { js = d.createElement(s); js.id = id; js.src = "//platform.twitter.com/widgets.js"; fjs.parentNode.insertBefore(js, fjs); } }(document, "script", "twitter-wjs");</script>
+    <script type="text/javascript">
+        (function () {
+            var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+            po.src = 'https://apis.google.com/js/plusone.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+        })();
+    </script>
+
+}
+
+<div class="row-fluid">
+    <div class="span10 offset1">
+
+        <div id="socialMedia">
+
+            <div class="facebook">
+                <div id="fb-root"></div>
+
+                <div class="fb-like" data-href="http://www.portugalrentalcottages.com" data-send="true" data-layout="button_count" data-width="450" data-show-faces="true" data-action="recommend" data-font="tahoma"></div>
+
+            </div>
+
+
+            <div class="twitter">
+                <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.portugalrentalcottages.com" data-via="portugalrentalcottages" data-hashtags="portugalholidays">Tweet</a>
+
+            </div>
+
+
+            <div class="googlePlus">
+                <!-- Place this tag where you want the +1 button to render. -->
+                <div class="g-plusone" data-size="tall" data-annotation="inline" data-width="300"></div>
+
+                <!-- Place this tag after the last +1 button tag. -->
+
+            </div>
+        </div>
+        <!-- sub navigation with social media etc. -->
+        <a href="#" onclick="history.go(-1);return false;">
+            <div id="backToResults">↩ Back to Last Page</div>
+        </a>
+
+
+    </div>
+</div>
+<div class="row-fluid">
+    <div class="span8 offset1 whiteBg">
+        <!--------------LEFT HAND COLUMN ---------------->
+        <div class="row-fluid">
+
+            <h13>Booking Form</h13>
+
+            <table cellspacing="7" style="margin-top: 30px;">
+                <tr>
+                    <td>
+                        <div class="NameTitle">
+                            <label>Title*</label>
+                        </div>
+                    </td>
+
+                    <td><span class="Booking">
+                        <select name="NameTitle" id="NameTitle">
+
+                            <option>Mr</option>
+                            <option>Ms</option>
+                            <option>Mrs</option>
+
+                        </select>
+                    </span></td>
+
+
+                </tr>
+
+                <tr>
+                    <td>
+                        <div class="FirstName">First Name*</div>
+                    </td>
+                    <td>@Html.TextBox("FirstName")</td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <div class="LastName">Last Name*</div>
+                    </td>
+                    <td>@Html.TextBox("LastName")</td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <div class="Address">Address*</div>
+                    </td>
+                    <td>@Html.TextBox("Address1")</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <div class="Address">@Html.TextBox("Address2")</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <div class="Address">@Html.TextBox("Address3")</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="Zip">Post/Zip*</div>
+                    </td>
+                    <td>@Html.TextBox("Post Code")</td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <div class="Country">Country*</div>
+                    </td>
+                    <td>@Html.TextBox("Country")</td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <div class="Email">Email*</div>
+                    </td>
+                    <td>@Html.TextBox("Email")</td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <div class="Telephone">Telephone*</div>
+                    </td>
+                    <td>@Html.TextBox("Telephone")</td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <div class="Mobile">Mobile</div>
+                    </td>
+                    <td>@Html.TextBox("Mobile")</td>
+                </tr>
+
+
+                <tr>
+                    <td>
+                        <div class="Adults">Adults*  </div>
+                    </td>
+
+                    <td>
+                        <select name="Adults" id="Adults">
+
+                            @for (int i = 0; i <= 13; i++)
+                            {
+                                                        
+                                <option value="@i">@i</option>
+                                                        
+                            }
+
+                        </select>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <div class="Children">Children* (2+ Yrs)</div>
+                    </td>
+
+                    <td>
+                        <select name="Children" id="Children">
+
+                            @for (int i = 0; i <= 13; i++)
+                            {
+                                                        
+                                <option value="@i">@i</option>
+                                                        
+                            }
+
+                        </select>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <div class="Infants">Infants* (0-2 Yrs)</div>
+                    </td>
+
+                    <td>
+                        <select name="Infants" id="Infants">
+
+                            @for (int i = 0; i <= 13; i++)
+                            {
+                                                        
+                                <option value="@i">@i</option>
+                                                        
+                            }
+
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="IBAN">IBAN Number*</div>
+                    </td>
+                    <td>@Html.TextBox("IBAN")</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="sortCode">Sort Code*</div>
+                    </td>
+                    <td>@Html.TextBox("sortCode")</td>
+
+                </tr>
+
+                <tr>
+                    <td>
+                        <div class="Query">Other Queries</div>
+                    </td>
+                    <td>@Html.TextArea("Query", new { maxlength = "500", style = "border-radius:5px; height:80px; resize:none;" })</td>
+                </tr>
+
+                <tr>
+                    <td></td>
+                    <td>
+                        <label>
+                            <input style="background: #aaa; text-shadow: none; margin: 0;" class="submit2" type="submit" value="Submit Form" />
+                        </label>
+                    </td>
+                </tr>
+            </table>
+
+
+            <div class="clear"></div>
+
+        </div>
+        <!-- end checkoutWrapper / whiteBg -->
+
+    </div>
+    <!-- end columnleft --->
+
+    <div class="span2">
+        @{ Html.RenderPartial("SideBookingFormPartialView");
+        }
+
+    </div>
+</div>
+<!-- end white div -->
+
+
+
+
+
+
+
+
+

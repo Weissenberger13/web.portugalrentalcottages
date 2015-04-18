@@ -1,0 +1,107 @@
+﻿@model BootstrapVillas.Models.Comment
+@using BootstrapVillas.Models
+
+
+@{
+    ViewBag.Title = "Add Comment";
+    //can we grab current property (that this page is on to add a comment)?
+
+    @*current property so we can get ID*@
+    Property theProperty = ViewBag.FullPropertyResultProperty;
+
+    
+    
+    if (theProperty == null) { 
+        theProperty = new Property();
+        theProperty.PropertyID = 0;
+    }
+    
+    
+
+ 
+}
+
+
+
+
+<!-- Modal -->
+<div id="commentModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 id="myModalLabel">Please Enter Your Comment:</h3>
+    </div>
+
+    @{Html.BeginForm("Create", "Comment", FormMethod.Post, new { @class = "aFormToValidate" });}
+    
+   @* <form action="/Comment/Create" method="POST" >*@
+
+    <div class="modal-body">
+
+        <div class="modal-form">
+
+            <div class="row-fluid">
+                <div class="span12">
+
+                    <fieldset>
+                        <legend>Comment</legend>
+                        
+                        
+                        @*need to assign the propertyID here for the post*@
+                     
+                        
+                        <input type="hidden" name="PropertyID" id="PropertyID" value=@theProperty.PropertyID />
+
+                        <input type="hidden" name="Approved" id="Approved" value="false" />                       
+
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.Username)
+                        </div>
+                        <div class="editor-field makeValid">
+                            @Html.EditorFor(model => model.Username, new { @class="makeValid" })
+                            @Html.ValidationMessageFor(model => model.Username)
+                        </div>
+
+                        <div class="editor-label">
+                            <label>Star Rating</label>
+                        </div>
+                        <input type="number" name="StarRating" class="rating" data-max="4" />
+
+                        <div class="editor-label">
+                            <label>Start Date Of Stay</label>
+                        </div>
+                        <div class="editor-field">
+                            <input type="text" class="date-picker makeValid" name="StartdateOfStay" placeholder="DD/MM/YY">
+                            @Html.ValidationMessageFor(model => model.StartdateOfStay)
+                        </div>
+
+                        <div class="editor-label">
+                            <label>End Date Of Stay</label>
+                        </div>
+                      
+
+                        <div class="editor-label">
+                            <label>Comment</label>
+                        </div>
+                        <div class="editor-field">
+                            @Html.EditorFor(model => model.Text, new { @class = "makeValid" })
+                            @Html.ValidationMessageFor(model => model.Text)
+                        </div>
+
+                    </fieldset>
+                    
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="modal-footer">
+        <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+        <button type="submit" class="btn btn-info submit" value="Confirm">Confirm</button>
+    </div>
+    @{Html.EndForm();}
+</div>
+

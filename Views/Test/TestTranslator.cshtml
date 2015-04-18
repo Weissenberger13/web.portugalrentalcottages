@@ -1,0 +1,43 @@
+﻿@{
+    
+    ViewBag.Title = "TestTranslator";
+
+    Layout = null;
+    
+    List<SelectListItem> langs = new List<SelectListItem>();
+    langs.Add(new SelectListItem { Text = "en", Value="en", Selected=true });
+    langs.Add(new SelectListItem { Text = "fr", Value="fr" });
+    langs.Add(new SelectListItem { Text = "de", Value="de" });
+    langs.Add(new SelectListItem { Text = "es", Value="es" });
+
+    string AppID = System.Web.HttpContext.Current.Application["TranslateToken"].ToString();
+    
+}
+
+<h2>Test Translator</h2>
+
+<p>This really better work</p>
+
+
+<p>This really better work as well!!!!</p>
+
+
+@Html.DropDownList("languages", langs)
+
+
+<script type="text/javascript" src="~/Scripts/jquery.translator-1.1.0.min.js"></script>
+
+
+ <script type="text/javascript">
+        $(document).ready(function () {
+
+            $("p,h1,h2,label,select,option,td,div").translator({ appID: '@Html.Raw(AppID)', tolang: $('#languages option:selected').text() });
+
+        });
+
+        $('select[name="languages"]').change(function () {
+            $("p,h1,h2p,h1,h2,label,select,option,td,div").translator({ appID: '@Html.Raw(AppID)', tolang: $('#languages option:selected').text() });
+    });
+
+</script>
+

@@ -1,0 +1,70 @@
+﻿@model IEnumerable<BootstrapVillas.Models.EntityTypeDetailField>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Content/Admin/_AdminLayout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.EntityType.EntityTypeName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EntityTypeDetailFieldName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EntityTypeDetailFieldDescription)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EntityTypeDetailFieldNotes)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EntityTypeDetailFieldTypeID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EntityTypeDetailFieldPrice)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EntityTypeDetailFieldCurrency)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.EntityType.EntityTypeName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EntityTypeDetailFieldName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EntityTypeDetailFieldDescription)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EntityTypeDetailFieldNotes)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EntityTypeDetailFieldTypeID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EntityTypeDetailFieldPrice)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EntityTypeDetailFieldCurrency)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.EntityTypeDetailFieldID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.EntityTypeDetailFieldID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.EntityTypeDetailFieldID })
+        </td>
+    </tr>
+}
+
+</table>

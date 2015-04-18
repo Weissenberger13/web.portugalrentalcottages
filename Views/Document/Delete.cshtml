@@ -1,0 +1,152 @@
+﻿@model BootstrapVillas.Models.Document
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>Document</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.DocumentTemplateID)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DocumentTemplateID)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.CustomerID)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CustomerID)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.DocumentName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DocumentName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.DocumentDescription)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DocumentDescription)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Filename)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Filename)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Sent)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Sent)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.WhenCreated)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.WhenCreated)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.WhoCreated)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.WhoCreated)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.DocumentFormat)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DocumentFormat)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.EmailFrom)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.EmailFrom)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.EmailTo)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.EmailTo)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.EmailCC)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.EmailCC)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.EmailBCC)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.EmailBCC)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Encoding)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Encoding)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.DocumentSize)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DocumentSize)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.EmailSize)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.EmailSize)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.BookingExtraSelection.Test)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.BookingExtraSelection.Test)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Case.CaseID)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Case.CaseID)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Event.EventID)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Event.EventID)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}

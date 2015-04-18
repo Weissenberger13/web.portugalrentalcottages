@@ -1,0 +1,236 @@
+﻿@using BootstrapVillas.Models
+@model IEnumerable<BookingExtra>
+@{
+    string ModalType = "#";
+    string _Imagejpg = "_Image.jpg";
+    List<BookingExtra> CarBookingExtras = ViewBag.CarBookingExtras;
+}
+
+
+@{
+
+
+    foreach (var car in CarBookingExtras)
+    {
+    <div id="CarHire@{
+                            @car.BookingExtraID
+        
+                        }" class="row-fluid CarHire" style="border-bottom: 1px solid #ddd; padding: 20px 0 20px 0;">
+        @* Dynamic Gen for Cars *@
+        <div class="span3 thumbnails">
+            <div class="thumbnail">
+                <img src="~/ExtraImages/@car.LegacyReference/mainImage/@car.LegacyReference@_Imagejpg">
+            </div>
+        </div>
+        <!-- carPhoto end -->
+        <div class="span7">
+            <span><strong>@car.BookingExtraName</strong></span>
+            <br />
+            <span><css-decorator class="toTranslate">Our Ref:</css-decorator> @car.LegacyReference</span>
+            <span></span>
+            <!-- carLocation end -->
+            <div>
+                @{
+        string description = "";
+        if (car.BookingExtraAttributes.Where(x => x.AttributeName == "Description").FirstOrDefault() != null)
+        {
+            description = car.BookingExtraAttributes
+                .Where(x => x.AttributeName == "Description")
+                .Select(attribute => attribute.AttributeContent).First();
+        }
+                    <css-decorator class="toTranslate">@description</css-decorator>
+                }
+            </div>
+            <div>
+            </div>
+        </div>
+        <!-- carDetails end -->
+        <div class="span2">
+            <span class="price">
+                <span class="SubPriceText"><css-decorator class="toTranslate">
+    From
+</css-decorator>
+                    <strong>
+        £@{
+        if (!car.Price.Equals(null))
+        {
+            decimal thePrice = (decimal)car.Price;
+            @thePrice.ToString("n2")
+
+        }
+
+        }
+    </strong>
+</span>
+                <br />
+                <span style="font-size: 14px;"><css-decorator class="toTranslate">
+    Per
+</css-decorator>@{
+        if (!car.Price.Equals(null))
+        {
+            @car.PriceTimespan
+
+        }
+    }
+</span>
+            </span>
+            <br />
+            <a href="#ExtraAttributesModal@{@car.BookingExtraID}" id="pop@{@car.BookingExtraID}" class="btn btn-small btn-info btn-block extraPopover" data-toggle="modal" data-original-title="Full Details" rel="modal">
+                <i class="fa fa-fw fa-info-circle"></i>Info
+            </a>
+
+            @{
+                                                    if (car.BookingExtraTypeID.ToString() == "1")
+                                                    {
+                                                        ModalType = "carModal";
+                                                    }
+                                                    else if (car.BookingExtraTypeID.ToString() == "2")
+                                                    {
+                                                        ModalType = "wineTourModal";
+                                                    }
+                                                    else if (car.BookingExtraTypeID.ToString() == "3")
+                                                    {
+                                                        ModalType = "airportTransferModal";
+                                                    }
+                                                    else if (car.BookingExtraTypeID.ToString() == "4")
+                                                    {
+                                                        ModalType = "tourModal";
+                                                    }
+
+            }
+            <a data-toggle="modal" href="#@ModalType" id="bookingExtraID@{@car.BookingExtraID}" onclick="$('#hiddenExtraIDForm').submit(); return false;" class="btn btn-small btn-success btn-block addCarToCart extraModal" style="margin-top: 10px;"><i class="fa fa-fw fa-shopping-cart"></i>Add to Cart</a>
+
+            @using (Ajax.BeginForm("AddExtraIDToSessionAsCurrentExtra", "Home", FormMethod.Post, new AjaxOptions
+                    {
+                        HttpMethod = "POST",
+                        InsertionMode = InsertionMode.Replace,
+                        UpdateTargetId = "hiddenTarget"
+                    }, new { @id = "hiddenExtraIDForm" }))
+                    
+                    
+{
+    <input type="hidden" name="BookingExtraID" value="@car.BookingExtraID" />
+}
+
+
+        </div>
+    </div>
+    <!-- carResult end -->
+    <!-- end carhire and whitebg-->
+    
+      
+
+
+
+@*   $1$START ND CODE#1#
+        <div id="popovermodal@{
+                                  @car.BookingExtraID
+                                  ;
+                              }" style="display: none">
+            <div id="fulldetailPopover@{
+                                           @car.BookingExtraID
+                                           ;
+                                       }">
+                <div class="row-fluid">
+                    <table class="MoreInfoTable span8">
+                        $1$dynamic generate of table attributes for each extra - shown in dropdown#1#
+                        @{
+                                           //start vars
+                                           //pull all attributes back except the main description
+                                           List<BookingExtraAttribute> theExtraAttributes = car.BookingExtraAttributes.Where(x => x.AttributeName != "Description").ToList();
+                                           string theTableClass = "odd";
+                                           //ends vars
+
+                                           while (theExtraAttributes.Count > 0)
+                                           {
+                                            <tr class="@theTableClass">
+                                                @for (var j = 0; j < 2; j++)
+                                                {
+                                                    if (theExtraAttributes.Count > 0)
+                                                    {
+                                                        <td>@theExtraAttributes.First().AttributeName : @theExtraAttributes.First().AttributeContent</td>
+                                                        theExtraAttributes.RemoveAt(0);
+                                                    }
+                                                }
+                                            </tr>
+
+                                                //if i = odd then tr class="odd", else tr class="even"
+                                                theTableClass = theTableClass == "odd" ? "even" : "odd";
+                                           }
+
+                        }
+                    </table>
+
+                </div>
+                @{
+        if (car.BookingExtraTypeID.ToString() == "1")
+        {
+            ModalType = "carModal";
+        }
+        else if (car.BookingExtraTypeID.ToString() == "2")
+        {
+            ModalType = "wineTourModal";
+        }
+        else if (car.BookingExtraTypeID.ToString() == "3")
+        {
+            ModalType = "airportTransferModal";
+        }
+        else if (car.BookingExtraTypeID.ToString() == "4")
+        {
+            ModalType = "tourModal";
+        }
+
+
+                }
+            </div>
+        </div>
+
+        <input type="hidden" id="bookingExtraID" value="@car.BookingExtraID" />*@
+    }
+}
+
+
+
+
+
+<script type="text/javascript">
+    $('.selectDropdown').on('change', function () {
+        //delete existing
+        $('#extraContent').empty();
+        //get all vars
+
+        var typeID = $("#extraTypesDDL").val();
+        var priceSort = $("#priceSort").val();
+        var noOfResults = $("#resultsAmount").val();
+
+        $("#spinner").show();
+
+        //request
+        $.ajax({
+            url: '@Url.Action("BookCarRental", "Home")',
+            data: { "ExtraType": typeID, "priceSort": priceSort, "noOfResults": noOfResults },
+            type: "GET",
+            success: function (result) { $('#BookCarRental').html(result); },
+            error: function () { alert('boooo'); }
+        });
+
+    });
+</script>
+
+
+@*Show popover*@
+<script type="text/javascript">
+    $('.extraPopover').click(function () {
+
+        var number = this.id.replace(/[^0-9]/g, '');
+        //get the correct number we need to show
+        //show it
+        var combinedId = "ExtraAttributesModal" + number;
+
+        $('#' + combinedId).show();
+
+        $(this).mouseout(function () {
+            $('#' + combinedId).hide();
+        });
+    });
+</script>

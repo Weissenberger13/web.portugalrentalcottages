@@ -1,0 +1,182 @@
+﻿@model BootstrapVillas.Models.Document
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Documents Edit</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Document</legend>
+
+        @Html.HiddenFor(model => model.DocumentID)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.DocumentTemplateID)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.DocumentTemplateID)
+            @Html.ValidationMessageFor(model => model.DocumentTemplateID)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.CustomerID)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.CustomerID)
+            @Html.ValidationMessageFor(model => model.CustomerID)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.DocumentName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.DocumentName)
+            @Html.ValidationMessageFor(model => model.DocumentName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.DocumentDescription)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.DocumentDescription)
+            @Html.ValidationMessageFor(model => model.DocumentDescription)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Filename)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Filename)
+            @Html.ValidationMessageFor(model => model.Filename)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Sent)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Sent)
+            @Html.ValidationMessageFor(model => model.Sent)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.WhenCreated)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.WhenCreated)
+            @Html.ValidationMessageFor(model => model.WhenCreated)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.WhoCreated)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.WhoCreated)
+            @Html.ValidationMessageFor(model => model.WhoCreated)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.DocumentFormat)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.DocumentFormat)
+            @Html.ValidationMessageFor(model => model.DocumentFormat)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.EmailFrom)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.EmailFrom)
+            @Html.ValidationMessageFor(model => model.EmailFrom)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.EmailTo)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.EmailTo)
+            @Html.ValidationMessageFor(model => model.EmailTo)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.EmailCC)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.EmailCC)
+            @Html.ValidationMessageFor(model => model.EmailCC)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.EmailBCC)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.EmailBCC)
+            @Html.ValidationMessageFor(model => model.EmailBCC)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Encoding)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Encoding)
+            @Html.ValidationMessageFor(model => model.Encoding)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.DocumentSize)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.DocumentSize)
+            @Html.ValidationMessageFor(model => model.DocumentSize)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.EmailSize)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.EmailSize)
+            @Html.ValidationMessageFor(model => model.EmailSize)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.BookingExtraSelectionID, "BookingExtraSelection")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("BookingExtraSelectionID", String.Empty)
+            @Html.ValidationMessageFor(model => model.BookingExtraSelectionID)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.CaseID, "Case")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("CaseID", String.Empty)
+            @Html.ValidationMessageFor(model => model.CaseID)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.EventID, "Event")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("EventID", String.Empty)
+            @Html.ValidationMessageFor(model => model.EventID)
+        </div>
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

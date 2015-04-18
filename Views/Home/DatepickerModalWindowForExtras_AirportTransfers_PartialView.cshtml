@@ -1,0 +1,212 @@
+﻿@model BootstrapVillas.Models.BookingExtraSelection
+@using BootstrapVillas.Models
+
+
+@{
+    ViewBag.Title = "Airport Transfers Extra Modal Window";
+
+    List<AirportDestination> apd = AirportDestination.GetAllAirportDestinations().ToList();
+    List<SelectListItem> airportDestinations = new List<SelectListItem>();
+
+    Booking booking = (Booking)ViewData["booking"];
+
+    List<PropertyTypeServicesChargeInstance> instanceExtraCharges = (List<PropertyTypeServicesChargeInstance>)ViewData["extraServiceCharges"];
+
+    foreach (var airportDestination in apd)
+    {
+        airportDestinations.Add(new SelectListItem { Text = @airportDestination.AirportPickupLocationName, Value = @airportDestination.AirportPickupLocationID.ToString() })
+        ;
+
+    }
+}
+<!-- Modal -->
+<div id="airportTransferModal" class="modal hide fade modalBookingIDJquery" tabindex="-2" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-header">
+
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 id="myModalLabel"><css-decorator class="toTranslate">Please Enter Your Details:</css-decorator></h3>
+
+    </div>
+
+    <div class="modal-body">
+        <div class="modal-form">
+
+            @{Html.BeginForm("AddExtraFormBookingToSession", "PropertyView", FormMethod.Post, new { @class = "aFormToValidate modalForm", @id = "airportTransferForm", @name = "airportTransferForm" });}
+
+            <div class="row-fluid">
+                <div class="span12">
+
+
+                    <label><css-decorator class="toTranslate">What will your destination be?</css-decorator></label>
+                    <div class="editor-field">
+                        @Html.DropDownList("AirportPickupLocationID", airportDestinations)
+                        @Html.ValidationMessageFor(model => model.AirportPickupLocationID)
+                    </div>
+
+
+                    <input type="hidden" id="BookingExtraID" class="BookingExtraID_ToPost" name="BookingExtraID" value=@Model.BookingExtraID.ToString() />
+                    @*
+
+                        <label>Inbound flight number (Complete with Airline code)</label>
+                        $1$same ids as other modals #1#
+                        <textarea rows="3" class="makeValid" name="FlightNumberArrival" id="FlightNumberArrival"></textarea>
+
+                        <label>Outbound flight number (Complete with Airline code)</label>
+                        $1$same ids as other modals #1#
+                        <textarea rows="3" class="makeValid" name="FlightNumberDeparture" id="FlightNumberDeparture"></textarea>
+                    *@
+                    @**@
+                    <label><css-decorator class="toTranslate">Flight Arrival Date</css-decorator></label>
+                    @*same ids as other modals *@
+                    <input type="text" class="date-picker" name="ExtraRentalDate" aria-required="false" placeholder="DD/MM/YY" value="@{if (booking != null){@Convert.ToDateTime(booking.StartDate).ToString("dd/MM/yyyy");}}">
+
+                    <label>Pick Up Location / Address</label>
+                    <textarea rows="3" name="PickupLocation" id="PickupLocation">@if (booking != null)
+                        {
+                            @Html.Raw("Arrival: Lisbon Airport");
+                            @Html.Raw("&#13;&#10;");
+                            @Html.Raw("Departure: " + @booking.Property.LegacyReference);
+
+                        }
+                    </textarea>
+
+                    <br />
+
+                    <label>Drop Off Location / Address</label>
+                    <textarea rows="3" name="DropoffLocation" id="DropoffLocation">@if (booking != null)
+                        {
+                            @Html.Raw("Arrival: " + @booking.Property.LegacyReference);
+                            @Html.Raw("&#13;&#10;");
+                            @Html.Raw("Departure: " + "Lisbon Airport");
+
+                        }
+                    </textarea>
+
+
+                    @*
+
+
+                        <label>Flight Arrival Time</label>
+                        <textarea rows="1" class="makeValid" name="bookingModalFlightArrivalTime" id="bookingModalFlightArrivalTime"></textarea>
+
+                        <label>Flight Arrival Terminal Number</label>
+                        <textarea rows="1" class="makeValid" name="FlightArrivalTerminalNumber" id="FlightArrivalTerminalNumber"></textarea>
+
+                    *@
+
+                    <label><css-decorator class="toTranslate">Flight Departure Date</css-decorator></label>
+                    @*same ids as other modals *@
+                    <input type="text" class="date-picker" name="ExtraReturnDate" aria-required="false" placeholder="DD/MM/YY" value="@{if (booking != null){@Convert.ToDateTime(booking.EndDate).ToString("dd/MM/yyyy");}}">
+
+
+
+                    <label><css-decorator class="toTranslate">Passengers - Adults</css-decorator></label>
+                    <select name="NumberOfAdults">
+                        @{
+                            for (var i = 1; i < 16; i++)
+                            {
+                                <option value=@i.ToString()>@i</option>}
+                        }
+
+                    </select>
+
+
+                    <label><css-decorator class="toTranslate">Passengers - Children</css-decorator></label>
+
+                    <select name="NumberOfChildren">
+                        @{
+                            for (var i = 0; i < 16; i++)
+                            {
+                                <option value=@i.ToString()>@i</option>}
+                        }
+                    </select>
+
+
+                    <label><css-decorator class="toTranslate">Passengers - Infants</css-decorator></label>
+
+                    <select name="NumberOfInfants">
+                        @{
+                            for (var i = 0; i < 16; i++)
+                            {
+                                <option value=@i.ToString()>@i</option>}
+                        }
+
+                    </select>
+
+
+                    <label><css-decorator class="toTranslate">Number of Child seats*</css-decorator></label>
+                    <select name="NumberOfChildseats">
+                        @{
+                            for (var i = 0; i < 6; i++)
+                            {
+                                <option value=@i.ToString()>@i</option>}
+                        }
+
+                    </select><br />
+                    <strong><css-decorator class="toTranslate">*Child Seats @@GB£@instanceExtraCharges.Where(x => x.PropertyTypeServicesID.Equals(9)).FirstOrDefault().ServicePriceGBP.ToString() per seat each way</css-decorator></strong>
+                    <br /><br />
+                    <label><css-decorator class="toTranslate">No of detours**</css-decorator></label>
+                    <select name="Detours">
+                        @{
+                            for (var i = 0; i < 6; i++)
+                            {
+                                <option value=@i.ToString()>@i</option>}
+                        }
+
+                    </select><br />
+                    <strong>
+                        <css-decorator class="toTranslate">
+                            **Any special detours within 15 mile of destination charged extra @@GB£@instanceExtraCharges.Where(x => x.PropertyTypeServicesID.Equals(8)).FirstOrDefault().ServicePriceGBP.ToString() each way.
+                            This means when the client is collected from Lisbon city instead of the Airport, then the charge is levied one way, if  the departure day drop off is the Airport. If to a non-airport location, then charged both ways.
+                            N.B It is also levied when there is a stop over to collect the local rental car each way on arrival and departure day.
+                        </css-decorator>
+                    </strong>
+                    <br /><br />
+                    <label><css-decorator class="toTranslate">Extra pieces of luggage (standard 1 per person)</css-decorator>***</label>
+                    <select name="PiecesOfLuggage">
+                        @{
+                            for (var i = 0; i < 6; i++)
+                            {
+                                <option value=@i.ToString()>@i</option>}
+                        }
+
+                    </select><br />
+                    <strong>***<css-decorator class="toTranslate">Extra luggage is @@GB £@instanceExtraCharges.Where(x => x.PropertyTypeServicesID.Equals(10)).FirstOrDefault().ServicePriceGBP.ToString() per suitcase each way. Allowed maximum baggage is 1 suitcase +1 hand luggage per adult.</css-decorator></strong>
+                    <br /><br />
+
+                    @*
+                        <label>Flight Departure Time</label>
+                        <textarea rows="1" name="FlightDepartureTime" class="makeValid"></textarea>
+
+
+                        <label>Flight Departure Terminal Number</label>
+                        <textarea rows="1" name="FlightDepartureTeminalNumber" class="makeValid"></textarea>
+
+
+                        <label>Pick Up Location / Address</label>
+                        $1$same ids as other modals #1#
+                        <textarea rows="3" name="PickupLocation" class="makeValid"></textarea>
+
+
+                        <label>Drop Off Location / Address</label>
+                        $1$same ids as other modals #1#
+                        <textarea rows="3" name="DropoffLocation" class="makeValid"></textarea>
+
+
+
+                        <label>Any special requests or comments</label>
+                        $1$same ids as other modals #1#
+                        <textarea rows="5" id="bookingModalSpecialRequest" name="SpecialRequests"></textarea>
+                    *@
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-footer">
+        <button class="btn" data-dismiss="modal" aria-hidden="true"><css-decorator class="toTranslate">Close</css-decorator></button>
+        <button type="submit" class="btn btn-info submit" value="Confirm"><css-decorator class="toTranslate">Confirm</css-decorator></button>
+    </div>
+    @{Html.EndForm();}
+</div>

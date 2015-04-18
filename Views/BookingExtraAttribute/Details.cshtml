@@ -1,0 +1,50 @@
+﻿@model BootstrapVillas.Models.BookingExtraAttribute
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>BookingExtraAttribute</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.BookingExtra.LegacyReference)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.BookingExtra.LegacyReference)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.AttributeName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.AttributeName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.AttributeContent)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.AttributeContent)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.AttributeOrder)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.AttributeOrder)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.BookingExtraType.ExtraTypeName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.BookingExtraType.ExtraTypeName)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.BookingExtraAttributeID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

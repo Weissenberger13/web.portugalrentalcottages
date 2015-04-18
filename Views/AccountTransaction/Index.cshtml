@@ -1,0 +1,157 @@
+﻿@model IEnumerable<BootstrapVillas.Models.AccountTransaction>
+
+@{
+    ViewBag.Title = "Index";
+
+    AjaxOptions options = new AjaxOptions
+    {
+        UpdateTargetId = "TopEditorWindow",
+        InsertionMode = InsertionMode.Replace,
+        LoadingElementId = "spinner"
+    };
+
+    AjaxOptions deleteOptions = new AjaxOptions
+    {
+        UpdateTargetId = "BottomEditorWindow",
+        InsertionMode = InsertionMode.Replace,
+        LoadingElementId = "spinner",
+        Confirm = "Are you sure you want to delete this?"
+    };
+
+
+}
+
+<h2>Account Transaction Index</h2>
+
+<p>
+@Ajax.ActionLink("Create New", "Create", "AccountTransactio", options, new { id = "createButton", style = "" })
+</p>
+<table id="example" class="display" cellspacing="0" width="100%">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Booking.BookingPRCReference)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Booking.Property.LegacyReference)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Booking.StartDate)
+            </th>
+            @* <th>
+                @Html.DisplayNameFor(model => model.BookingExtraSelection.BookingExtraPRCReference)
+            </th>*@
+            <th>
+                Booking Remittance Amount (Total)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TransactionAmount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TransactionNote)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Paid)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AccountID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TransactionReference)
+            </th>            
+            <th>
+                @Html.DisplayNameFor(model => model.TransactionDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.WhenCreated)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.WhoCreated)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Voided)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.VoidedDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.WhoVoided)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Booking.BookingPRCReference)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Booking.Property.LegacyReference)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Booking.StartDate)
+                </td>
+                @*<td>
+                    @Html.DisplayFor(modelItem => item.BookingExtraSelection.BookingExtraPRCReference)
+                </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.Booking.RemittanceAmount)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TransactionAmount)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TransactionNote)
+                </td>
+                <td>
+                   @item.Paid.ToString()
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AccountID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TransactionReference)
+                </td>               
+                <td>
+                    @Html.DisplayFor(modelItem => item.TransactionDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.WhenCreated)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.WhoCreated)
+                </td>            
+                <td>
+                    @Html.DisplayFor(modelItem => item.Voided)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.VoidedDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.WhoVoided)
+                </td>
+                <td>
+             @*       @Html.ActionLink("Edit", "Edit", new { id = item.AccountTransactionID }) |*@
+                    @Html.ActionLink("Details", "Details", new { id = item.AccountTransactionID }) |
+     @*               @Html.ActionLink("Delete", "Delete", new { id = item.AccountTransactionID })*@
+                    @Html.ActionLink("Void", "VoidTransaction", new { id = item.AccountTransactionID })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $('#example').DataTable();
+        $('#BottomEditorWindow').hide();
+        $('#TopEditorWindow').animate({ height: '100%' }, 500);
+
+
+    });
+</script>
+

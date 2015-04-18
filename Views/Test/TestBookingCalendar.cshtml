@@ -1,0 +1,80 @@
+﻿@{
+    ViewBag.Title = "TestBookingCalendar";
+}
+
+<h2>TestBookingCalendar</h2>
+
+
+<div id="BookingDateCalendar" class="BookingDateCalendar" />
+
+
+
+
+<script type="text/javascript">
+    alert($(window).width());
+    if ($(window).width() <= 1300) {
+        $("div.ui-datepicker").css({ "font-size": "8px" });
+        alert("low");
+    } else if ($(window).width() <= 1500) {
+        alert("mid");
+        $("div.ui-datepicker").css({ "font-size": "12px" });
+    }
+    else if ($(window).width() <= 1920) {
+        alert("high");
+        $("div.ui-datepicker").css({ "font-size": "46px" });
+    }
+    else if ($(window).width() > 1920) {
+        alert("highest");
+        $("div.ui-datepicker").css({ "font-size": "22px" });
+    }
+
+
+    var disabledDays = ["11-21-2015", "11-24-2015", "9-27-2015", "9-28-2015", "9-3-2015", "9-17-2015", "9-2-2015", "9-3-2015", "9-4-2015", "9-5-2011"];
+    var highlightDays = ["2013-2-10", "2013-2-11", "2013-2-12", "2013-2-13"];
+    var d = new Date();
+    var day = d.getDate() - 1;
+
+
+    function disableAllTheseDays(date) {
+
+        $("div.ui-datepicker").css({ "font-size": "22px" });
+
+        var m = date.getMonth(), d = date.getDate(), y = date.getFullYear();
+        if (disabledDays.length > 0) {
+            for (i = 0; i < disabledDays.length; i++) {
+                if ($.inArray((m + 1) + '-' + d + '-' + y, disabledDays) != -1) {
+                    return [false];
+                }
+            }
+        }
+        if (highlightDays.length > 0) {
+            for (i = 0; i < highlightDays.length; i++) {
+                if ($.inArray(y + '-' + (m + 1) + '-' + d, highlightDays) != -1) {
+                    //return [false];
+                    return [true, 'ui-state-custom-highlight', ''];
+                }
+            }
+        }
+
+        return [true];
+    }
+
+
+    $(function () {
+        $(".BookingDateCalendar").datepicker({
+            dateFormat: 'dd/mm/yy',
+            changeMonth: false,
+            beforeShowDay: disableAllTheseDays,
+            changeYear: true,
+            numberOfMonths: [3, 4],
+            minDate: -day,
+            maxDate: "+4Y",
+            showButtonPanel: true
+        });
+    });
+
+
+
+
+
+</script>

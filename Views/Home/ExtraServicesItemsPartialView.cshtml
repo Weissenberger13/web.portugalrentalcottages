@@ -1,0 +1,173 @@
+﻿@using BootstrapVillas.Models
+@using BootstrapVillas.Content.Classes;
+@model BookingExtra
+@using System;
+
+
+@{
+    //need to make generic - controller will do select then viewbag will be populated with correct items depending on that
+
+    List<BookingExtra> CarBookingExtras = ViewBag.CarBookingExtras;
+    
+}
+
+
+@foreach (var car in CarBookingExtras)
+{
+    <div id="CarHire@{@car.BookingExtraID;}" class="row-fluid">
+        @* Dynamic Gen for Cars *@
+        <div class="span3">
+            <img src="~/Images/Scroller Images/algarve-villa-for-sale-in-vilamoura-in-portugal.jpeg">
+        </div>
+        <div class="span7">
+            <span>@car.BookingExtraName</span>
+            <br />
+            <span>Our Ref: @car.LegacyReference</span>
+            <span></span>
+            <!-- carLocation end -->
+            <div>
+                @{
+                                         string description = "";
+                                         if (car.BookingExtraAttributes.Where(x => x.AttributeName == "Description").FirstOrDefault() != null)
+                                         {
+                                             description = car.BookingExtraAttributes
+                                                 .Where(x => x.AttributeName == "Description")
+                                                 .Select(attribute => attribute.AttributeContent).First();
+                                         }
+                    @description
+                }
+            </div>
+            <!-- carDescription end -->
+            <div>
+                @*
+                    <span class="sleeps">Sleeps: &nbsp;</span>
+                    <span class="bedrooms">Bedrooms: &nbsp;</span>
+                    <span class="bathrooms">Bathrooms: &nbsp;</span>
+                    <span class="pool">Pool: &nbsp;</span>
+                    *@
+            </div>
+            <!-- carFeatures end -->
+
+
+            @*<button class="viewMore" id="More@{@car.BookingExtraID;}" type="submit" onClick="return false"><span class="icon-info-circled"></span>More Info...</button>*@
+        </div>
+        <!-- carDetails end -->
+        <div class="span2">
+            <span class="price"><span class="SubPriceText">£
+                                            @{
+                                         decimal thePrice = (decimal)car.Price; 
+                                                @thePrice.ToString("n2");
+                                            }
+
+            </span>
+                <span style="font-size: 14px;">per week</span>
+
+            </span>
+            @*<a id="pop@{@car.BookingExtraID;}" class='btn btn-small btn-block btn-primary' data-placement='top' title="More Info" href='#'>More Info...</a>*@
+            <a class="btn mypopover" href="#" data-content="Popup with option trigger" rel="popover" data-placement="bottom" data-original-title="Title">Popup with option trigger</a>
+        </div>
+
+    </div>
+    
+    
+    <!-- carResult end -->
+    <!-- end carhire and whitebg-->
+
+
+    <div class="clear"></div>
+
+    
+    //call popover
+    
+
+    
+@*START ND CODE*@
+    <div class="popovermodal" style="display: none">
+        <div id="fulldetailPopover@{@car.BookingExtraID;}" class="grid" >
+            <div class="grid-title">
+                <div class="pull-left">
+                    <div class="icon-title"><i class="icon-eye-open"></i></div>
+                    <span>Full Details</span>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="pull-right">
+                    @*<div class="icon-title"><a href="#"><i class="icon-refresh"></i></a></div>
+                                    <div class="icon-title"><a href="#"><i class="icon-cog"></i></a></div>*@
+                </div>
+                <div class="clearfix"></div>
+            </div>
+
+            <div class="grid-content overflow">
+                <div class="row-fluid">
+                    <table class="MoreInfoTable span8">
+
+                        @*dynamic generate of table attributes for each extra - shown in dropdown*@
+                        @{
+               
+              
+                                                       //start vars
+                                                       //pull all attributes back except the main description
+                                                       List<BookingExtraAttribute> theExtraAttributes = car.BookingExtraAttributes.Where(x => x.AttributeName != "Description").ToList();
+                                                       string theTableClass = "odd";
+                                                       //ends vars
+
+                                                       while (theExtraAttributes.Count > 0)
+                                                       {
+                            <tr class="@theTableClass">
+                                @for (var j = 0; j < 2; j++)
+                                {
+                                    if (theExtraAttributes.Count > 0)
+                                    {
+                                    <td>@theExtraAttributes.First().AttributeName : @theExtraAttributes.First().AttributeContent</td>
+                                        theExtraAttributes.RemoveAt(0);
+                                    }
+                                }
+                            </tr>
+                   
+                                //if i = odd then tr class="odd", else tr class="even"
+                                theTableClass = theTableClass == "odd" ? "even" : "odd";
+                                                       }
+
+        
+                        }
+
+                    </table>
+                    @*
+            <tr class="odd">
+                <td>@car.BookingExtraAttributes.Select(x => x.AttributeContent).ToString()</td>
+                <td>Engine: 1.2L</td>
+            </tr>
+            <tr class="even">
+                <td>Fuel: Petrol</td>
+                <td>Air Con: Yes </td>
+            </tr>
+            <tr class="odd">
+                <td>Radio/CD: Yes</td>
+                <td>Seatbelts: 3x3 point rear</td>
+            </tr>
+            <tr class="even">
+                <td>Anti-lock brakes</td>
+                <td>Engine Immobiliser</td>
+            </tr>
+            <tr class="odd">
+                <td>Electric Windows</td>
+                <td>Power Assisted Steering</td>
+            </tr>
+            <tr class="even">
+                <td>Rear Fog Light: Yes </td>
+                <td>Dual Front Airbags</td>
+            </tr>
+                *@
+                </div>
+
+                <div class="span2 pull-right">
+                    <a data-toggle="modal" href="#myModal" class="btn btn-small btn-block btn-primary">Add to Cart</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+}
+
+
+@*@{ Html.RenderPartial("DatepickerWithExcludedPartialView");}*@

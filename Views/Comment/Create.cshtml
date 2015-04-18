@@ -1,0 +1,81 @@
+﻿@model BootstrapVillas.Models.Comment
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Comment</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PropertyID, "Property")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("PropertyID", String.Empty)
+            @Html.ValidationMessageFor(model => model.PropertyID)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Username)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Username)
+            @Html.ValidationMessageFor(model => model.Username)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.StarRating)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.StarRating)
+            @Html.ValidationMessageFor(model => model.StarRating)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.StartdateOfStay)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.StartdateOfStay)
+            @Html.ValidationMessageFor(model => model.StartdateOfStay)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.EnddateOfStay)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.EnddateOfStay)
+            @Html.ValidationMessageFor(model => model.EnddateOfStay)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Approved)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Approved)
+            @Html.ValidationMessageFor(model => model.Approved)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Text)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Text)
+            @Html.ValidationMessageFor(model => model.Text)
+        </div>
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+

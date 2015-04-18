@@ -1,0 +1,166 @@
+﻿
+
+
+
+
+
+<!-- Modal -->
+<div id="airportTransferModal" class="modal hide fade modalBookingIDJquery" tabindex="-2" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-header">
+
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 id="myModalLabel">Please Enter Your Details:</h3>
+
+    </div>
+
+    <div class="modal-body">
+        <div class="modal-form">
+
+            @{Html.BeginForm("AddExtraFormBookingToSession", "PropertyView", FormMethod.Post, new { @class = "aFormToValidate modalForm", @id="airportTransferForm", @name="airportTransferForm" });}
+
+            <div class="row-fluid">
+                <div class="span12">
+
+                    <label>What will your destination be?</label>
+
+
+
+
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.AirportPickupLocationID, "AirportDestination")
+                    </div>
+                    <div class="editor-field">
+                        @Html.DropDownList("AirportPickupLocationID", airportDestinations)
+
+                        @Html.ValidationMessageFor(model => model.AirportPickupLocationID)
+                    </div>
+
+
+                    <input type="hidden" id="BookingExtraID" class="BookingExtraID_ToPost" name="BookingExtraID" value="" />
+
+                    <label>Inbound flight number (Complete with Airline code)</label>
+                    @*same ids as other modals *@
+                    <textarea rows="3" class="makeValid" name="FlightNumberArrival" id="FlightNumberArrival"></textarea>
+
+                    <label>Outbound flight number (Complete with Airline code)</label>
+                    @*same ids as other modals *@
+                    <textarea rows="3" class="makeValid" name="FlightNumberDeparture" id="FlightNumberDeparture"></textarea>
+
+                    <label>Flight Arrival Date</label>
+                    @*same ids as other modals *@
+                    <input type="text" class="date-picker makeValid" name="ExtraRentalDate" placeholder="DD/MM/YY">
+
+                    <label>Flight Arrival Time</label>
+                    <textarea rows="1" class="makeValid" name="bookingModalFlightArrivalTime" id="bookingModalFlightArrivalTime"></textarea>
+
+                    <label>Flight Arrival Terminal Number</label>
+                    <textarea rows="1" class="makeValid" name="FlightArrivalTerminalNumber" id="FlightArrivalTerminalNumber"></textarea>
+
+
+                    <label>Flight Departure Date</label>
+                    @*same ids as other modals *@
+                    <input type="text" class="date-picker makeValid" name="ExtraReturnDate" placeholder="DD/MM/YY">
+
+                    <label>Flight Departure Time</label>
+                    <textarea rows="1" name="FlightDepartureTime" class="makeValid"></textarea>
+
+
+                    <label>Flight Departure Terminal Number</label>
+                    <textarea rows="1" name="FlightDepartureTeminalNumber" class="makeValid"></textarea>
+
+
+                    <label>Pick Up Location / Address</label>
+                    @*same ids as other modals *@
+                    <textarea rows="3" name="PickupLocation" class="makeValid"></textarea>
+
+
+                    <label>Drop Off Location / Address</label>
+                    @*same ids as other modals *@
+                    <textarea rows="3" name="DropoffLocation" class="makeValid"></textarea>
+
+
+                    <label>Passengers - Adults</label>
+                    @*same ids as other modals *@
+                    <select name="NumberOfAdults">
+                        @{
+                            for (var i = 1; i < 16; i++)
+                            {
+                                <option value=@i.ToString()>@i</option>}
+                        }
+
+                    </select>
+
+
+                    <label>Passengers - Children</label>
+                    @*same ids as other modals *@
+                    <select name="NumberOfChildren">
+                        @{
+                            for (var i = 0; i < 16; i++)
+                            {
+                                <option value=@i.ToString()>@i</option>}
+                        }
+                    </select>
+
+
+                    <label>Passengers - Infants</label>
+                    @*same ids as other modals *@
+                    <select name="NumberOfInfants">
+                        @{
+                            for (var i = 0; i < 16; i++)
+                            {
+                                <option value=@i.ToString()>@i</option>}
+                        }
+
+                    </select>
+
+
+                    <label>Number of Child seats - £10 per seat</label>
+                    @*same ids as other modals *@
+                    <select name="NumberOfChildseats">
+                        @{
+                            for (var i = 0; i < 6; i++)
+                            {
+                                <option value=@i.ToString()>@i</option>}
+                        }
+
+                    </select>
+
+                    <label>No of detours</label>
+                    <select name="Detours">
+                        @{
+                            for (var i = 0; i < 6; i++)
+                            {
+                                <option value=@i.ToString()>@i</option>}
+                        }
+
+                    </select>
+
+                    <label>Extra pieces of luggage (standard 1 per person)</label>
+
+
+
+                    <select name="PiecesOfLuggage">
+                        @{
+                            for (var i = 0; i < 6; i++)
+                            {
+                                <option value=@i.ToString()>@i</option>}
+                        }
+
+                    </select>
+
+
+                    <label>Any special requests or comments</label>
+                    @*same ids as other modals *@
+                    <textarea rows="5" id="bookingModalSpecialRequest" name="SpecialRequests"></textarea>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-footer">
+        <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+        <button type="submit" class="btn btn-info submit" value="Confirm">Confirm</button>
+    </div>
+    @{Html.EndForm();}
+</div>

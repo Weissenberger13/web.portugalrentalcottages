@@ -1,0 +1,79 @@
+﻿@model BootstrapVillas.Models.BookingExtraSelection
+
+@{
+    
+    
+    
+    ViewBag.Title = "EditBookingExtraSelection";
+    string _Imagejpg = "_Imagejpg";
+
+
+    string imgTest = @"/ExtraImages/PRCCH-A/mainImage/PRCCH-A_Image.jpg";
+    string imgSrc = @"/ExtraImages/" + @Model.BookingExtraPRCReference + "/mainImage/" + @Model.BookingExtraPRCReference + "_Image.jpg";
+   
+   
+     
+}
+
+
+@helper TestMethod() {
+
+    ViewBag.Test = "";
+
+
+}
+
+
+<h2>Edit Your Selection:</h2>
+
+
+
+
+@*Conditional Logic To Edit the SMALL amount of fields necessary for each booking - the majority will be collected at the end*@
+
+        @{                    
+      <img src="@imgSrc">
+        }
+
+
+<form action="/~Views/EditProvisionalBooking/EditBookingExtraSelection.cshtml/TestMethod()">
+
+
+<fieldset>
+    <legend>Please reselect your booking dates:</legend>
+
+    <div class="editor-label">
+        @Html.Label("Rental Date")
+    </div>
+    <div class="editor-field">
+        <input type="text" class="date-picker span 2" name="bookingEditStartDatePicker" id="bookingEditStartDatePicker" placeholder="dd/mm/yyyy" value=@Model.ExtraRentalDate />
+    </div>
+
+    <div class="editor-label">
+        @Html.Label("Return Date")
+    </div>
+    <div class="editor-field">        
+        <input type="text" class="date-picker span 2" name="bookingEditEndDatePicker" id="bookingEditEndDatePicker" placeholder="dd/mm/yyyy" value=@Model.ExtraReturnDate />
+    </div>
+
+
+    <p>
+
+        @*The 'save' saves back to ASP.NET Session, NOT the DB in this instance!*@
+
+
+        <input type="submit" value="Save" onclick="" />
+    </p>
+</fieldset>
+
+ 
+
+</form>
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,254 @@
+/* This file is auto-generated from the settings page. Any direct edits here will be lost if the settings page is saved */
+body {
+	color: #222222;
+	font-family: 'Palatino Linotype', 'Book Antiqua', Palatino, serif;
+	font-size: 15px;
+	line-height: 24px;
+}
+a, a:visited {
+	color: #ce3b3b;
+	text-decoration: none;
+}
+a:hover {
+	color: #222222;
+	text-decoration: none;
+}
+#wrap {
+	background-color: #FFFFFF;
+	margin: 0 auto 0;
+	padding: 0;
+	border: 0 solid #8b0e04;
+	-moz-border-radius: 0;
+	-khtml-border-radius: 0;
+	-webkit-border-radius: 0;
+	border-radius: 0;
+	-moz-box-shadow: none;
+	-webkit-box-shadow: none;
+}
+#header {
+	height: 100px;
+	background-color: #ce3b3b;
+}
+#title-area {
+	width: 450px;
+}
+#title-area #title  {
+	padding-top: 25px;
+	padding-left: 20px;
+}
+.header-image #title-area, .header-image #title-area #title, .header-image #title-area #title a {
+	width: 450px;
+	height: 100px;
+}
+#title-area #title a, #title-area #title a:hover {
+	color: #fff333;
+	font-family: 'Palatino Linotype', 'Book Antiqua', Palatino, serif;
+	font-size: 36px;
+	line-height: 42px;
+}
+#title-area #description {
+	color: #999999;
+	font-family: 'Palatino Linotype', 'Book Antiqua', Palatino, serif;
+	font-size: 15px;
+	padding-left: 20px;
+	padding-top: 0;
+	font-style: italic;
+}
+#header .widget-area {
+	width: 478px;
+}
+#nav {
+	background-color: #F3F3F3;
+	font-family: 'Palatino Linotype', 'Book Antiqua', Palatino, serif;
+	font-size: 13px;
+	border: 1px solid #B5A677;
+	width: 938px;
+}
+#nav ul {
+	width: 936px;
+	border: 1px solid #FFFFFF;
+}
+#nav li a {
+	background-color: #F3F3F3;
+	color: #666666;
+	text-decoration: none;
+}
+#nav li.right a, #nav li.rss a, #nav li.twitter a {
+	color: #666666;
+}
+#nav li a:hover, #nav li a:active, #nav .current_page_item a, #nav .current-menu-item a {
+	background-color: #444444;
+	color: #FFFFFF;
+	text-decoration: none;
+}
+#nav li.right a:hover, #nav li.rss a:hover, #nav li.twitter a:hover {
+	color: #666666;
+}
+#nav li li a, #nav li li a:link, #nav li li a:visited {
+	background-color: #F3F3F3;
+	color: #666666;
+}
+#nav li li a:hover, #nav li li a:active {
+	background-color: #444444;
+	color: #FFFFFF;
+}
+#subnav {
+	background-color: #F3F3F3;
+	font-family: 'Palatino Linotype', 'Book Antiqua', Palatino, serif;
+	font-size: 13px;
+	border: 2px solid #B5A677;
+	width: 936px;
+}
+#subnav ul {
+	width: 934px;
+	border: 1px solid #FFFFFF;
+}
+#subnav li a {
+	background-color: #F3F3F3;
+	color: #666666;
+	text-decoration: none;
+}
+#subnav li a:hover, #subnav li a:active, #subnav .current_page_item a, #subnav .current-menu-item a {
+	background-color: #444444;
+	color: #FFFFFF;
+	text-decoration: none;
+}
+#subnav li li a, #subnav li li a:link, #subnav li li a:visited {
+	background-color: #F3F3F3;
+	color: #666666;
+}
+#subnav li li a:hover, #subnav li li a:active {
+	background-color: #444444;
+	color: #FFFFFF;
+}
+.breadcrumb {
+	color: #222222;
+	text-transform: none;
+	font-size: 13px;
+	border-bottom: 1px dotted #AAAAAA;
+}
+.post-info {
+	background-color: #F9F9F9;
+	color: #666666;
+	text-transform: none;
+	font-size: 13px;
+}
+.post-meta {
+	background-color: #F9F9F9;
+	color: #666666;
+	text-transform: none;
+	font-size: 13px;
+}
+#content blockquote {
+	color: #222222;
+	font-family: 'Palatino Linotype', 'Book Antiqua', Palatino, serif;
+	font-style: normal;
+	background-color: #F3F3F3;
+	border: 1px solid #DDDDDD;
+}
+#content p.notice {
+	color: #222222;
+	font-family: 'Palatino Linotype', 'Book Antiqua', Palatino, serif;
+	font-style: normal;
+	background-color: #F5F8FA;
+	border: 1px solid #D7E8F0;
+}
+#content h1, #content h2, #content h3, #content h4, #content h5, #content h6 {
+	font-family: 'Palatino Linotype', 'Book Antiqua', Palatino, serif;
+	font-style: normal;
+	font-weight: normal;
+	text-transform: none;
+}
+#content h1 {
+	font-size: 26px;
+	color: #cb3b3b;
+}
+#content h2 {
+	font-size: 20px;
+	color: #cb3b3b;
+}
+#content h2 a, #content h2 a:visited {
+	color: #222222;
+	text-decoration: none;
+}
+#content h2 a:hover {
+	color: #444444;
+	text-decoration: none;
+}
+#content h3 {
+	font-size: 16px;
+	color: #cb3b3b;
+}
+#content h4 {
+	font-size: 16px;
+	color: #222222;
+}
+#content h5 {
+	font-size: 16px;
+	color: #222222;
+}
+#content h6 {
+	font-size: 14px;
+	color: #222222;
+}
+#sidebar h4, #sidebar-alt h4 {
+	color: #222222;
+	font-family: 'Palatino Linotype', 'Book Antiqua', Palatino, serif;
+	font-size: 16px;
+	font-style: normal;
+	font-weight: normal;
+	border-bottom: 0 dotted #AAAAAA;
+	text-transform: none;
+}
+#footer-widgeted {
+	background-color: #F3F3F3;
+	border: 1px solid #DDDDDD;
+}
+#footer-widgeted h4 {
+	color: #222222;
+	font-family: 'Palatino Linotype', 'Book Antiqua', Palatino, serif;
+	font-size: 16px;
+	font-style: normal;
+	font-weight: normal;
+	border-bottom: 1px dotted #AAAAAA;
+	text-transform: none;
+}
+#footer-widgeted a, #footer-widgeted a:visited, #footer-widgeted li a, #footer-widgeted li a:visited {
+	color: #ce3b3b;
+	text-decoration: none;
+}
+#footer-widgeted a:hover, #footer-widgeted li a:hover {
+	color: #222222;
+	text-decoration: underline;
+}
+#footer {
+	color: #222222;
+	font-size: 13px;
+	font-weight: normal;
+	text-transform: none;
+}
+#footer a, #footer a:visited {
+	color: #ce3b3b;
+	text-decoration: none;
+}
+#footer a:hover {
+	color: #222222;
+	text-decoration: underline;
+}
+.s, #author, #email, #url, #comment, .enews #subbox, .prose-input {
+	color: #666666;
+	font-family: 'Palatino Linotype', 'Book Antiqua', Palatino, serif;
+	font-style: normal;
+	background-color: #F3F3F3;
+	border: 1px solid #DDDDDD;
+}
+#submit, .searchsubmit, .enews #subbutton, #content .gform_footer .button, .reply a, .reply a:visited, .prose-button {
+	background-color: #444444;
+	color: #FFFFFF;
+	text-transform: uppercase;
+	font-family: 'Palatino Linotype', 'Book Antiqua', Palatino, serif;
+	font-size: 13px;
+}
+#submit:hover, .searchsubmit:hover, .enews #subbutton:hover, .gform_footer .button:hover, .reply a:hover, .prose-button:hover {
+	background-color: #222222;
+}

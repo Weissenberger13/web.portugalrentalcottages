@@ -1,0 +1,86 @@
+﻿@model IEnumerable<BootstrapVillas.Models.Comment>
+
+@{
+    ViewBag.Title = "Index";
+
+    var ActiveListDDL = new Dictionary<string, string>();
+    ActiveListDDL.Add("true", "true");
+    ActiveListDDL.Add("false", "false");
+}
+
+<h2>Comment Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table id="example" class="display" cellspacing="0" width="100%">
+    <thead>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Property.LegacyReference)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Username)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StarRating)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StartdateOfStay)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EnddateOfStay)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Approved)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Text)
+        </th>
+        <th></th>
+    </tr>
+   </thead>
+    
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Property.LegacyReference)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Username)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StarRating)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StartdateOfStay)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EnddateOfStay)
+                </td>
+                <td>
+                    @Html.DropDownList("Approved", new SelectList(ActiveListDDL, "Key", "Value", item.Approved), new { id = "Approved", @class = "input-small", @style = "height: auto !important; width:auto;" })
+                </td>
+                <td>
+                    <textarea name="Text" id="Text" rows="4">@item.Text</textarea>                        
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.CommentID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.CommentID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.CommentID })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+            $('#example').DataTable();
+            $('#BottomEditorWindow').hide();
+            $('#TopEditorWindow').animate({ height: '100%' }, 500);
+
+    });
+</script>

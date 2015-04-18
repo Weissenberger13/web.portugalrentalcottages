@@ -1,0 +1,37 @@
+﻿@{
+    ViewBag.Title = "TestViewDocument";
+}
+
+<h2>TestViewDocument</h2>
+
+
+<button id="ShowDoc">Show Doc</button>
+
+
+@Html.ActionLink("Download PDF", "OpenInlineDocument", "Test")
+
+
+<script type="text/javascript">
+    $('#ShowDoc1111').on('click', function () {
+        //delete existing
+
+        //request
+        $.ajax({
+            url: '@Url.Action("OpenInlineDocument", "Test")',
+            //data: { "bookingID": id },
+            type: "GET",
+            contentType: 'application/pdf',
+            success: function (result) {
+
+                window.open(result, '3km', "height=600, width=810, scrollbars=yes, resizable=yes");
+
+                //   window.open($(this).attr("href"), "popupWindow", "width=600,height=600,scrollbars=yes").html(result);
+                //$('#TopEditorWindow').html(result);
+                //get the pricing
+            },
+            error: function () { alert('That did not work please try again'); }
+        });
+
+    });
+
+</script>

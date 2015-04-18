@@ -1,0 +1,78 @@
+﻿@model BootstrapVillas.Models.CustomerBankDetail
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>CustomerBankDetail</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.NameOnAccount)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.NameOnAccount)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.IBAN)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.IBAN)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.SwiftCode_BIC)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.SwiftCode_BIC)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.BankName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.BankName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.BankAddressLine1)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.BankAddressLine1)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.BankAddressLine2)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.BankAddressLine2)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.CustomerID)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CustomerID)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.SortCode)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.SortCode)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Account)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Account)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.CustomerBankDetailID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

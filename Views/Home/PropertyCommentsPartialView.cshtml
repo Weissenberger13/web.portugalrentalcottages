@@ -1,0 +1,168 @@
+﻿@using BootstrapVillas.Models
+@using BootstrapVillas.Content.Classes;
+@model BookingExtra
+@using System;
+@using Microsoft.Ajax.Utilities
+
+@{
+    bool userAuthorised = false;
+
+    try
+    {
+        var roles = Roles.GetRolesForUser(HttpContext.Current.User.Identity.Name);
+        userAuthorised =
+            (HttpContext.Current.User.IsInRole("Administrator")) ? true : false;
+    }
+    catch (Exception ex)
+    {
+
+
+    }
+    if (HttpContext.Current.User != null)
+    {
+
+
+
+    }
+    //get the property From the viewbag
+    Property theProperty = ViewBag.FullPropertyResultProperty;
+
+    //call methods to pull back commments
+    List<BootstrapVillas.Models.Comment> theCommentList = Comment.GetComments(theProperty).OrderBy(comment => comment.CommentID).ToList();
+
+    List<CommentReply> theCommentReplies = CommentReply.GetCommentReplies().OrderBy(comment => comment.CommentID).ToList();
+
+}
+
+<!-- Begin Comments section -->
+<!--<fieldset><legend class="media-heading">Media heading<div class="pull-right"><input type="number" name="your_awesome_parameter" id="some_id" class="rating" /></div></legend></fieldset>
+-->
+
+<div class="row-fluid comments">
+    <div class="span12">
+
+        @*  <!-- LEGEND TITLE -->
+            <fieldset><legend>Customer Reviews<span class="pull-right"><i class="icon-comment"></i></span></legend></fieldset>*@
+
+        <!----------------------------------------1st COMMENT--------------------------------------------->
+        @if (theCommentList.Count < 1)
+        {
+            <h1 class="toTranslate">There are no comments for this property yet</h1>
+
+        }
+        else
+        {
+
+
+
+
+            foreach (var comment in theCommentList)
+            {
+
+                <div class="media-list" style="margin-bottom: 20px;">
+                    <div class="media" style="border-bottom: 1px dotted #ddd; padding-bottom:20px;">
+                        <div class="media-body">
+                            <div class="span12 mainComment">
+                                <div class="row-fluid">
+                                    <div class="span12 pull-left inline commentHeading">
+                                        <b class="media-heading" style="font-size: 16px; margin-right: 10px;">
+                                            <i class="fa fa-fw fa-user"></i>
+                                            @{
+                if (comment.Username != null)
+                {
+
+                    @comment.Username
+                }
+                                            }
+                                        </b>
+                                        <small>
+                                            <i class="fa fa-fw fa-calendar"></i><css-decorator class="toTranslate">Date comment posted</css-decorator>:
+                                            @{
+                if (comment.WhenCreated != null)
+                {
+                    @comment.WhenCreated.ToString().Substring(0, 10)
+
+                }
+                                            }
+                                        </small>
+                                        <small><i class="fa fa-fw fa-calendar"></i><css-decorator class="toTranslate">Date of trip</css-decorator>: 
+                                         @if (comment.StartdateOfStay != null)
+                {@comment.StartdateOfStay.ToString().Substring(0, 10)
+                                            }
+                                        </small>
+                                        <form class="pull-right form-inline">
+                                            <p style="color: #e74c3c !important;">
+                                                <input type="number" name="StarRating" class="rating" data-max="4" value="@comment.StarRating" />
+                                            </p>
+                                        </form>
+                                    </div>
+                                </div>
+
+                                <p>
+                                    <css-decorator class="toTranslate">@comment.Text</css-decorator>
+                                </p>
+
+                                @if (userAuthorised)
+                                {
+                                    <div class="row-fluid">
+                                        <a data-toggle="modal" class="btn btn-inverse btn-small pull-right" href="~/CommentReply/Create?commentID=@comment.CommentID"><i class="fa fa-fw fa-reply"></i>Reply</a>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+
+
+
+                        <!-- Nested media object - Replied comment -->
+                        @if (theCommentReplies.Where(x => x.CommentID == comment.CommentID).Count() > 0)
+                        {
+
+                            <div class="row-fluid">
+
+                                @foreach (var commentReply in theCommentReplies)
+                                {
+                                    if (commentReply.CommentID == comment.CommentID)
+                                    {
+                                        <div class="row-fluid">
+                                            <div class="span11 offset1 mainComment arrow_box" style="margin-top: 15px; position: relative;">
+                                                <div class="media media-nested">
+                                                    <div class="span12 pull-left inline commentHeading">
+                                                        <b class="media-heading" style="font-size: 16px; margin-right: 10px;"><i class="fa fa-fw fa-user"></i>@comment.Username </b>
+                                                        <small>
+                                                            <i class="fa fa-fw fa-calendar"></i><css-decorator class="toTranslate">Dates of trip</css-decorator>: @if (comment.StartdateOfStay != null)
+                                                            {
+                                                                @comment.StartdateOfStay.ToString().Substring(0, 10)
+                                                                Html.Raw(" - ");
+                                                            }
+
+                                                            @if (comment.EnddateOfStay != null)
+                                                            {
+                                                                @comment.EnddateOfStay.ToString().Substring(0, 10)
+                                                            }
+                                                        </small>
+                                                    </div>
+                                                    <p>
+                                                        <css-decorator class="toTranslate">@commentReply.Text</css-decorator>
+                                                    </p>
+                                                </div>
+                                                <!-- end 1st reply-->
+                                            </div>
+                                            <!-- end span11 which holds all replies -->
+                                        </div>
+                                    }
+                                }
+                                <!-- end row-fluid -->
+                            </div>
+                        }
+                    </div>
+                    <!-- end media-body -->
+                </div>
+            }
+
+
+        }
+        <!-- end media -->
+    </div>
+    <!-- end media-list -->
+</div>
+<!-- END SPAN 10 container -->

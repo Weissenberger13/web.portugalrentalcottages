@@ -1,0 +1,57 @@
+﻿@model IEnumerable<BootstrapVillas.Models.PropertyOwnerRepresentative>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.PropertyOwnerRepresentativeName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PropertyOwnerRepresentativeContactNumberLandline)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PropertyOwnerRepresentativeContactNumberMobile)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PropertyOwnerRepresentativeContactEmail)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.WhenCreated)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.PropertyOwnerRepresentativeName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PropertyOwnerRepresentativeContactNumberLandline)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PropertyOwnerRepresentativeContactNumberMobile)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PropertyOwnerRepresentativeContactEmail)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.WhenCreated)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.PropertyOwnerRepresentativeID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.PropertyOwnerRepresentativeID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.PropertyOwnerRepresentativeID })
+        </td>
+    </tr>
+}
+
+</table>

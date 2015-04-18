@@ -1,0 +1,29 @@
+﻿@model BootstrapVillas.Models.CurrencyExchange
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>CurrencyExchange</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.CurrencyExchangeName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CurrencyExchangeName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.CurrencyExchangeRate)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CurrencyExchangeRate)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.CurrencyExchangeID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

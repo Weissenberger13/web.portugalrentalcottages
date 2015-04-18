@@ -1,0 +1,75 @@
+﻿@{
+    ViewBag.Title = "UploadImageFolder";
+}
+
+<h2>UploadImageFolder</h2>
+
+
+<div class="container">
+    <div class="page-header" style="height:200px; width:200px">
+        <h1>Demo <small>Drag and drop a directory on file input with <em>webkitdirectory</em></small></h1>
+        <img src="~/PropertyImages/PRCTH01/back_Garden/Barbecue.jpg" mode="crop" height />
+    </div>
+
+    </div>
+
+    <div class="row">
+        <input type="file" multiple webkitdirectory id="fileURL" />
+        <ul id="fileOutput"></ul>
+    </div>
+
+</div>
+
+
+<script type="text/javascript">
+    
+    (function () {
+        var files,
+            file,
+            extension,
+            input = document.getElementById("fileURL"),
+            output = document.getElementById("fileOutput");
+
+        input.addEventListener("change", function (e) {
+            files = e.target.files;
+            output.innerHTML = "";
+
+            for (var i = 0, len = files.length; i < len; i++) {
+                file = files[i];
+                extension = file.name.split(".").pop();
+                output.innerHTML += "<li class='type-" + extension + "'>" + file.name + "</li>";
+            }
+        }, false);
+    })();
+
+
+   /* $(document).ready(function () {
+
+        $('#btnUploadFile').on('click', function () {
+
+
+
+            var data = new FormData();
+            data.propertyRef = "PRCV10";
+            data.directoryName = dir;
+
+            var files = $("#fileUpload").get(0).files;
+
+            // Add the uploaded image content to the form data collection
+            if (files.length > 0) {
+                data.append("UploadedImage", files[0]);
+            }
+
+            // Make Ajax request with the contentType = false, and procesDate = false
+            var ajaxRequest = $.ajax({
+                type: "POST",
+                url: "/ImageUploader/UploadImageFolder",                
+                data: data
+            });
+
+            ajaxRequest.done(function (xhr, textStatus) {
+                // Do other operation
+            });
+        });
+    });*/
+</script>

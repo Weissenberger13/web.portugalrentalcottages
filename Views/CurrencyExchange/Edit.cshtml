@@ -1,0 +1,46 @@
+﻿@model BootstrapVillas.Models.CurrencyExchange
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>CurrencyExchange</legend>
+
+        @Html.HiddenFor(model => model.CurrencyExchangeID)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.CurrencyExchangeName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.CurrencyExchangeName)
+            @Html.ValidationMessageFor(model => model.CurrencyExchangeName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.CurrencyExchangeRate)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.CurrencyExchangeRate)
+            @Html.ValidationMessageFor(model => model.CurrencyExchangeRate)
+        </div>
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

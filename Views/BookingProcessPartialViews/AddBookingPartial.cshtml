@@ -1,0 +1,374 @@
+﻿@model BootstrapVillas.Models.Booking
+@using BootstrapVillas.Content.Classes
+@using BootstrapVillas.Models;
+
+@{
+    /*  ViewBag.Title = "CreateBooking";
+    Booking currentBooking = (Booking)Session["CurrentBookingDataGathering"];
+    ViewBag.booking = (Booking)Session["CurrentBookingDataGathering"];
+    ViewBag.Booking = (Booking)Session["CurrentBookingDataGathering"];*/
+
+    int i = 0;
+
+    var StepNo = (int)ViewData["StepNo"];
+    var bookingCount = (int)ViewData["bookingCount"];
+    var loopNo = (int)ViewData["loopNo"];
+    i = bookingCount;
+
+    string divID = "bookingDiv" + loopNo.ToString();
+
+    <fieldset>
+        <legend><css-decorator class="toTranslate">Booking for: @Model.Property.LegacyReference - @Model.Property.HouseName</css-decorator></legend>
+        <input type="hidden" value="@StepNo" name="bookings[@i].StepNo" />
+        <input type="hidden" readonly="true" name="bookings[@i].PropertyID" value="@Model.PropertyID" />
+        
+        <input type="hidden" readonly="true" name="bookings[@i].BookingPrice" value="@Model.BookingPrice" />
+        
+        <input type="hidden" readonly="true" name="bookings[@i].BookingCurrencyConversionPrice" value="@Model.BookingCurrencyConversionPrice" />
+        <input type="hidden" readonly="true" name="bookings[@i].BookingCurrencyConversionSymbol" value="@Model.BookingCurrencyConversionSymbol" />
+        <input type="hidden" readonly="true" name="bookings[@i].BookingPreferredCurrency" value="@Model.BookingPreferredCurrency" />
+        
+        
+        <input type="hidden" readonly="true" name="bookings[@i].CleaningPostVisitPrice" value="@Model.CleaningPostVisitPrice" />
+        <input type="hidden" readonly="true" name="bookings[@i].ExtraLininSetPrice" value="@Model.ExtraLininSetPrice" />
+        <input type="hidden" readonly="true" name="bookings[@i].HeatingPrice" value="@Model.HeatingPrice" />
+        <input type="hidden" readonly="true" name="bookings[@i].MidVactionCleaningPrice" value="@Model.MidVactionCleaningPrice" />
+        <input type="hidden" readonly="true" name="bookings[@i].SwimmingPoolHeatingPrice" value="@Model.SwimmingPoolHeatingPrice" />
+        <input type="hidden" readonly="true" name="bookings[@i].TowelsPrice" value="@Model.TowelsPrice" />
+
+
+
+
+        <div class="row-fluid">
+            <div class="span12 lightGrey" id="@divID">
+                <b><css-decorator class="toTranslate">Please enter details for your booking</css-decorator></b>
+                <div class="row-fluid">
+
+                    <div class="span3">
+                        <label><css-decorator class="toTranslate">Booking Start Date</css-decorator></label>
+                        <div class="editor-field">
+                            <input type="text" readonly="true" class="span12 makeValid" name="bookings[@i].StartDate" value="@Convert.ToDateTime(Model.StartDate).ToString("dd/MM/yyyy")" required />
+                            @Html.ValidationMessageFor(model => Model.StartDate)
+                        </div>
+                    </div>
+
+                    
+                    <div class="span3">
+                        <label><css-decorator class="toTranslate">Booking End Date</css-decorator></label>
+                        <input type="text" readonly="true" class=" span12 makeValid" name="bookings[@i].EndDate" value="@Convert.ToDateTime(Model.EndDate).ToString("dd/MM/yyyy")" required />
+                        @Html.ValidationMessageFor(model => Model.EndDate)
+                    </div>
+
+
+                    <div class="span3">
+                        <label><css-decorator class="toTranslate">Number Of Nights</css-decorator></label>
+                        <input type="text" readonly="true" class="span12" name="bookings[@i].NumberOfNights" id="bookings[@i].NumberOfNights" value="@Model.NumberOfNights" />
+                        @Html.ValidationMessageFor(model => Model.NumberOfNights)
+                    </div>
+
+
+
+                    <div class="span3">
+                        <label><css-decorator class="toTranslate">Property Reference</css-decorator></label>
+                        <input type="text" readonly="true" class="span12" name="bookings[@i].bookingprcreference" id="bookings[@i].BookingPRCReference" value="@Model.BookingPRCReference" />
+                    </div>
+
+
+                </div>
+
+
+
+                <div class="row-fluid">
+
+                    <div class="span3">
+                        <label><css-decorator class="toTranslate">Number of Adults</css-decorator></label>
+                        <select name="bookings[@i].NumberOfAdults" id="bookings[@i].NumberOfAdults" class="makeValid span12 adults" required>
+                            <option value="" selected>- Adults -</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option>6</option>
+                            <option>7</option>
+                            <option>8</option>
+                            <option>9</option>
+                            <option>10</option>
+                            <option>11</option>
+                            <option>12</option>
+                            <option>13</option>
+                            <option>14</option>
+                            <option>15</option>
+                        </select>
+                    </div>
+
+                    <div class="span3">
+                        <label><css-decorator class="toTranslate">Number of Children</css-decorator></label>
+                        <select name="bookings[@i].NumberOfChildren" id="bookings[@i].NumberOfChildren" class="span12 children makeValid" required>
+                            <option value="" selected>- Children (2+ Yrs)- </option>
+                            <option>0</option>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                            <option>6</option>
+                            <option>7</option>
+                            <option>8</option>
+                            <option>9</option>
+                            <option>10</option>
+                            <option>11</option>
+                            <option>12</option>
+                            <option>13</option>
+                            <option>14</option>
+                            <option>15</option>
+                        </select>
+                    </div>
+
+                    <div class="span3">
+                        <label><css-decorator class="toTranslate">Number of Infants</css-decorator></label>
+                        <select name="bookings[@i].NumberOfInfants" id="bookings[@i].NumberOfInfants" class="span12 infants makeValid" required>
+                            <option value="" selected>- Infants (0-2 Yrs) -</option>
+                            <option>0</option>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                            <option>6</option>
+                            <option>7</option>
+                            <option>8</option>
+                            <option>9</option>
+                            <option>10</option>
+                            <option>11</option>
+                            <option>12</option>
+                            <option>13</option>
+                            <option>14</option>
+                            <option>15</option>
+                        </select>
+                    </div>
+                    
+                    
+                    <div class="editor-field span3">
+                        <label><css-decorator class="toTranslate">Extra Linen Sets</css-decorator></label>
+                        <select name="bookings[@i].ExtraLininSet" id="bookings[@i].ExtraLininSet" class="span12 linen" required>
+                            <option value="" selected>- Linin Sets -</option>
+                            <option>0</option>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                            <option>6</option>
+                            <option>7</option>
+                            <option>8</option>
+                            <option>9</option>
+                            <option>10</option>
+                            <option>11</option>
+                            <option>12</option>
+                            <option>13</option>
+                            <option>14</option>
+                            <option>15</option>
+                        </select>
+                        @Html.ValidationMessageFor(model => Model.ExtraLininSet)
+                    </div>
+
+                </div>
+
+
+
+
+
+                <div class="row-fluid">
+
+                    <div class="span3">
+                        <label><css-decorator class="toTranslate">Mid-Vacation Cleaning</css-decorator></label>
+                        <select name="bookings[@i].MidVactionCleaning" id="bookings[@i].MidVactionCleaning" class="span12 cleans makeValid" required>
+                            <option value="" selected>- Mid Vacation Cleans -</option>
+                            <option>0</option>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                            <option>6</option>
+                            <option>7</option>
+                            <option>8</option>
+                            <option>9</option>
+                            <option>10</option>
+                            <option>11</option>
+                            <option>12</option>
+                            <option>13</option>
+                            <option>14</option>
+                            <option>15</option>
+                        </select>
+                        @Html.ValidationMessageFor(model => Model.MidVactionCleaning)
+                    </div>
+
+                    <div class="editor-field span3">
+                        <label><css-decorator class="toTranslate">Extra swimming towels</css-decorator></label>
+                        <select name="bookings[@i].NoOfTowelsRequested" id="bookings[@i].NoOfTowelsRequested" class="span12 towels makeValid" required>
+                            <option value="" selected>- No of Towels -</option>
+                            <option>0</option>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                            <option>6</option>
+                            <option>7</option>
+                            <option>8</option>
+                            <option>9</option>
+                            <option>10</option>
+                            <option>11</option>
+                            <option>12</option>
+                            <option>13</option>
+                            <option>14</option>
+                            <option>15</option>
+                        </select>
+                        @Html.ValidationMessageFor(model => Model.NoOfTowelsRequested)
+                    </div>
+
+                    <div class="editor-field span3">
+                        <label><css-decorator class="toTranslate">Swimming Pool Heating</css-decorator></label>
+                        <select name="bookings[@i].SwimmingPoolHeating" id="bookings[@i].SwimmingPoolHeating" class="span12 swimmingheating makeValid" required>
+                            <option value="" selected>- Swimming Pool Heating (nights) -</option>
+                            <option>0</option>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                            <option>6</option>
+                            <option>7</option>
+                            <option>8</option>
+                            <option>9</option>
+                            <option>10</option>
+                            <option>11</option>
+                            <option>12</option>
+                            <option>13</option>
+                            <option>14</option>
+                            <option>15</option>
+                        </select>
+                        @Html.ValidationMessageFor(model => Model.SwimmingPoolHeating)
+                    </div>
+
+
+
+                    <div class="editor-field span3">
+                        <label><css-decorator class="toTranslate">Property Heating </css-decorator></label>
+                        <select name="bookings[@i].HeatingNoNights" id="bookings[@i].HeatingNoNights" class="span12 heating makeValid" required>
+                            <option value="" selected>-  Heating (days) -</option>
+                            <option>0</option>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                            <option>6</option>
+                            <option>7</option>
+                            <option>8</option>
+                            <option>9</option>
+                            <option>10</option>
+                            <option>11</option>
+                            <option>12</option>
+                            <option>13</option>
+                            <option>14</option>
+                            <option>15</option>
+                        </select>
+                        @Html.ValidationMessageFor(model => Model.HeatingNoNights)
+                    </div>
+
+                </div>
+                
+                
+                <div class="row-fluid">
+                    <div class="span4">
+                        <label for="FlightArrivalTime"><css-decorator class="toTranslate">Flight Arrival Time</css-decorator></label>
+                        <input type="text" id="bookings[@i].FlightArrivalTime" name="bookings[@i].FlightArrivalTime" class="span12" />
+                    </div>
+                    
+                    <div class="span4">
+                        <label for="FlightArrivalTime"><css-decorator class="toTranslate">Flight Arrival Date</css-decorator></label>
+                        <input type="text" id="bookings[@i].FlightArrivalDate" name="bookings[@i].FlightArrivalDate" class="span12 date-picker" />
+                    </div>
+
+                    <div class="span4">
+                        <label for="FlightDepartureTime"><css-decorator class="toTranslate">Inbound Flight Number</css-decorator></label>
+                        <input type="text" id="bookings[@i].FlightNumberArrival" name="bookings[@i].FlightNumberArrival" class="span12" />
+                    </div>
+                </div>
+                
+                
+                <div class="row-fluid">
+                    <div class="span4">
+                        <label for="FlightArrivalTime"><css-decorator class="toTranslate">Flight Departure Time</css-decorator></label>
+                        <input type="text" id="bookings[@i].FlightDepartureTime" name="bookings[@i].FlightDepartureTime" class="span12" />
+                    </div>
+
+                    <div class="span4">
+                        <label for="FlightArrivalTime"><css-decorator class="toTranslate">Flight Departure Date</css-decorator></label>
+                        <input type="text" id="bookings[@i].FlightDepartureDate" name="bookings[@i].FlightDepartureDate" class="span12 date-picker" />
+                    </div>
+
+                    <div class="span4">
+                        <label for="FlightDepartureTime"><css-decorator class="toTranslate">Outbound Flight Number</css-decorator></label>
+                        <input type="text" id="bookings[@i].FlightNumberDeparture" name="bookings[@i].FlightNumberDeparture" class="span12" />
+                    </div>
+                </div>
+                
+
+                <div class="row-fluid">
+
+                        <div class="editor-field span12">
+                            <label><css-decorator class="toTranslate">Any Special Request or Comments</css-decorator></label>
+                            <textarea rows="8" name="bookings[@i].SpecialRequests" class="span12" id="bookings[@i].SpecialRequests"></textarea>
+                            @Html.ValidationMessageFor(model => Model.SpecialRequests)
+                        </div>
+
+                    </div>
+
+
+
+
+                    <label for="AcceptTC" class="checkbox span12" style="margin-bottom: 0;">
+                        <span class="icons">
+                            <span class="first-icon fui-checkbox-unchecked"></span>
+                            <span class="second-icon fui-checkbox-checked"></span>
+                        </span>
+                        <input type="checkbox" id="AcceptTC" name="bookings[@i].AcceptTC" class="makeValid" required>
+                        Accept <a href="#" style="text-decoration: underline;"><css-decorator class="toTranslate">Terms & Conditions</css-decorator></a>
+                    </label>
+
+
+                </div>
+
+
+
+        </div>
+
+
+    </fieldset>
+
+
+
+
+    <script>
+        $(document).ready(function () {
+            $(".adults").val("@Model.NumberOfAdults");
+            $(".children").val("@Model.NumberOfChildren");
+            $(".infants").val("@Model.NumberOfInfants");
+
+            $(".linen").val("@Model.ExtraLininSet");
+            $(".cleans").val("@Model.MidVactionCleaning");
+            $(".swimmingheating").val("@Model.SwimmingPoolHeating");
+            $(".towels").val("@Model.NoOfTowelsRequested");
+            $(".heating").val("@Model.HeatingNoNights");
+
+        });
+    </script>
+
+
+}
+
+

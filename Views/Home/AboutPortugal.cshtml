@@ -1,0 +1,76 @@
+﻿@using BootstrapVillas.Models
+@using BootstrapVillas.Content.Classes;
+
+@{
+    ViewBag.Title = "AboutPortugal";
+}
+
+
+<div class="row-fluid" style="margin-top: 15px;">
+    <div class="span7 offset1 whiteBg">
+
+        <div class="row-fluid">
+            <div class="span12">
+                <ul class="breadcrumb">
+                    <li><a href="~/Home">Home</a> <span class="divider">/</span></li>
+                    <li><a href="~/SearchProperties">Properties</a> <span class="divider">/</span></li>
+                    <li class="active">Data</li>
+                </ul>
+            </div>
+        </div>
+
+        <h3>About Portugal</h3>
+        <p>
+            Portugal is a country of diverse landscapes, festivities, friendly people and a wealth of history. It is the westernmost country of Europe and has a population of 10.5 million people and is the nation with which Britain enjoys its oldest alliance dating back to the late 1300’s.
+
+A link between England and Portugal goes back to the recapture of Lisbon in 1147, but it becomes particularly strong in the late 14th century.  It is formalized in May 1386 AD as the Treaty of Windsor. Binding in its terms, and never revoked, this treaty is the reason why Portugal is often described as England's oldest ally.
+
+The multilple waves of immigration in this early period have given the Portuguese culture its character along with its particular geography lying at it does at the westernmost point of Europe. The Portuguese are by and large a friendly and hardworking people who are proud of their customs and history.
+
+For such a small country, it displays an amazing cultural and culinary disversity in its regions. Being a largely mountainous country, Portugal is drained by four large rivers and their tributaries. The Douro cuts across the north in an East-west driection, rising in the Spanish plateau and flowing into the Atlantic ocean. It is home to the picturesque terraced slopes of vineyards that produce the renowned port wine. 
+
+The Silver Coast stretches from just south of Porto till the northern parameter of the Lisbon coast is know as Costa da Prata or Silver Coast. This is to do with the shimmering quality of the Atlantic waters in the sunshine. Some of the country's most impressive architecture, historical and religious sites can be found in this region.
+
+On the coastline, large and spectacular beaches mix with little quaint fishing towns and villages, of which Nazaré is one of the finest examples. Further inland, fertile country stretches along the banks of rivers like the Tagus, producing livestock and crops from grapes to fruit and rice.
+
+Coimbra, the birthplace of six kings and the seat of the country's oldest university, fascinates with its historical associations, and nearby you can visit the largest escavated Roman site in Portugal, Conímbriga. The Silver Coast is still regarded as quite special for the average tourist or traveller because it offers a unique and enchanting view of an older more gentle country completely at ease with itself and the outside world.
+
+Visitors will feel a sense of ease and complete relaxation as the pace slackens and the mind takes in all that clean fresh air and fine weather.
+
+The great pilgrimage town of Fatima lies just 90 munites north of Lisbon and is within easy reach of a clutch of other world heritage sites like Tomar, Alcobaca and Batalha.
+        </p>
+
+        <div class="container">
+            <div id="AboutCarousel" class="carousel slide fade">
+                <ol class="carousel-indicators">
+                    <li data-target="#AboutCarousel" data-slide-to="0" class="active"></li>
+                    <li data-target="#AboutCarousel" data-slide-to="1"></li>
+                    <li data-target="#AboutCarousel" data-slide-to="2"></li>
+                </ol>
+                <!-- Carousel items -->
+                <div class="carousel-inner">
+                    <div class="active item">…</div>
+                    <div class="item">…</div>
+                    <div class="item">…</div>
+                </div>
+                <!-- Carousel nav -->
+                <a class="carousel-control left" href="#AboutCarousel" data-slide="prev">&lsaquo;</a>
+                <a class="carousel-control right" href="#AboutCarousel" data-slide="next">&rsaquo;</a>
+            </div>
+        </div>
+
+    </div>
+    <div class="span3">
+
+        @{  Html.RenderPartial("checkoutPartialView");
+				  
+        }
+
+        @{ Html.RenderPartial("SideBookingFormPartialView");
+        }
+
+    </div>
+</div>
+<!-- Property container -->
+
+

@@ -1,0 +1,92 @@
+﻿@model BootstrapVillas.Models.BookingExtraParticipant
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>BookingExtraParticipant</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.BookingExtraSelection.Test)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.BookingExtraSelection.Test)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.BookingExtraParticipantTitle)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.BookingExtraParticipantTitle)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.BookingExtraParticipantFirstName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.BookingExtraParticipantFirstName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.BookingExtraParticipantMiddleName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.BookingExtraParticipantMiddleName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.BookingExtraParticipantLastName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.BookingExtraParticipantLastName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.BookingExtraParticipantDOB)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.BookingExtraParticipantDOB)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.BookingExtraParticipantChild)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.BookingExtraParticipantChild)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.BookingExtraParticipantInfant)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.BookingExtraParticipantInfant)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.BookingExtraParticipantWhenCreated)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.BookingExtraParticipantWhenCreated)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.BookingExtraParticipantDriversLicenceNo)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.BookingExtraParticipantDriversLicenceNo)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.BookingExtraParticipantDriversPassportNo)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.BookingExtraParticipantDriversPassportNo)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.BookingExtraParticipantID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

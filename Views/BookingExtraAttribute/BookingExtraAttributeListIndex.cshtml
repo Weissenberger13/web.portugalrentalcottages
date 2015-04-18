@@ -1,0 +1,74 @@
+﻿@model IEnumerable<BootstrapVillas.Models.BookingExtraAttribute>
+
+@{
+    ViewBag.Title = "BookingExtraAttributeListIndex";
+
+
+
+    AjaxOptions createOptions = new AjaxOptions
+    {
+        UpdateTargetId = "BottomEditorWindow",
+        InsertionMode = InsertionMode.Replace,
+        LoadingElementId = "spinner",
+
+    };
+
+    AjaxOptions deleteOptions = new AjaxOptions
+    {
+        UpdateTargetId = "BottomEditorWindow",
+        InsertionMode = InsertionMode.Replace,
+        LoadingElementId = "spinner",
+        Confirm = "Are you sure you want to delete this?"
+    };
+    
+    
+    
+}
+
+<h2>Booking Extra Attributes </h2>
+
+<p>
+    @Ajax.ActionLink("Create New", "Create", "BookingExtraAttribute", createOptions)
+</p>
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.BookingExtraID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AttributeName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AttributeContent)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AttributeOrder)
+        </th>
+       
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.BookingExtraID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AttributeName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AttributeContent)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AttributeOrder)
+        </td>
+      
+        <td>
+            @Ajax.ActionLink("Edit", "Edit", "BookingExtraAttribute", new { id = item.BookingExtraAttributeID }, createOptions) |
+         
+            @Ajax.ActionLink("Delete", "Delete","BookingExtraAttribute", new { id = item.BookingExtraAttributeID }, deleteOptions)
+        </td>
+    </tr>
+}
+
+</table>

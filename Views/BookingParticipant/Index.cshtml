@@ -1,0 +1,102 @@
+﻿@model IEnumerable<BootstrapVillas.Models.BookingParticipant>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table id="example" class="display" cellspacing="0" width="100%">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Booking.BookingPRCReference)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BookingParticipantTitle)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BookingParticipantFirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BookingParticipantMiddleName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BookingParticipantLastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BookingParticipantDOB)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BookingParticipantChild)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BookingParticipantInfant)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BookingParticipantAge)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BookingParticipantWhenCreated)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Booking.BookingPRCReference)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BookingParticipantTitle)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BookingParticipantFirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BookingParticipantMiddleName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BookingParticipantLastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BookingParticipantDOB)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BookingParticipantChild)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BookingParticipantInfant)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BookingParticipantAge)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BookingParticipantWhenCreated)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.BookingParticipantID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.BookingParticipantID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.BookingParticipantID })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $('#BottomEditorWindow').hide();
+        $('#example').DataTable();        
+        $('#TopEditorWindow').animate({ height: '100%' }, 500);
+
+
+    });
+</script>

@@ -1,0 +1,44 @@
+﻿@model BootstrapVillas.Models.CommentReply
+
+@{
+    ViewBag.Title = "Create";
+
+    int CurrentCommentID = ViewBag.CurrentCommentID;
+    
+}
+
+<h2>Create</h2>
+
+
+            <div class="row-fluid" style="margin-bottom: 20px;">
+                <div class="span12">
+                    <div class="span6">
+
+                        @{Html.BeginForm("Create", "CommentReply", FormMethod.Post, new { @class = "aFormToValidate" });}
+
+                        <input type="hidden" name="CommentID" id="CommentID" value="@CurrentCommentID" />
+
+                        <input style="height: 35px;" type="text" class="span12" name="Username" id="Username" placeholder="First Name">
+                    </div>
+                    <div class="span6">                    
+                        <textarea class="span12" name="Text" id="Text" placeholder="Leave your reply" rows="5"></textarea>                        
+                    </div>
+                </div>
+            </div>
+            <div class="row-fluid">
+                <div class="span12">
+                    
+                    
+                   
+
+                </div>
+            
+     
+    <!-- Submit buttons -->
+
+    <div class="modal-footer">       
+        <button type="submit" class="btn btn-success" value="Submit">Submit</button>
+    </div>
+    
+    @{ Html.EndForm();}
+</div>

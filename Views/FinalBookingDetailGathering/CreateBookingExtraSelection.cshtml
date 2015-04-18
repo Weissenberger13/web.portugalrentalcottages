@@ -1,0 +1,383 @@
+﻿@model BootstrapVillas.Models.BookingExtraSelection
+@using BootstrapVillas.Models;
+
+
+
+@{
+    ViewBag.Title = "Create";
+    BookingExtraSelection currentBookingExtraSelection = (BookingExtraSelection)Session["CurrentBookingExtraDataGathering"];
+    long? BookingExtraTypeID = currentBookingExtraSelection.GetBookingExtraTypeIDFromBookingExtraSelection();
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm("CreateBookingExtraSelection", "FinalBookingDetailGathering", FormMethod.Post, new { @class = "aFormToValidate" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Please enter your details:</legend>
+
+
+
+
+        <div class="row-fluid">
+            <div class="span7 offset1 whiteBg" style="position: relative;">
+                <div class="row-fluid">
+                    <!-- Page Title -->
+                    <h4><i class="fa fa-fw fa-check"></i></h4>
+                    <br />
+                    <!-- Begin Form -->
+
+                    <div class="row-fluid">
+
+                        @*Car rental*@
+
+                        @if (BookingExtraTypeID == 1)
+                        {
+
+                            //WE SHOULD NEVER GET HERE
+
+
+                        }
+    
+
+
+@*//wine tasting*@
+                        @if (BookingExtraTypeID == 2)
+                        {
+
+                            <div class="row-fluid">
+                                <div class="span12 lightGrey">
+                                    <b>Wine Tasting Tour Details</b>
+
+                                    <!--/row-->
+                                    <div class="row-fluid">
+                                        <div class="span6">
+                                            <label for="FlightArrival">Date Of Tour</label>
+                                            <input type="text" name="ExtraRentalDate" class="span12 date-picker FlightArrival makeValid " />
+                                        </div>
+                                        <!--/span-->
+
+                                        <!--/span-->
+                                    </div>
+                                    <!--/row-->
+                                    <div class="row-fluid">
+                                        <div class="span6">
+                                            <label>Pick Up Location / Address</label>
+                                            @*same ids as other modals *@
+                                            <textarea rows="3" name="PickupLocation" class="makeValid"></textarea>
+                                        </div>
+                                        <!--/span-->
+                                        <div class="span6">
+                                            <label>Drop Off Location / Address</label>
+                                            @*same ids as other modals *@
+                                            <textarea rows="3" name="DropoffLocation" class="makeValid"></textarea>
+                                        </div>
+                                        <!--/span-->
+                                    </div>
+
+                                    <div class="row-fluid">
+                                        <div class="span6">
+                                            <label>Passengers - Adults</label>
+                                            @*same ids as other modals *@
+                                            <select name="NumberOfAdults" class="makeValid">
+                                                @{
+                            for (var i = 1; i < 16; i++)
+                            {
+                                        <option value=@i.ToString()>@i</option>}
+                                                }
+
+                                            </select>
+                                        </div>
+                                        <!--/span-->
+                                        <div class="span6">
+                                            <label>Passengers - Children</label>
+                                            @*same ids as other modals *@
+                                            <select name="NumberOfChildren" class="makeValid">
+                                                @{
+                            for (var i = 0; i < 16; i++)
+                            {
+                                        <option value=@i.ToString()>@i</option>}
+                                                }
+                                            </select>
+                                        </div>
+                                        <!--/span-->
+                                    </div>
+
+
+                                    <div class="row-fluid">
+                                        <div class="span6">
+
+                                            <label>Passengers - Infants</label>
+                                            @*same ids as other modals *@
+                                            <select name="NumberOfInfants" class="makeValid">
+                                                @{
+                            for (var i = 0; i < 16; i++)
+                            {
+                                        <option value=@i.ToString()>@i</option>}
+                                                }
+
+                                            </select>
+
+                                        </div>
+                                        <!--/span-->
+                                        <div class="span6">
+                                            <label>Number of Child seats - £10 per seat</label>
+                                            @*same ids as other modals *@
+                                            <select name="NumberOfChildseats" class="makeValid">
+                                                @{
+                            for (var i = 0; i < 6; i++)
+                            {
+                                        <option value=@i.ToString()>@i</option>}
+                                                }
+
+                                            </select>
+
+                                        </div>
+                                        <!--/span-->
+                                    </div>
+
+                                    <div class="row-fluid">
+                                        <div class="span6">
+                                            <label>Any special requests or comments</label>
+                                            @*same ids as other modals *@
+                                            <textarea rows="5" name="SpecialRequests"></textarea>
+                                        </div>
+                                        <!--/span-->
+
+                                    </div>
+
+                                </div>
+                                <!--/span12-->
+                            </div>
+              
+                           
+                            
+                            <div class="row-fluid">
+                                <input type="submit" class="btn btn-info span12" name="submitBookingExtraPart" value="Submit" />
+                            </div>
+
+
+
+                        }
+
+
+                           
+@*//airport transfer *@
+                        @if (BookingExtraTypeID == 3)
+                        {
+    
+    
+                            <!-- Air Transfer Details -->
+                            <div class="row-fluid">
+                                <div class="span12 lightGrey">
+                                    <b>Airport Transfer Details</b>
+                                    <div class="row-fluid">
+                                        <div class="span6">
+                                            <label for="FlightNumberArrival">Flight Number Arrival</label>
+                                            <input type="text" name="FlightNumberArrival" class="span12 FlightNumberArrival" placeholder="e.g. ABC1234" />
+                                        </div>
+                                        <!--/span-->
+                                        <div class="span6">
+                                            <label for="FlightNumberDeparture">Flight Number Departure</label>
+                                            <input type="text" name="FlightNumberDeparture" class="span12 FlightNumberDeparture" placeholder="e.g. ABC1234" />
+                                        </div>
+                                        <!--/span-->
+                                    </div>
+                                    <!--/row-->
+                                    <div class="row-fluid">
+                                        <div class="span6">
+                                            <label for="FlightArrival">Arrival Date</label>
+                                            <input type="text" name="ExtraRentalDate" class="span12 date-picker FlightArrival" />
+                                        </div>
+                                        <!--/span-->
+                                        <div class="span6">
+                                            <label for="FlightDeparture">Departure Date</label>
+                                            <input type="text" name="ExtraReturnDate" class="span12 date-picker FlightDeparture" />
+                                        </div>
+                                        <!--/span-->
+                                    </div>
+                                    <!--/row-->
+                                    <div class="row-fluid">
+                                        <div class="span6">
+                                            <label for="ArrivalTerminal">Arrival Terminal No.</label>
+                                            <select name="FlightArrivalTerminalNumber" class="span12 date-picker ArrivalTerminal">
+                                                <option>Terminal 1</option>
+                                                <option>Terminal 2</option>
+                                            </select>
+                                        </div>
+                                        <!--/span-->
+                                        <div class="span6">
+                                            <label for="DepartureTerminal">Departure Terminal No.</label>
+                                            <select name="FlightDepartureTeminalNumber" class="span12 date-picker DepartureTerminal">
+                                                <option>Terminal 1</option>
+                                                <option>Terminal 2</option>
+                                            </select>
+                                        </div>
+                                        <!--/span-->
+                                    </div>
+                                    <!--/row-->
+
+                                </div>
+                                <!--/span12-->
+                            </div>
+              
+                            <div class="row-fluid">
+                                <!-- Terms and conditions checkbox -->
+                                <label for="AcceptTC" class="checkbox span12" style="margin-bottom: 0;">
+                                    <span class="icons">
+                                        <span class="first-icon fui-checkbox-unchecked"></span>
+                                        <span class="second-icon fui-checkbox-checked"></span>
+                                    </span>
+                                    <input type="checkbox" data-toggle="checkbox" id="AcceptTC" name="AcceptTC" value="1">
+                                    Accept <a href="#" style="text-decoration: underline;">Terms & Conditions</a>
+                                </label>
+                            </div>
+                            
+                            <div class="row-fluid">
+                                <input type="submit" class="btn btn-info span12" name="submitBookingExtraPart" value="Submit" />
+                            </div>
+    
+    
+                        }
+
+
+@*//van tours*@
+                        @if (BookingExtraTypeID == 4)
+                        {
+
+                            
+                            <div class="row-fluid">
+                                <div class="span12 lightGrey">
+                                    <b>Wine Tasting Tour Details</b>
+
+                                    <!--/row-->
+                                    <div class="row-fluid">
+                                        <div class="span6">
+                                            <label for="FlightArrival">Date Of Tour</label>
+                                            <input type="text" name="ExtraRentalDate" class="span12 date-picker FlightArrival" />
+                                        </div>
+                                        <!--/span-->
+
+                                        <!--/span-->
+                                    </div>
+                                    <!--/row-->
+                                    <div class="row-fluid">
+                                        <div class="span6">
+                                            <label>Pick Up Location / Address</label>
+                                            @*same ids as other modals *@
+                                            <textarea rows="3" name="PickupLocation"></textarea>
+                                        </div>
+                                        <!--/span-->
+                                        <div class="span6">
+                                            <label>Drop Off Location / Address</label>
+                                            @*same ids as other modals *@
+                                            <textarea rows="3" name="DropoffLocation"></textarea>
+                                        </div>
+                                        <!--/span-->
+                                    </div>
+
+                                    <div class="row-fluid">
+                                        <div class="span6">
+                                            <label>Passengers - Adults</label>
+                                            @*same ids as other modals *@
+                                            <select name="NumberOfAdults">
+                                                @{
+                            for (var i = 1; i < 16; i++)
+                            { <option value=@i.ToString()>@i</option>}
+                                                }
+
+                                            </select>
+                                        </div>
+                                        <!--/span-->
+                                        <div class="span6">
+                                            <label>Passengers - Children</label>
+                                            @*same ids as other modals *@
+                                            <select name="NumberOfChildren">
+                                                @{
+                            for (var i = 0; i < 16; i++)
+                            {
+                                                    <option value=@i.ToString()>@i</option>}
+                                                }
+                                            </select>
+                                        </div>
+                                        <!--/span-->
+                                    </div>
+
+
+                                    <div class="row-fluid">
+                                        <div class="span6">
+
+                                            <label>Passengers - Infants</label>
+                                            @*same ids as other modals *@
+                                            <select name="NumberOfInfants">
+                                                @{
+                            for (var i = 0; i < 16; i++)
+                            { <option value=@i.ToString()>@i</option>}
+                                                }
+
+                                            </select>
+
+                                        </div>
+                                        <!--/span-->
+                                        <div class="span6">
+                                            <label>Number of Child seats - £10 per seat</label>
+                                            @*same ids as other modals *@
+                                            <select name="NumberOfChildseats">
+                                                @{
+                            for (var i = 0; i < 6; i++)
+                            { <option value=@i.ToString()>@i</option>}
+                                                }
+
+                                            </select>
+
+                                        </div>
+                                        <!--/span-->
+                                    </div>
+
+                                    <div class="row-fluid">
+                                        <div class="span6">
+                                            <label>Any special requests or comments</label>
+                                            @*same ids as other modals *@
+                                            <textarea rows="5" name="SpecialRequests"></textarea>
+                                        </div>
+                                        <!--/span-->
+
+                                    </div>
+
+                                </div>
+                                <!--/span12-->
+                            </div>
+              
+                           
+                            
+                            <div class="row-fluid">
+                                <input type="submit" class="btn btn-info span12" name="submitBookingExtraPart" value="Submit" />
+                            </div>
+
+
+
+                        }
+
+
+
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </fieldset>
+
+
+}
+
+
+
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+

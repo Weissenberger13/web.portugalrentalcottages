@@ -1,0 +1,237 @@
+﻿@model BootstrapVillas.Models.BookingExtra
+
+@{
+    ViewBag.Title = "Create";
+
+
+    AjaxOptions options = new AjaxOptions
+    {
+        UpdateTargetId = "TopEditorWindow",
+        InsertionMode = InsertionMode.Replace,
+        LoadingElementId = "spinner",
+        OnSuccess ="alert('Created!')",
+        OnFailure ="alert('That didn't work, please try again later!')"
+    };
+
+
+    var ActiveListDDL = new Dictionary<string, string>();
+    ActiveListDDL.Add("true", "true");
+    ActiveListDDL.Add("false", "false");
+
+    
+}
+
+<h2>Create</h2>
+
+@using (Ajax.BeginForm("Create", "BookingExtra", options)) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>BookingExtra</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.isHalfDayTour)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.isHalfDayTour)
+            @Html.ValidationMessageFor(model => model.isHalfDayTour)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.BookingExtraTypeID, "BookingExtraType")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("BookingExtraTypeID", String.Empty)
+            @Html.ValidationMessageFor(model => model.BookingExtraTypeID)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.BookingExtraSubTypeID)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.BookingExtraSubTypeID)
+            @Html.ValidationMessageFor(model => model.BookingExtraSubTypeID)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.LegacyReference)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.LegacyReference)
+            @Html.ValidationMessageFor(model => model.LegacyReference)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Active)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("Active", new SelectList(ActiveListDDL, "Key", "Value"), new { id = "Active", @class = "input-small", @style = "height: auto !important; width:auto;" })
+            @Html.ValidationMessageFor(model => model.Active)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.TopLevelItem)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.TopLevelItem)
+            @Html.ValidationMessageFor(model => model.TopLevelItem)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.MaxPersons)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.MaxPersons)
+            @Html.ValidationMessageFor(model => model.MaxPersons)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.BookingExtraName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.BookingExtraName)
+            @Html.ValidationMessageFor(model => model.BookingExtraName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.BookingExtraDescription)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.BookingExtraDescription)
+            @Html.ValidationMessageFor(model => model.BookingExtraDescription)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.FullSynopsis1)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.FullSynopsis1)
+            @Html.ValidationMessageFor(model => model.FullSynopsis1)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.FullSynopsis2)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.FullSynopsis2)
+            @Html.ValidationMessageFor(model => model.FullSynopsis2)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.FullSynopsis3)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.FullSynopsis3)
+            @Html.ValidationMessageFor(model => model.FullSynopsis3)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.HTMLContent)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.HTMLContent)
+            @Html.ValidationMessageFor(model => model.HTMLContent)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PriceSynopsis)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PriceSynopsis)
+            @Html.ValidationMessageFor(model => model.PriceSynopsis)
+        </div>
+@*
+        <div class="editor-label">
+            @Html.LabelFor(model => model.WhenCreated)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.WhenCreated)
+            @Html.ValidationMessageFor(model => model.WhenCreated)
+        </div>*@
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Price)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Price)
+            @Html.ValidationMessageFor(model => model.Price)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PriceTimespan)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PriceTimespan)
+            @Html.ValidationMessageFor(model => model.PriceTimespan)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PriceSymbol)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PriceSymbol)
+            @Html.ValidationMessageFor(model => model.PriceSymbol)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.LowSeasonPrice)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.LowSeasonPrice)
+            @Html.ValidationMessageFor(model => model.LowSeasonPrice)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.MidSeasonPrice)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.MidSeasonPrice)
+            @Html.ValidationMessageFor(model => model.MidSeasonPrice)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.HighSeasonPrice)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.HighSeasonPrice)
+            @Html.ValidationMessageFor(model => model.HighSeasonPrice)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PeakSeasonPrice)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PeakSeasonPrice)
+            @Html.ValidationMessageFor(model => model.PeakSeasonPrice)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.CarSeatPrice)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.CarSeatPrice)
+            @Html.ValidationMessageFor(model => model.CarSeatPrice)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ExtraLuggageCostPerPiece)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ExtraLuggageCostPerPiece)
+            @Html.ValidationMessageFor(model => model.ExtraLuggageCostPerPiece)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.DetourCost)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.DetourCost)
+            @Html.ValidationMessageFor(model => model.DetourCost)
+        </div>
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}

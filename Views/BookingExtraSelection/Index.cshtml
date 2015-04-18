@@ -1,0 +1,259 @@
+﻿@model IEnumerable<BootstrapVillas.Models.BookingExtraSelection>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table id="example" class="display" cellspacing="0" width="100%">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ExtraRentalDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ExtraReturnDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BookingExtra.LegacyReference)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BookingParentContainer.OverallBookingReference)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.WhenCreated)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Test)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Customer.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NumberOfDays)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cancelled)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Confirmed)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BookingExtraPRCReference)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NumberOfAdults)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NumberOfGuests)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NumberOfChildren)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NumberOfInfants)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.NumberOfChildseats)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PassportNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DrivingLicenceNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DrivingLicenceNumber2)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PickupLocation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DropoffLocation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FlightArrivalTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FlightDepartureTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FlightArrivalTerminalNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FlightDepartureTeminalNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Detours)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PiecesOfLuggage)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BESSpecialRequests)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FlightNumberArrival)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FlightNumberDeparture)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AcceptTC)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BESPrice)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BESCurrencyConversionPrice)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BESCurrencyConversionSymbol)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AirportDestination.AirportPickupLocationName)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ExtraRentalDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ExtraReturnDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BookingExtra.LegacyReference)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BookingParentContainer.OverallBookingReference)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.WhenCreated)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Test)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Customer.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NumberOfDays)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cancelled)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Confirmed)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BookingExtraPRCReference)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NumberOfAdults)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NumberOfGuests)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NumberOfChildren)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NumberOfInfants)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.WhenCreated)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NumberOfChildseats)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PassportNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DrivingLicenceNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DrivingLicenceNumber2)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PickupLocation)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DropoffLocation)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FlightArrivalTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FlightDepartureTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FlightArrivalTerminalNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FlightDepartureTeminalNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Detours)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PiecesOfLuggage)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BESSpecialRequests)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FlightNumberArrival)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FlightNumberDeparture)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AcceptTC)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BESPrice)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BESCurrencyConversionPrice)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BESCurrencyConversionSymbol)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AirportDestination.AirportPickupLocationName)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.BookingExtraSelectionID }) |
+
+                    @Html.ActionLink("Delete", "Delete", new { id = item.BookingExtraSelectionID })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+
+            $('#example').DataTable();
+            $('#BottomEditorWindow').hide();
+            $('#TopEditorWindow').animate({ height: '100%' }, 500);
+
+
+    
+    });
+</script>
+

@@ -1,0 +1,431 @@
+﻿@using BootstrapVillas.Models;
+@using BootstrapVillas.Content.Classes;
+@using PagedList.Mvc;
+@using PagedList;
+@model Property
+
+
+
+@{
+    ViewBag.Title = "Property Results";
+
+
+    var count = 0;
+
+}
+
+
+@{
+
+
+    IPagedList<Property> matchingProperties = ViewBag.MatchingProperties;
+    var ServerPath = (DirectoryInfo)Session["ServerPath"];
+
+    //what is the point of this? Find out or kill it
+    List<Property> matchingPropertiesUnderCertainPrice = new List<Property>();
+
+
+    foreach (Property prop in matchingProperties)
+    {
+
+
+        if (prop.PriceRange != null)
+        {
+            if (prop.PriceRange.MaxPrice > 700)
+            {
+                matchingPropertiesUnderCertainPrice.Add(prop);
+            }
+        }
+
+    }
+
+
+    //held over variables from last request
+
+    var propertyResultsSort = "";
+    var propertyResultsAmount = 100;
+
+    if (ViewBag.propertyResultsSort != null)
+    { propertyResultsSort = ViewBag.propertyResultsSort; }
+    if (ViewBag.propertyResultsAmount != null)
+    {
+        propertyResultsAmount = (int)ViewBag.propertyResultsAmount;
+    }
+
+    //DDLS
+    //get all ddl we need to create
+    var sortAmountDLL = new Dictionary<int, int>();
+    sortAmountDLL.Add(10, 10);
+    sortAmountDLL.Add(25, 25);
+    sortAmountDLL.Add(50, 50);
+    sortAmountDLL.Add(100, 100);
+
+
+
+
+    //create selectLists
+    var sortOptions = new Dictionary<string, string>();
+    sortOptions.Add("", "No sort");
+    sortOptions.Add("HL", "Price: High to Low");
+    sortOptions.Add("LH", "Price: Low to High");
+    sortOptions.Add("Bedrooms", "Bedrooms");
+    sortOptions.Add("SwimmingPool", "Pool Type");
+    sortOptions.Add("PropertyTown", "Property Town");
+    sortOptions.Add("PropertyName", "Property Name");
+
+}
+
+
+@*
+    //////////////////////////
+    //////////////////////////
+    BEGIN RESULTS LOOP
+    //////////////////////////
+    //////////////////////////
+*@
+<div id="propertyResultsContainer">
+
+    <div class="row-fluid">
+        <div class="span7 offset1">
+            <ul class="breadcrumb">
+                <li><a href="~/Home">Home</a><span class="divider">/</span></li>
+                <li class="active"><a href="~/Home/SearchProperties">Properties</a></li>
+            </ul>
+        </div>
+        <div class="span3">
+            <a href="#" onclick="history.go(-1);return false;">
+                <div class="pull-right"><i class="fa fa-fw fa-undo"></i>Back to Last Page</div>
+            </a>
+        </div>
+    </div>
+
+    <div class="row-fluid">
+        <div class="span7 offset1 whiteBg">
+            <div class="row-fluid" style="margin-bottom: 20px;">
+                <div class="span12 lightGrey">
+                    <div class="span4">
+                        <h4>Results: <span class="badge badge-info">@matchingProperties.Count</span></h4>
+                    </div>
+                    <form class="form-inline filters span8" style="font-size: 10px">
+                        <div class="pull-right" style="margin-left:10px;">
+                            <label class="control-label">
+                                <small>Sort:</small>
+                            </label>
+                            @* <select id="propertyResultsSort" name="propertyResultsSort" class="input-small propertyResultsSort" style="height: auto !important; width:auto;">
+                                    <option value="StarRating">Average Rating</option>
+                                    <option value="HL">Price: High to Low</option>
+                                    <option value="LH">Price: Low to High</option>
+                                    <option value="Bedrooms">Bedrooms</option>
+                                    <option value="SwimmingPool">Pool Type</option>
+                                    <option value="PropertyTown">Property Type</option>
+                                    <option value="PropertyName">Property Name</option>
+                                </select>*@
+
+                            @Html.DropDownList("propertyResultsSort", new SelectList(sortOptions, "Key", "Value", propertyResultsSort), new { id = "propertyResultsSort", @class = "propertyResultsSort input-small", @style = "height: auto !important; width:auto;" })
+
+                        </div>
+                        <div class="pull-right">
+                            <label class="control-label">
+                                <small>Show:</small>
+                            </label>
+                            @*
+
+                                <select id="propertyResultsAmount" name="propertyResultsAmount" class="input-small propertyResultsSort" style="height: auto !important; width:auto;">
+                                    <option>10</option>
+                                    <option>20</option>
+                                    <option>30</option>
+                                    <option>50</option>
+                                    <option>100</option>
+                                </select>*@
+
+                            @Html.DropDownList("propertyResultsAmount", new SelectList(sortAmountDLL, "Key", "Value", Convert.ToInt32(propertyResultsAmount)), new { id = "propertyResultsAmount", @class = "propertyResultsSort input-small", @style = "height: auto !important; width:auto;" })
+                        </div>
+
+
+                        @*Price Selection using JQuery*@
+                        <div class="pull-right">
+                            <small>Currency:</small>
+
+                            <select id="currencyConverter">
+                                <option value="GBP" class="toTranslate">UK Pound £</option>
+                                <option value="EUR" class="toTranslate">Euro €</option>
+                                <option value="USD" class="toTranslate">U.S. Dollar $</option>
+                                <option value="CAD" class="toTranslate">Canadian Dollar $</option>
+                                <option value="JPY" class="toTranslate">Japanese Yen ¥ </option>
+
+                            </select>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+
+            <!-----end property display amount ---->
+            @* BEGIN PROPERTY RESULTS LOOP*@
+
+
+            @{ int propCount = 0;}
+            @foreach (var matchingProperty in matchingProperties)
+            {
+                //create a price range to display min price
+                PriceRange villaPriceRange = Property.GetPriceRangeForProperty(matchingProperty);
+
+                <div class="row-fluid propertyResult" style="padding: 20px 0 20px 0;">
+
+                    <div class="thumbnails span3">
+                        <div class="thumbnail">
+                            <a href="~/Home/FullPropertyResult?propertyID=@matchingProperty.PropertyID.ToString()">
+                                
+                                @{
+             
+                //string imgRef = @"/PropertyImages/" + matchingProperty.LegacyReference + "/featured/featured.jpg";
+                //var theImageURL = PRCImageCollection.GetRandomImageURLForProperty(matchingProperty, ServerPath);
+                //var featuredPath = Server.FullName + "PropertyImages\\" + matchingProperty.LegacyReference + "\\featured\\featured.jpg";
+
+                //if (File.Exists(featuredPath))
+                //{
+                //    theImageURL = featuredPath;
+                //}
+                                    
+                                }
+                                <img src=@PRCImageCollection.IfFeaturedExistsReturnURLElseReturnRandomImage(matchingProperty, ServerPath)>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="propertyDetails span7">
+                        <span class="propertyTitle">
+                            @if (matchingProperty.PropertyName != null)
+                            {@Html.ActionLink(matchingProperty.PropertyName, "FullPropertyResult", "Home", new { propertyID = matchingProperty.PropertyID.ToString() }, null)}
+                        </span>
+                        <br />
+
+                        @*TOO MANY DB CALLS!!!!!!*@
+                        <span class="propertyPlace">
+                            @{
+                if (matchingProperty.PropertyTown.PropertyTownID != null)
+                {
+                    @matchingProperty.PropertyTown.TownName;
+                }
+                            }
+                            -
+                            @{
+                if (matchingProperty.PropertyTown.PropertyRegion.PropertyRegionID != null)
+                {
+                    @matchingProperty.PropertyTown.PropertyRegion.RegionName;
+                }
+                            }
+                        </span><!-- propertyLocation end -->
+                        <span class="propertyRef">Reference: <strong>@Html.ActionLink(matchingProperty.LegacyReference, "FullPropertyResult", "Home", new { propertyID = matchingProperty.PropertyID.ToString() }, null)</strong></span>
+
+                        <div class="propertyDescription">
+                            <div class="dot1 box toTranslate">
+                                @Html.Raw(matchingProperty.FullDescription)
+                            </div>
+                        </div>
+
+                        <!-- propertyDescription end -->
+                        <div class="propertyFeatures">
+                            <small class="sleeps label">Sleeps: <strong>@matchingProperty.MaxGuests</strong></small>
+                            <small class="bedrooms label">Bedrooms: <strong>@matchingProperty.Bedrooms</strong></small>
+                            <small class="bathrooms label">Bathrooms: <strong>@matchingProperty.Bathrooms</strong></small>
+                            <small class="pool label">Pool: <strong>@matchingProperty.SwimmingPoolType</strong></small>
+                            <small class="pool label">Internet: <strong>@matchingProperty.InternetAccess</strong></small>
+                        </div>
+                        <!-- propertyFeatures end -->
+                    </div>
+                    <!-- propertyDetails end -->
+
+                    <div class="span2">
+                        <span class="price">
+                            <span class="SubPriceText">
+
+                                From
+                                <b class="price">
+                                    @Session["defaultCurrencySymbol"]
+
+                                    <css-decorator id="originalCurrency@{@count}" class="priceTest">
+                                        @{if (villaPriceRange.MinPrice.HasValue)
+                                        {
+                                            decimal temp = (decimal)villaPriceRange.MinPrice;@Decimal.Round(temp).ToString();
+                                        }}
+                                    </css-decorator>
+                                </b>
+                                <b id="convertedCurrency@{@count}"></b>
+                                @{ count++;}
+
+                            </span>
+                            <br />
+                            <span>Wk</span>
+                        </span>
+                        <br />
+
+                        <a id="pop9" class="btn btn-small btn-info btn-block" data-toggle="popover" href="~/Home/FullPropertyResult?propertyID=@matchingProperty.PropertyID" rel="popover" data-original-title="Full Details">
+                            <i class="fa fa-fw fa-eye"></i>View
+                        </a>
+
+                        @{ string hiddenPropID = "hiddenPropertyID_" + @propCount;}
+                        <input type="hidden" id="hiddenTarget" />
+                        <input type="hidden" id=@hiddenPropID>
+
+                        @{ string buttonID = "propertyButton_" + @matchingProperty.PropertyID;}
+                        <a data-toggle="modal" href="#myModal" onclick="$('#hiddenPropertyForm'+@matchingProperty.PropertyID).submit(); return false;" id="@buttonID" class="btn btn-small btn-success btn-block propertySelectBtn" style="margin-top: 10px;">
+                        <i class="fa fa-fw fa-shopping-cart"></i>Add to Cart</a>
+
+                        @using (Ajax.BeginForm("AddPropertyIDToSessionAsCurrentProperty", "Home", FormMethod.Post, new AjaxOptions
+                    {
+                        HttpMethod = "POST",
+                        InsertionMode = InsertionMode.Replace,
+                        UpdateTargetId = "hiddenTarget"
+                    }, new { @id = "hiddenPropertyForm" + @matchingProperty.PropertyID }))
+                        {
+                            <input type="hidden" name="PropertyID" value="@matchingProperty.PropertyID" />
+                        }
+
+
+
+
+                        @* <div class="propertyPrice">
+                                        <span class="price">From: £@{
+                            if (villaPriceRange.MinPrice.HasValue)
+                            {
+                                decimal temp = (decimal)villaPriceRange.MinPrice;
+                                            @Decimal.Round(temp).ToString();
+
+                            }
+                                        }/night</span>
+                                    </div>*@
+
+                        @* <div class="propertyPrice">
+                                        <span class="price">To: £@{
+                            if (villaPriceRange.MaxPrice.HasValue)
+                            {
+                                decimal temp = (decimal)villaPriceRange.MaxPrice;
+
+                                            @Decimal.Round(temp).ToString();
+
+                            }
+                                        }/night</span>
+                                    </div>*@
+                    </div>
+                </div>
+            <!-- propertyResult end -->
+            }
+
+
+            <div class="row-fluid">
+                <div class="span12">
+                    <div class="pagination pagination-centered">
+                        @Html.PagedListPager((IPagedList)ViewBag.MatchingProperties, page => Url.Action("SearchPropertiesPager", new { page }))
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+        <div class="span3">
+
+            @{  Html.RenderPartial("checkoutPartialView");
+
+            }
+
+            @{ Html.RenderPartial("SideBookingFormPartialView");
+            }
+
+        </div>
+    </div>
+    <!-- Property container -->
+    @*To handle change of variables - post into browser*@
+
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.dot1').dotdotdot({
+                /* The HTML to add as ellipsis. */
+                ellipsis: '...',
+                /* How to cut off the text/html: 'word'/'letter'/'children' */
+                wrap: 'word',
+                /* Wrap-option fallback to 'letter' for long words */
+                fallbackToLetter: true,
+                watch: "true"
+            });
+        });
+
+
+
+    </script>
+
+
+
+
+
+    <script type="text/javascript">
+        $('.propertyResultsSort').on('change', function () {
+            //delete existing
+            //      $('#extraContent').empty();
+            //get all vars
+
+
+
+            var propertyResultsSort = $("#propertyResultsSort").val();
+            var propertyResultsAmount = $("#propertyResultsAmount").val();
+
+
+
+            //request
+            $.ajax({
+                url: '@Url.Action("SortProperties", "Home")',
+                data: { "propertyResultsSort": propertyResultsSort, "propertyResultsAmount": propertyResultsAmount },
+                type: "POST",
+                success: function (result) {
+                    $('#propertyResultsContainer').empty();
+                    $('#propertyResultsContainer').html(result);
+                },
+                error: function () { alert('Sorry that selection did not work please try again'); }
+            });
+
+        });
+    </script>
+
+
+    <script type="text/javascript">
+        /* Pricing Slider Begins */
+        $(document).ready(function () {
+            $(window).load(function () {
+                $(function () {
+                    $("#slider-range").slider({
+                        range: true,
+                        min: 1,
+                        max: 2000,
+                        values: [1, 2000],
+                        slide: function (event, ui) {
+                            $("#amount").val("£" + ui.values[0] + " - £" + ui.values[1]);
+                        }
+                    });
+                    $("#amount").val("£" + $("#slider-range").slider("values", 0) +
+                        " - £" + $("#slider-range").slider("values", 1));
+                });
+            });
+        });
+
+        /* Side Search panel Slider for price */
+        $(function () {
+            $("#slider-range2").slider({
+                range: true,
+                min: 1,
+                max: 2000,
+                values: [1, 2000],
+                slide: function (event, ui) {
+                    $("#amount2").val("£" + ui.values[0] + " - £" + ui.values[1]);
+                }
+            });
+            $("#amount2").val("£" + $("#slider-range2").slider("values", 0) +
+				" - £" + $("#slider-range2").slider("values", 1));
+        });
+
+
+
+    </script>
+
+
+</div>

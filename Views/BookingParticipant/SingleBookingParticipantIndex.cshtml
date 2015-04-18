@@ -1,0 +1,112 @@
+﻿@model IEnumerable<BootstrapVillas.Models.BookingParticipant>
+
+
+@{
+    ViewBag.Title = "SingleBookingParticipantIndex";
+    
+    
+}
+
+@{
+
+
+    AjaxOptions options = new AjaxOptions
+    {
+        UpdateTargetId = "BottomEditorWindow",
+        InsertionMode = InsertionMode.Replace,
+        LoadingElementId = "spinner"
+    };
+
+    AjaxOptions deleteOptions = new AjaxOptions
+    {
+        UpdateTargetId = "BottomEditorWindow",
+        InsertionMode = InsertionMode.Replace,
+        LoadingElementId = "spinner",
+        Confirm = "Are you sure you want to delete this?"
+    };
+    
+     
+
+}
+
+<h2> @Model.Count() People</h2>
+<p>
+    @*Create*@
+    @Ajax.ActionLink("Create New", "Create", "BookingParticipant", options, new { id = "createButton", style = "" })
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Booking.BookingPRCReference)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BookingParticipantTitle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BookingParticipantFirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BookingParticipantMiddleName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BookingParticipantLastName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BookingParticipantDOB)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BookingParticipantChild)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BookingParticipantInfant)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BookingParticipantAge)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BookingParticipantWhenCreated)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Booking.BookingPRCReference)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BookingParticipantTitle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BookingParticipantFirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BookingParticipantMiddleName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BookingParticipantLastName)
+            </td>
+            <td>
+                <input type="text" id="BookingParticipantDOB" name="BookingParticipantDOB" value=@Convert.ToDateTime(item.BookingParticipantDOB).ToString("dd/MM/yyyy").Substring(0,10) />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BookingParticipantChild)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BookingParticipantInfant)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BookingParticipantAge)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BookingParticipantWhenCreated)
+            </td>
+            <td>
+                @Ajax.ActionLink("Edit", "Edit", "BookingParticipant", new { id = item.BookingParticipantID }, options) |
+                @Ajax.ActionLink("Delete", "Delete", "BookingParticipant", new { id = item.BookingParticipantID }, deleteOptions)
+            </td>
+        </tr>
+    }
+
+</table>

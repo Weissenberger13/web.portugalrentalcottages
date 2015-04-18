@@ -1,0 +1,155 @@
+﻿@model IEnumerable<BootstrapVillas.Models.PropertyOwner>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table id="example" class="display" cellspacing="0" width="100%">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.PropertyOwnerEmailAddress)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PropertyOwnerEmailAddress2)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PropertyOwnerEmailAddress3)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OwnerFirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OwnerLastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PropertyOwnerHouseName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PropertyOwnerHouseNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PropertyOwnerAddressLine1)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PropertyOwnerAddressLine2)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PropertyOwnerTown)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PropertyOwnerPostcode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PropertyOwnerCounty)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PropertyOwnerCountry)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PropertyOwnerHomeTelephone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PropertyOwnerMobileTelephone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.WhenCreated)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PropertyOwnerNotes)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PropertyOwnerBankDetails)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PropertyOwnerBankDetailsNotes)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PropertyOwnerEmailAddress)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PropertyOwnerEmailAddress2)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PropertyOwnerEmailAddress3)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OwnerFirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OwnerLastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PropertyOwnerHouseName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PropertyOwnerHouseNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PropertyOwnerAddressLine1)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PropertyOwnerAddressLine2)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PropertyOwnerTown)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PropertyOwnerPostcode)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PropertyOwnerCounty)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PropertyOwnerCountry)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PropertyOwnerHomeTelephone)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PropertyOwnerMobileTelephone)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.WhenCreated)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PropertyOwnerNotes)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PropertyOwnerBankDetails)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PropertyOwnerBankDetailsNotes)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.PropertyOwnerID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.PropertyOwnerID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.PropertyOwnerID })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#example').DataTable();
+        $('#BottomEditorWindow').hide();
+        $('#TopEditorWindow').animate({ height: '100%' }, 500);
+
+
+
+    });
+</script>

@@ -1,0 +1,43 @@
+﻿@model BootstrapVillas.Models.EventType
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>EventType</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.EventTypeName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.EventTypeName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.EvenTypeDescription)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.EvenTypeDescription)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.EventSubType.EventSubTypeName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.EventSubType.EventSubTypeName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.EventSchemeType.EventSchemeTypeName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.EventSchemeType.EventSchemeTypeName)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.EventTypeID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

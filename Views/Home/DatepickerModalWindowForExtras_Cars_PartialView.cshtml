@@ -1,0 +1,110 @@
+﻿@model BootstrapVillas.Models.BookingExtraSelection
+@using BootstrapVillas.Models
+
+
+@{
+    ViewBag.Title = "Car Extra Modal Window";
+
+    //if there's a booking, want to set dates to that booking
+    Booking booking = (Booking)ViewData["booking"];
+    var instanceExtraCharges = (List<PropertyTypeServicesChargeInstance>)ViewData["extraServiceCharges"];
+
+}
+
+
+
+<!-- Modal -->
+<div id="carModal" class="modal hide fade modalBookingIDJquery" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-header">
+
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+
+        <h3 id="myModalLabel"><i class="fa fa-fw fa-road"></i><css-decorator class="toTranslate">Book your Car</css-decorator></h3>
+    </div>
+    <div class="modal-body">
+        <div class="modal-form">
+
+            @{Html.BeginForm("AddExtraFormBookingToSession", "PropertyView", FormMethod.Post, new { @class = "", @name = "carForm", @id = "carForm" });}
+
+            <input type="hidden" id="BookingExtraID" class="BookingExtraID_ToPost" name="BookingExtraID" value="" />
+
+            <div class="row-fluid" style="margin-bottom: 20px;">
+                <div class="span12">
+                    <div class="span6">
+                        <label><i class="fa fa-fw fa-calendar"></i><css-decorator class="toTranslate">Start Date</css-decorator></label>
+                        <input style="height: 35px;" type="text" class="date-picker span12" name="ExtraRentalDate" placeholder="dd/mm/yyyy" required value="@{if (booking != null){@Convert.ToDateTime(booking.StartDate).ToString("dd/MM/yyyy");}}">
+                    </div>
+                    <div class="span6">
+                        <label><i class="fa fa-fw fa-calendar"></i><css-decorator class="toTranslate">End Date</css-decorator></label>
+                        <input style="height: 35px;" type="text" class="date-picker span12" name="ExtraReturnDate" placeholder="dd/mm/yyyy" required value="@{if (booking != null){@Convert.ToDateTime(booking.EndDate).ToString("dd/MM/yyyy");}}">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row-fluid" style="margin-bottom: 20px;">
+                <div class="span12">
+                    <div class="span6">
+                        <label>Pick Up Location / Address</label>
+                        <textarea rows="3" name="PickupLocation" id="PickupLocation">AutoJulio Office- Rua General Amilcar Mota nº 43, Pólo de São Cristóvão - 2500-209 Caldas da Rainha - Portugal
+                        </textarea>
+                    </div>
+                   
+                    <div class="span6">
+                        <label>Drop Off Location / Address</label>
+                        <textarea rows="3" name="DropoffLocation" id="DropoffLocation">AutoJulio Office- Rua General Amilcar Mota nº 43, Pólo de São Cristóvão - 2500-209 Caldas da Rainha - Portugal
+                        </textarea>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row-fluid" style="margin-top:20px;">
+                <div class="span12">
+                    <b>Optional extra(s):</b>
+                    <br />
+                    <!-- checkbox 1 -->
+                    <label><css-decorator class="toTranslate">Number of Child seats*</css-decorator></label>
+
+                    <select name="NumberOfChildseats">
+                        @{
+                            for (var i = 0; i < 6; i++)
+                            {
+                                <option value=@i.ToString()>@i</option>}
+                        }
+
+                    </select>
+                    <br />
+                    <strong><css-decorator class="toTranslate">Child Seats @@GB£@instanceExtraCharges.Where(x => x.PropertyTypeServicesID.Equals(12)).FirstOrDefault().ServicePriceGBP.ToString() per seat per day</css-decorator></strong>
+                    <br />
+                    <br />
+                </div>
+            </div>
+
+            <div class="row-fluid">
+                <div class="span12">
+                    <label><css-decorator class="toTranslate">Any special requests or comments</css-decorator></label>
+                    <textarea rows="3" class="span12" name="SpecialRequests" placeholder="Additional requests & queries"></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-footer">
+        <button class="btn" data-dismiss="modal" aria-hidden="true"><css-decorator class="toTranslate">Close</css-decorator></button>
+        <button type="submit" class="btn btn-info submit" value="Confirm"><css-decorator class="toTranslate">Confirm</css-decorator></button>
+    </div>
+    @{Html.EndForm();}
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+

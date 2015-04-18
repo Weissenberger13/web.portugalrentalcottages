@@ -1,0 +1,67 @@
+﻿@model BootstrapVillas.Models.PropertyOwnerRepresentative
+
+@{
+    ViewBag.Title = "Create";
+    AjaxOptions options = new AjaxOptions
+    {
+        UpdateTargetId = "TopEditorWindow",
+        InsertionMode = InsertionMode.Replace,
+        LoadingElementId = "spinner",
+        OnSuccess = "alert('Created')"
+    };
+
+}
+
+<h2>Create</h2>
+
+@using (Ajax.BeginForm("Edit", "PropertyOwnerRepresentative", options))
+{ 
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>PropertyOwnerRepresentative</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PropertyOwnerRepresentativeName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PropertyOwnerRepresentativeName)
+            @Html.ValidationMessageFor(model => model.PropertyOwnerRepresentativeName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PropertyOwnerRepresentativeContactNumberLandline)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PropertyOwnerRepresentativeContactNumberLandline)
+            @Html.ValidationMessageFor(model => model.PropertyOwnerRepresentativeContactNumberLandline)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PropertyOwnerRepresentativeContactNumberMobile)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PropertyOwnerRepresentativeContactNumberMobile)
+            @Html.ValidationMessageFor(model => model.PropertyOwnerRepresentativeContactNumberMobile)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PropertyOwnerRepresentativeContactEmail)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PropertyOwnerRepresentativeContactEmail)
+            @Html.ValidationMessageFor(model => model.PropertyOwnerRepresentativeContactEmail)
+        </div>
+
+ 
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

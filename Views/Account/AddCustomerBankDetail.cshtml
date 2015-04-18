@@ -1,0 +1,73 @@
+﻿@using BootstrapVillas.Models
+@model BootstrapVillas.Models.CustomerBankDetail
+
+
+@{
+    ViewBag.Title = "AddCustomerBankDetail";
+  
+}
+
+@using (Html.BeginForm("AddCustomerBankDetail", "Account", FormMethod.Post, new { @class = "aFormToValidate" }))
+{
+    
+
+    <div class="row-fluid padded">
+        <div class="span10 offset1 whiteBg" style="position: relative;">
+            <div class="row-fluid">
+                <!-- Page Title -->
+                <h4><i class="fa fa-fw fa-check"></i>You appear to have no banking details on file - Add your banking details:</h4>
+                <br />
+                <!-- Begin Form -->
+
+                <div class="row-fluid">
+                    <div class="span12">
+                        <label for="Account">Name on account</label>
+                        <input type="text" name="NameOnAccount" id="NameOnAccount" class="span12 Account makeValid" placeholder="e.g. Mr James Taylor">
+                    </div>
+
+                    <div class="row-fluid">
+                        <div class="span8">
+                            <label for="Account">Account No. (UK & Ireland)</label>
+                            <input type="text" name="Account" id="Account" class="span12 Account makeValid" placeholder="e.g. 31926819">
+                        </div>
+                        <!--/span-->
+                        <div class="span4">
+                            <label for="sortCode">Sort Code (UK & Ireland)</label>
+                            <input type="text" name="SortCode" id="SortCode" class="span12 sortCode" placeholder="e.g. 601613">
+                        </div>
+                    </div>
+                    <div class="row-fluid">
+                        <div class="span12">
+                            <label for="IBAN">IBAN (International)</label>
+                            <input type="text" name="IBAN" id="IBAN" class="span12 IBAN" placeholder="e.g. GB12NWBK01234567891234">
+                        </div>
+                        <!--/span-->
+                    </div>
+                    <div class="row-fluid">
+                        <div class="span6">
+                            <label for="SWIFT">SWIFT / BIC</label>
+                            <input type="text" name="SwiftCode_BIC" id="SwiftCode_BIC" class="span12 SWIFT">
+                        </div>
+                        <div class="span6">
+                            <label for="BankName">Bank Name</label>
+                            <input type="text" name="BankName" id="BankName" class="span12 makeValid">
+                        </div>
+                    </div>
+                    <div class="row-fluid">
+                        <div class="span6">
+                            <label for="BankName">Bank Address Line 1</label>
+                            <input type="text" name="BankAddressLine1" id="BankAddressLine1" class="span12">
+                        </div>
+                        <div class="span6">
+                            <label for="BankName">Bank Address Line 2</label>
+                            <input type="text" name="BankAddressLine2" id="BankAddressLine2" class="span12">
+                        </div>
+                    </div>
+
+                    <input type="submit" class="btn btn-info" value="Update" />
+                </div>
+            </div>
+        </div>
+    </div>
+}
+

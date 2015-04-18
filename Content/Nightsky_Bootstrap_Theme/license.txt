@@ -1,0 +1,10 @@
+This single license entitles you to use the theme on a single domain, website or application. 
+
+Here's the official details: 
+
+(1) This theme is restricted to a single installation (i.e. a single domain). 
+(2) It may be used for your own purposesor a client. 
+(3) You cannot include it in a project which is created for redistribution or resale by you or your client. 
+(4) It may not be redistributed or resold. 
+(5) If this theme contains licensed components, those components must only be used within the item and you must not extract and use them on a stand-alone basis. 
+(6) If it was created using materials which are the subject of a GNU General Public License (GPL), your use of Night Sky Admin theme (or bonus themes) are subject to the terms of the GPL in place of the foregoing conditions (to the extent the GPL applies).

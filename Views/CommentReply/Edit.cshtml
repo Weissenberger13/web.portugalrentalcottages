@@ -1,0 +1,62 @@
+﻿@model BootstrapVillas.Models.CommentReply
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>CommentReply</legend>
+
+        @Html.HiddenFor(model => model.CommentReplyID)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.CommentID, "Comment")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("CommentID", String.Empty)
+            @Html.ValidationMessageFor(model => model.CommentID)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Username)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Username)
+            @Html.ValidationMessageFor(model => model.Username)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Text)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Text)
+            @Html.ValidationMessageFor(model => model.Text)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Approved)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Approved)
+            @Html.ValidationMessageFor(model => model.Approved)
+        </div>
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

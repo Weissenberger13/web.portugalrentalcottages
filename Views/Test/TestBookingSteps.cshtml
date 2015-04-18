@@ -1,0 +1,197 @@
+﻿@using System.Web.UI.WebControls
+@using BootstrapVillas.Models
+@model BootstrapVillas.Models.ViewModels.FinalBookingDetailViewModel
+@{
+    ViewBag.Title = "Get Booking Details";
+    /*  Booking booking = ViewBag.aBooking;
+      Customer customer = ViewBag.aCustomer;
+      CustomerBankDetail bank = ViewBag.BankDetail;
+      BookingExtraSelection bes = ViewBag.aBes;
+  */
+
+    int dynamicStepsTop = 3; //starts at 3
+    int dynamicStepsBottom = 3;
+    int latestBookingParticipant = 0;
+        
+    ViewBag.BookingIterator = 1;
+    ViewBag.BESIterator = 1;
+
+  
+    
+}
+
+
+@{ Html.BeginForm("TestBookingSteps", "Test", FormMethod.Post, new { id = "commentForm" }); }
+
+<input type="text" id="FirstName" minlength="2" required />
+<input type="submit"/>
+
+@{Html.EndForm();}
+
+<h2 id="test-element">Please confirm your booking details:</h2>
+
+
+@{ Html.BeginForm("TestBookingSteps", "Test", FormMethod.Post, new { id = "form1" }); }
+
+<h2>Example: Basic Wizard</h2>
+<div class="row-fluid">
+    <div id="wizard" class="swMain">
+        <ul>
+            <li>
+                <a href="#step-1">
+                    <label class="stepNumber">1</label>
+                    <span class="stepDesc">
+                        Step 1<br />
+                        <small>Customer</small>
+                    </span>
+                </a>
+            </li>
+            <li>
+                <a href="#step-2">
+                    <label class="stepNumber">2</label>
+                    <span class="stepDesc">
+                        Step 2<br />
+                        <small>Payment Details</small>
+                    </span>
+                </a>
+            </li>
+
+
+            @foreach (var booking in Model.Bookings)
+            {
+                <li>
+                    <a href="#step-@dynamicStepsTop">
+                        <label class="stepNumber">@dynamicStepsTop</label>
+                        <span class="stepDesc">
+                            Step @dynamicStepsTop<br />
+                            <small>Booking @booking.Property.LegacyReference</small>
+                        </span>
+                    </a>
+                </li>
+
+        
+                dynamicStepsTop++;
+
+
+                <li>
+                    <a href="#step-@dynamicStepsTop">
+                        <label class="stepNumber">@dynamicStepsTop</label>
+                        <span class="stepDesc">
+                            Step @dynamicStepsTop<br />
+                            <small>Add participants @booking.Property.LegacyReference</small>
+                        </span>
+                    </a>
+                </li>
+
+                
+                dynamicStepsTop++;
+            }
+
+
+
+
+    @foreach (var bes in Model.BookingExtraSelections)
+    {
+        <li>
+            <a href="#step-@dynamicStepsTop">
+                <label class="stepNumber">@dynamicStepsTop</label>
+                <span class="stepDesc">
+                    Step @dynamicStepsTop<br />
+                    <small>Booking Extra @bes.BookingExtra.LegacyReference</small>
+                </span>
+            </a>
+        </li>
+
+        dynamicStepsTop++;
+    }
+
+
+
+        </ul>
+
+        @*ACTUAL CONTENT AREAS*@
+
+        <div id="step-1">
+            <h2 class="StepTitle">Customer</h2>
+          @*  @Html.Partial("~/Views/BookingProcessPartialViews/AddCustomerPartial.cshtml", Model.Customer)*@
+        </div>
+        <div id="step-2">
+            <h2 class="StepTitle">Customer Banking Detail</h2>
+            @*@Html.Partial("~/Views/BookingProcessPartialViews/AddCustomerBankDetailPartial.cshtml", Model.CustomerBankDetail)*@
+        </div>
+
+       @foreach (var booking in Model.Bookings)
+        {
+            <div id="step-@dynamicStepsBottom">
+                <h2 class="StepTitle">Step @dynamicStepsBottom Content</h2>
+             @*   @Html.Partial("~/Views/BookingProcessPartialViews/AddBookingPartial.cshtml", booking, new ViewDataDictionary(ViewData) {{"StepNo", dynamicStepsBottom}}))*@
+            </div>
+
+            var lastBookingStep = dynamicStepsBottom;
+            dynamicStepsBottom++;
+
+            <div id="step-@dynamicStepsBottom">
+                <h2 class="StepTitle">Step @dynamicStepsBottom Content</h2>
+             @*   @Html.Partial("~/Views/BookingProcessPartialViews/AddBookingParticipantPartial.cshtml", Model.BookingParticipants, new ViewDataDictionary(ViewData) { { "StepNo", lastBookingStep }, {"latestBookingParticipant", latestBookingParticipant } }))*@
+            </div>
+
+            latestBookingParticipant += 15;
+            dynamicStepsBottom++;
+        }
+
+       
+        @foreach (var bes in Model.BookingExtraSelections)
+        {
+            <div id="step-@dynamicStepsBottom">
+                <h2 class="StepTitle">Step @dynamicStepsBottom Content</h2>
+             @*   @Html.Partial("~/Views/BookingProcessPartialViews/AddBookingExtraSelectionPartial.cshtml", bes)*@
+            </div>
+            
+            dynamicStepsBottom++;
+
+        }
+
+    </div>
+</div>
+
+@{Html.EndForm();}
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        // $("#example-advanced-form").jWizard();
+        $('#wizard').smartWizard({
+     
+            transitionEffect: 'fade',
+            onFinish: onFinishCallback,          
+         
+        });
+
+
+        function onFinishCallback() {
+
+            $('#form1').submit();
+
+        }
+
+
+        $(".buttonFinish").click(function () {
+            
+            var disabled = $(".buttonFinish").is(":disabled");
+          
+            if (disabled == false) {
+                $('#form1').submit();
+            }
+
+
+        });
+
+
+    });
+
+
+    $(document).ready(function () {
+        $("#commentForm").validate();
+        });
+
+</script>

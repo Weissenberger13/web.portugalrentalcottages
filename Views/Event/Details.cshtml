@@ -1,0 +1,50 @@
+﻿@model BootstrapVillas.Models.Event
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Event</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.CaseID)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CaseID)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.EventType.EventTypeName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.EventType.EventTypeName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.WhenCreated)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.WhenCreated)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Booking.BookingPRCReference)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Booking.BookingPRCReference)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.BookingExtraSelection.Test)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.BookingExtraSelection.Test)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.EventID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

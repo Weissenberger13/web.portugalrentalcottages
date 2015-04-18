@@ -1,0 +1,102 @@
+﻿@using BootstrapVillas.Models
+@{
+    ViewBag.Title = "BookWineTour";
+    BookingExtra WineBookingExtras = ViewBag.WineBookingExtras;
+}
+
+<h2>Book Wine Tasting Tour</h2>
+
+
+<div class="white"><!-- brown background container -->
+
+     <div id="stickyWrapper">
+  
+    <a id="section1" class="section" name="section1"></a>
+
+     <div id="subNav" class="whiteBg"> <!-- sub navigation with social media etc. -->
+
+                <div id="socialMedia">
+
+                    <div class="facebook">
+                        <div id="fb-root"></div>
+                                <script>(function(d, s, id) {
+                                var js, fjs = d.getElementsByTagName(s)[0];
+                                if (d.getElementById(id)) return;
+                                js = d.createElement(s); js.id = id;
+                                js.src = "//connect.facebook.net/en_GB/all.js#xfbml=1";
+                                fjs.parentNode.insertBefore(js, fjs);
+                                }(document, 'script', 'facebook-jssdk'));
+                                </script>
+                        <div class="fb-like" data-href="http://www.portugalrentalcottages.com" data-send="true" data-layout="button_count" data-width="450" data-show-faces="true" data-action="recommend" data-font="tahoma"></div>
+                        
+                    </div>
+
+
+                    <div class="twitter">
+                                <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.portugalrentalcottages.com" data-via="portugalrentalcottages" data-hashtags="portugalholidays">Tweet</a>
+                                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+                    </div>
+
+                      <div class="pinterest">
+                        <a href="http://pinterest.com/pin/create/button/?url=http%3A%2F%2Fwww.portugalrentalcottages.com&media=http%3A%2F%2Fwww.portugalrentalcottages.com&description=Best%20Holidays%20in%20Portugal%20" class="pin-it-button" count-layout="horizontal"><img border="0" src="//assets.pinterest.com/images/PinExt.png" title="Pin It" /></a>
+                    </div>
+
+                    <div class="googlePlus">
+                    <!-- Place this tag where you want the +1 button to render. -->
+                    <div class="g-plusone" data-size="tall" data-annotation="inline" data-width="300"></div>
+                          
+                    <!-- Place this tag after the last +1 button tag. -->
+                <script type="text/javascript">
+                    (function() {
+                        var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+                        po.src = 'https://apis.google.com/js/plusone.js';
+                        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+                    })();
+                </script>
+                     </div>
+
+  
+ 
+                  </div>
+
+                    
+                  <a href="#" onclick="history.go(-1);return false;"><div id="backToResults" >↩ Back to Last Page</div></a>
+ 
+
+                </div>
+
+
+
+    <!--------------LEFT HAND COLUMN ---------------->
+	<div id="columnLeft">
+
+   
+
+  @{ Html.RenderPartial("ExtraServicesListPartialView");}      
+            
+                             
+       
+ @{ Html.RenderPartial("ExtraServicesItemsPartialView");}
+
+
+        </div>
+
+         </div>
+         
+       
+
+         <!-------------------------------RIGHT HAND COLUMN ------------------------------------------------>
+           <div id="columnRight">    
+               
+               @{ Html.RenderPartial("checkoutPartialView");
+                  
+               }            
+           
+            @{ Html.RenderPartial("SideBookingFormPartialView");
+        }
+         
+      </div><!-- end right column -->
+
+    <div class="clear"></div>
+           
+   </div><!-- end stickywrapper div -->

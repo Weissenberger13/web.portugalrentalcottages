@@ -1,0 +1,15 @@
+This list was compiled using this resource: 
+
+http://www.instant-info-online.com/wordpress-compressed-all-inclusive-ping-list.html
+
+Warning! Do NOT include any more ping/update services than the ones listed below. See the website listed above for the reason why.
+
+==== UPDATE SERVICES START (COPY THE TEXT BETWEEN THESE LINES - EXCLUDING THE 2 EMPTY LINES) ====
+
+http://rpc.pingomatic.com
+http://www.blogpeople.net/servlet/weblogUpdates
+http://ping.myblog.jp
+http://ping.bloggers.jp/rpc/
+http://bblog.com/ping.php
+
+==== UPDATE SERVICES START (COPY THE TEXT BETWEEN THESE LINES - EXCLUDING THE 2 EMPTY LINES) ====

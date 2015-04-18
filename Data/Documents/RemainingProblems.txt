@@ -1,0 +1,1 @@
+﻿- Sometimes (properties page 3 the modal buttons disappear and validation doesn't work')

@@ -1,0 +1,70 @@
+﻿@model BootstrapVillas.Models.LoginModel
+
+@{
+    ViewBag.Title = "Login";
+}
+
+<div class="row-fluid padded">
+    <div class="span10 offset1 whiteBg" style="position: relative;">
+        <hgroup class="title">
+            <h3><i class="fa fa-fw fa-user"></i>Have an account?</h3>
+        </hgroup>
+        <br />
+        <div class="row-fluid active">
+            <!-- Page Title -->
+            <ul class="nav nav-tabs">
+                <li class="active"><a href="#Login" data-toggle="tab"><i class="fa fa-fw fa-lock"></i>Login</a></li>
+               @* <li><a href="#Register" data-toggle="tab"><i class="fa fa-fw fa-edit"></i>Register</a></li>*@
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane active" id="Login">
+                    <div class="row-fluid">
+                        <div class="span12 lightGrey" id="loginForm">
+                            @using (Html.BeginForm(new { ReturnUrl = ViewBag.ReturnUrl }))
+                            {
+                                @Html.AntiForgeryToken()
+                                @Html.ValidationSummary(true)
+                                <div class="row-fluid">
+                                    <div class="span12">
+                                        <label class="EmailAddress"><i class="fa fa-fw fa-envelope"></i>Email Address</label>
+                                        <input name="Username" type="text" class="span12 makeValid" required />
+                                        @*                                        @Html.LabelFor(m => m.UserName)
+                                        @Html.TextBoxFor(m => m.UserName, new { @class = "makeValid" })
+                                        @Html.ValidationMessageFor(m => m.UserName)*@
+                                    </div>
+                                </div>
+                                <div class="row-fluid">
+                                    <div class="span12">
+                                        <label class="Password"><i class="fa fa-fw fa-lock"></i>Password</label>
+                                        <input name="Password" type="password" class="span12 makeValid" required />
+                                        @*                                        @Html.LabelFor(m => m.Password)
+                                        @Html.PasswordFor(m => m.Password)
+                                        @Html.ValidationMessageFor(m => m.Password)*@
+                                    </div>
+                                </div>
+                                <div class="row-fluid">
+                                    <div class="span12">
+                                        @Html.CheckBoxFor(m => m.RememberMe)
+                                        @Html.LabelFor(m => m.RememberMe, new { @class = "checkbox" })
+                                    </div>
+                                </div>
+                                <input type="submit" class="btn btn-success" value="Log in" />
+                                <p>
+                                    @Html.ActionLink("Register", "SignUpRegistration") if you don't have an account
+                                </p>
+                            }
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-pane" id="Register">
+                </div>
+
+            </div>
+        </div>
+        @*<section class="social" id="socialLoginForm">
+    <h2>Use another service to log in.</h2>
+    @Html.Action("ExternalLoginsList", new { ReturnUrl = ViewBag.ReturnUrl })
+</section>*@
+    </div>
+</div>

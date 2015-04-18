@@ -1,0 +1,428 @@
+﻿@model BootstrapVillas.Models.Property
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Property</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.LegacyReference)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.LegacyReference)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.PropertyOwner.PropertyOwnerEmailAddress)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PropertyOwner.PropertyOwnerEmailAddress)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.PropertyOwnerRepresentative.PropertyOwnerRepresentativeName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PropertyOwnerRepresentative.PropertyOwnerRepresentativeName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.PropertyType.PropertyTypeName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PropertyType.PropertyTypeName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.PropertyTown.TownName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PropertyTown.TownName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.PropertyVacationType.PropertyVacationTypeDescription)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PropertyVacationType.PropertyVacationTypeDescription)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.HomeawayReference)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.HomeawayReference)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.PropertyName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PropertyName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.FullDescription)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.FullDescription)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ChangeOverDay)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ChangeOverDay)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ChangeoverNotes)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ChangeoverNotes)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Pets)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Pets)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Parking)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Parking)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.DisabledAccess)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DisabledAccess)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Smoking)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Smoking)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.SwimmingPool)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.SwimmingPool)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.SwimmingPoolType)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.SwimmingPoolType)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.HeatedPool)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.HeatedPool)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Heating)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Heating)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.AirConditioning)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.AirConditioning)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.InternetAccess)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.InternetAccess)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.HiFi)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.HiFi)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.TV)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.TV)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Bedrooms)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Bedrooms)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Bathrooms)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Bathrooms)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.MaxGuests)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.MaxGuests)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.SofaBeds)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.SofaBeds)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ExtraBeds)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ExtraBeds)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Cots)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Cots)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.HighChair)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.HighChair)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Other)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Other)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.MapURL)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.MapURL)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.GPSCoordinatesLongitude)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.GPSCoordinatesLongitude)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.GPSCoordinatesLatitude)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.GPSCoordinatesLatitude)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.LegacySynopsis1)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.LegacySynopsis1)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.LegacySynopsis2)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.LegacySynopsis2)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.LegacySynopsis3)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.LegacySynopsis3)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.PriceSynopsis)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PriceSynopsis)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Exclusive)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Exclusive)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.FullAddress)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.FullAddress)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.HouseName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.HouseName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.HouseNumber)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.HouseNumber)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.AddressLine1)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.AddressLine1)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.AddressLine2)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.AddressLine2)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Town)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Town)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Postcode)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Postcode)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.County)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.County)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Country)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Country)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.PropertyTelephone)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PropertyTelephone)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.WhenCreated)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.WhenCreated)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Active)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Active)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Alarm)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Alarm)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.BBQ)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.BBQ)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.DirectionsFromAirport)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DirectionsFromAirport)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.WhoUpdated)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.WhoUpdated)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.IsFeatured)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.IsFeatured)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.IsSale)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.IsSale)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Deposit_GBP_)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Deposit_GBP_)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.BreakageDeposit_GBP_)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.BreakageDeposit_GBP_)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.PropertyID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

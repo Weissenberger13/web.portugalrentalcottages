@@ -1,0 +1,264 @@
+﻿@using BootstrapVillas.Content.Classes
+@using BootstrapVillas.Models
+@model BootstrapVillas.Content.Classes.BookingCalendar
+
+@{
+
+    var BookingCalDates = Model;
+    var props = Property.GetAllActiveProperties().OrderBy(x=>x.LegacyReference);
+    var upcoming = new List<Booking>();
+    List<DateTime?> lastBookingDays = new List<DateTime?>();
+
+
+    if (BookingCalDates != null)
+    {
+
+        upcoming = Booking.GetAllFutureBookingsForAProperty(BookingCalDates.PropertyID);
+        lastBookingDays = Booking.GetLastDayOfAllFutureConfirmedBookings(BookingCalDates.PropertyID);
+    }
+
+
+
+
+}
+
+
+@if (BookingCalDates != null)
+{
+    if (BookingCalDates.bookingDates.Count > 0)
+    {
+        <h2>Dates for @props.First(x => x.PropertyID == Model.PropertyID).LegacyReference</h2>
+    }
+}
+
+
+
+        @* THIS IS THE SCROLL TO SECTION DROPDOWN *@
+
+        <div class="row-fluid">
+            <div class="span12 lightGrey">
+                <h4>Property To View:@Html.DropDownList("bookingCalendar", GeneralStaticHelperMethods.AddBlankDDLItemAndReturnSelectListItems(props, "PropertyID", "LegacyReference"), new { id = "bookingCalendar", @class = "ddlSort input-small", @style = "height: auto !important; width:auto;" })</h4>
+                
+                <div class="cont"></div>
+                <div class="grid-title">
+                    <div class="pull-left">
+                        <div class="icon-title"><i class="fa fa-fw fa-calendar"></i></div>
+                        <span><css-decorator class="toTranslate">Availability</css-decorator></span>
+                    </div>
+                </div>
+
+
+
+                <div id="jCalTarget"></div>
+
+                <div class="row-fluid">
+                    <div class="keyWrap span12 silver pagination-centered">
+                        <div id="bluebox"></div>
+
+                        @* <table>
+                                <tr>
+                                    <td>
+                                        <css-decorator class="toTranslate">Available</css-decorator><div id="orangebox" style="background-color:red"></div>
+                                    </td>
+                                    <td>
+                                        <css-decorator class="toTranslate">Booked</css-decorator><div id="orangebox" style="background-color:red"></div>
+                                    </td>
+
+                                </tr>
+                            </table>
+                        *@
+                    </div>
+                </div>
+
+                <div id="BookingDateCalendar"></div>
+            </div>
+        </div>
+
+        <div class="row-fluid">
+            <div class="span12 lightGrey">
+                <h3>Upcoming Bookings:</h3>
+
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>
+                                Customer
+                            </th>
+                            <th>
+                                StartDate
+                            </th>
+                            <th>
+                                EndDate
+                            </th>
+                            <th>
+                                Deposit Paid On
+                            </th>
+                            <th>
+                                Created on
+                            </th>
+                            <th>
+                                Confirmed?
+                            </th>
+                    </thead>
+
+                    <tbody>
+                        @foreach (var booking in upcoming)
+                        {
+                            <tr>
+                                <td>@booking.Customer.FirstName @booking.Customer.LastName</td>
+                                <td>@(((DateTime)booking.StartDate).ToString("dd/MM/yyyy"))</td>
+                                <td>@(((DateTime)booking.EndDate).ToString("dd/MM/yyyy"))</td>
+                                <td>@booking.InitialDepositPaidDate</td>
+                                <td>@booking.CreationDate</td>
+                                <td>@booking.Confirmed</td>
+                                <td></td>
+                            </tr>
+                        }
+                    </tbody>
+
+
+                </table>
+            </div>
+        </div>
+
+
+
+
+        <script type="text/javascript">
+            $('#BottomEditorWindow').show();
+            $('#BottomEditorWindow').animate({ height: '0%' }, 500);
+            $('#TopEditorWindow').animate({ height: '100%' }, 500);
+
+            $('#bookingCalendar').on('change', function () {
+                //get all vars
+                var propID = $("#bookingCalendar").val();
+
+                $("#spinner").show();
+
+                //request
+                $.ajax({
+                    url: '@Url.Action("BookingCalendar", "Booking")',
+                    data: { "propertyID": propID },
+                    type: "POST",
+                    success: function (result) {
+                        $('#TopEditorWindow').html(result);
+                        //get the pricing
+
+
+
+                    },
+                    error: function () { alert('That did not work please try again'); }
+                });
+
+            });
+
+
+
+
+            //var disabledDays = ["11-21-2012", "11-24-2012", "9-27-2011", "9-28-2011", "9-3-2011", "9-17-2011", "9-2-2011", "9-3-2011", "9-4-2011", "9-5-2011"];
+
+            var highlightDaysGrey = [];
+            var disabledDays = [];
+            var highlightDays = [];
+            var d = new Date();
+            var day = d.getDate() - 1;
+
+
+            @if (BookingCalDates != null)
+        {
+            if (BookingCalDates.bookingDates.Count > 0)
+            {
+                foreach (var abookingDate in BookingCalDates.bookingDates)
+                {
+
+                    string thePushString = "disabledDays.push('" + abookingDate.bookingDate.ToString("M-d-yyyy") + "');";
+                    @Html.Raw(thePushString)
+                }
+
+            foreach (var lastBookingDay in lastBookingDays)
+            {
+                string thePushString = "highlightDays.push('" + ((DateTime)lastBookingDay).ToString("M-d-yyyy") + "');";
+					@Html.Raw(thePushString)
+            }
+            
+             foreach (var abookingDate in BookingCalDates.bookingDates)
+                {
+
+                    string thePushString = "highlightDaysGrey.push('" + abookingDate.bookingDate.ToString("M-d-yyyy") + "');";
+                    @Html.Raw(thePushString)
+                }
+
+            }
+        }
+
+            function disableAllTheseDays(date) {
+
+
+
+                var m = date.getMonth(), d = date.getDate(), y = date.getFullYear();
+
+                if (highlightDays.length > 0) {
+                    for (i = 0; i < highlightDays.length; i++) {
+                        if ($.inArray((m + 1) + '-' + d + '-' + y, highlightDays) != -1) {
+                            //return [false];
+
+                           
+                            return [true, 'Highlight', ''];
+                        }
+                    }
+                }
+
+                if (disabledDays.length > 0) {
+                    for (i = 0; i < disabledDays.length; i++) {
+                        if ($.inArray((m + 1) + '-' + d + '-' + y, disabledDays) != -1) {
+                            return [false];
+                        }
+                    }
+                }
+
+               
+
+                if (highlightDaysGrey.length > 0) {
+                    for (i = 0; i < highlightDaysGrey.length; i++) {
+                        if ($.inArray((m + 1) + '-' + d + '-' + y, highlightDaysGrey) != -1) {
+                            //return [false];
+                           
+                            return [true, 'HighlightGrey', ''];
+                        }
+                    }
+                }
+
+                return [true];
+            }
+
+
+            $("#BookingDateCalendar").datepicker(
+            {
+                //add JSON
+                dateFormat: 'dd-mm-yy',
+                beforeShowDay: disableAllTheseDays,
+                changeMonth: true,
+                changeYear: true,
+                numberOfMonths: [3, 4],
+                minDate: -day,
+                maxDate: "+4Y",
+                showButtonPanel: true
+            });
+
+
+            $("#EndBookingDate1").datepicker(
+            {
+                //add JSON
+                dateFormat: 'dd-mm-yy',
+                beforeShowDay: disableAllTheseDays,
+                changeMonth: true,
+                changeYear: true
+            });
+
+
+
+
+
+
+
+        </script>

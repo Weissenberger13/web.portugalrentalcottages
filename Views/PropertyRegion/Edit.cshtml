@@ -1,0 +1,59 @@
+﻿@model BootstrapVillas.Models.PropertyRegion
+
+@{
+    ViewBag.Title = "Edit";
+
+    AjaxOptions options = new AjaxOptions
+    {
+        UpdateTargetId = "TopEditorWindow",
+        InsertionMode = InsertionMode.Replace,
+        LoadingElementId = "spinner",
+        OnSuccess = "alert('Updated')"
+    };
+
+   
+    AjaxOptions createOptions = new AjaxOptions
+    {
+        UpdateTargetId = "TopEditorWindow",
+        InsertionMode = InsertionMode.Replace,
+        LoadingElementId = "spinner"
+    };
+    
+}
+
+
+<h2>Edit Region</h2>
+
+@Ajax.ActionLink("Create", "Create", "PropertyRegion", createOptions)
+
+@using (Ajax.BeginForm("Edit", "PropertyRegion", options)) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>PropertyRegion</legend>
+
+        @Html.HiddenFor(model => model.PropertyRegionID)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.RegionName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.RegionName)
+            @Html.ValidationMessageFor(model => model.RegionName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.RegionCode)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.RegionCode)
+            @Html.ValidationMessageFor(model => model.RegionCode)
+        </div>
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+

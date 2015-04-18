@@ -1,0 +1,51 @@
+﻿@model BootstrapVillas.Models.PropertyTown
+
+@{
+    ViewBag.Title = "Create";
+
+
+    AjaxOptions options = new AjaxOptions
+    {
+        UpdateTargetId = "TopEditorWindow",
+        InsertionMode = InsertionMode.Replace,
+        LoadingElementId = "spinner",
+        OnSuccess = "Created!!"
+    };
+
+    SelectList regions = ViewBag.PropertyRegionID;
+}
+
+<h2>Create</h2>
+
+@using (Ajax.BeginForm("Create", "PropertyTown", options )) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>PropertyTown</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PropertyRegionID, "PropertyRegion")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("PropertyRegionID", regions, new { id = "PropertyRegionID", @class = "input-small", @style = "height: auto !important; width:auto;" })
+            @Html.ValidationMessageFor(model => model.PropertyRegion.RegionName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.TownName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.TownName)
+            @Html.ValidationMessageFor(model => model.TownName)
+        </div>
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

@@ -1,0 +1,314 @@
+﻿@model BootstrapVillas.Models.BookingExtraSelection
+
+@{
+    ViewBag.Title = "Create";
+
+    AjaxOptions options = new AjaxOptions
+    {
+        UpdateTargetId = "TopEditorWindow",
+        InsertionMode = InsertionMode.Replace,
+        LoadingElementId = "spinner",
+        OnSuccess = "alert('Created')"
+
+    };
+
+    var ActiveListDDL = new Dictionary<string, string>();
+
+    ActiveListDDL.Add("false", "false");
+    ActiveListDDL.Add("true", "true");
+
+}
+
+<h2>Create</h2>
+
+@using (Ajax.BeginForm("Create", "BookingExtraSelection", options))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>BookingExtraSelection</legend>
+
+        @Html.HiddenFor(model => model.BookingExtraSelectionID)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ExtraRentalDate)
+        </div>
+        <div class="editor-field">
+            <input type="text" id="ExtraRentalDate" name="ExtraRentalDate" class="date-picker" />
+            @Html.ValidationMessageFor(model => model.ExtraRentalDate)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ExtraReturnDate)
+        </div>
+        <div class="editor-field">
+            <input type="text" id="ExtraReturnDate" name="ExtraReturnDate" class="date-picker" />
+            @Html.ValidationMessageFor(model => model.ExtraReturnDate)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.BookingExtraID, "BookingExtra")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("BookingExtraID", String.Empty)
+            @Html.ValidationMessageFor(model => model.BookingExtraID)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.BookingParentContainerID, "BookingParentContainer")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("BookingParentContainerID", String.Empty)
+            @Html.ValidationMessageFor(model => model.BookingParentContainerID)
+        </div>
+
+
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Test)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("Test", new SelectList(ActiveListDDL, "Key", "Value"), new { id = "Test", @class = "input-small", @style = "height: auto !important; width:auto;" })
+            @Html.ValidationMessageFor(model => model.Test)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.CustomerID, "Customer")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("CustomerID", String.Empty)
+            @Html.ValidationMessageFor(model => model.CustomerID)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.NumberOfDays)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.NumberOfDays)
+            @Html.ValidationMessageFor(model => model.NumberOfDays)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Cancelled)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("Cancelled", new SelectList(ActiveListDDL, "Key", "Value"), new { id = "Cancelled", @class = "input-small", @style = "height: auto !important; width:auto;" })
+            @Html.ValidationMessageFor(model => model.Cancelled)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Confirmed)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("Confirmed", new SelectList(ActiveListDDL, "Key", "Value"), new { id = "Confirmed", @class = "input-small", @style = "height: auto !important; width:auto;" })
+            @Html.ValidationMessageFor(model => model.Confirmed)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.BookingExtraPRCReference)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.BookingExtraPRCReference)
+            @Html.ValidationMessageFor(model => model.BookingExtraPRCReference)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.NumberOfAdults)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.NumberOfAdults)
+            @Html.ValidationMessageFor(model => model.NumberOfAdults)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.NumberOfGuests)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.NumberOfGuests)
+            @Html.ValidationMessageFor(model => model.NumberOfGuests)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.NumberOfChildren)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.NumberOfChildren)
+            @Html.ValidationMessageFor(model => model.NumberOfChildren)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.NumberOfInfants)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.NumberOfInfants)
+            @Html.ValidationMessageFor(model => model.NumberOfInfants)
+        </div>
+
+
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.NumberOfChildseats)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.NumberOfChildseats)
+            @Html.ValidationMessageFor(model => model.NumberOfChildseats)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PassportNumber)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PassportNumber)
+            @Html.ValidationMessageFor(model => model.PassportNumber)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.DrivingLicenceNumber)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.DrivingLicenceNumber)
+            @Html.ValidationMessageFor(model => model.DrivingLicenceNumber)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.DrivingLicenceNumber2)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.DrivingLicenceNumber2)
+            @Html.ValidationMessageFor(model => model.DrivingLicenceNumber2)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PickupLocation)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PickupLocation)
+            @Html.ValidationMessageFor(model => model.PickupLocation)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.DropoffLocation)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.DropoffLocation)
+            @Html.ValidationMessageFor(model => model.DropoffLocation)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.FlightArrivalTime)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.FlightArrivalTime)
+            @Html.ValidationMessageFor(model => model.FlightArrivalTime)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.FlightDepartureTime)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.FlightDepartureTime)
+            @Html.ValidationMessageFor(model => model.FlightDepartureTime)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.FlightArrivalTerminalNumber)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.FlightArrivalTerminalNumber)
+            @Html.ValidationMessageFor(model => model.FlightArrivalTerminalNumber)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.FlightDepartureTeminalNumber)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.FlightDepartureTeminalNumber)
+            @Html.ValidationMessageFor(model => model.FlightDepartureTeminalNumber)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Detours)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Detours)
+            @Html.ValidationMessageFor(model => model.Detours)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PiecesOfLuggage)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PiecesOfLuggage)
+            @Html.ValidationMessageFor(model => model.PiecesOfLuggage)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.BESSpecialRequests)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.BESSpecialRequests)
+            @Html.ValidationMessageFor(model => model.BESSpecialRequests)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.FlightNumberArrival)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.FlightNumberArrival)
+            @Html.ValidationMessageFor(model => model.FlightNumberArrival)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.FlightNumberDeparture)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.FlightNumberDeparture)
+            @Html.ValidationMessageFor(model => model.FlightNumberDeparture)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.AcceptTC)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.AcceptTC)
+            @Html.ValidationMessageFor(model => model.AcceptTC)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.BESPrice)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.BESPrice)
+            @Html.ValidationMessageFor(model => model.BESPrice)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.BESCurrencyConversionPrice)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.BESCurrencyConversionPrice)
+            @Html.ValidationMessageFor(model => model.BESCurrencyConversionPrice)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.BESCurrencyConversionSymbol)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.BESCurrencyConversionSymbol)
+            @Html.ValidationMessageFor(model => model.BESCurrencyConversionSymbol)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.AirportPickupLocationID, "AirportDestination")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("AirportPickupLocationID", String.Empty)
+            @Html.ValidationMessageFor(model => model.AirportPickupLocationID)
+        </div>
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}

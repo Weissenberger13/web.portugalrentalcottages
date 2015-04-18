@@ -1,0 +1,39 @@
+﻿@model BootstrapVillas.Models.Comment
+
+@using BootstrapVillas.Models;
+@using BootstrapVillas.Content.Classes;
+
+
+    @{
+
+        //get the property From the viewbag
+        Property theProperty = ViewBag.FullPropertyResultProperty;
+
+        //call methods to pull back commments
+        List<BootstrapVillas.Models.Comment> theCommentList = Comment.GetComments(theProperty);
+
+        
+        
+        <!--Show the comments for this property -->
+
+        foreach (var comment in theCommentList)
+        {
+            <p>Comment by: @comment.Username</p>
+            <p>Star Rating: @comment.StarRating.ToString()</p>
+            <p>Date of holiday @comment.StartdateOfStay  - @comment.EnddateOfStay</p>
+            <p>Comment: </p>
+            @comment.Text
+
+         @*Button to add comment reply*@
+                    <div class="row-fluid" style="margin-top: 20px;">
+                        <div class="pull-right">
+                            <a data-toggle="modal" href="#commentReplyModal" class="btn btn-success pull-right"><i class="fa fa-fw fa-shopping-cart"></i>Add A Comment Reply</a>
+                        </div>
+                    </div>
+        }
+
+    }
+    
+
+    
+ 

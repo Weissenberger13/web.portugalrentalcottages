@@ -1,0 +1,36 @@
+﻿@model BootstrapVillas.Models.PropertyPricingSeasonalInstance
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>PropertyPricingSeasonalInstance</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.PropertyPricingSeason.Season_Name)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PropertyPricingSeason.Season_Name)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Property.LegacyReference)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Property.LegacyReference)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Price)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Price)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.PropertyPricingSeasonalInstanceID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

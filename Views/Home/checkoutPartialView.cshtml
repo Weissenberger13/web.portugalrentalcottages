@@ -1,0 +1,245 @@
+﻿@*Script for booking dates*@
+
+
+@using BootstrapVillas.Models
+@using BootstrapVillas.Content.Classes;
+@using System;
+@using System.Collections;
+@using System.Collections.Generic;
+@using System.Linq;
+@using System.Web;
+@using System.Web.Mvc;
+@using System.Data.Entity;
+@using System.Linq.Dynamic;
+@using BootstrapVillas.Models.ViewModels;
+
+
+@{
+
+
+    var ServerPath = (DirectoryInfo)Session["ServerPath"];
+    string _Imagejpg = "_Image.jpg";
+
+    //formatting for dates
+    string format = "dd/MM/yyyy";
+
+    //hide the cart if there's nothing in it
+    string CartViewState = "style='display:none'";
+
+    //get from session - propertyBooking
+    List<Booking> VillaBookings = new List<Booking>();
+    VillaBookings = (List<Booking>)Session["Cart_PropertyBookings"]; //where type = villa
+
+    using (PortugalVillasContext db = new PortugalVillasContext())
+    {
+        if (VillaBookings != null)
+        {
+            foreach (var villaBooking in VillaBookings)
+            {
+                try
+                {
+                    villaBooking.Property = db.Properties.First(x => x.PropertyID.Equals(villaBooking.PropertyID));
+                }
+                catch (Exception)
+                {
+
+
+                }
+            }
+        }
+    }
+
+    //get from session ExtraBookings
+    List<BookingExtraSelection> BookingExtraSelections = new List<BookingExtraSelection>(); //where type = extras
+    BookingExtraSelections = (List<BookingExtraSelection>)Session["Cart_ExtraBookings"];
+
+    //end viewbag pulls
+    int NoOfItemsInCart = 0;
+
+    if (VillaBookings != null)
+    { NoOfItemsInCart += VillaBookings.Count; }
+    if (BookingExtraSelections != null)
+    { NoOfItemsInCart += BookingExtraSelections.Count; }
+
+    //convert the lists to cart-type items
+
+    List<Property_BookingViewModel> thePropertyCart = new List<Property_BookingViewModel>();
+
+    if (VillaBookings != null)
+    {
+        /* foreach (var booking in VillaBookings)
+         {
+             //make sure we've got our price to display:
+
+
+             thePropertyCart.Add(
+                 new Property_BookingViewModel
+                 {
+                     PRCRef = booking.BookingPRCReference,
+                     StartDate = booking.StartDate,
+                     EndDate = booking.EndDate,
+                     positionInList = thePropertyCart.Count,
+                     price = Decimal.Round(Convert.ToDecimal(booking.BookingPrice ?? 0), 2)
+                 }
+
+
+             );
+
+
+         }*/
+    }
+
+}
+
+
+@*start of cart*@
+
+@{
+
+    //if there's nothing in the cart then don't show it
+    if (NoOfItemsInCart == 0)
+    {
+        CartViewState = @"style=display:none";
+    }
+    else { CartViewState = ""; }
+
+}
+<div class="row-fluid" @CartViewState>
+
+
+    <div class="span12 panel panel-inverse" style="margin-bottom: 20px;">
+        <!-- Shopping cart Title -->
+        <div class="panel-heading">
+            <i class="fa fa-fw fa-shopping-cart"></i>
+            Shopping Cart
+            <span class="pull-right">
+                <span class="noOfItems">
+                    <span class="badge badge-info">
+                        @NoOfItemsInCart.ToString() item(s)
+                    </span>
+                </span>
+            </span>
+        </div>
+
+        <!-- ITEMS ADDED GO HERE -->
+        <div class="panel-body-white">
+            @{
+                if (VillaBookings != null)
+                {
+
+                    foreach (Booking booking in VillaBookings)
+                    {
+
+                        var cleanPrice = booking.CleaningPostVisitPrice ?? 0.00M;
+                        var linenPrice = booking.ExtraLininSetPrice ?? 0.00M;
+                        var heatingPrice = booking.HeatingPrice ?? 0.00M;
+                        var midCleanPrice = booking.MidVactionCleaningPrice ?? 0.00M;
+                        var swimHeatPrice = booking.SwimmingPoolHeatingPrice ?? 0.00M;
+                        var towelsPrice = booking.TowelsPrice ?? 0.00M;
+
+
+                        string DateToEmbeddInLink = DateTime.Parse(@booking.StartDate.ToString()).ToString(format);
+
+                        decimal price = cleanPrice + linenPrice + heatingPrice + midCleanPrice + swimHeatPrice + towelsPrice;
+
+                        @*<div class="row-fluid">
+                                <div class="span4">
+                                    <img src="~/PropertyImages/@booking.PRCRef/featured/featured.jpg" />
+                                </div>
+                                <div class="span8">
+                                    <table class="table-condensed table-striped table-bordered">
+                                        <tr>
+                                            <td>Ref:</td>
+                                            <td><b>@booking.PRCRef</b></td>
+                                        </tr>
+                                        <tr>
+                                            <td><small>Dates:</small></td>
+                                            <td><b><small>@booking.StartDate.ToString().Substring(0, 10)  - @booking.EndDate.ToString().Substring(0, 10)</small></b></td>
+                                        </tr>
+                                        <tr>
+                                            <td><small>Price (Wk)</small></td>
+                                            <td><b><small></small></b></td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>*@
+
+                        <div class="itemContainer">
+                            <div class="itemImage">
+                                <img src="@PRCImageCollection.GetRandomImageURLForProperty(Property.GetPropertyByID((long)booking.PropertyID), ServerPath)"  />
+                            </div>
+                            <ul>
+                                <li><css-decorator class="toTranslate">Ref</css-decorator>: <span style="font-weight: bold">@booking.Property.LegacyReference</span></li>
+                                <li><css-decorator class="toTranslate">Dates</css-decorator>: <span style="font-weight: bold">@(((DateTime)booking.StartDate).ToString("dd/MM/yyyy"))  - @(((DateTime)booking.EndDate).ToString("dd/MM/yyyy"))</span></li>
+                                <li><css-decorator class="toTranslate">Price of booking</css-decorator>: £@booking.BookingPrice<span style="font-weight: bold;"></span></li>
+                                <li><css-decorator class="toTranslate">Price of booking extras</css-decorator>: £@price<span style="font-weight: bold;"></span></li>
+                                <li class="remove">@Html.ActionLink("Remove", "DeleteItemFromSessionBookingCart", "PropertyView", new { StartDate = @DateToEmbeddInLink, PRCRef = @booking.Property.LegacyReference, SessionVariableToDeleteFrom = "Cart_PropertyBookings", BookingGUID = booking.BookingGUID }, null)</li>
+                            </ul>
+                        </div>
+                    }
+                }
+
+                if (BookingExtraSelections != null)
+                {
+                    foreach (var booking in BookingExtraSelections)
+                    {
+                        string startDate = "", endDate = "";
+                        decimal price = booking.BESPrice ?? 0.00M;
+                        decimal extraPrice = booking.BESExtraServicesPrice ?? 0.00M;
+
+                        var totalPrice = price + extraPrice;
+
+
+                        startDate = Convert.ToDateTime(@booking.ExtraRentalDate.ToString()).ToString(format);
+
+                        if (booking.ExtraReturnDate != null)
+                        { endDate = Convert.ToDateTime(@booking.ExtraReturnDate.ToString()).ToString(format); }
+
+
+                        <div class="itemContainer">
+                            <div class="itemImage">
+                                <img src="~/ExtraImages/@booking.BookingExtraPRCReference/mainImage/@booking.BookingExtraPRCReference@_Imagejpg">
+                            </div>
+                            <ul>
+                                <li><css-decorator class="toTranslate">Name:</css-decorator> <span style="font-weight: bold">@BookingExtraSelection.GetBookingExtrasFromBookingExtraSelection(booking).BookingExtraName</span></li>
+                                <li><css-decorator class="toTranslate">Price</css-decorator>: <span style="font-weight: bold;">£@totalPrice</span></li>
+                                <li>
+                                    <css-decorator class="toTranslate">
+                                        Dates
+                                    </css-decorator>: <span style="font-weight: bold;">
+                                            @(  ((DateTime)booking.ExtraRentalDate).ToString("dd/MM/yyyy"))
+                                           
+                                     @if (booking.ExtraReturnDate != null)
+                                            {
+                                                @MvcHtmlString.Create(" - ")
+                                                
+                                        @(  ((DateTime)booking.ExtraReturnDate).ToString("dd/MM/yyyy"))
+                                            }
+                                        </span>
+</li>
+                            <li class="remove">@Html.ActionLink("Remove", "DeleteItemFromSessionBookingCart", "PropertyView", new { StartDate = startDate, EndDate = endDate, PRCRef = @booking.BookingExtraPRCReference, BookingGUID = booking.BookingGuid, SessionVariableToDeleteFrom = "Cart_ExtraBookings" }, null)</li>
+                        </ul>
+                    </div>
+                    }
+
+
+                }
+            }
+
+            @*end bookings*@
+
+
+
+            @{
+
+                @Html.ActionLink("Checkout", "Checkout", "Home",
+            null,
+            new Dictionary<string, object> { { "class", "btn btn-block btn-info" }, { "style", "float:none; text-align:center; margin: 20px 0 0 0;" }, { "type", "submit" }, { "value", "Checkout" } }
+            );
+
+            }
+        </div>
+
+    </div>
+
+</div>

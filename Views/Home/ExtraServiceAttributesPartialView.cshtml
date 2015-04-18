@@ -1,0 +1,134 @@
+﻿@using BootstrapVillas.Models
+@model List<BootstrapVillas.Models.BookingExtra>
+
+@{
+
+    var CarBookingExtras = Model;
+
+}
+
+
+@*START ND CODE*@
+
+@foreach (var car in CarBookingExtras)
+{
+    <!-- Modal -->
+    <div id="ExtraAttributesModal@{ @car.BookingExtraID; }" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="myModalLabel">@car.BookingExtraName</h3>
+        </div>
+        <div class="modal-body">
+            <div class="extraPopover" id="popovermodal@{@car.BookingExtraID;}">
+                <div id="fulldetailPopover@{ @car.BookingExtraID;}">
+                    <div class="row-fluid">
+                        <table class="table table-bordered span12" style="background-color:#fff;">
+                            @*dynamic generate of table attributes for each extra - shown in dropdown*@
+                            @{
+                                                            //start vars
+                                                            //pull all attributes back except the main description
+                                                            List<BookingExtraAttribute> theExtraAttributes = car.BookingExtraAttributes.Where(x => x.AttributeName != "Description").ToList();
+                                                            //string theTableClass = "odd";
+                                                            //ends vars
+
+                                                            while (theExtraAttributes.Count > 0)
+                                                            {
+                                                                <tr class="row-fluid">
+                                                                    @for (var j = 0; j < 2; j++)
+                                                                    {
+                                                                        if (theExtraAttributes.Count > 0)
+                                                                        {
+                                                                            <td class="span6">@theExtraAttributes.First().AttributeName : @theExtraAttributes.First().AttributeContent</td>
+                                                                            theExtraAttributes.RemoveAt(0);
+                                                                        }
+                                                                    }
+                                                                </tr>
+
+                                                                //if i = odd then tr class="odd", else tr class="even"
+                                                                //theTableClass = theTableClass == "odd" ? "even" : "odd";
+                                                            }
+
+                            }
+                        </table>
+
+
+
+                    </div>
+                    @{
+                                                            string ModalType = "#";
+                                                            if (car.BookingExtraTypeID.ToString() == "1")
+                                                            {
+                                                                ModalType = "carModal";
+                                                            }
+                                                            else if (car.BookingExtraTypeID.ToString() == "2")
+                                                            {
+                                                                ModalType = "wineTourModal";
+                                                            }
+                                                            else if (car.BookingExtraTypeID.ToString() == "3")
+                                                            {
+                                                                ModalType = "airportTransferModal";
+                                                            }
+                                                            else if (car.BookingExtraTypeID.ToString() == "4")
+                                                            {
+                                                                ModalType = "tourModal";
+                                                            }
+
+
+                    }
+                </div>
+            </div>
+        </div>
+        <input type="hidden" id="bookingExtraID" value="@car.BookingExtraID" />
+
+    </div>
+}
+
+
+    @*SCRIPTS*@
+
+    @*hide spinner*@
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#spinner').hide();
+
+        });
+    </script>
+
+
+
+    <script type="text/javascript">
+        /* Pricing Slider Begins */
+        $(document).ready(function () {
+            $(window).load(function () {
+                $(function () {
+                    $("#slider-range").slider({
+                        range: true,
+                        min: 1,
+                        max: 2000,
+                        values: [1, 2000],
+                        slide: function (event, ui) {
+                            $("#amount").val("£" + ui.values[0] + " - £" + ui.values[1]);
+                        }
+                    });
+                    $("#amount").val("£" + $("#slider-range").slider("values", 0) +
+                        " - £" + $("#slider-range").slider("values", 1));
+                });
+
+
+                /* Side Search panel Slider for price */
+                $(function () {
+                    $("#slider-range2").slider({
+                        range: true,
+                        min: 1,
+                        max: 2000,
+                        values: [1, 2000],
+                        slide: function (event, ui) {
+                            $("#amount2").val("£" + ui.values[0] + " - £" + ui.values[1]);
+                        }
+                    });
+                    $("#amount2").val("£" + $("#slider-range2").slider("values", 0) +
+                        " - £" + $("#slider-range2").slider("values", 1));
+                });
+            });
+        });
+    </script>

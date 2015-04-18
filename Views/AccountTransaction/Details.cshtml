@@ -1,0 +1,71 @@
+﻿@model BootstrapVillas.Models.AccountTransaction
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>AccountTransaction</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Booking.BookingPRCReference)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Booking.BookingPRCReference)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.BookingExtraSelection.BookingExtraPRCReference)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.BookingExtraSelection.BookingExtraPRCReference)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.TransactionAmount)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.TransactionAmount)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.TransactionNote)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.TransactionNote)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Paid)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Paid)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.AccountID)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.AccountID)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.TransactionReference)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.TransactionReference)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.TransactionDate)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.TransactionDate)
+    </div>
+</fieldset>
+<p>
+   
+    @Html.ActionLink("Back to List", "PropertyAccountTransactionIndex")
+</p>

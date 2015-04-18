@@ -1,0 +1,62 @@
+﻿@using BootstrapVillas.Models
+
+@{
+    ViewBag.Title = "ForgotUserPassModal";
+    
+}
+
+@*Test if it's a PropertyResult, if not, use xxxxx other value*@
+
+<!-- Modal -->
+<div id="ForgotModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-header">
+        <a class="close" data-dismiss="modal" aria-hidden="true"><i class="fa fa-fw fa-times"></i></a>
+        <h3 id="myModalLabel">Reset Username / Password</h3>
+    </div>
+
+    @{Html.BeginForm("AddPropertyBookingToSession", "PropertyView", FormMethod.Post);}
+
+    <div class="modal-body">
+        <div class="modal-form">
+            <div class="row-fluid">
+                <div class="span12">
+                    <strong>Fill out the form to reset your Username and Password</strong>
+                </div>
+            </div>
+            <div class="row-fluid">
+                <div class="span12">
+                    <!-- Login form here -->
+                    <form class="form-horizontal span12" style="margin-bottom: 0;" action="[YOUR ACTION]" method="post" accept-charset="UTF-8">
+                        <div class="row-fluid">
+                            <div class="span12">
+                                <label for="ResetEmail"><i class="fa fa-fw fa-envelope"></i>Email Address</label>
+                                <input type="email" class="ResetEmail span12" name="ResetEmail">
+                            </div>
+                        </div>
+                        <div class="row-fluid">
+                            <div class="span12">
+                                <label for="ResetPassword"><i class="fa fa-fw fa-lock"></i>New Password</label>
+                                <input type="password" class="ResetPassword span12" name="ResetPassword">
+                            </div>
+                        </div>
+                        <div class="row-fluid">
+                            <div class="span12">
+                                <label for="ResetEmail"><i class="fa fa-fw fa-lock"></i>Confirm Password</label>
+                                <input type="password" class="ResetEmail span12" name="ResetEmail">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Submit buttons -->
+
+    <div class="modal-footer">
+        <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+        <button type="submit" class="btn btn-success" value="Sign In"><i class="fa fa-fw fa-envelope"></i>Send Email</button>
+    </div>
+    @{Html.EndForm();}
+
+</div>

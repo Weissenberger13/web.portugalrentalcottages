@@ -1,0 +1,307 @@
+﻿@using System.Activities.Statements
+@using BootstrapVillas.Models
+@using BootstrapVillas.Content.Classes;
+@using System;
+@using System.Collections;
+@using System.Collections.Generic;
+@using System.Linq;
+@using System.Web;
+@using System.Web.Mvc;
+@using System.Data.Entity;
+@using System.Linq.Dynamic;
+@using BootstrapVillas.Models.ViewModels;
+@using DotNetOpenAuth.Messaging
+
+@{  //the viewmodel
+
+@*  HttpCookie myCookie = HttpContext.Current.Request.Cookies["ScreenPixelsWidth"] *@
+
+    int ScreenPixelsWidth = 1080;
+    int maxCarouselItems = 0;
+    int i = 0;
+
+
+    //List<FeaturedPropertyViewModel> //includes minimum price
+    DirectoryInfo Server = (DirectoryInfo)ViewBag.theServerPath;
+
+
+    List<Comment> propertyComments = new List<Comment>(); //for the star rating
+
+    List<Property> theFeaturedProperties = Property.GetFeaturedProperties();
+    //for each featured property view model, get minimum price
+    List<FeaturedPropertyCarouselItem> theCarouselItems = new List<FeaturedPropertyCarouselItem>();
+    //populate
+    foreach (var property in theFeaturedProperties)
+    {
+        
+        //get list of all img for this prop and pick one at random
+
+        var theImageURL = PRCImageCollection.GetRandomImageURLForProperty(property, Server);
+
+
+        FeaturedPropertyCarouselItem aFeaturedProperty = new FeaturedPropertyCarouselItem(property, Server, theImageURL);
+       
+        theCarouselItems.Add(aFeaturedProperty);
+        var comments = Comment.GetComments(property);
+        foreach (var comment in comments)
+        {
+            propertyComments.Add(comment);
+        }
+    }
+
+
+
+    if (ScreenPixelsWidth <= 979)
+    { maxCarouselItems = 3; }
+    else if (ScreenPixelsWidth > 979 && ScreenPixelsWidth <= 1400)
+    { maxCarouselItems = 4; }
+    else if (ScreenPixelsWidth > 1400)
+    { maxCarouselItems = 5; }
+    else
+    { maxCarouselItems = 4; }
+
+
+}
+
+
+
+
+<ul id="FeaturedPropertyCarousel" class="owl-carousel owl-theme">
+    @{foreach (var prop in theCarouselItems)
+      {
+          Property thisProperty = Property.GetPropertyByID(prop.propertyID);
+          
+        <li class="span12 carouselItem">
+            <div class="thumbnail lightGrey imgLiquidFill imgLiquid" style="padding: 0;">
+                <a href="~/Home/FullPropertyResult?PropertyID=@prop.propertyID">
+                    <img style="margin:0; border-top-left-radius:3px; border-top-right-radius:3px;" src="@PRCImageCollection.IfFeaturedExistsReturnURLElseReturnRandomImage(thisProperty, Server)" class="img-responsive">
+                </a>
+                @*                <div class="row-fluid" style=" margin-top:-30px;">
+                <ul class="span12" style="background-color:#eee; position:relative; z-index:200; border-bottom:1px solid #ddd; padding:12px 8px; color:#aaa !important;">
+                    <li><a href="~/Home/FullPropertyResult?PropertyID=@prop.propertyID" class="fa fa-fw fa-camera pull-left"></a></li>
+                    <li class="divider-vertical"></li>
+                    <li><a href="~/Home/FullPropertyResult?PropertyID=@prop.propertyID" class="fa fa-fw fa-camera pull-left"></a></li>
+                </ul>
+            </div>*@
+                <div class="caption">
+                    <h4 class="pull-right"><small class="label label-success">From £@prop.propertyPriceRange.MinPrice</small></h4>
+                    <h4 class="dot1">
+                        <small><strong><a href="~/Home/FullPropertyResult?PropertyID=@prop.propertyID">@prop.PRCRef</a></strong></small>
+                    </h4>
+                    <div class="dot1 box toTranslate">@thisProperty.FullDescription</div>
+                    <div class="ratings">
+                        <p class="pull-right">@Comment.GetComments(thisProperty).Count reviews</p>
+                        <p style="color: #e74c3c !important;">
+
+                            @{
+          var starRating = 0;
+
+          if (propertyComments.Where(x => x.PropertyID == prop.propertyID).Count() > 0)
+          {
+              starRating = (Comment.GetPropertyStarRating(thisProperty));
+          }
+          else
+          {
+              starRating = 2;
+          }
+                            }
+
+
+                            <input type="number" name="your_awesome_parameter" value="@starRating" class="rating " data-max="4" />
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </li>@*
+
+
+            <li class="span12 carouselItem">
+                <div class="thumbnail img-polaroid">
+                    <img src="@prop.thePictureURL" />
+                </div>
+                <div class="row-fluid">
+                    <div class="row-fluid" style="margin: 5px auto 10px auto">
+                        <p class="span6 text-left" style="color: #2c3e50; font-size: 13px; margin: 0;">
+                            <strong>
+                                @prop.propertyName
+                            </strong>
+                        </p>
+                        <small class="span6 text-right" style="color: #2c3e50; margin: 0;">From<br />
+                            <strong>£@prop.propertyPriceRange.MinPrice Wk</strong>
+                        </small>
+                    </div>
+                    <div class="row-fluid">
+                        <div class="span9 control-group" style="color: #E67E22 !important; font-size: 13px">
+                            <small class="pull-right">(15)</small>
+                            <input type="number" name="your_awesome_parameter" class="rating " data-max="4" />
+                        </div>
+                        <div class="span3 pagination-right">
+                            <i class=""></i>@Html.ActionLink("View", "FullPropertyResult", "Home", new { propertyID = prop.propertyID }, new { @class = "btn btn-small btn-block btn-success", @style = "bottom:0;" })
+                        </div>
+                    </div>
+                </div>
+            </li>*@
+    }
+    }
+
+</ul>
+
+
+
+
+
+
+
+
+
+@*<div id="FullPropertyResult">
+    <div class="item active">
+            <ul class="thumbnails">
+                @{
+                    foreach (var prop in theCarouselItems)
+                    {
+                        if (i >= maxCarouselItems)
+                        { break; }
+                        i++;
+
+                    <li class="span3 carouselItem">
+                        <div class="thumbnail img-polaroid">
+                            <img src="@prop.thePictureURL" />
+                        </div>
+                        <div class="row-fluid">
+                            <div class="row-fluid" style="margin-bottom: 10px">
+                                <p class="span6 text-left" style="color: #2c3e50; font-size: 14px; margin: 0;">
+                                    <strong>
+                                        @prop.propertyName
+                                    </strong>
+                                </p>
+                                <p class="span6 text-right" style="color: #2c3e50; margin: 0;">
+                                    From<br />
+                                    <strong>£@prop.propertyPriceRange.MinPrice /night</strong>
+                                </p>
+                            </div>
+                            <div class="row-fluid">
+                                <div class="span9 pagination-left" style="color: #E67E22 !important; font-size: 13px;">
+                                    <p class="text-left" style="color: #2c3e50 !important; padding-top: 0; padding-bottom: 0; margin: 0;">(15 Reviews)</p>
+                                    <input type="number" name="your_awesome_parameter" class="rating" data-max="4" />
+                                </div>
+                                <div class="span3 pagination-right">
+                                    @Html.ActionLink("View", "FullPropertyResult", "Home", new { propertyID = prop.propertyID }, new { @class = "span12 btn btn-small btn-success", @style = "padding: 3px 0 0 0; font-size: 13px; text-align: center;" })
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+
+                    }
+                }
+            </ul>
+            @{ theCarouselItems.RemoveRange(0, maxCarouselItems); }
+        </div>
+    </div>*@
+
+
+
+
+
+
+
+@* OLD CAROUSEL
+
+    <div class="carousel slide" id="headerCarousel">
+        <ol class="carousel-indicators">
+            <li data-target="#headerCarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#headerCarousel" data-slide-to="1"></li>
+        </ol>
+        <div class="carousel-inner">
+            <div class="item active">
+                <ul class="thumbnails">
+                    @{
+                        foreach (var prop in theCarouselItems)
+                        {
+                            if (i >= maxCarouselItems)
+                            { break; }
+                            i++;
+
+                        <li class="span3 carouselItem">
+                            <div class="thumbnail img-polaroid">
+                                <img src="@prop.thePictureURL" />
+                            </div>
+                            <div class="row-fluid">
+                                <div class="row-fluid" style="margin-bottom: 10px">
+                                    <p class="span6 text-left" style="color: #2c3e50; font-size: 14px; margin: 0;">
+                                        <strong>
+                                            @prop.propertyName
+                                        </strong>
+                                    </p>
+                                    <p class="span6 text-right" style="color: #2c3e50; margin: 0;">
+                                        From<br />
+                                        <strong>£@prop.propertyPriceRange.MinPrice /night</strong>
+                                    </p>
+                                </div>
+                                <div class="row-fluid">
+                                    <div class="span9 pagination-left" style="color: #E67E22 !important; font-size: 13px;">
+                                        <p class="text-left" style="color: #2c3e50 !important; padding-top: 0; padding-bottom: 0; margin: 0;">(15 Reviews)</p>
+                                        <input type="number" name="your_awesome_parameter" class="rating" data-max="4" />
+                                    </div>
+                                    <div class="span3 pagination-right">
+                                        @Html.ActionLink("View", "FullPropertyResult", "Home", new { propertyID = prop.propertyID }, new { @class = "span12 btn btn-small btn-success", @style = "padding: 3px 0 0 0; font-size: 13px; text-align: center;" })
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+
+                        }
+                    }
+                </ul>
+                @{ theCarouselItems.RemoveRange(0, maxCarouselItems); }
+            </div>
+            @*      <a data-slide="prev" href="#headerCarousel" class="left carousel-control">‹</a>
+                        <a data-slide="next" href="#headerCarousel" class="right carousel-control">›</a>*@
+
+@*
+
+            <div class="item">
+                <ul class="thumbnails">
+                    @{
+                        foreach (var prop in theCarouselItems)
+                        {
+                            if (i >= (maxCarouselItems * 2))
+                            { break; }
+                            i++;
+                        <li class="span3 carouselItem">
+                            <div class="thumbnail img-polaroid">
+                                <img src="@prop.thePictureURL" />
+                            </div>
+                            <div class="row-fluid">
+                                <div class="row-fluid" style="margin-bottom: 10px">
+                                    <p class="span6 text-left" style="color: #2c3e50; font-size: 14px; margin: 0;">
+                                        <strong>
+                                            @prop.propertyName
+                                        </strong>
+                                    </p>
+                                    <p class="span6 text-right" style="color: #2c3e50; margin: 0;">
+                                        From<br />
+                                        <strong>£@prop.propertyPriceRange.MinPrice /night</strong>
+                                    </p>
+                                </div>
+                                <div class="row-fluid">
+                                    <div class="span9 pagination-left" style="color: #E67E22 !important; font-size: 13px;">
+                                        <input type="number" name="your_awesome_parameter" class="rating" data-max="4" />
+                                        <p class="text-left" style="color: #2c3e50 !important; padding-top: 0; padding-bottom: 0; margin: 0;">(15)</p>
+                                    </div>
+                                    <div class="span3 pagination-right">
+                                        @Html.ActionLink("View", "FullPropertyResult", "Home", new { propertyID = prop.propertyID }, new { @class = "span12 btn btn-small btn-success", @style = "padding: 3px 0 0 0; font-size: 13px; text-align: center;" })
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+
+                        }
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+*@

@@ -1,0 +1,88 @@
+﻿@model IEnumerable<BootstrapVillas.Models.BookingExtraAttribute>
+
+@{
+    ViewBag.Title = "Index";
+
+    AjaxOptions options = new AjaxOptions
+    {
+        UpdateTargetId = "BottomEditorWindow",
+        InsertionMode = InsertionMode.Replace,
+        LoadingElementId = "spinner",
+
+    };
+
+    AjaxOptions deleteOptions = new AjaxOptions
+    {
+        UpdateTargetId = "BottomEditorWindow",
+        InsertionMode = InsertionMode.Replace,
+        LoadingElementId = "spinner",
+        Confirm = "Do you wish to delete this?"
+
+    };
+    
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table id="example" class="display" cellspacing="0" width="100%">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.BookingExtra.LegacyReference)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AttributeName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AttributeContent)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AttributeOrder)
+            </th>
+
+            <th></th>
+        </tr>
+    </thead>
+    
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BookingExtra.LegacyReference)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AttributeName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AttributeContent)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AttributeOrder)
+                </td>
+
+                <td>
+                    @Ajax.ActionLink("Edit", "Edit", new { id = item.BookingExtraAttributeID }, options) |
+
+                    @Ajax.ActionLink("Delete", "Delete", new { id = item.BookingExtraAttributeID }, deleteOptions)
+                </td>
+            </tr>
+        }
+    </tbody>
+
+</table>
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $(document).ready(function () {
+            $('#example').DataTable();
+            $('#BottomEditorWindow').hide();
+            $('#TopEditorWindow').animate({ height: '100%' }, 500);
+
+
+        });
+    });
+</script>

@@ -1,0 +1,191 @@
+﻿@model BootstrapVillas.Models.PropertyEntity
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Content/Admin/_AdminLayout.cshtml";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>PropertyEntity</legend>
+
+        @Html.HiddenFor(model => model.PropertyEntityID)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PropertyEntityTypeID, "PropertyEntityType")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("PropertyEntityTypeID", String.Empty)
+            @Html.ValidationMessageFor(model => model.PropertyEntityTypeID)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PropertyID, "Property")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("PropertyID", String.Empty)
+            @Html.ValidationMessageFor(model => model.PropertyID)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PropertyEntitySummaryDescription)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PropertyEntitySummaryDescription)
+            @Html.ValidationMessageFor(model => model.PropertyEntitySummaryDescription)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PropertyEntityName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PropertyEntityName)
+            @Html.ValidationMessageFor(model => model.PropertyEntityName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PropertyEntityDescription1)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PropertyEntityDescription1)
+            @Html.ValidationMessageFor(model => model.PropertyEntityDescription1)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PropertyEntityDescription2)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PropertyEntityDescription2)
+            @Html.ValidationMessageFor(model => model.PropertyEntityDescription2)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PropertyEntityDescription3)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PropertyEntityDescription3)
+            @Html.ValidationMessageFor(model => model.PropertyEntityDescription3)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PropertyEntityDescription4)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PropertyEntityDescription4)
+            @Html.ValidationMessageFor(model => model.PropertyEntityDescription4)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PropertyEntityDescription5)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PropertyEntityDescription5)
+            @Html.ValidationMessageFor(model => model.PropertyEntityDescription5)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PropertyEntityDescription6)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PropertyEntityDescription6)
+            @Html.ValidationMessageFor(model => model.PropertyEntityDescription6)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PropertyEntityDescription7)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PropertyEntityDescription7)
+            @Html.ValidationMessageFor(model => model.PropertyEntityDescription7)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PropertyEntityDescription8)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PropertyEntityDescription8)
+            @Html.ValidationMessageFor(model => model.PropertyEntityDescription8)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PropertyEntityDescription9)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PropertyEntityDescription9)
+            @Html.ValidationMessageFor(model => model.PropertyEntityDescription9)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PropertyEntityDescription10)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PropertyEntityDescription10)
+            @Html.ValidationMessageFor(model => model.PropertyEntityDescription10)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PropertyEntityDescription11)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PropertyEntityDescription11)
+            @Html.ValidationMessageFor(model => model.PropertyEntityDescription11)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PropertyEntityDescription12)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PropertyEntityDescription12)
+            @Html.ValidationMessageFor(model => model.PropertyEntityDescription12)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PropertyEntityDescription13)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PropertyEntityDescription13)
+            @Html.ValidationMessageFor(model => model.PropertyEntityDescription13)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PropertyEntityDescription14)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PropertyEntityDescription14)
+            @Html.ValidationMessageFor(model => model.PropertyEntityDescription14)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PropertyEntityDescription15)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PropertyEntityDescription15)
+            @Html.ValidationMessageFor(model => model.PropertyEntityDescription15)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.WhenCreated)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.WhenCreated)
+            @Html.ValidationMessageFor(model => model.WhenCreated)
+        </div>
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

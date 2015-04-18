@@ -1,0 +1,208 @@
+﻿@model IEnumerable<BootstrapVillas.Models.Customer>
+
+@{
+    ViewBag.Title = "Index";
+
+    AjaxOptions options = new AjaxOptions
+    {
+        UpdateTargetId = "TopEditorWindow",
+        InsertionMode = InsertionMode.Replace,
+        LoadingElementId = "spinner"
+    };
+
+    AjaxOptions deleteOptions = new AjaxOptions
+    {
+        UpdateTargetId = "BottomEditorWindow",
+        InsertionMode = InsertionMode.Replace,
+        LoadingElementId = "spinner",
+        Confirm = "Are you sure you want to delete this?"
+    };
+
+
+
+
+}
+
+<h2>Index</h2>
+
+
+@Ajax.ActionLink("Create New", "Create", "Customer", options, new { id = "createButton", style = "" })
+
+<table id="example" class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CustomerID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MiddleName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DOB)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EmailAddress)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AltEmailAddress)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DayTimeTelephone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HomeTelephone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MobileTelephone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AltTelephone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CompanyTelephone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Address1)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Address2)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Town)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Postcode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.County)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Country)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Test)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.WhoUpdated)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreationDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PreferredCurrency)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PreferredCurrencySymbol)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CustomerID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MiddleName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DOB)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EmailAddress)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AltEmailAddress)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DayTimeTelephone)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.HomeTelephone)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MobileTelephone)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AltTelephone)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CompanyTelephone)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Address1)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Address2)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Town)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Postcode)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.County)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Country)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Test)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.WhoUpdated)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CreationDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PreferredCurrency)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PreferredCurrencySymbol)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.CustomerID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.CustomerID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.CustomerID })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+  
+            $('#example').DataTable();
+            $('#BottomEditorWindow').hide();
+            $('#TopEditorWindow').animate({height:'100%'}, 500);
+            
+  
+    });
+</script>

@@ -1,0 +1,42 @@
+﻿ @using BootstrapVillas.Models;
+@model Property
+
+@{
+   
+        
+    ViewBag.Title = "DoVillaSearch";
+    List<Property> thePropertyList = ViewBag.Properties;
+    string PropertyType = ViewData["PropertyType"].ToString();
+    
+}
+
+<div id="innerContainer">
+	
+    
+  
+    <div id="ca-container" class="ca-container">
+        <div class="ca-wrapper">
+                                
+            @PropertyType               
+            
+            @foreach (var property in thePropertyList)
+            {
+                if(property.PropertyName != null)
+                {
+                    <div>
+                        @property.PropertyID
+                        <br/>
+                        @property.PropertyName
+                    </div>
+                }
+            }
+                                
+                                
+        </div>
+                            
+    </div>
+</div>
+
+                                
+                                
+

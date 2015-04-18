@@ -1,0 +1,106 @@
+﻿@model BootstrapVillas.Models.PropertyPricing
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>PropertyPricing</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Property.LegacyReference)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Property.LegacyReference)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.PropertyPricingType.PropertyPricingSeasonName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PropertyPricingType.PropertyPricingSeasonName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.YearPricingStarts)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.YearPricingStarts)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.YearPricingEnds)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.YearPricingEnds)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.RollingPricing_NoYears_)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.RollingPricing_NoYears_)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Price)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Price)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.PricingName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PricingName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.PricingNotes)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PricingNotes)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.PricingStartDate)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PricingStartDate)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.PricingEndDate)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PricingEndDate)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.PriceUnit)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PriceUnit)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.PriceSymbol)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PriceSymbol)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.WhenCreated)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.WhenCreated)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.PropertyPricingID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

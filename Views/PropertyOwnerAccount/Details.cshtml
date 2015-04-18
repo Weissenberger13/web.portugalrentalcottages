@@ -1,0 +1,78 @@
+﻿@model BootstrapVillas.Models.PropertyOwnerAccount
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>PropertyOwnerAccount</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.AccountBalance)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.AccountBalance)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.WhenCreated)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.WhenCreated)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.PropertyOwner.PropertyOwnerEmailAddress)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PropertyOwner.PropertyOwnerEmailAddress)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ThirdPartyService.ThirdPartyServiceName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ThirdPartyService.ThirdPartyServiceName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.BankName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.BankName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.BankAddress1)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.BankAddress1)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.BankAddress2)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.BankAddress2)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.SortCode)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.SortCode)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.IBAN)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.IBAN)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.AccountID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

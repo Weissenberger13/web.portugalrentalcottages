@@ -1,0 +1,397 @@
+﻿@model IEnumerable<BootstrapVillas.Models.Property>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table id="example" class="display" cellspacing="0" width="100%">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.LegacyReference)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PropertyOwner.PropertyOwnerEmailAddress)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PropertyOwnerRepresentative.PropertyOwnerRepresentativeName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PropertyType.PropertyTypeName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PropertyTown.TownName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PropertyVacationType.PropertyVacationTypeDescription)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HomeawayReference)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PropertyName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FullDescription)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ChangeOverDay)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ChangeoverNotes)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Pets)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Parking)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DisabledAccess)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Smoking)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SwimmingPool)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SwimmingPoolType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HeatedPool)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Heating)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AirConditioning)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.InternetAccess)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HiFi)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TV)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Bedrooms)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Bathrooms)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MaxGuests)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SofaBeds)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ExtraBeds)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cots)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HighChair)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Other)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MapURL)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GPSCoordinatesLongitude)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GPSCoordinatesLatitude)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LegacySynopsis1)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LegacySynopsis2)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LegacySynopsis3)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PriceSynopsis)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Exclusive)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FullAddress)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HouseName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HouseNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AddressLine1)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AddressLine2)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Town)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Postcode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.County)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Country)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PropertyTelephone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.WhenCreated)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Active)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Alarm)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BBQ)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DirectionsFromAirport)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.WhoUpdated)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsFeatured)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsSale)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Deposit_GBP_)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BreakageDeposit_GBP_)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LegacyReference)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PropertyOwner.PropertyOwnerEmailAddress)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PropertyOwnerRepresentative.PropertyOwnerRepresentativeName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PropertyType.PropertyTypeName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PropertyTown.TownName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PropertyVacationType.PropertyVacationTypeDescription)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.HomeawayReference)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PropertyName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FullDescription)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ChangeOverDay)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ChangeoverNotes)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Pets)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Parking)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DisabledAccess)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Smoking)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SwimmingPool)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SwimmingPoolType)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.HeatedPool)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Heating)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AirConditioning)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.InternetAccess)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.HiFi)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TV)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Bedrooms)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Bathrooms)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MaxGuests)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SofaBeds)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ExtraBeds)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cots)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.HighChair)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Other)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MapURL)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.GPSCoordinatesLongitude)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.GPSCoordinatesLatitude)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LegacySynopsis1)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LegacySynopsis2)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LegacySynopsis3)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PriceSynopsis)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Exclusive)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FullAddress)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.HouseName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.HouseNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AddressLine1)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AddressLine2)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Town)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Postcode)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.County)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Country)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PropertyTelephone)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.WhenCreated)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Active)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Alarm)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BBQ)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DirectionsFromAirport)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.WhoUpdated)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IsFeatured)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IsSale)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Deposit_GBP_)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BreakageDeposit_GBP_)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.PropertyID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.PropertyID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.PropertyID })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $(document).ready(function () {
+            $('#example').DataTable();
+            $('#BottomEditorWindow').hide();
+            $('#TopEditorWindow').animate({ height: '100%' }, 500);
+
+
+        });
+    });
+</script>

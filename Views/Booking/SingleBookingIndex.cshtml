@@ -1,0 +1,525 @@
+﻿@model BootstrapVillas.Models.Booking
+
+@{
+    ViewBag.Title = "SingleBookingIndex";
+
+
+    var ActiveListDDL = new Dictionary<string, string>();
+    ActiveListDDL.Add("true", "true");
+    ActiveListDDL.Add("false", "false");
+
+}
+
+
+
+
+@{
+
+
+    AjaxOptions options = new AjaxOptions
+    {
+        UpdateTargetId = "TopEditorWindow",
+        InsertionMode = InsertionMode.Replace,
+        LoadingElementId = "spinner",
+
+    };
+
+
+    AjaxOptions deleteOptions = new AjaxOptions
+    {
+        UpdateTargetId = "TopEditorWindow",
+        InsertionMode = InsertionMode.Replace,
+        LoadingElementId = "spinner",
+        Confirm = "You sure you wish to cancel this booking?",
+        OnSuccess = "clearGrid();alert('Deleted');"
+
+
+    };
+
+
+    <script type="text/javascript">
+        function clearGrid() {
+            $('#TopEditorWindow').empty();
+            $('#BottomEditorWindow').empty();
+        }
+
+    </script>
+
+}
+
+@if (Model.Customer != null)
+{
+    <h3>BookingID:@Model.BookingID - @Model.Customer.FirstName @Model.Customer.LastName || @Model.BookingPRCReference @*|| @Model.StartDate to @Model.EndDate*@</h3>
+}
+
+<div class="container-fluid">
+    <div class="row-fluid">
+        @*Create*@
+        @Ajax.ActionLink("Create New", "Create", "Booking", options, new { id = "createButton", style = "" })
+
+        @*delete possible if selected*@
+        @{
+            if (!Model.Equals(null))
+            {
+                @Ajax.ActionLink("Delete/Cancel", "CancelBooking", "Booking", new { bookingID = @Model.BookingID }, deleteOptions)
+            }
+        }
+
+        <input type="button" value="View Events and Documents" id="BookingViewEvents" />
+        @*<input type="button" value="View Documents" id="BookingViewDocuments" />        *@
+
+    </div>
+
+    <div class="row-fluid">
+
+        @using (Ajax.BeginForm("Edit", "Booking", options, new { id = "bookingEditForm" }))
+        {
+
+            <fieldset>
+
+                @Html.HiddenFor(model => model.BookingID)
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.PropertyID, "Property")
+                </div>
+                <div class="editor-field">
+                    @Html.DropDownList("PropertyID", String.Empty)
+                    @Html.ValidationMessageFor(model => model.PropertyID)
+                </div>
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.CustomerID, "Customer")
+                </div>
+                <div class="editor-field">
+                    @Html.DropDownList("CustomerID", String.Empty)
+                    @Html.ValidationMessageFor(model => model.CustomerID)
+                </div>
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.BookingGUID)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.BookingGUID)
+                    @Html.ValidationMessageFor(model => model.BookingGUID)
+                </div>
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.BookingParentContainerID, "BookingParentContainer")
+                </div>
+                <div class="editor-field">
+                    @Html.DropDownList("BookingParentContainerID", String.Empty)
+                    @Html.ValidationMessageFor(model => model.BookingParentContainerID)
+                </div>
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.BookingPRCReference)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.BookingPRCReference)
+                    @Html.ValidationMessageFor(model => model.BookingPRCReference)
+                </div>
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.HomeawayReference)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.HomeawayReference)
+                    @Html.ValidationMessageFor(model => model.HomeawayReference)
+                </div>
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.BookingPrice)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.BookingPrice)
+                    @Html.ValidationMessageFor(model => model.BookingPrice)
+                </div>
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.InitialDeposit)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.InitialDeposit)
+                    @Html.ValidationMessageFor(model => model.InitialDeposit)
+                </div>
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.BreakageDepositRemittancePaidDate)
+                </div>
+                <div class="editor-field">
+                    <input type="text" id="BreakageDepositRemittancePaidDate" name="BreakageDepositRemittancePaidDate" class="date-picker" value=@Convert.ToDateTime(Model.BreakageDepositRemittancePaidDate).ToString("dd/MM/yyyy") />
+                    @Html.ValidationMessageFor(model => model.BreakageDepositRemittancePaidDate)
+                </div>
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.CommissionAmount)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.CommissionAmount)
+                    @Html.ValidationMessageFor(model => model.CommissionAmount)
+                </div>
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.RemittanceAmount)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.RemittanceAmount)
+                    @Html.ValidationMessageFor(model => model.RemittanceAmount)
+                </div>
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.FinalRentalPayment)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.FinalRentalPayment)
+                    @Html.ValidationMessageFor(model => model.FinalRentalPayment)
+                </div>
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.BreakageDeposit)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.BreakageDeposit)
+                    @Html.ValidationMessageFor(model => model.BreakageDeposit)
+                </div>
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.RentalBalanceDueDate)
+                </div>
+                <div class="editor-field">
+                    <input type="text" id="RentalBalanceDueDate" name="RentalBalanceDueDate" class="date-picker" value=@Convert.ToDateTime(Model.RentalBalanceDueDate).ToString("dd/MM/yyyy") />
+                    @Html.ValidationMessageFor(model => model.RentalBalanceDueDate)
+                </div>
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.BreakageDepositDueDate)
+                </div>
+                <div class="editor-field">
+                    <input type="text" id="BreakageDepositDueDate" name="BreakageDepositDueDate" class="date-picker" value=@Convert.ToDateTime(Model.BreakageDepositDueDate).ToString("dd/MM/yyyy") />
+                    @Html.ValidationMessageFor(model => model.BreakageDepositDueDate)
+                </div>
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Cancelled)
+                </div>
+                <div class="editor-field">
+                    @Html.DropDownList("Cancelled", new SelectList(ActiveListDDL, "Key", "Value", Model.Cancelled), new { id = "Cancelled", @class = "input-small", @style = "height: auto !important; width:auto;" })
+                    @Html.ValidationMessageFor(model => model.Cancelled)
+                </div>
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Confirmed)
+                </div>
+                <div class="editor-field">
+                    @Html.DropDownList("Confirmed", new SelectList(ActiveListDDL, "Key", "Value", Model.Confirmed), new { id = "Confirmed", @class = "input-small", @style = "height: auto !important; width:auto;" })
+                    @Html.ValidationMessageFor(model => model.Confirmed)
+                </div>
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.StartDate)
+                </div>
+                <div class="editor-field">
+                    <input type="text" id="StartDate" name="StartDate" class="date-picker" value=@Convert.ToDateTime(Model.StartDate).ToString("dd/MM/yyyy") />
+                    @Html.ValidationMessageFor(model => model.StartDate)
+                </div>
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.EndDate)
+                </div>
+                <div class="editor-field">
+                    <input type="text" id="EndDate" name="EndDate" class="date-picker" value=@Convert.ToDateTime(Model.EndDate).ToString("dd/MM/yyyy") />
+                    @Html.ValidationMessageFor(model => model.EndDate)
+                </div>
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.CheckInTime)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.CheckInTime)
+                    @Html.ValidationMessageFor(model => model.CheckInTime)
+                </div>
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.CheckOutTime)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.CheckOutTime)
+                    @Html.ValidationMessageFor(model => model.CheckOutTime)
+                </div>
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.NumberOfNights)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.NumberOfNights)
+                    @Html.ValidationMessageFor(model => model.NumberOfNights)
+                </div>
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.BookingTypeID)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.BookingTypeID)
+                    @Html.ValidationMessageFor(model => model.BookingTypeID)
+                </div>
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.NumberOfGuests)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.NumberOfGuests)
+                    @Html.ValidationMessageFor(model => model.NumberOfGuests)
+                </div>
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.NumberOfAdults)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.NumberOfAdults)
+                    @Html.ValidationMessageFor(model => model.NumberOfAdults)
+                </div>
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.NumberOfChildren)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.NumberOfChildren)
+                    @Html.ValidationMessageFor(model => model.NumberOfChildren)
+                </div>
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.NumberOfInfants)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.NumberOfInfants)
+                    @Html.ValidationMessageFor(model => model.NumberOfInfants)
+                </div>
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.TotalNumberOfMinors)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.TotalNumberOfMinors)
+                    @Html.ValidationMessageFor(model => model.TotalNumberOfMinors)
+                </div>
+
+                @*      <div class="editor-label">
+                        @Html.LabelFor(model => model.CreationDate)
+                    </div>
+                    <div class="editor-field">
+                        @Html.EditorFor(model => model.CreationDate)
+                        @Html.ValidationMessageFor(model => model.CreationDate)
+                    </div>*@
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.WhoUpdated)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.WhoUpdated)
+                    @Html.ValidationMessageFor(model => model.WhoUpdated)
+                </div>
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Test)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.Test)
+                    @Html.ValidationMessageFor(model => model.Test)
+                </div>
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.DocumentID)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.DocumentID)
+                    @Html.ValidationMessageFor(model => model.DocumentID)
+                </div>
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.PackageID)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.PackageID)
+                    @Html.ValidationMessageFor(model => model.PackageID)
+                </div>
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.SpecialRequests)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.SpecialRequests)
+                    @Html.ValidationMessageFor(model => model.SpecialRequests)
+                </div>
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.NoOfTowelsRequested)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.NoOfTowelsRequested)
+                    @Html.ValidationMessageFor(model => model.NoOfTowelsRequested)
+                </div>
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.MidVactionCleaning)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.MidVactionCleaning)
+                    @Html.ValidationMessageFor(model => model.MidVactionCleaning)
+                </div>
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.SwimmingPoolHeating)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.SwimmingPoolHeating)
+                    @Html.ValidationMessageFor(model => model.SwimmingPoolHeating)
+                </div>
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.ExtraLininSet)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.ExtraLininSet)
+                    @Html.ValidationMessageFor(model => model.ExtraLininSet)
+                </div>
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.BookingCurrencyConversionPrice)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.BookingCurrencyConversionPrice)
+                    @Html.ValidationMessageFor(model => model.BookingCurrencyConversionPrice)
+                </div>
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.BookingCurrencyConversionSymbol)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.BookingCurrencyConversionSymbol)
+                    @Html.ValidationMessageFor(model => model.BookingCurrencyConversionSymbol)
+                </div>
+
+                <p>
+                    <input type="submit" value="Save" />
+                </p>
+            </fieldset>
+        }
+
+    </div>
+
+</div>
+
+
+
+@*Booking - Event*@
+<script type="text/javascript">
+    $('#BookingViewEvents').on('click', function () {
+        //delete existing
+
+        $('#TopEditorWindow').empty();
+
+        //get all vars
+        var id = '@Model.BookingID';
+
+
+
+        //request
+        $.ajax({
+            url: '@Url.Action("EventIndexBooking", "Event")',
+            data: { "bookingID": id },
+            type: "GET",
+            success: function (result) {
+                $('#TopEditorWindow').html(result);
+                //get the pricing
+            },
+            error: function () { alert('That did not work please try again'); }
+        });
+
+    });
+
+</script>
+
+
+@*Booking - DOCS*@
+<script type="text/javascript">
+    $('#BookingViewDocuments').on('click', function () {
+        //delete existing
+
+        $('#BottomEditorWindow').empty();
+
+        //get all vars
+        var id = '@Model.BookingID';
+
+
+
+        //request
+        $.ajax({
+            url: '@Url.Action("BookingIndex", "Document")',
+            data: { "bookingID": id },
+            type: "GET",
+            success: function (result) {
+                $('#BottomEditorWindow').html(result);
+                //get the pricing
+            },
+            error: function () { alert('That did not work please try again'); }
+        });
+
+    });
+
+</script>
+
+
+@*'Delete'*@
+<script type="text/javascript">
+    $('.isDelete').on('click', function () {
+        //delete existing
+        $('#TopEditorWindow').empty();
+        $('#BottomEditorWindow').empty();
+
+        //get all vars
+
+        //request
+        $.ajax({
+            url: '@Url.Action("SetIsDeleted", "Booking")',
+            data: { "id": id },
+            type: "GET",
+            success: function (result) {
+                $('#TopEditorWindow').html(result);
+                //get the pricing
+            },
+            error: function () { alert('That did not work please try again'); }
+        });
+
+    });
+
+</script>
+
+
+@*Booking - Events*@
+<script type="text/javascript">
+    $('#BookingViewEvents').on('click', function () {
+        //delete existing
+
+        $('#BottomEditorWindow').empty();
+        //get all vars
+        var id = '@Model.BookingID';
+
+
+
+        //request
+        $.ajax({
+            url: '@Url.Action("AddBookingEvent", "Event")',
+            data: { "id": id },
+            type: "GET",
+            success: function (result) {
+                $('#BottomEditorWindow').html(result);
+                //get the pricing
+            },
+            error: function () { alert('That did not work please try again'); }
+        });
+
+    });
+
+</script>
+
+

@@ -1,0 +1,51 @@
+﻿@model IEnumerable<BootstrapVillas.Models.NewsletterParticipant>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table id="example" class="display" cellspacing="0" width="100%">
+    
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.NewsletterParticipantEmail)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NewsletterParticipantEmail)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.NewsletterParticipantID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.NewsletterParticipantID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.NewsletterParticipantID })
+                </td>
+            </tr>
+        }
+    </tbody>
+
+</table>
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $(document).ready(function () {
+            $('#example').DataTable();
+            $('#BottomEditorWindow').hide();
+            $('#TopEditorWindow').animate({ height: '100%' }, 500);
+
+
+        });
+    });
+</script>

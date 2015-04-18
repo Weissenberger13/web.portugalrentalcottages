@@ -1,0 +1,124 @@
+﻿@model BootstrapVillas.Models.BookingExtraParticipant
+
+@{
+    ViewBag.Title = "Create";
+
+    AjaxOptions options = new AjaxOptions
+    {
+        UpdateTargetId = "BottomEditorWindow",
+        InsertionMode = InsertionMode.Replace,
+        LoadingElementId = "spinner",
+        OnSuccess = "alert('Created')"
+    };
+
+    var id = (long)ViewBag.ID;
+    
+}
+
+<h2>Create</h2>
+
+@using (Ajax.BeginForm("Create", "BookingExtraParticipant", options))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>BookingExtraParticipant</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.BookingExtraSelectionID, "BookingExtraSelection")
+        </div>
+        <div class="editor-field">
+            <input type="text" readonly id="BookingExtraSelectionID" name="BookingExtraSelectionID" class="date-picker" value="@id" />
+            @Html.ValidationMessageFor(model => model.BookingExtraSelectionID)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.BookingExtraParticipantTitle)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.BookingExtraParticipantTitle)
+            @Html.ValidationMessageFor(model => model.BookingExtraParticipantTitle)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.BookingExtraParticipantFirstName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.BookingExtraParticipantFirstName)
+            @Html.ValidationMessageFor(model => model.BookingExtraParticipantFirstName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.BookingExtraParticipantMiddleName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.BookingExtraParticipantMiddleName)
+            @Html.ValidationMessageFor(model => model.BookingExtraParticipantMiddleName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.BookingExtraParticipantLastName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.BookingExtraParticipantLastName)
+            @Html.ValidationMessageFor(model => model.BookingExtraParticipantLastName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.BookingExtraParticipantDOB)
+        </div>
+        <div class="editor-field">
+            <input type="text" id="BookingExtraParticipantDOB" name="BookingExtraParticipantDOB" class="date-picker"  />
+            @Html.ValidationMessageFor(model => model.BookingExtraParticipantDOB)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.BookingExtraParticipantChild)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.BookingExtraParticipantChild)
+            @Html.ValidationMessageFor(model => model.BookingExtraParticipantChild)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.BookingExtraParticipantInfant)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.BookingExtraParticipantInfant)
+            @Html.ValidationMessageFor(model => model.BookingExtraParticipantInfant)
+        </div>
+
+      @*  <div class="editor-label">
+            @Html.LabelFor(model => model.BookingExtraParticipantWhenCreated)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.BookingExtraParticipantWhenCreated)
+            @Html.ValidationMessageFor(model => model.BookingExtraParticipantWhenCreated)
+        </div>*@
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.BookingExtraParticipantDriversLicenceNo)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.BookingExtraParticipantDriversLicenceNo)
+            @Html.ValidationMessageFor(model => model.BookingExtraParticipantDriversLicenceNo)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.BookingExtraParticipantDriversPassportNo)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.BookingExtraParticipantDriversPassportNo)
+            @Html.ValidationMessageFor(model => model.BookingExtraParticipantDriversPassportNo)
+        </div>
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

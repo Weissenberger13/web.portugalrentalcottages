@@ -1,0 +1,197 @@
+﻿@model BootstrapVillas.Models.PropertyOwner
+
+@{
+    ViewBag.Title = "Edit";
+
+
+
+
+    AjaxOptions options = new AjaxOptions
+    {
+        UpdateTargetId = "TopEditorWindow",
+        InsertionMode = InsertionMode.Replace,
+        LoadingElementId = "spinner",
+        OnSuccess = "alert('Updated')"
+    };
+
+    AjaxOptions createOptions = new AjaxOptions
+    {
+        UpdateTargetId = "TopEditorWindow",
+        InsertionMode = InsertionMode.Replace,
+        LoadingElementId = "spinner"
+    };
+    
+
+
+    
+}
+
+<h2>Edit</h2>
+
+@Ajax.ActionLink("Create", "Create", "PropertyOwner", createOptions)
+
+@using (Ajax.BeginForm("Edit", "PropertyOwner", options))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>PropertyOwner</legend>
+
+        @Html.HiddenFor(model => model.PropertyOwnerID)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PropertyOwnerEmailAddress)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PropertyOwnerEmailAddress)
+            @Html.ValidationMessageFor(model => model.PropertyOwnerEmailAddress)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PropertyOwnerEmailAddress2)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PropertyOwnerEmailAddress2)
+            @Html.ValidationMessageFor(model => model.PropertyOwnerEmailAddress2)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PropertyOwnerEmailAddress3)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PropertyOwnerEmailAddress3)
+            @Html.ValidationMessageFor(model => model.PropertyOwnerEmailAddress3)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.OwnerFirstName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.OwnerFirstName)
+            @Html.ValidationMessageFor(model => model.OwnerFirstName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.OwnerLastName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.OwnerLastName)
+            @Html.ValidationMessageFor(model => model.OwnerLastName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PropertyOwnerHouseName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PropertyOwnerHouseName)
+            @Html.ValidationMessageFor(model => model.PropertyOwnerHouseName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PropertyOwnerHouseNumber)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PropertyOwnerHouseNumber)
+            @Html.ValidationMessageFor(model => model.PropertyOwnerHouseNumber)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PropertyOwnerAddressLine1)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PropertyOwnerAddressLine1)
+            @Html.ValidationMessageFor(model => model.PropertyOwnerAddressLine1)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PropertyOwnerAddressLine2)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PropertyOwnerAddressLine2)
+            @Html.ValidationMessageFor(model => model.PropertyOwnerAddressLine2)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PropertyOwnerTown)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PropertyOwnerTown)
+            @Html.ValidationMessageFor(model => model.PropertyOwnerTown)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PropertyOwnerPostcode)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PropertyOwnerPostcode)
+            @Html.ValidationMessageFor(model => model.PropertyOwnerPostcode)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PropertyOwnerCounty)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PropertyOwnerCounty)
+            @Html.ValidationMessageFor(model => model.PropertyOwnerCounty)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PropertyOwnerCountry)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PropertyOwnerCountry)
+            @Html.ValidationMessageFor(model => model.PropertyOwnerCountry)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PropertyOwnerHomeTelephone)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PropertyOwnerHomeTelephone)
+            @Html.ValidationMessageFor(model => model.PropertyOwnerHomeTelephone)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PropertyOwnerMobileTelephone)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PropertyOwnerMobileTelephone)
+            @Html.ValidationMessageFor(model => model.PropertyOwnerMobileTelephone)
+        </div>
+
+
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PropertyOwnerNotes)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PropertyOwnerNotes)
+            @Html.ValidationMessageFor(model => model.PropertyOwnerNotes)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PropertyOwnerBankDetails)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PropertyOwnerBankDetails)
+            @Html.ValidationMessageFor(model => model.PropertyOwnerBankDetails)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PropertyOwnerBankDetailsNotes)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PropertyOwnerBankDetailsNotes)
+            @Html.ValidationMessageFor(model => model.PropertyOwnerBankDetailsNotes)
+        </div>
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

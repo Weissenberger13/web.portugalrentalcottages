@@ -1,0 +1,82 @@
+﻿@using BootstrapVillas.Models;
+
+
+<h2>Bookings</h2>
+<table class="table">
+    <tr>
+        <th>BookingID</th>
+        <th>Created</th>
+        <th>Property Ref</th>
+        <th>Start Date</th>
+        <th>PRC Ref</th>
+        <th>Price</th>
+    </tr>
+
+    @{
+
+
+
+
+        if (ViewBag.Bookings != null)
+        {
+            var bookings = (List<Booking>)ViewBag.Bookings;
+
+
+            foreach (var booking in bookings)
+            {
+
+                <tr>
+                    <td>@booking.BookingID</td>
+                    <td>@booking.CreationDate</td>
+                    <td>@booking.Property.LegacyReference</td>
+                    <td>@booking.StartDate</td>
+                    <td>@booking.BookingPRCReference
+                    <td>@booking.BookingPrice</td>
+                </tr>
+            }
+        }
+
+    }
+
+</table>
+
+
+
+
+
+<h2>Bookings Extras</h2>
+<table class="table">
+    <tr>
+        <th>BookingExtraSelectionID</th>
+        <th>Created</th>
+        <th>Type</th>
+        <th>Start Date</th>
+        <th>PRC Ref</th>
+        <th>No of People</th>
+        <th>Price</th>
+    </tr>
+
+
+    @{
+        if (ViewBag.Bes != null)
+        {
+            var bes = (List<BookingExtraSelection>)ViewBag.Bes;
+
+            foreach (var extra in bes)
+            {
+                <tr>
+                    <td>@extra.BookingExtraSelectionID </td>
+                    <td>@extra.WhenCreated </td>
+                    <td>@extra.BookingExtra.BookingExtraName</td>
+                    <td>@extra.ExtraRentalDate </td>
+                    <td>@extra.BookingExtraPRCReference</td>
+                    <td>@extra.NumberOfGuests</td>
+                    <td>@extra.BESPrice</td>
+                </tr>
+            }
+
+        }
+    }
+
+
+</table>

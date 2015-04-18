@@ -1,0 +1,121 @@
+﻿@model IEnumerable<BootstrapVillas.Models.PropertyPricing>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table id="example" class="display" cellspacing="0" width="100%">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Property.LegacyReference)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PropertyPricingType.PropertyPricingSeasonName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.YearPricingStarts)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.YearPricingEnds)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RollingPricing_NoYears_)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PricingName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PricingNotes)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PricingStartDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PricingEndDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PriceUnit)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PriceSymbol)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.WhenCreated)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Property.LegacyReference)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PropertyPricingType.PropertyPricingSeasonName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.YearPricingStarts)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.YearPricingEnds)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RollingPricing_NoYears_)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PricingName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PricingNotes)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PricingStartDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PricingEndDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PriceUnit)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PriceSymbol)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.WhenCreated)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.PropertyPricingID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.PropertyPricingID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.PropertyPricingID })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $(document).ready(function () {
+            $('#example').DataTable();
+            $('#BottomEditorWindow').hide();
+            $('#TopEditorWindow').animate({ height: '100%' }, 500);
+
+
+        });
+    });
+</script>

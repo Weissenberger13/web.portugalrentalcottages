@@ -1,0 +1,124 @@
+﻿@model IEnumerable<BootstrapVillas.Models.BookingExtraParticipant>
+
+@{
+    ViewBag.Title = "Index";
+
+    AjaxOptions options = new AjaxOptions
+    {
+        UpdateTargetId = "BottomEditorWindow",
+        InsertionMode = InsertionMode.Replace,
+        LoadingElementId = "spinner"
+
+    };
+
+
+    AjaxOptions deleteOptions = new AjaxOptions
+    {
+        UpdateTargetId = "BottomEditorWindow",
+        InsertionMode = InsertionMode.Replace,
+        LoadingElementId = "spinner",       
+        Confirm = "Do you wish to delete this?"
+
+    };
+    
+}
+
+<h2>Extra Partipants Current Count: @Model.Count()</h2>
+
+<p>
+    @Ajax.ActionLink("Create", "Create", "BookingExtraParticipant", options)
+</p>
+<table id="example" class="display" cellspacing="0" width="100%">
+    <thead>
+        <tr>
+
+            <th>
+                @Html.DisplayNameFor(model => model.BookingExtraParticipantTitle)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BookingExtraParticipantFirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BookingExtraParticipantMiddleName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BookingExtraParticipantLastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BookingExtraParticipantDOB)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BookingExtraParticipantChild)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BookingExtraParticipantInfant)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BookingExtraParticipantWhenCreated)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BookingExtraParticipantDriversLicenceNo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BookingExtraParticipantDriversPassportNo)
+            </th>
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.BookingExtraParticipantTitle)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BookingExtraParticipantFirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BookingExtraParticipantMiddleName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BookingExtraParticipantLastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BookingExtraParticipantDOB)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BookingExtraParticipantChild)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BookingExtraParticipantInfant)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BookingExtraParticipantWhenCreated)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BookingExtraParticipantDriversLicenceNo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BookingExtraParticipantDriversPassportNo)
+                </td>
+
+                <td>
+                    @Ajax.ActionLink("Edit", "Edit", "BookingExtraParticipant", new { id = item.BookingExtraParticipantID }, options) |
+                    @Ajax.ActionLink("Delete", "Delete", "BookingExtraParticipant", new { id = item.BookingExtraParticipantID }, deleteOptions)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $(document).ready(function () {
+            $('#example').DataTable();
+            $('#BottomEditorWindow').hide();
+            $('#TopEditorWindow').animate({ height: '100%' }, 500);
+
+
+        });
+    });
+</script>

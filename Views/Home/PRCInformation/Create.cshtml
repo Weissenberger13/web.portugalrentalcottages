@@ -1,0 +1,173 @@
+﻿@model BootstrapVillas.Models.PRCInformation
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Content/Admin/_AdminLayout.cshtml";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>PRCInformation</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PRCCompanyName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PRCCompanyName)
+            @Html.ValidationMessageFor(model => model.PRCCompanyName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PRCAddress)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PRCAddress)
+            @Html.ValidationMessageFor(model => model.PRCAddress)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PRCCountry)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PRCCountry)
+            @Html.ValidationMessageFor(model => model.PRCCountry)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PRCOfficePhone)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PRCOfficePhone)
+            @Html.ValidationMessageFor(model => model.PRCOfficePhone)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PRCFax)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PRCFax)
+            @Html.ValidationMessageFor(model => model.PRCFax)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PRCMobile1)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PRCMobile1)
+            @Html.ValidationMessageFor(model => model.PRCMobile1)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PRCMobile2)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PRCMobile2)
+            @Html.ValidationMessageFor(model => model.PRCMobile2)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PRCEmail1)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PRCEmail1)
+            @Html.ValidationMessageFor(model => model.PRCEmail1)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PRCEmail2)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PRCEmail2)
+            @Html.ValidationMessageFor(model => model.PRCEmail2)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PRCEmail3)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PRCEmail3)
+            @Html.ValidationMessageFor(model => model.PRCEmail3)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PRCURL1)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PRCURL1)
+            @Html.ValidationMessageFor(model => model.PRCURL1)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PRCURL2)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PRCURL2)
+            @Html.ValidationMessageFor(model => model.PRCURL2)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.NameOnAccount)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.NameOnAccount)
+            @Html.ValidationMessageFor(model => model.NameOnAccount)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.IBAN)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.IBAN)
+            @Html.ValidationMessageFor(model => model.IBAN)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.SwiftCode_BIC)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.SwiftCode_BIC)
+            @Html.ValidationMessageFor(model => model.SwiftCode_BIC)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.BankName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.BankName)
+            @Html.ValidationMessageFor(model => model.BankName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.BankAddressLine1)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.BankAddressLine1)
+            @Html.ValidationMessageFor(model => model.BankAddressLine1)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.BankAddressLine2)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.BankAddressLine2)
+            @Html.ValidationMessageFor(model => model.BankAddressLine2)
+        </div>
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

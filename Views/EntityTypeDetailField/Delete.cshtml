@@ -1,0 +1,69 @@
+﻿@model BootstrapVillas.Models.EntityTypeDetailField
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Content/Admin/_AdminLayout.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>EntityTypeDetailField</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.EntityType.EntityTypeName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.EntityType.EntityTypeName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.EntityTypeDetailFieldName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.EntityTypeDetailFieldName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.EntityTypeDetailFieldDescription)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.EntityTypeDetailFieldDescription)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.EntityTypeDetailFieldNotes)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.EntityTypeDetailFieldNotes)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.EntityTypeDetailFieldTypeID)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.EntityTypeDetailFieldTypeID)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.EntityTypeDetailFieldPrice)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.EntityTypeDetailFieldPrice)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.EntityTypeDetailFieldCurrency)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.EntityTypeDetailFieldCurrency)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}

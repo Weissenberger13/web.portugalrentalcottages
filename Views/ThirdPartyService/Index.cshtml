@@ -1,0 +1,46 @@
+﻿@model IEnumerable<BootstrapVillas.Models.ThirdPartyService>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table id="example" class="display" cellspacing="0" width="100%">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ThirdPartyServiceName)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ThirdPartyServiceName)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ThirdPartyServiceID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.ThirdPartyServiceID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ThirdPartyServiceID })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $('#BottomEditorWindow').hide();
+        $('#example').DataTable();
+        $('#TopEditorWindow').animate({ height: '100%' }, 500);
+
+
+    });
+</script>

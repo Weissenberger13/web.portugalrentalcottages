@@ -1,0 +1,148 @@
+﻿@model BootstrapVillas.Models.PropertyOwner
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>PropertyOwner</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.PropertyOwnerEmailAddress)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PropertyOwnerEmailAddress)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.PropertyOwnerEmailAddress2)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PropertyOwnerEmailAddress2)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.PropertyOwnerEmailAddress3)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PropertyOwnerEmailAddress3)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.OwnerFirstName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.OwnerFirstName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.OwnerLastName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.OwnerLastName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.PropertyOwnerHouseName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PropertyOwnerHouseName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.PropertyOwnerHouseNumber)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PropertyOwnerHouseNumber)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.PropertyOwnerAddressLine1)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PropertyOwnerAddressLine1)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.PropertyOwnerAddressLine2)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PropertyOwnerAddressLine2)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.PropertyOwnerTown)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PropertyOwnerTown)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.PropertyOwnerPostcode)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PropertyOwnerPostcode)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.PropertyOwnerCounty)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PropertyOwnerCounty)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.PropertyOwnerCountry)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PropertyOwnerCountry)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.PropertyOwnerHomeTelephone)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PropertyOwnerHomeTelephone)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.PropertyOwnerMobileTelephone)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PropertyOwnerMobileTelephone)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.WhenCreated)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.WhenCreated)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.PropertyOwnerNotes)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PropertyOwnerNotes)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.PropertyOwnerBankDetails)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PropertyOwnerBankDetails)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.PropertyOwnerBankDetailsNotes)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PropertyOwnerBankDetailsNotes)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.PropertyOwnerID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,47 @@
+﻿@model BootstrapVillas.Models.PropertyRegion
+
+@{
+    ViewBag.Title = "Create";
+
+    AjaxOptions createOptions = new AjaxOptions
+    {
+        UpdateTargetId = "TopEditorWindow",
+        InsertionMode = InsertionMode.Replace,
+        LoadingElementId = "spinner",
+        OnSuccess = "alert('Created')"
+    };
+    
+}
+
+<h2>Create</h2>
+
+@using (Ajax.BeginForm("Create", "PropertyRegion", createOptions))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>PropertyRegion</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.RegionName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.RegionName)
+            @Html.ValidationMessageFor(model => model.RegionName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.RegionCode)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.RegionCode)
+            @Html.ValidationMessageFor(model => model.RegionCode)
+        </div>
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+

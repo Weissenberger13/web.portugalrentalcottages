@@ -1,0 +1,47 @@
+﻿@model BootstrapVillas.Models.EventType
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>EventType</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.EventTypeName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.EventTypeName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.EvenTypeDescription)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.EvenTypeDescription)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.EventSubType.EventSubTypeName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.EventSubType.EventSubTypeName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.EventSchemeType.EventSchemeTypeName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.EventSchemeType.EventSchemeTypeName)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}

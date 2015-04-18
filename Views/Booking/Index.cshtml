@@ -1,0 +1,286 @@
+﻿@model IEnumerable<BootstrapVillas.Models.Booking>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Booking</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table id="example" class="display" cellspacing="0" width="100%">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Property.LegacyReference)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Customer.CustomerID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BookingGUID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BookingParentContainer.OverallBookingReference)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BookingPRCReference)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HomeawayReference)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BookingPrice)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.InitialDeposit)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BreakageDepositRemittancePaidDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CommissionAmount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RemittanceAmount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FinalRentalPayment)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BreakageDeposit)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RentalBalanceDueDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BreakageDepositDueDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cancelled)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Confirmed)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StartDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EndDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CheckInTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CheckOutTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NumberOfNights)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BookingTypeID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NumberOfGuests)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NumberOfAdults)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NumberOfChildren)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NumberOfInfants)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TotalNumberOfMinors)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreationDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.WhoUpdated)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Test)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DocumentID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PackageID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SpecialRequests)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NoOfTowelsRequested)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MidVactionCleaning)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SwimmingPoolHeating)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ExtraLininSet)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BookingCurrencyConversionPrice)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BookingCurrencyConversionSymbol)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Property.LegacyReference)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Customer.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BookingGUID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BookingParentContainer.OverallBookingReference)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BookingPRCReference)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.HomeawayReference)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BookingPrice)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.InitialDeposit)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BreakageDepositRemittancePaidDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CommissionAmount)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RemittanceAmount)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FinalRentalPayment)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BreakageDeposit)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RentalBalanceDueDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BreakageDepositDueDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cancelled)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Confirmed)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StartDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EndDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CheckInTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CheckOutTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NumberOfNights)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BookingTypeID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NumberOfGuests)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NumberOfAdults)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NumberOfChildren)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NumberOfInfants)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TotalNumberOfMinors)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CreationDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.WhoUpdated)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Test)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DocumentID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PackageID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SpecialRequests)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NoOfTowelsRequested)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MidVactionCleaning)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SwimmingPoolHeating)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ExtraLininSet)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BookingCurrencyConversionPrice)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BookingCurrencyConversionSymbol)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.BookingID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.BookingID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.BookingID })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $(document).ready(function () {
+            $('#example').DataTable();
+            $('#BottomEditorWindow').hide();
+            $('#TopEditorWindow').animate({ height: '100%' }, 500);
+
+
+        });
+    });
+</script>

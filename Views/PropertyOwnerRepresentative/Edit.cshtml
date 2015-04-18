@@ -1,0 +1,79 @@
+﻿@model BootstrapVillas.Models.PropertyOwnerRepresentative
+
+@{
+    ViewBag.Title = "Edit";
+
+
+    AjaxOptions options = new AjaxOptions
+    {
+        UpdateTargetId = "TopEditorWindow",
+        InsertionMode = InsertionMode.Replace,
+        LoadingElementId = "spinner",
+        OnSuccess = "alert('Updated')"
+    };
+
+    AjaxOptions createOptions = new AjaxOptions
+    {
+        UpdateTargetId = "TopEditorWindow",
+        InsertionMode = InsertionMode.Replace,
+        LoadingElementId = "spinner"
+    };
+    
+}
+
+<h2>Edit</h2>
+
+@Ajax.ActionLink("Create", "Create", "PropertyOwnerRepresentative", createOptions)
+
+@using (Ajax.BeginForm("Edit", "PropertyOwnerRepresentative", options))
+{ 
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>PropertyOwnerRepresentative</legend>
+
+        @Html.HiddenFor(model => model.PropertyOwnerRepresentativeID)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PropertyOwnerRepresentativeName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PropertyOwnerRepresentativeName)
+            @Html.ValidationMessageFor(model => model.PropertyOwnerRepresentativeName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PropertyOwnerRepresentativeContactNumberLandline)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PropertyOwnerRepresentativeContactNumberLandline)
+            @Html.ValidationMessageFor(model => model.PropertyOwnerRepresentativeContactNumberLandline)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PropertyOwnerRepresentativeContactNumberMobile)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PropertyOwnerRepresentativeContactNumberMobile)
+            @Html.ValidationMessageFor(model => model.PropertyOwnerRepresentativeContactNumberMobile)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PropertyOwnerRepresentativeContactEmail)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PropertyOwnerRepresentativeContactEmail)
+            @Html.ValidationMessageFor(model => model.PropertyOwnerRepresentativeContactEmail)
+        </div>
+
+        
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

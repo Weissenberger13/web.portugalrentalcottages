@@ -1,0 +1,134 @@
+﻿@using BootstrapVillas.Models
+@using BootstrapVillas.Content.Classes;
+@{
+    ViewBag.Title = "TestingPage";
+     
+    BookingCalendar BookingCalDates = ViewBag.BookingCalDates;
+}
+
+<h2>TestingPage</h2>
+
+@{
+
+ 
+    
+}
+
+
+
+
+@*
+
+<img src="~/CarouselImages/PRCV29/backGarden/DSC07185.JPG" />
+
+@{
+    
+    DirectoryInfo directory = new DirectoryInfo(Server.MapPath(@"~\CarouselImages\PRCV29"));
+    var directories = directory.GetDirectories();
+    
+    foreach(var blahdirectory in directories)
+    {
+        var files = blahdirectory.GetFiles().ToList(); 
+                 foreach(var file in files)
+                    {
+                        Html.Raw("<p>The directory is:</p>"); @blahdirectory.ToString();
+                        Html.Raw("<br/>");
+                        @file.ToString();
+                                        Html.Raw("<br/>");
+                                        Html.Raw("<br/>");
+           
+                    }           
+    }
+    
+
+    
+}   
+
+<script type="text/javascript">
+
+    $(document).ready(function() {
+        $(function () {
+            
+            //var disabledDays = ["11-21-2012", "11-24-2012", "9-27-2011", "9-28-2011", "9-3-2011", "9-17-2011", "9-2-2011", "9-3-2011", "9-4-2011", "9-5-2011"];
+
+            var disabledDays = [];
+
+           
+            @foreach (var abookingDate  in BookingCalDates.bookingDates)
+            {
+              
+                string thePushString = "disabledDays.push('" + abookingDate.bookingDate.ToString("M-d-yyyy") + "');";
+                @Html.Raw(thePushString)
+            }
+            
+
+            @Html.Raw("disabledDays.push('1-22-2012');")
+            
+            @Html.Raw("disabledDays.push('12-1-2012');")
+            //disabledDays.push("11-23-2012");
+            //disabledDays.push("12-23-2012");
+
+            function disableAllTheseDays(date) {
+                var m = date.getMonth(), d = date.getDate(), y = date.getFullYear();
+                for (i = 0; i < disabledDays.length; i++) {
+                    if ($.inArray((m + 1) + '-' + d + '-' + y, disabledDays) != -1) {
+                        return [false];
+                    }
+                }
+                return [true];
+            }
+            
+
+            $("#StartBookingDate1").datepicker(
+                {
+                    //add JSON
+                    dateFormat: 'mm-dd-yy',
+                    beforeShowDay: disableAllTheseDays
+                    
+                });
+            
+            $("#EndBookingDate1").datepicker(
+               {
+                   //add JSON
+                   dateFormat: 'mm-dd-yy',
+                   beforeShowDay: disableAllTheseDays
+
+               });
+
+        });
+
+    });
+
+
+</script>
+
+
+    <h3>Test datepicker</h3>
+    <input id="StartBookingDate1"/>
+    <input id="EndBookingDate1"/>
+
+
+
+@{
+    //need to write a function in Property that takes a property
+    //and calls Booking.GetDateConfirmedRange() on every booking with that propertyID
+    //IEnumerable<DateTime> allExludedDatesForAProperty = Booking.GetDateConfirmedRange()
+    foreach (var bookingDate  in BookingCalDates.bookingDates)
+    {
+        @BookingCalDates.PropertyID
+        <br/>
+        @bookingDate.bookingDate.ToString("MM-dd-yyyy")
+        <br/>
+        @bookingDate.bookingDateType.ToString()
+        <br/>
+  
+    }
+    
+    
+    
+}
+        
+        
+        
+        
+  *@

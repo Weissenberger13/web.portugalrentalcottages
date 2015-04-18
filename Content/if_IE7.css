@@ -1,0 +1,93 @@
+@charset "utf-8";
+/* CSS Document */
+
+body{
+margin:0;
+padding:0;	
+}
+
+
+
+#fade {
+	width:100%;	
+	min-width:100%;	
+	max-width:100%;	
+	margin-left:auto;
+	margin-right:auto;
+	padding:0;
+	background:url(../images/images/creamfade.png) repeat-x;
+	position:absolute;
+	z-index:1000;
+	top:20px;
+	left:0;
+}
+
+
+#dropdown {
+	width:100%;	
+	margin:0;
+	padding:0;
+	background:url(../images/images/darkblue_bg.png) repeat;
+	position:relative;
+	z-index:6000;
+	clear:both;
+}
+
+/* 100% width line at the top */
+
+
+#dropdown_strip {
+	width:100%;
+	height:10px;
+	margin:0; 
+	padding:0;
+	border-bottom:3px solid #003;
+	position:relative;
+	left:0;
+	top:0;
+	z-index:7000;
+	background:url(../images/images/darkblue_bg.png) repeat;
+	clear:both;
+}
+
+
+/* Show/Hide div toggle button */
+
+#show_hide {
+	z-index:9999;
+	position:relative;
+	background:url(../images/images/darkblue_bg.png) repeat;
+	float:right;
+	text-align:center;
+	background-position:top;
+	width: auto;
+	height:auto;
+	margin: 5px 15px 0 0;
+	padding:10px;
+	font-family:'Dancing', Arial, Helvetica, sans-serif;
+	font-size:1.2em;
+	color:#fff;
+	font-weight:normal;
+	text-decoration:none;
+	-moz-border-radius-bottomleft:5px;
+	-moz-border-radius-bottomright:5px;
+	border-bottom-left-radius:5px;
+	border-bottom-right-radius:5px;
+	border-left:3px solid #003;
+	border-bottom:3px solid #003;
+	border-right:3px solid #003;
+}
+
+#show_hide:hover {
+	background-position:bottom; 
+	color:#F90;
+}
+
+#toggle {
+	color:#FFF; 
+	text-decoration:none;
+	position:relative;
+	z-index:9999;
+}
+
+/*End sliding Dropdown Div (FORM) */
