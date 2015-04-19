@@ -119,6 +119,9 @@ namespace BootstrapVillas.Content.Classes
                             BookingDataTable.Columns["StartDate"].ColumnName = "BookingStartDate";
                             BookingDataTable.Columns["EndDate"].ColumnName = "BookingEndDate";
 
+                            BookingExtraSelectionDataTable.Rows[0]["BookingStartDate"] = ((DateTime)BookingExtraSelectionDataTable.Rows[0]["BookingStartDate"]).ToString("MM/dd/yyyy");
+                            BookingExtraSelectionDataTable.Rows[0]["BookingEndDate"] = ((DateTime)BookingExtraSelectionDataTable.Rows[0]["BookingEndDate"]).ToString("MM/dd/yyyy");
+
                            
                             
                             return BookingDataTable;
@@ -139,6 +142,7 @@ namespace BootstrapVillas.Content.Classes
                             anAdaptor.SelectCommand.Connection = theConn;
                             anAdaptor.SelectCommand.Parameters["@BookingExtraSelectionID"].Value = primaryParamater;
                             anAdaptor.Fill(BookingExtraSelectionDataTable);
+                            
                             return BookingExtraSelectionDataTable;
                             
                    
@@ -165,6 +169,9 @@ namespace BootstrapVillas.Content.Classes
                             anAdaptor.SelectCommand.Connection = theConn;
                             anAdaptor.SelectCommand.Parameters["@BookingExtraSelectionID"].Value = primaryParamater;
                             anAdaptor.Fill(BookingExtraSelectionDataTable);
+
+                            BookingExtraSelectionDataTable.Rows[0]["ExtraRentalDate"] = ((DateTime)BookingExtraSelectionDataTable.Rows[0]["ExtraRentalDate"]).ToString("MM/dd/yyyy");
+                            BookingExtraSelectionDataTable.Rows[0]["ExtraReturnDate"] = ((DateTime)BookingExtraSelectionDataTable.Rows[0]["ExtraReturnDate"]).ToString("MM/dd/yyyy");
                             return BookingExtraSelectionDataTable;
                             
 

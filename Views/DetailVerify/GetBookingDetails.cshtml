@@ -2,7 +2,7 @@
 @using BootstrapVillas.Models
 @model BootstrapVillas.Models.ViewModels.FinalBookingDetailViewModel
 @{
-   
+
     /*  Booking booking = ViewBag.aBooking;
       Customer customer = ViewBag.aCustomer;
       CustomerBankDetail bank = ViewBag.BankDetail;
@@ -52,6 +52,7 @@
 </div>
 
 
+
 <div class="row-fluid">
     @{ Html.BeginForm("GetBookingDetails", "DetailVerify", FormMethod.Post, new { id = "form1" }); }
 
@@ -72,54 +73,55 @@
                         </a>
                     </li>
 
-                    @if (Model.Bookings.Count > 0) { 
-                    <li>
-                        <a href="#step-2" class="blueBg">
-                            <label class="stepNumber">2</label>
-                            <span class="stepDesc">
-                                <css-decorator class="toTranslate">Step 2</css-decorator>
-                                <br />
-                                <small class="toTranslate">Payment Details</small>
-                            </span>
-                        </a>
-                    </li>
+                    @if (Model.Bookings.Count > 0)
+                    {
+                        <li>
+                            <a href="#step-2" class="blueBg">
+                                <label class="stepNumber">2</label>
+                                <span class="stepDesc">
+                                    <css-decorator class="toTranslate">Step 2</css-decorator>
+                                    <br />
+                                    <small class="toTranslate">Payment Details</small>
+                                </span>
+                            </a>
+                        </li>
                     }
 
-                   
-                        @foreach (var booking in Model.Bookings)
-                        {
-                            <li>
-                                <a href="#step-@dynamicStepsTop" class="blueBg">
-                                    <label class="stepNumber">@dynamicStepsTop</label>
-                                    <span class="stepDesc">
-                                        <css-decorator class="toTranslate">Step @dynamicStepsTop</css-decorator>                                        
-                                            <br />
-                                            <small class="toTranslate">Booking @booking.Property.LegacyReference</small>
-</span>
-                                </a>
-                            </li>
+
+                    @foreach (var booking in Model.Bookings)
+                    {
+                        <li>
+                            <a href="#step-@dynamicStepsTop" class="blueBg">
+                                <label class="stepNumber">@dynamicStepsTop</label>
+                                <span class="stepDesc">
+                                    <css-decorator class="toTranslate">Step @dynamicStepsTop</css-decorator>
+                                    <br />
+                                    <small class="toTranslate">Booking @booking.Property.LegacyReference</small>
+                                </span>
+                            </a>
+                        </li>
 
 
-                            dynamicStepsTop++;
+                        dynamicStepsTop++;
 
 
 
-                            <li>
-                                <a href="#step-@dynamicStepsTop" class="blueBg">
-                                    <css-decorator class="stepNumber">@dynamicStepsTop</css-decorator>
-                                    <span class="stepDesc">
-                                        <css-decorator class="toTranslate">
-                                            Step @dynamicStepsTop
-                                        </css-decorator>
-                                            <br />
-                                            <small class="toTranslate">Add participants @booking.Property.LegacyReference</small>
-</span>
-                                </a>
-                            </li>
+                        <li>
+                            <a href="#step-@dynamicStepsTop" class="blueBg">
+                                <css-decorator class="stepNumber">@dynamicStepsTop</css-decorator>
+                                <span class="stepDesc">
+                                    <css-decorator class="toTranslate">
+                                        Step @dynamicStepsTop
+                                    </css-decorator>
+                                    <br />
+                                    <small class="toTranslate">Add participants @booking.Property.LegacyReference</small>
+                                </span>
+                            </a>
+                        </li>
 
 
-                            dynamicStepsTop++;
-                        }
+                        dynamicStepsTop++;
+                    }
                     }
 
 
@@ -135,10 +137,10 @@
                                         <css-decorator class="toTranslate">
                                             Step @dynamicStepsTop
                                         </css-decorator>
-                            
-                                            <br />
-                                            <small><css-decorator class="toTranslate">Booking Extra @bes.BookingExtra.LegacyReference</css-decorator></small>
-</span>
+
+                                        <br />
+                                        <small><css-decorator class="toTranslate">Booking Extra @bes.BookingExtra.LegacyReference</css-decorator></small>
+                                    </span>
                                 </a>
                             </li>
 
@@ -158,12 +160,12 @@
                             @Html.Partial("~/Views/BookingProcessPartialViews/AddCustomerPartial.cshtml", Model.Customer)
                         </div>
 
-                    @if (Model.Bookings.Count > 0)
-                    {
-                        <div id="step-2">
-                            <h2 class="StepTitle" class="toTranslate">Customer Banking Detail</h2>
-                            @Html.Partial("~/Views/BookingProcessPartialViews/AddCustomerBankDetailPartial.cshtml", Model.CustomerBankDetail)
-                        </div>
+                        @if (Model.Bookings.Count > 0)
+                        {
+                            <div id="step-2">
+                                <h2 class="StepTitle" class="toTranslate">Customer Banking Detail</h2>
+                                @Html.Partial("~/Views/BookingProcessPartialViews/AddCustomerBankDetailPartial.cshtml", Model.CustomerBankDetail)
+                            </div>
                         }
 
                         @{
@@ -172,7 +174,7 @@
 
                             if (Model.Bookings.Count > 0)
                             {
-                               bookingToPassToBES =  Model.Bookings.First();
+                                bookingToPassToBES = Model.Bookings.First();
                             }
                         }
                         @foreach (var booking in Model.Bookings)
@@ -185,7 +187,7 @@
                             var towelsPrice = booking.TowelsPrice ?? 0.00M;
 
                             decimal extraPrice = cleanPrice + linenPrice + heatingPrice + midCleanPrice + swimHeatPrice + towelsPrice;
-                            
+
                             <div id="step-@dynamicStepsBottom">
                                 <h2 class="StepTitle toTranslate">Property Booking - Price:£@booking.BookingPrice - Extra Services:£@extraPrice </h2>
                                 @Html.Partial("~/Views/BookingProcessPartialViews/AddBookingPartial.cshtml", booking, new ViewDataDictionary(ViewData) { { "StepNo", dynamicStepsBottom }, { "bookingCount", bookingCount }, { "loopNo", validatonBookingCountCurrent } })
@@ -216,10 +218,10 @@
                             decimal extraPrice = bes.BESExtraServicesPrice ?? 0.00M;
 
                             var totalPrice = price + extraPrice;
-                            
+
                             <div id="step-@dynamicStepsBottom">
                                 <h2 class="StepTitle toTranslate">Extra booking - Price:£@price -  Extra Services:£@extraPrice for @bes.BookingExtra.BookingExtraName</h2>
-                                @Html.Partial("~/Views/BookingProcessPartialViews/AddBookingExtraSelectionPartial.cshtml", bes, new ViewDataDictionary(ViewData) { { "StepNo", dynamicStepsBottom }, { "count", besCount }, { "loopNo", validatonBESCountCurrent }, {"booking", bookingToPassToBES} })
+                                @Html.Partial("~/Views/BookingProcessPartialViews/AddBookingExtraSelectionPartial.cshtml", bes, new ViewDataDictionary(ViewData) { { "StepNo", dynamicStepsBottom }, { "count", besCount }, { "loopNo", validatonBESCountCurrent }, { "booking", bookingToPassToBES } })
                             </div>
 
                             dynamicStepsBottom++;
@@ -260,12 +262,11 @@
 
         $.each(customerEmails, function (i, item) {
 
-            if ($("#EmailAddress").val().toLowerCase().trim() == item.Email.toLowerCase().trim())
-            {
+            if ($("#EmailAddress").val().toLowerCase().trim() == item.Email.toLowerCase().trim()) {
                 if ('@CustomerSessionExist' == 'notExist') {
                     alert("Can't use that customer email, it's already in the system!! Please either login or use a different email address!");
                     DisableNext(); //don't allow them to proceed
-                   
+
                 }
 
             }
@@ -313,10 +314,10 @@
 
         //to trigger validation
         $('#customerDiv').click();
-             
+
 
         $('#wizard').css('text-align', 'center');
-   
+
         //WHEN COMPLETE - USES THE var customerEmails declared above
         function onFinishCallback() {
 
@@ -338,12 +339,12 @@
                             }
                         }
                         else {
-                           $('#form1').submit();
+                            $('#form1').submit();
                         }
 
                     });
 
-                    
+
                 }
             }
 
@@ -364,14 +365,14 @@
         //        }
         //    }
 
-            
+
 
         //});
 
 
     });
 
-   
+
 
 
     function DisableNext() {
@@ -410,15 +411,14 @@
                         DisableNext(); //don't allow them to proceed
 
                     }
-                    else
-                    {
-                       
+                    else {
+
                     }
 
                 }
 
             });
-          
+
         }
 
     });
@@ -774,7 +774,7 @@
                 $("#wizard .buttonNext").hide();
 
             } else {
-                
+
                 $("#wizard .buttonNext").show();
             }
 
@@ -782,9 +782,9 @@
         else if (context.toStep == '2') {
             if ('@customerBankSessionExist' == 'notExist') {
                 $("#wizard .buttonNext").hide();
-            
+
             } else {
- 
+
                 $("#wizard .buttonNext").show();
             }
 

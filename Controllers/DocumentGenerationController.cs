@@ -353,7 +353,7 @@ namespace BootstrapVillas.Controllers
 
 
                 //test if there is a related booking / property IF it's a solo BES event
-                if(booking == null)
+                if(booking != null)
                 {
                     if(bes.BookingParentContainerID != 0)
                     {

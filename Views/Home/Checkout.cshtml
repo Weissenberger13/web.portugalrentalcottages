@@ -15,6 +15,13 @@
     List<BookingExtraSelection> BookingExtraSelections = new List<BookingExtraSelection>(); //where type = extras
     BookingExtraSelections = (List<BookingExtraSelection>)Session["Cart_ExtraBookings"];
 
+
+    var extras = new List<BookingExtra>();
+    using (PortugalVillasContext db = new PortugalVillasContext())
+    {
+        extras = db.BookingExtras.ToList();
+    }
+    
     //end viewbag pulls
     int NoOfItemsInCart = 0;
 
@@ -243,6 +250,8 @@
                     {
                         foreach (var extra in BookingExtraSelections)
                         {
+                            var templateExtra = extras.Where(x => x.BookingExtraID.Equals(extra.BookingExtraID)).FirstOrDefault();
+                            
                             decimal price = extra.BESPrice ?? 0.00M;
                             decimal extraPrice = extra.BESExtraServicesPrice ?? 0.00M;
 
@@ -267,7 +276,8 @@
                                 </div>
                                 <div class="panel-body">
                                     <div class="thumbnail span4">
-                                        <img class="span12" src="~/ExtraImages/@extra.BookingExtraPRCReference/mainImage/@extra.BookingExtraPRCReference@_Imagejpg" />
+                                        <img class="span12" src="~/ExtraImages/@extra.BookingExtraPRCReference/@templateExtra.LegacyReference/mainImage/@templateExtra.LegacyReference@_Imagejpg">
+                                        
                                     </div>
                                     <div class="span8">
                                         <table class="table table-condensed">
@@ -294,7 +304,7 @@
                                                 </tr>
                                                 <tr>
                                                     <td class="toTranslate">Reference:</td>
-                                                    <td>@extra.BookingExtraPRCReference</td>
+                                                    <td>@templateExtra.LegacyReference</td>
                                                 </tr>
                                                 <tr>
                                                     <td class="toTranslate">Rental Start Date:</td>
