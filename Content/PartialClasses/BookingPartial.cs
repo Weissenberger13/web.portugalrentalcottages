@@ -590,9 +590,17 @@ namespace BootstrapVillas.Models
                 {
                     if (dateAs1901 >= (DateTime)season.SeasonStartDate && dateAs1901 <= (DateTime)season.SeasonEndDate)
                     {
-                        var price = Convert.ToDecimal(pricings.Where(x => x.PropertyPricingSeasonID == season.PropertyPricingSeasonID).First().Price);
-                        var commissionRate = comissions.First(x => x.PropertyPricingComissionID == season.PropertyPricingComissionID).PropertyPricingCommissionRate;
-                        totalComission += commissionRate * (price / 7); //day rate * commission
+                        try
+                        {
+                            var price = Convert.ToDecimal(pricings.Where(x => x.PropertyPricingSeasonID == season.PropertyPricingSeasonID).First().Price);
+                            var commissionRate = comissions.First(x => x.PropertyPricingComissionID == season.PropertyPricingComissionID).PropertyPricingCommissionRate;
+                            totalComission += commissionRate * (price / 7); //day rate * commission
+                        }
+                        catch (Exception ex)
+                        {
+                            
+                            throw new Exception();
+                        }
                     }
 
                 }

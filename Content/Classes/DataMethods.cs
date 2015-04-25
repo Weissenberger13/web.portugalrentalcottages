@@ -116,11 +116,17 @@ namespace BootstrapVillas.Content.Classes
                             anAdaptor.SelectCommand.Parameters["@BookingID"].Value = primaryParamater;
                             anAdaptor.Fill(BookingDataTable);
                             //change column name
+
+
                             BookingDataTable.Columns["StartDate"].ColumnName = "BookingStartDate";
                             BookingDataTable.Columns["EndDate"].ColumnName = "BookingEndDate";
 
-                            BookingDataTable.Rows[0]["BookingStartDate"] = ((DateTime)BookingExtraSelectionDataTable.Rows[0]["BookingStartDate"]).ToString("MM/dd/yyyy");
-                            BookingDataTable.Rows[0]["BookingEndDate"] = ((DateTime)BookingExtraSelectionDataTable.Rows[0]["BookingEndDate"]).ToString("MM/dd/yyyy");
+                            //BookingDataTable.Rows[0]["BookingStartDate"] = ((DateTime)BookingDataTable.Rows[0]["BookingStartDate"]).ToLongDateString();//.ToString("dd/MM/yyyy");
+                            //BookingDataTable.Rows[0]["BookingEndDate"] = ((DateTime)BookingDataTable.Rows[0]["BookingEndDate"]).ToLongDateString();//.ToString("dd/MM/yyyy");
+                            var test = ((DateTime)BookingDataTable.Rows[0]["BookingStartDate"]).ToLongDateString();
+
+                            BookingDataTable.Rows[0].SetField("BookingStartDate", ((DateTime)BookingDataTable.Rows[0]["BookingStartDate"]).ToLongDateString());
+                            BookingDataTable.Rows[0].SetField("BookingEndDate", ((DateTime)BookingDataTable.Rows[0]["BookingEndDate"]).ToLongDateString());                                                       
 
                             return BookingDataTable;
                                                  

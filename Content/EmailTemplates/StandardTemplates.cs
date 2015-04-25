@@ -99,8 +99,8 @@ namespace BootstrapVillas.Content.EmailTemplates
             var prcRef = booking != null ? property.LegacyReference : bookingExtra.LegacyReference;
 
             string bookingPropertyOrSelectionName = booking != null ? property.PropertyName : bookingExtra.BookingExtraName;
-            string bookingStartDate = booking != null ? Convert.ToDateTime(booking.StartDate.ToString()).ToShortDateString() : Convert.ToDateTime(bookingExtraSelection.ExtraRentalDate.ToString()).ToShortDateString();
-            string bookingEndDate = booking != null ? Convert.ToDateTime(booking.EndDate.ToString()).ToShortDateString() : new DateTime(1901, 01, 01).ToShortDateString();
+            string bookingStartDate = booking != null ? Convert.ToDateTime(booking.StartDate.ToString()).ToString("dd/MM/yyyy") : Convert.ToDateTime(bookingExtraSelection.ExtraRentalDate.ToString()).ToString("dd/MM/yyyy");
+            string bookingEndDate = booking != null ? Convert.ToDateTime(booking.EndDate.ToString()).ToString("dd/MM/yyyy") : new DateTime(1901, 01, 01).ToString("dd/MM/yyyy");
             string numberOfNights = booking != null ? booking.NumberOfNights.ToString() : "0";
 
 
@@ -127,31 +127,54 @@ namespace BootstrapVillas.Content.EmailTemplates
 
             var temp = "";
             //string merges
+            var fullName = customer != null ? customerFullName : "";
+            var legacyRef = property != null ? property.LegacyReference : bookingExtra.LegacyReference;
+            var bookStart = bookingStartDate != null ? bookingStartDate : "";
+            var bookEnd = bookingEndDate != null ? bookingEndDate : "";
+            var NoNights = numberOfNights != null ? numberOfNights : "";
+            var reference = booking != null ? booking.BookingPRCReference : bookingExtraSelection.BookingExtraPRCReference;
+            var bID = booking != null ? booking.BookingID.ToString() : "";
+            var besID = bookingExtraSelection != null ? bookingExtraSelection.BookingExtraSelectionID.ToString() : "";
+            
+            var finalRentalPayment = booking != null ? booking.BookingPrice.ToString() : "";
+            var finalRentalPaymentDate = "";
+                if(booking != null)
+                {
+                   finalRentalPaymentDate =  booking.FinalRentalPaymentDueDate != null ? ((DateTime)booking.FinalRentalPaymentDueDate).ToString("dd/MM/yyyy") : "";
+                }
+
+            var rentalDeposit = booking != null ? booking.BreakageDeposit.ToString() : "";
+
+            temp = String.Format(theTemplate.EmailTemplateBodyHTML, fullName, legacyRef, bookStart, bookEnd, NoNights, reference, finalRentalPaymentDate, bID, besID, finalRentalPayment, rentalDeposit);
 
             //booking request optional
-            if (bookingToggle == true && EmailTemplateID == 17)
-            {
-                temp = String.Format(theTemplate.EmailTemplateBodyHTML, customerFullName, property.LegacyReference, bookingStartDate, bookingEndDate, numberOfNights);
-            }
+            //if (bookingToggle == true && EmailTemplateID == 17)
+            //{
+            //    temp = String.Format(theTemplate.EmailTemplateBodyHTML, customerFullName, property.LegacyReference, bookingStartDate, bookingEndDate, numberOfNights, bookingExtraSelection.BookingExtraSelectionID);
+            //}
 
-            //booking request forms standard
-            else if (bookingToggle == true // && EmailTemplateID == 3 || EmailTemplateID == 4 || EmailTemplateID == 5 || EmailTemplateID == 6
-                )
-            {
-                temp = String.Format(theTemplate.EmailTemplateBodyHTML, customerFullName, property.LegacyReference, booking.BookingPRCReference, ((DateTime)booking.FinalRentalPaymentDueDate).ToString("dd/MM/yyyy"));
-            }
+            ////booking request forms standard
+            //else if (bookingToggle == true // && EmailTemplateID == 3 || EmailTemplateID == 4 || EmailTemplateID == 5 || EmailTemplateID == 6
+            //    )
+            //{
 
 
-            else if (bookingExtraToggle == true)
-            {
-                temp = String.Format(theTemplate.EmailTemplateBodyHTML, customerFullName, prcRef, bookingExtraSelection.BookingExtraSelectionID);
+            //    temp = String.Format(theTemplate.EmailTemplateBodyHTML, customerFullName, property.LegacyReference, booking.BookingPRCReference, ((DateTime)booking.FinalRentalPaymentDueDate).ToString("dd/MM/yyyy"));
 
-            }
-            else if (combinedServicesToggle == true)
-            {
-                temp = String.Format(theTemplate.EmailTemplateBodyHTML, customerFullName, booking.BookingID);
 
-            }
+            //}
+
+
+            //else if (bookingExtraToggle == true)
+            //{
+            //    temp = String.Format(theTemplate.EmailTemplateBodyHTML, customerFullName, prcRef, bookingExtraSelection.BookingExtraSelectionID);
+
+            //}
+            //else if (combinedServicesToggle == true)
+            //{
+            //    temp = String.Format(theTemplate.EmailTemplateBodyHTML, customerFullName, booking.BookingID);
+
+            //}
 
 
 

@@ -412,7 +412,7 @@ namespace BootstrapVillas.Controllers
                             var value = "";
                             if (dtCloned.Rows[0][col].ToString().Count() >= 10)
                             {
-                                value = /*DateTime.Parse(*/ dtCloned.Rows[0][col].ToString().Substring(0, 10);
+                                value = /*DateTime.Parse(*/ Convert.ToDateTime(dtCloned.Rows[0][col].ToString()).ToString("dd/MM/yyyy");
                                 //).ToString("dd/MM/yyyy");
                             }
 
