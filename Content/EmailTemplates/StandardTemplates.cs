@@ -49,8 +49,8 @@ namespace BootstrapVillas.Content.EmailTemplates
                 Footer = db.EmailTemplates.Find(2);
             }
             theAsposeMessage = new MailMessage();
-            Property property = new Property();
-            BookingExtra bookingExtra = new BookingExtra();
+            Property property = null;
+            BookingExtra bookingExtra = null;
 
             EmailOutType theMainBody = new EmailOutType();
 

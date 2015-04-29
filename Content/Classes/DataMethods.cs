@@ -174,8 +174,8 @@ namespace BootstrapVillas.Content.Classes
                             anAdaptor.SelectCommand.Parameters["@BookingExtraSelectionID"].Value = primaryParamater;
                             anAdaptor.Fill(BookingExtraSelectionDataTable);
 
-                            BookingExtraSelectionDataTable.Rows[0]["ExtraRentalDate"] = ((DateTime)BookingExtraSelectionDataTable.Rows[0]["ExtraRentalDate"]).ToString("MM/dd/yyyy");
-                            BookingExtraSelectionDataTable.Rows[0]["ExtraReturnDate"] = ((DateTime)BookingExtraSelectionDataTable.Rows[0]["ExtraReturnDate"]).ToString("MM/dd/yyyy");
+                            //BookingExtraSelectionDataTable.Rows[0]["ExtraRentalDate"] = ((DateTime)BookingExtraSelectionDataTable.Rows[0]["ExtraRentalDate"]).ToString("MM/dd/yyyy");
+                            //BookingExtraSelectionDataTable.Rows[0]["ExtraReturnDate"] = ((DateTime)BookingExtraSelectionDataTable.Rows[0]["ExtraReturnDate"]).ToString("MM/dd/yyyy");
                             return BookingExtraSelectionDataTable;
                             
 
