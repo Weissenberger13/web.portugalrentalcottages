@@ -31,7 +31,12 @@ namespace BootstrapVillas.Controllers
 {
     public class TestController : Controller
     {
+        public ActionResult TestHtmlHelper()
+        {
 
+            return View();
+
+        }
 
         public ActionResult TestAutoComplete()
         {

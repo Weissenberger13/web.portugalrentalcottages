@@ -6,6 +6,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using BootstrapVillas.Models;
+using Microsoft.Web.Mvc;
+
 
 namespace BootstrapVillas.Controllers
 {
@@ -74,10 +76,10 @@ namespace BootstrapVillas.Controllers
 
             db.Customers.Add(customer);
             db.SaveChanges();
-            return RedirectToAction("Edit", customer);
 
+            return this.RedirectToAction(x=>x.Edit(customer));
 
-            return View(customer);
+            
         }
 
         //
