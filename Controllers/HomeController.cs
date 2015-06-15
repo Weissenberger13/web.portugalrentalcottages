@@ -633,36 +633,7 @@ namespace BootstrapVillas.Controllers
         //}
 
 
-
-
-        public ActionResult Properties()
-        {
-
-
-            return View();
-        }
-
-        public ActionResult Flights()
-        {
-
-
-            return View();
-        }
-
-        public ActionResult CarHire()
-        {
-
-
-            return View();
-        }
-
-
-        public ActionResult About()
-        {
-
-
-            return View();
-        }
+     
 
         public ActionResult Contact()
         {
