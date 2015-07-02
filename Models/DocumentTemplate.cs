@@ -19,7 +19,7 @@ namespace BootstrapVillas.Models
         public string DocumentTemplateEmailBodyHTML { get; set; }
         public string DocumentTemplateOutputFormat { get; set; }
         public Nullable<bool> Enabled { get; set; }
-        public Nullable<System.DateTime> WhenCreated { get; set; }
+        public Nullable<DateTime> WhenCreated { get; set; }
         public byte[] WhenUpdated { get; set; }
         public Nullable<long> WhoUpdated { get; set; }
         public byte[] DocumentTemplateBLOB { get; set; }

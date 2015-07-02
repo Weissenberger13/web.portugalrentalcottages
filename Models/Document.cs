@@ -12,7 +12,7 @@ namespace BootstrapVillas.Models
         public string DocumentDescription { get; set; }
         public string Filename { get; set; }
         public Nullable<bool> Sent { get; set; }
-        public Nullable<System.DateTime> WhenCreated { get; set; }
+        public Nullable<DateTime> WhenCreated { get; set; }
         public Nullable<long> WhoCreated { get; set; }
         public byte[] DocumentBLOB { get; set; }
         public byte[] EmailBLOB { get; set; }

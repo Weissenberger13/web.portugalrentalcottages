@@ -11,10 +11,10 @@ namespace BootstrapVillas.Models
         public string BookingExtraParticipantFirstName { get; set; }
         public string BookingExtraParticipantMiddleName { get; set; }
         public string BookingExtraParticipantLastName { get; set; }
-        public Nullable<System.DateTime> BookingExtraParticipantDOB { get; set; }
+        public Nullable<DateTime> BookingExtraParticipantDOB { get; set; }
         public Nullable<bool> BookingExtraParticipantChild { get; set; }
         public Nullable<bool> BookingExtraParticipantInfant { get; set; }
-        public Nullable<System.DateTime> BookingExtraParticipantWhenCreated { get; set; }
+        public Nullable<DateTime> BookingExtraParticipantWhenCreated { get; set; }
         public string BookingExtraParticipantDriversLicenceNo { get; set; }
         public string BookingExtraParticipantDriversPassportNo { get; set; }
         public Nullable<int> BookingExtraParticipantAge { get; set; }

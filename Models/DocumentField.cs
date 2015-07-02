@@ -17,8 +17,8 @@ namespace BootstrapVillas.Models
         public Nullable<long> ValidationTypeID { get; set; }
         public string FieldName { get; set; }
         public bool Enabled { get; set; }
-        public Nullable<System.DateTime> WhenCreated { get; set; }
-        public Nullable<System.DateTime> WhenModified { get; set; }
+        public Nullable<DateTime> WhenCreated { get; set; }
+        public Nullable<DateTime> WhenModified { get; set; }
         public virtual DocumentFieldType DocumentFieldType { get; set; }
         public virtual ICollection<DocumentFieldTemplateMapping> DocumentFieldTemplateMappings { get; set; }
     }

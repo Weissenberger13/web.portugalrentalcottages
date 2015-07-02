@@ -13,7 +13,7 @@ namespace BootstrapVillas.Models
 
         public long BookingParentContainerID { get; set; }
         public long CustomerID { get; set; }
-        public Nullable<System.DateTime> CreationDate { get; set; }
+        public Nullable<DateTime> CreationDate { get; set; }
         public Nullable<decimal> TotalBookingContainerPrice { get; set; }
         public string OverallBookingReference { get; set; }
         public Nullable<decimal> BookingParentContainerCurrencyConversionPrice { get; set; }

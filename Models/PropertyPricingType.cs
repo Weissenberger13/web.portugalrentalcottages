@@ -10,6 +10,6 @@ namespace BootstrapVillas.Models
         public string PropertyPricingSeasonDescription { get; set; }
         public Nullable<decimal> PropertyPricingCommissionRate { get; set; }
         public byte[] WhenUpdated { get; set; }
-        public System.DateTime WhenCreated { get; set; }
+        public DateTime WhenCreated { get; set; }
     }
 }

@@ -12,9 +12,9 @@ namespace BootstrapVillas.Models
         public Nullable<decimal> DepositAmount { get; set; }
         public Nullable<long> DepositTypeID { get; set; }
         public Nullable<bool> DepositPaid { get; set; }
-        public Nullable<System.DateTime> DateDepositPaid { get; set; }
+        public Nullable<DateTime> DateDepositPaid { get; set; }
         public string Currency { get; set; }
         public string CurrencySymbol { get; set; }
-        public Nullable<System.DateTime> DateDepositDue { get; set; }
+        public Nullable<DateTime> DateDepositDue { get; set; }
     }
 }

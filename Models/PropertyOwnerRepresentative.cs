@@ -15,7 +15,7 @@ namespace BootstrapVillas.Models
         public string PropertyOwnerRepresentativeContactNumberLandline { get; set; }
         public string PropertyOwnerRepresentativeContactNumberMobile { get; set; }
         public string PropertyOwnerRepresentativeContactEmail { get; set; }
-        public System.DateTime WhenCreated { get; set; }
+        public DateTime WhenCreated { get; set; }
         public virtual ICollection<Property> Properties { get; set; }
     }
 }

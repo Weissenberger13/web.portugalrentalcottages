@@ -26,7 +26,7 @@ namespace BootstrapVillas.Models
         public string FullSynopsis3 { get; set; }
         public string HTMLContent { get; set; }
         public string PriceSynopsis { get; set; }
-        public System.DateTime WhenCreated { get; set; }
+        public DateTime WhenCreated { get; set; }
         public byte[] WhenModified { get; set; }
         public Nullable<decimal> Price { get; set; }
         public string PriceTimespan { get; set; }

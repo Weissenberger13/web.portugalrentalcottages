@@ -11,8 +11,8 @@ namespace BootstrapVillas.Models
         }
 
         public int PropertyPricingSeasonID { get; set; }
-        public Nullable<System.DateTime> SeasonStartDate { get; set; }
-        public Nullable<System.DateTime> SeasonEndDate { get; set; }
+        public Nullable<DateTime> SeasonStartDate { get; set; }
+        public Nullable<DateTime> SeasonEndDate { get; set; }
         public string Season_Name { get; set; }
         public Nullable<int> SeasonOrdinalInYear { get; set; }
         public Nullable<int> PropertyPricingComissionID { get; set; }

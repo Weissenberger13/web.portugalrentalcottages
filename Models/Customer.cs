@@ -19,7 +19,7 @@ namespace BootstrapVillas.Models
         public string FirstName { get; set; }
         public string MiddleName { get; set; }
         public string LastName { get; set; }
-        public Nullable<System.DateTime> DOB { get; set; }
+        public Nullable<DateTime> DOB { get; set; }
         public string EmailAddress { get; set; }
         public string AltEmailAddress { get; set; }
         public string DayTimeTelephone { get; set; }
@@ -35,7 +35,7 @@ namespace BootstrapVillas.Models
         public string Country { get; set; }
         public Nullable<bool> Test { get; set; }
         public Nullable<int> WhoUpdated { get; set; }
-        public Nullable<System.DateTime> CreationDate { get; set; }
+        public Nullable<DateTime> CreationDate { get; set; }
         public string PreferredCurrency { get; set; }
         public string PreferredCurrencySymbol { get; set; }
         public virtual ICollection<Booking> Bookings { get; set; }

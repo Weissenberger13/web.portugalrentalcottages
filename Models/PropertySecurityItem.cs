@@ -11,7 +11,7 @@ namespace BootstrapVillas.Models
         public string PropertySecurityItemDescription { get; set; }
         public string PropertySecurityItemCode { get; set; }
         public string PropertySecurityItemNote { get; set; }
-        public System.DateTime WhenCreated { get; set; }
+        public DateTime WhenCreated { get; set; }
         public long PropertyID { get; set; }
         public byte[] WhenUpdated { get; set; }
         public virtual Property Property { get; set; }

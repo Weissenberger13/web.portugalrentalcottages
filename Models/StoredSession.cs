@@ -7,6 +7,6 @@ namespace BootstrapVillas.Models
     {
         public long StoredSessionID { get; set; }
         public string NETSessionID { get; set; }
-        public System.DateTime WhenCreated { get; set; }
+        public DateTime WhenCreated { get; set; }
     }
 }

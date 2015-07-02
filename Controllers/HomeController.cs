@@ -236,10 +236,12 @@ namespace BootstrapVillas.Controllers
 
             if (propertyResultsSort != "")
             {
-                filteredResults = sorter.SortProperty(filteredResults, propertyResultsSort);
+                var returnList = sorter.SortProperty(filteredResults, propertyResultsSort);
             }
             //put filtered results back in session
-            Session["LastSearchResults"] = filteredResults;
+
+            
+            Session["LastSearchResults"] = PagedList.PagedListExtensions.ToPagedList(filteredResults, 1, propertyResultsAmount);
 
 
 
@@ -342,7 +344,7 @@ namespace BootstrapVillas.Controllers
                 //parse price range 
 
                 //jsut to account for if we haven't be passed a price
-                String[] splitPrice = "1-2000".Split('-');
+                String[] splitPrice = "1-5000".Split('-');
 
                 if (formCollection["PriceRange"] != "" && formCollection["PriceRange"] != null)
                 {
@@ -352,16 +354,25 @@ namespace BootstrapVillas.Controllers
 
                 LinkedList<decimal> thePrices = new LinkedList<decimal>();
 
+
+
                 foreach (var thePrice in splitPrice)
                 {
                     int TryParseResult = 0;
                     //try parse to check it's a number
-                    Int32.TryParse(thePrice.Trim().Replace("£", "").ToString(), out TryParseResult);
+                    Int32.TryParse(thePrice.Trim().Replace("£", "").Replace("$", "").ToString(), out TryParseResult);
 
 
+                    var cash = (decimal)TryParseResult;
                     if (TryParseResult != 0)
                     {
-                        thePrices.AddLast(Decimal.Parse(thePrice.Trim().Replace("£", "")));
+                        //IF SYSTEM IS US DOLLARS, NEED TO CONVERT THE NUMBER INTO POUNDS
+                        if ((string)ConfigurationManager.AppSettings["defaultCurrency"] != "GBP")
+                        {
+                           var cc = new CurrencyConverterController();
+                            cash = cc.ConvertCurrency((string)ConfigurationManager.AppSettings["defaultCurrency"], "GBP", (decimal)cash);
+                        }
+                            thePrices.AddLast(cash);
                     }
                 }
                 //end parse price range

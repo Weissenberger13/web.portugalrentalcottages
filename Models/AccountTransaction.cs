@@ -13,11 +13,11 @@ namespace BootstrapVillas.Models
         public bool Paid { get; set; }
         public long AccountID { get; set; }
         public string TransactionReference { get; set; }
-        public Nullable<System.DateTime> TransactionDate { get; set; }
+        public Nullable<DateTime> TransactionDate { get; set; }
         public string WhoCreated { get; set; }
-        public Nullable<System.DateTime> WhenCreated { get; set; }
+        public Nullable<DateTime> WhenCreated { get; set; }
         public bool Voided { get; set; }
-        public Nullable<System.DateTime> VoidedDate { get; set; }
+        public Nullable<DateTime> VoidedDate { get; set; }
         public string WhoVoided { get; set; }
         public virtual Booking Booking { get; set; }
         public virtual BookingExtraSelection BookingExtraSelection { get; set; }

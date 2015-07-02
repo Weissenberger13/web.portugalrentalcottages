@@ -154,10 +154,6 @@
       <HintPath>packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>packages\EntityFramework.6.1.2\lib\net45\EntityFramework.SqlServer.dll</HintPath>
-    </Reference>
     <Reference Include="HtmlAgilityPack">
       <HintPath>packages\HtmlAgilityPack.1.4.6\lib\Net45\HtmlAgilityPack.dll</HintPath>
     </Reference>
@@ -417,6 +413,7 @@
     <Compile Include="Controllers\BookingExtraParticipantController.cs" />
     <Compile Include="Controllers\BookingExtraSelectionController.cs" />
     <Compile Include="Controllers\BookingParticipantController.cs" />
+    <Compile Include="Controllers\BookingSyncController.cs" />
     <Compile Include="Controllers\CheckoutController.cs" />
     <Compile Include="Controllers\CommentController.cs" />
     <Compile Include="Controllers\CommentReplyController.cs" />
@@ -468,42 +465,6 @@
     <Compile Include="HTMLHelper\CurrencyHelper.cs" />
     <Compile Include="Interfaces\ICurrencyConvertable.cs" />
     <Compile Include="Interfaces\IMailService.cs" />
-    <Compile Include="Migrations\201504181618355_first.cs" />
-    <Compile Include="Migrations\201504181618355_first.Designer.cs">
-      <DependentUpon>201504181618355_first.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201504181629089_Emailtemplate.cs" />
-    <Compile Include="Migrations\201504181629089_Emailtemplate.Designer.cs">
-      <DependentUpon>201504181629089_Emailtemplate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201504181642162_EmailtemplateSubject.cs" />
-    <Compile Include="Migrations\201504181642162_EmailtemplateSubject.Designer.cs">
-      <DependentUpon>201504181642162_EmailtemplateSubject.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201507061830588_bookingUnitPrices.cs" />
-    <Compile Include="Migrations\201507061830588_bookingUnitPrices.Designer.cs">
-      <DependentUpon>201507061830588_bookingUnitPrices.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201507071803025_notificationEmails.cs" />
-    <Compile Include="Migrations\201507071803025_notificationEmails.Designer.cs">
-      <DependentUpon>201507071803025_notificationEmails.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201507071927533_currencyLongName.cs" />
-    <Compile Include="Migrations\201507071927533_currencyLongName.Designer.cs">
-      <DependentUpon>201507071927533_currencyLongName.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201507071958022_extraDocumentFieldsInBooking.cs" />
-    <Compile Include="Migrations\201507071958022_extraDocumentFieldsInBooking.Designer.cs">
-      <DependentUpon>201507071958022_extraDocumentFieldsInBooking.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201507112040554_logoFile.cs" />
-    <Compile Include="Migrations\201507112040554_logoFile.Designer.cs">
-      <DependentUpon>201507112040554_logoFile.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201507131631103_depositExcessInstance.cs" />
-    <Compile Include="Migrations\201507131631103_depositExcessInstance.Designer.cs">
-      <DependentUpon>201507131631103_depositExcessInstance.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\AccountTransaction.cs" />
@@ -688,8 +649,10 @@
     <Compile Include="Models\StandardSeason.cs" />
     <Compile Include="Models\StoredSession.cs" />
     <Compile Include="Models\sysdiagram.cs" />
+    <Compile Include="Models\System.cs" />
     <Compile Include="Models\ThirdPartyService.cs" />
     <Compile Include="Models\Title.cs" />
+    <Compile Include="Models\ViewModels\BookingExternalSyncViewModel.cs" />
     <Compile Include="Models\ViewModels\CheckOutPartialViewModel.cs" />
     <Compile Include="Models\ViewModels\FeaturedPropertyCarouselItem.cs" />
     <Compile Include="Models\ViewModels\FinalBookingDetailViewModel.cs" />
@@ -8953,6 +8916,7 @@
     <Content Include="Views\Test\TestHtmlHelper.cshtml" />
     <Content Include="Views\Customer\QuickCreateCustomer.cshtml" />
     <Content Include="Views\BookingExtraSelection\QuickCreate.cshtml" />
+    <Content Include="Views\Test\TestBookingSync.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -9916,35 +9880,6 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201504181618355_first.resx">
-      <DependentUpon>201504181618355_first.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201504181629089_Emailtemplate.resx">
-      <DependentUpon>201504181629089_Emailtemplate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201504181642162_EmailtemplateSubject.resx">
-      <DependentUpon>201504181642162_EmailtemplateSubject.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201507061830588_bookingUnitPrices.resx">
-      <DependentUpon>201507061830588_bookingUnitPrices.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201507071803025_notificationEmails.resx">
-      <DependentUpon>201507071803025_notificationEmails.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201507071927533_currencyLongName.resx">
-      <DependentUpon>201507071927533_currencyLongName.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201507071958022_extraDocumentFieldsInBooking.resx">
-      <DependentUpon>201507071958022_extraDocumentFieldsInBooking.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201507112040554_logoFile.resx">
-      <DependentUpon>201507112040554_logoFile.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201507131631103_depositExcessInstance.resx">
-      <DependentUpon>201507131631103_depositExcessInstance.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

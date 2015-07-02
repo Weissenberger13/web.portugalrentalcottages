@@ -28,7 +28,7 @@ namespace BootstrapVillas.Models
         public string PropertyOwnerCountry { get; set; }
         public string PropertyOwnerHomeTelephone { get; set; }
         public string PropertyOwnerMobileTelephone { get; set; }
-        public System.DateTime WhenCreated { get; set; }
+        public DateTime WhenCreated { get; set; }
         public byte[] WhenUpdated { get; set; }
         public string PropertyOwnerNotes { get; set; }
         public string PropertyOwnerBankDetails { get; set; }

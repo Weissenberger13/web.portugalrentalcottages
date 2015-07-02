@@ -57,7 +57,7 @@ namespace BootstrapVillas.Models
         public string County { get; set; }
         public string Country { get; set; }
         public string PropertyTelephone { get; set; }
-        public Nullable<System.DateTime> WhenCreated { get; set; }
+        public Nullable<DateTime> WhenCreated { get; set; }
         public byte[] WhenUpdated { get; set; }
         public Nullable<bool> Active { get; set; }
         public string Alarm { get; set; }

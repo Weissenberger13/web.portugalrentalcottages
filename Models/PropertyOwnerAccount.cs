@@ -20,8 +20,8 @@ namespace BootstrapVillas.Models
         public string SortCode { get; set; }
         public string IBAN { get; set; }
         public string WhoCreated { get; set; }
-        public Nullable<System.DateTime> WhenCreated { get; set; }
-        public Nullable<System.DateTime> LastUpdated { get; set; }
+        public Nullable<DateTime> WhenCreated { get; set; }
+        public Nullable<DateTime> LastUpdated { get; set; }
         public string WhoUpdated { get; set; }
         public virtual ICollection<AccountTransaction> AccountTransactions { get; set; }
         public virtual PropertyOwner PropertyOwner { get; set; }

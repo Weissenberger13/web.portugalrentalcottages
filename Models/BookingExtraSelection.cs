@@ -14,11 +14,11 @@ namespace BootstrapVillas.Models
         }
 
         public long BookingExtraSelectionID { get; set; }
-        public Nullable<System.DateTime> ExtraRentalDate { get; set; }
-        public Nullable<System.DateTime> ExtraReturnDate { get; set; }
+        public Nullable<DateTime> ExtraRentalDate { get; set; }
+        public Nullable<DateTime> ExtraReturnDate { get; set; }
         public long BookingExtraID { get; set; }
         public Nullable<long> BookingParentContainerID { get; set; }
-        public System.DateTime WhenCreated { get; set; }
+        public DateTime WhenCreated { get; set; }
         public Nullable<bool> Test { get; set; }
         public long CustomerID { get; set; }
         public Nullable<int> NumberOfDays { get; set; }

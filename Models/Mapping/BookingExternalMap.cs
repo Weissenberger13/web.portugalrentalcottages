@@ -20,9 +20,9 @@ namespace BootstrapVillas.Models.Mapping
             this.Property(t => t.Notes).HasColumnName("Notes");
 
             // Relationships
-            this.HasRequired(t => t.Property)
-                .WithMany(t => t.BookingExternals)
-                .HasForeignKey(d => d.PropertyID);
+          
+
+          
 
         }
     }

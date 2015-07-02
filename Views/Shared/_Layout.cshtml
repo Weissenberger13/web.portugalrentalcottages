@@ -425,8 +425,8 @@
             $("#slider-range14").slider({
                 range: true,
                 min: 1,
-                max: 2000,
-                values: [1, 2000],
+                max: 5000,
+                values: [1, 5000],
                 slide: function (event, ui) {
                     $("#amount14").val("@Html.Raw(currencySymbol)" + ui.values[0] + " - @Html.Raw(currencySymbol)" + ui.values[1]);
                 }
@@ -441,8 +441,8 @@
             $("#slider-range2").slider({
                 range: true,
                 min: 1,
-                max: 2000,
-                values: [1, 2000],
+                max: 5000,
+                values: [1, 5000],
                 slide: function (event, ui) {
                     $("#amount2").val("@Html.Raw(currencySymbol)" + ui.values[0] + " - @Html.Raw(currencySymbol)" + ui.values[1]);
                 }

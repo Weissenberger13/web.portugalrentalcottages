@@ -6,7 +6,7 @@ namespace BootstrapVillas.Models
     public partial class BookingAmendment
     {
         public long BookingAmendmentID { get; set; }
-        public System.DateTime WhenCreated { get; set; }
+        public DateTime WhenCreated { get; set; }
         public long BookingID { get; set; }
         public string AmendmentNote { get; set; }
         public Nullable<int> WhoUpdated { get; set; }

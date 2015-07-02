@@ -7,7 +7,7 @@ namespace BootstrapVillas.Models
     {
         public int StandardSeasonID { get; set; }
         public string SeasonName { get; set; }
-        public System.DateTime SeasonStartDate { get; set; }
-        public System.DateTime SeasonEndDate { get; set; }
+        public DateTime SeasonStartDate { get; set; }
+        public DateTime SeasonEndDate { get; set; }
     }
 }

@@ -9,8 +9,8 @@ namespace BootstrapVillas.Models
         public long CustomerID { get; set; }
         public string LoginName { get; set; }
         public string Password { get; set; }
-        public Nullable<System.DateTime> LastLogin { get; set; }
-        public System.DateTime WhenCreated { get; set; }
+        public Nullable<DateTime> LastLogin { get; set; }
+        public DateTime WhenCreated { get; set; }
         public virtual Customer Customer { get; set; }
     }
 }

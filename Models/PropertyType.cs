@@ -13,7 +13,7 @@ namespace BootstrapVillas.Models
 
         public long PropertyTypeID { get; set; }
         public string PropertyTypeName { get; set; }
-        public Nullable<System.DateTime> WhenCreated { get; set; }
+        public Nullable<DateTime> WhenCreated { get; set; }
         public virtual ICollection<Property> Properties { get; set; }
         public virtual ICollection<PropertyTypeServicesChargeInstance> PropertyTypeServicesChargeInstances { get; set; }
     }

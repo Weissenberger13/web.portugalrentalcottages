@@ -25,7 +25,7 @@ namespace BootstrapVillas.Models
         public string PropertyEntityDescription13 { get; set; }
         public string PropertyEntityDescription14 { get; set; }
         public string PropertyEntityDescription15 { get; set; }
-        public System.DateTime WhenCreated { get; set; }
+        public DateTime WhenCreated { get; set; }
         public byte[] WhenUpdated { get; set; }
         public virtual Property Property { get; set; }
         public virtual PropertyEntityType PropertyEntityType { get; set; }

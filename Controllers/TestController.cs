@@ -10,6 +10,7 @@ using System.IO;
 using System.Runtime.Serialization.Json;
 using System.Runtime.Serialization;
 using System.Media;
+using System.Net.Http;
 using System.Web.Mvc;
 using Aspose.Email.Exchange.Schema;
 using Aspose.Words;
@@ -50,6 +51,15 @@ namespace BootstrapVillas.Controllers
 
         public ActionResult TestHelper()
         {
+
+            return View();
+        }
+
+        public ActionResult TestBookingSync()
+        {
+
+            var client = new HttpClient();
+            client.BaseAddress =new Uri("http://localhost:/");
 
             return View();
         }

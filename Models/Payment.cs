@@ -7,7 +7,7 @@ namespace BootstrapVillas.Models
     {
         public long BookingID { get; set; }
         public long PaymentID { get; set; }
-        public System.DateTime WhenCreated { get; set; }
+        public DateTime WhenCreated { get; set; }
         public long PaymentTypeID { get; set; }
         public byte[] WhenModified { get; set; }
         public virtual Booking Booking { get; set; }

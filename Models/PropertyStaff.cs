@@ -21,7 +21,7 @@ namespace BootstrapVillas.Models
         public string Country { get; set; }
         public string StaffHomeTelephone { get; set; }
         public string StaffMobileTelephone { get; set; }
-        public System.DateTime WhenCreated { get; set; }
+        public DateTime WhenCreated { get; set; }
         public byte[] WhenUpdated { get; set; }
         public Nullable<long> PropertyStaffTypeID { get; set; }
         public virtual PropertyStaffType PropertyStaffType { get; set; }

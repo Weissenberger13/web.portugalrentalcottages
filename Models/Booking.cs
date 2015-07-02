@@ -20,30 +20,30 @@ namespace BootstrapVillas.Models
         public long BookingID { get; set; }
         public Nullable<long> PropertyID { get; set; }
         public long CustomerID { get; set; }
-        public Nullable<System.Guid> BookingGUID { get; set; }
+        public Nullable<Guid> BookingGUID { get; set; }
         public Nullable<long> BookingParentContainerID { get; set; }
         public string BookingPRCReference { get; set; }
         public string HomeawayReference { get; set; }
         public Nullable<decimal> BookingPrice { get; set; }
         public Nullable<decimal> InitialDeposit { get; set; }
-        public Nullable<System.DateTime> InitialDepositDueDate { get; set; }
-        public Nullable<System.DateTime> InitialDepositPaidDate { get; set; }
-        public Nullable<System.DateTime> BreakageDepositRemittancePaidDate { get; set; }
-        public Nullable<System.DateTime> BreakageDepositRemittanceDueDate { get; set; }
+        public Nullable<DateTime> InitialDepositDueDate { get; set; }
+        public Nullable<DateTime> InitialDepositPaidDate { get; set; }
+        public Nullable<DateTime> BreakageDepositRemittancePaidDate { get; set; }
+        public Nullable<DateTime> BreakageDepositRemittanceDueDate { get; set; }
         public Nullable<decimal> CommissionAmount { get; set; }
         public Nullable<decimal> RemittanceAmount { get; set; }
         public Nullable<decimal> FinalRentalPayment { get; set; }
         public Nullable<decimal> FinalRentalPaymentIncBreakageDepositLateBooking { get; set; }
         public Nullable<decimal> FinalRentalPaymentNoBreakageDepositLateBooking { get; set; }
         public Nullable<decimal> BreakageDeposit { get; set; }
-        public Nullable<System.DateTime> RentalBalanceDueDate { get; set; }
-        public Nullable<System.DateTime> BreakageDepositDueDate { get; set; }
+        public Nullable<DateTime> RentalBalanceDueDate { get; set; }
+        public Nullable<DateTime> BreakageDepositDueDate { get; set; }
         public bool Cancelled { get; set; }
         public bool Confirmed { get; set; }
-        public Nullable<System.DateTime> StartDate { get; set; }
-        public Nullable<System.DateTime> EndDate { get; set; }
-        public Nullable<System.TimeSpan> CheckInTime { get; set; }
-        public Nullable<System.TimeSpan> CheckOutTime { get; set; }
+        public Nullable<DateTime> StartDate { get; set; }
+        public Nullable<DateTime> EndDate { get; set; }
+        public Nullable<TimeSpan> CheckInTime { get; set; }
+        public Nullable<TimeSpan> CheckOutTime { get; set; }
         public Nullable<int> NumberOfNights { get; set; }
         public long BookingTypeID { get; set; }
         public Nullable<int> NumberOfGuests { get; set; }
@@ -51,7 +51,7 @@ namespace BootstrapVillas.Models
         public Nullable<int> NumberOfChildren { get; set; }
         public Nullable<int> NumberOfInfants { get; set; }
         public Nullable<int> TotalNumberOfMinors { get; set; }
-        public Nullable<System.DateTime> CreationDate { get; set; }
+        public Nullable<DateTime> CreationDate { get; set; }
         public byte[] LastUpdated { get; set; }
         public Nullable<int> WhoUpdated { get; set; }
         public Nullable<bool> Test { get; set; }
@@ -91,14 +91,14 @@ namespace BootstrapVillas.Models
 
         public string FlightArrivalTime { get; set; }
         public string FlightDepartureTime { get; set; }
-        public Nullable<System.DateTime> FlightArrivalDate { get; set; }
-        public Nullable<System.DateTime> FlightDepartureDate { get; set; }
+        public Nullable<DateTime> FlightArrivalDate { get; set; }
+        public Nullable<DateTime> FlightDepartureDate { get; set; }
         public string FlightNumberArrival { get; set; }
         public string FlightNumberDeparture { get; set; }
         public Nullable<decimal> TotalOnePaymentBookingAmountExcludingBreakageDeposit { get; set; }
         public Nullable<decimal> TotalOnePaymentBookingAmountIncludingBreakageDeposit { get; set; }
-        public Nullable<System.DateTime> FinalRentalPaymentPaidDate { get; set; }
-        public Nullable<System.DateTime> FinalRentalPaymentDueDate { get; set; }
+        public Nullable<DateTime> FinalRentalPaymentPaidDate { get; set; }
+        public Nullable<DateTime> FinalRentalPaymentDueDate { get; set; }
         public Nullable<decimal> FinalRentalPaymentPlusBreakageDepositMinusInitialDeposit { get; set; }
         public string Remarks { get; set; }
         public Nullable<decimal> StandardBookingRemainingRentalAmountPlusDeposit { get; set; }

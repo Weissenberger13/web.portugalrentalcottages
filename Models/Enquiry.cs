@@ -7,9 +7,9 @@ namespace BootstrapVillas.Models
     {
         public long BookingID { get; set; }
         public long EnquiryID { get; set; }
-        public Nullable<System.DateTime> EnquiryStartDate { get; set; }
-        public Nullable<System.DateTime> EnquiryEndDate { get; set; }
-        public System.DateTime EnquiryWhenCreated { get; set; }
+        public Nullable<DateTime> EnquiryStartDate { get; set; }
+        public Nullable<DateTime> EnquiryEndDate { get; set; }
+        public DateTime EnquiryWhenCreated { get; set; }
         public string EnquiryEmailAddress { get; set; }
         public string EnquiryHomeTelephone { get; set; }
         public string EnquiryMobileTelephone { get; set; }

@@ -534,7 +534,7 @@ namespace BootstrapVillas.Controllers
                     {
                         var theType = dtCloned.Columns[col.ColumnName].DataType.ToString();
 
-                        if (dtCloned.Columns[col.ColumnName].DataType.ToString() == "System.DateTime")
+                        if (dtCloned.Columns[col.ColumnName].DataType.ToString() == "DateTime")
                         {
                             //change the type
                             var name = col.ColumnName;
