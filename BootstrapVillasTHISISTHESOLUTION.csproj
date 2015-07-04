@@ -30,6 +30,8 @@
     </UpgradeBackupLocation>
     <OldToolsVersion>4.0</OldToolsVersion>
     <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -310,6 +312,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Content\AutomationClasses\PRCAutomations.cs" />
+    <Compile Include="Content\Classes\CurrencyConverter\CurrencyEnum.cs" />
     <Compile Include="Content\Classes\CurrencyExchangeService.cs" />
     <Compile Include="Content\Classes\CustomAuthorisePRC.cs" />
     <Compile Include="Content\Classes\CustomSorting\PropertySorter.cs" />
@@ -453,6 +456,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="HTMLHelper\BootstrapHelpers.cs" />
+    <Compile Include="HTMLHelper\CurrencySymbolHelper.cs" />
     <Compile Include="Interfaces\ICurrencyConvertable.cs" />
     <Compile Include="Interfaces\IMailService.cs" />
     <Compile Include="Migrations\201504181618355_first.cs" />
@@ -664,7 +668,6 @@
   <ItemGroup>
     <Content Include="Aspose\Aspose.Email.dll" />
     <Content Include="Aspose\Aspose.Email.xml" />
-    <Content Include="Aspose\Aspose.Words.dll" />
     <Content Include="Aspose\Aspose.Words.xml" />
     <Content Include="bin\ABCpdf.dll" />
     <Content Include="bin\Aspose.Email.dll">
@@ -2703,12 +2706,18 @@
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
     <Content Include="ExtraImages\PLEASEREAD.txt" />
     <Content Include="ExtraImages\PRC-AT\mainImage\PRC-AT_Image.jpg" />
-    <Content Include="ExtraImages\PRCCR-A\mainImage\PRCCH-A_Image.jpg" />
-    <Content Include="ExtraImages\PRCCR-B\mainImage\PRCCH-B_Image.jpg" />
-    <Content Include="ExtraImages\PRCCR-E\mainImage\PRCCH-E_Image.jpg" />
-    <Content Include="ExtraImages\PRCCR-F\mainImage\PRCCH-F_Image.jpg" />
-    <Content Include="ExtraImages\PRCCR-G\mainImage\PRCCH-G_Image.jpg" />
-    <Content Include="ExtraImages\PRCCR-H\mainImage\PRCCH-H_Image.jpg" />
+    <Content Include="ExtraImages\PRCCH-A\mainImage\PRCCH-A_Image.jpg" />
+    <Content Include="ExtraImages\PRCCH-B\mainImage\PRCCH-B_Image.jpg" />
+    <Content Include="ExtraImages\PRCCH-E\mainImage\PRCCH-E_Image.jpg" />
+    <Content Include="ExtraImages\PRCCH-F\mainImage\PRCCH-F_Image.jpg" />
+    <Content Include="ExtraImages\PRCCH-G\mainImage\PRCCH-G_Image.jpg" />
+    <Content Include="ExtraImages\PRCCH-H\mainImage\PRCCH-H_Image.jpg" />
+    <Content Include="ExtraImages\PRCCR-A\mainImage\PRCCR-A_Image.jpg" />
+    <Content Include="ExtraImages\PRCCR-B\mainImage\PRCCR-B_Image.jpg" />
+    <Content Include="ExtraImages\PRCCR-E\mainImage\PRCCR-E_Image.jpg" />
+    <Content Include="ExtraImages\PRCCR-F\mainImage\PRCCR-F_Image.jpg" />
+    <Content Include="ExtraImages\PRCCR-G\mainImage\PRCCR-G_Image.jpg" />
+    <Content Include="ExtraImages\PRCCR-H\mainImage\PRCCR-H_Image.jpg" />
     <Content Include="ExtraImages\PRCT-ABF\Batalha.jpg" />
     <Content Include="ExtraImages\PRCT-ABT\mainImage\PRCT-ABT_Image.jpg" />
     <Content Include="ExtraImages\PRCT-BF\mainImage\PRCCH-TBF_Image.jpg" />
@@ -6122,7 +6131,6 @@
     <Content Include="Scripts\CircularContentCarousel\images\Thumbs.db" />
     <Content Include="Scripts\CircularContentCarousel\js\jquery.contentcarousel.js.bak" />
     <Content Include="Scripts\CustomValidationScript.js" />
-    <Content Include="Scripts\dotdotdot-1.6.1\index.html" />
     <Content Include="Scripts\dotdotdot-1.6.1\jquery-1.8.3.min.js" />
     <Content Include="Scripts\dotdotdot-1.6.1\jquery.dotdotdot.js" />
     <Content Include="Scripts\dotdotdot-1.6.1\jquery.dotdotdot.min.js" />
@@ -6193,155 +6201,6 @@
     <Content Include="DocumentTemplates\SecurityDepositTemplate.rtf" />
     <Content Include="DocumentTemplates\TestTemplate.docx" />
     <Content Include="DocumentTemplates\BOOKING_UKROWBookingRequestFormTemplate.doc" />
-    <Content Include="Scripts\dotdotdot-1.6.1\.gitignore" />
-    <Content Include="Scripts\dotdotdot-1.6.1\.git\COMMIT_EDITMSG" />
-    <Content Include="Scripts\dotdotdot-1.6.1\.git\config" />
-    <Content Include="Scripts\dotdotdot-1.6.1\.git\description" />
-    <Content Include="Scripts\dotdotdot-1.6.1\.git\FETCH_HEAD" />
-    <Content Include="Scripts\dotdotdot-1.6.1\.git\HEAD" />
-    <Content Include="Scripts\dotdotdot-1.6.1\.git\hooks\README.sample" />
-    <Content Include="Scripts\dotdotdot-1.6.1\.git\index" />
-    <Content Include="Scripts\dotdotdot-1.6.1\.git\info\exclude" />
-    <Content Include="Scripts\dotdotdot-1.6.1\.git\logs\HEAD" />
-    <Content Include="Scripts\dotdotdot-1.6.1\.git\logs\refs\heads\development" />
-    <Content Include="Scripts\dotdotdot-1.6.1\.git\logs\refs\heads\master" />
-    <Content Include="Scripts\dotdotdot-1.6.1\.git\logs\refs\remotes\origin\master" />
-    <Content Include="Scripts\dotdotdot-1.6.1\.git\logs\refs\stash" />
-    <Content Include="Scripts\dotdotdot-1.6.1\.git\objects\00\56e3c6f22c592f660d99f362afb39500cf6203" />
-    <Content Include="Scripts\dotdotdot-1.6.1\.git\objects\03\5609079338a2706ea6bf64aa92567ac1532405" />
-    <Content Include="Scripts\dotdotdot-1.6.1\.git\objects\04\f553c4dfe9868fbf9ddf842f3d043c1465d75d" />
-    <Content Include="Scripts\dotdotdot-1.6.1\.git\objects\05\e5adac79522855a564921e3ef0ce416c427615" />
-    <Content Include="Scripts\dotdotdot-1.6.1\.git\objects\06\217c2408e3b8018135c3ff65aedbf8f0c99dc0" />
-    <Content Include="Scripts\dotdotdot-1.6.1\.git\objects\07\65e5f1ec1fa1d7720d94be3368a080de017c2e" />
-    <Content Include="Scripts\dotdotdot-1.6.1\.git\objects\08\e56ec5732dde0c8863c4d56bd2f5453b097cfb" />
-    <Content Include="Scripts\dotdotdot-1.6.1\.git\objects\0e\628c10f5a4065af82e4dcd35136f49ba4f9a03" />
-    <Content Include="Scripts\dotdotdot-1.6.1\.git\objects\0e\c51bd9bb9468ae37b5115e93b23467182220d2" />
-    <Content Include="Scripts\dotdotdot-1.6.1\.git\objects\0f\9f54c18b9c9b9a6a2b9f009397905c1e99ad44" />
-    <Content Include="Scripts\dotdotdot-1.6.1\.git\objects\10\a27e8888d01f3205d80fb70c8d8e63541a76b0" />
-    <Content Include="Scripts\dotdotdot-1.6.1\.git\objects\12\8d880d6e781f6968b0b4da325c2f6c8323e2d7" />
-    <Content Include="Scripts\dotdotdot-1.6.1\.git\objects\12\bcc5cb5972b4b147e79fb1acf60e2c8b6b5bd9" />
-    <Content Include="Scripts\dotdotdot-1.6.1\.git\objects\14\1f266337978d2488424ae3219547f286e6856f" />
-    <Content Include="Scripts\dotdotdot-1.6.1\.git\objects\15\3a29ea51023497989328878d1d0aa99a8e8295" />
-    <Content Include="Scripts\dotdotdot-1.6.1\.git\objects\1a\4a1e8be0b83c13391a87fe7962a8498075a67f" />
-    <Content Include="Scripts\dotdotdot-1.6.1\.git\objects\1c\4a21d2898865d0d41aacdc7eb3edd922745667" />
-    <Content Include="Scripts\dotdotdot-1.6.1\.git\objects\1c\4f88591c4c2479ec199e80a34203c4ea9e3875" />
-    <Content Include="Scripts\dotdotdot-1.6.1\.git\objects\1c\ceba2a2a1ef397fb1eff073d478662f46bdd3b" />
-    <Content Include="Scripts\dotdotdot-1.6.1\.git\objects\1d\13a99d0b6851c42a2364e1b476bc43e7b277ae" />
-    <Content Include="Scripts\dotdotdot-1.6.1\.git\objects\1e\f30449d92d639fcb89957261dcc060d6a7584a" />
-    <Content Include="Scripts\dotdotdot-1.6.1\.git\objects\1f\28cece54ceb8d2b217c927ce5701baf6e71ab5" />
-    <Content Include="Scripts\dotdotdot-1.6.1\.git\objects\23\468d84488168be49ecf489c639ccfc82cf902c" />
-    <Content Include="Scripts\dotdotdot-1.6.1\.git\objects\27\a2f7983031e6288a4285724216f364d989aacc" />
-    <Content Include="Scripts\dotdotdot-1.6.1\.git\objects\2a\05630664478260de374d03ca1e247d54aa1626" />
-    <Content Include="Scripts\dotdotdot-1.6.1\.git\objects\2a\d7a1cc8a997b7b336d604dfa3a65eb69ab6ceb" />
-    <Content Include="Scripts\dotdotdot-1.6.1\.git\objects\2b\dea664f2bd13225b7610a3146fbd824ef8eb18" />
-    <Content Include="Scripts\dotdotdot-1.6.1\.git\objects\2c\9eac1ae5c40ef464b053f89baaab28bf313475" />
-    <Content Include="Scripts\dotdotdot-1.6.1\.git\objects\2d\e4fc124fe6481e93ea6743b9cc3cbd552afcc1" />
-    <Content Include="Scripts\dotdotdot-1.6.1\.git\objects\2e\8c7f2b55eb2267e84964190f80d197306fc6f9" />
-    <Content Include="Scripts\dotdotdot-1.6.1\.git\objects\2e\ae7d35caa224043c4556cf6b96276450854b2b" />
-    <Content Include="Scripts\dotdotdot-1.6.1\.git\objects\2f\bbf14b0297d28d82bf743441b5d4f97e339b0f" />
-    <Content Include="Scripts\dotdotdot-1.6.1\.git\objects\34\f30e9842ed0487a00d014db307259537ea458b" />
-    <Content Include="Scripts\dotdotdot-1.6.1\.git\objects\36\84c36b54b20b6733f19ef67d4767fcbede5705" />
-    <Content Include="Scripts\dotdotdot-1.6.1\.git\objects\36\f87954c440d852c3559254a73218f2fbc07ffb" />
-    <Content Include="Scripts\dotdotdot-1.6.1\.git\objects\37\46098fa6d869dc4fd4111aa37c5f95e91d9d38" />
-    <Content Include="Scripts\dotdotdot-1.6.1\.git\objects\3b\9c29f4cd9d541ffa5020b11a9dd4d4ddb81ea1" />
-    <Content Include="Scripts\dotdotdot-1.6.1\.git\objects\3b\bf67f1fdf58df47b38b45145ea3ab2159221d6" />
-    <Content Include="Scripts\dotdotdot-1.6.1\.git\objects\40\0caf75c0bdd35b415ff75eab6c424df5ae346f" />
-    <Content Include="Scripts\dotdotdot-1.6.1\.git\objects\41\a474a49cd9c978acd232eb6c6387c62b906bff" />
-    <Content Include="Scripts\dotdotdot-1.6.1\.git\objects\41\dd242de0c630a8123e0b838133cba5a524df0a" />
-    <Content Include="Scripts\dotdotdot-1.6.1\.git\objects\42\2ea9305c563b995711b59f3ea307b4aeeaa43d" />
-    <Content Include="Scripts\dotdotdot-1.6.1\.git\objects\46\ab9e401375424888c48791f35585daac8a15ee" />
-    <Content Include="Scripts\dotdotdot-1.6.1\.git\objects\47\70c1153b3c1024bb63e3b962d9d7bafff5a36c" />
-    <Content Include="Scripts\dotdotdot-1.6.1\.git\objects\48\d19239dc6a789d069a473163505d62ac766e28" />
-    <Content Include="Scripts\dotdotdot-1.6.1\.git\objects\49\7ef2f9c078e5b35f7aa695970d12e140946595" />
-    <Content Include="Scripts\dotdotdot-1.6.1\.git\objects\4a\3d1ffc8abe52bb8c9bd91741d8ca4faa34c03a" />
-    <Content Include="Scripts\dotdotdot-1.6.1\.git\objects\4b\5c8b939882d12d35c04d796ad737b4e8201c0b" />
-    <Content Include="Scripts\dotdotdot-1.6.1\.git\objects\4b\825dc642cb6eb9a060e54bf8d69288fbee4904" />
-    <Content Include="Scripts\dotdotdot-1.6.1\.git\objects\4b\b3c4fd2d5429d4aefc558cfe89463c0841d0c3" />
-    <Content Include="Scripts\dotdotdot-1.6.1\.git\objects\4c\ca1f5e09e877843ec0c695c53ebee90618ed0f" />
-    <Content Include="Scripts\dotdotdot-1.6.1\.git\objects\4d\1d5a1db90248ad08cfc53c066aab84c7ee436c" />
-    <Content Include="Scripts\dotdotdot-1.6.1\.git\objects\4d\42d609b70500d67343f386f17e2fee3fe709b5" />
-    <Content Include="Scripts\dotdotdot-1.6.1\.git\objects\4d\5be4a0b0dcae21eb9d323d7d2e4f63ec2f21fb" />
-    <Content Include="Scripts\dotdotdot-1.6.1\.git\objects\56\b755de164df5138782af16c853e99aad0b1ccc" />
-    <Content Include="Scripts\dotdotdot-1.6.1\.git\objects\56\d7a3754318d34bc6a23af5238cd8be6953fa04" />
-    <Content Include="Scripts\dotdotdot-1.6.1\.git\objects\57\8b613662dbaaeb0635e5c4904cb205007876da" />
-    <Content Include="Scripts\dotdotdot-1.6.1\.git\objects\5a\e3ef3f68b28977145e40b99a81ad795154db3b" />
-    <Content Include="Scripts\dotdotdot-1.6.1\.git\objects\5b\8bea76b7276cd891135c158ec5f850e626b4c6" />
-    <Content Include="Scripts\dotdotdot-1.6.1\.git\objects\62\e531cc57aff1f1c593715c2c6393ef05f3cabf" />
-    <Content Include="Scripts\dotdotdot-1.6.1\.git\objects\64\3de7f9fe121c595e21241b41ca0304f4d623e3" />
-    <Content Include="Scripts\dotdotdot-1.6.1\.git\objects\65\5a4d39f0612cf2ae3fa7018752fec7b3879896" />
-    <Content Include="Scripts\dotdotdot-1.6.1\.git\objects\69\01b0061ae766d97129bcd000310e4b2f85ed83" />
-    <Content Include="Scripts\dotdotdot-1.6.1\.git\objects\6f\4d4c3e4e5f24162a4bf8ea93f2d65d79d761f5" />
-    <Content Include="Scripts\dotdotdot-1.6.1\.git\objects\6f\822a50864c475abf9aaf01cb7d4f74da1e5d0f" />
-    <Content Include="Scripts\dotdotdot-1.6.1\.git\objects\70\619b84231e18755c102f47bc6be44e8b360340" />
-    <Content Include="Scripts\dotdotdot-1.6.1\.git\objects\72\996769e7844db3fa2610c6e50a924e08f74ac9" />
-    <Content Include="Scripts\dotdotdot-1.6.1\.git\objects\77\22d5748c4c5b894b0091b65bc7a7d9ee835c40" />
-    <Content Include="Scripts\dotdotdot-1.6.1\.git\objects\77\ea9f772376449c701cfbec96fc850016a1d403" />
-    <Content Include="Scripts\dotdotdot-1.6.1\.git\objects\78\9a7e7035ccb2c86e4e96e745803871cc3f7960" />
-    <Content Include="Scripts\dotdotdot-1.6.1\.git\objects\80\1b07a9570a672ff8932130e22655ce6c42e14f" />
-    <Content Include="Scripts\dotdotdot-1.6.1\.git\objects\80\e03f1380dee2dddffabef98f8f7ad192939e53" />
-    <Content Include="Scripts\dotdotdot-1.6.1\.git\objects\81\1090f35abcc205c59fd0049c0a7b3c01e916fc" />
-    <Content Include="Scripts\dotdotdot-1.6.1\.git\objects\83\00c9bb97ce74ebb7953a4df7b6d2e3e102a4a5" />
-    <Content Include="Scripts\dotdotdot-1.6.1\.git\objects\83\589daa707a25a1fb3e4112075d382e9a1611ab" />
-    <Content Include="Scripts\dotdotdot-1.6.1\.git\objects\85\4074da81a707786a90c9da93a6fb4a3208e3a5" />
-    <Content Include="Scripts\dotdotdot-1.6.1\.git\objects\87\1410ed49835f984c30580cd1459176cd7a0b43" />
-    <Content Include="Scripts\dotdotdot-1.6.1\.git\objects\8a\ae2f1666c447551e95b8090958bf85b0452b4b" />
-    <Content Include="Scripts\dotdotdot-1.6.1\.git\objects\8e\0a79699d650713cd8fc926bd5bd70a9ed38470" />
-    <Content Include="Scripts\dotdotdot-1.6.1\.git\objects\99\ddc967717530dded7eb0c30e0dbc394c0da786" />
-    <Content Include="Scripts\dotdotdot-1.6.1\.git\objects\9a\ea749a1b8a6462584158962ce390c65205b024" />
-    <Content Include="Scripts\dotdotdot-1.6.1\.git\objects\9b\0d6a141918a23be92b53458ef7dc92290efc68" />
-    <Content Include="Scripts\dotdotdot-1.6.1\.git\objects\9b\ea4330f055c418ce73df7a354fd5c29ead0631" />
-    <Content Include="Scripts\dotdotdot-1.6.1\.git\objects\a1\9b6486bdf64953143236d75988f47eb0367897" />
-    <Content Include="Scripts\dotdotdot-1.6.1\.git\objects\a2\caa1e591793bf65e949831a1cf72e242abd2b2" />
-    <Content Include="Scripts\dotdotdot-1.6.1\.git\objects\a4\f08e08c99bf3ff207e337a1351e7540eac7149" />
-    <Content Include="Scripts\dotdotdot-1.6.1\.git\objects\a6\057745dff8ed31437629b74b9a1be1ec87ec9c" />
-    <Content Include="Scripts\dotdotdot-1.6.1\.git\objects\a6\6cdde6dcaf8acbfa0843c26a65ab1d4f1d2fe4" />
-    <Content Include="Scripts\dotdotdot-1.6.1\.git\objects\ab\d90d453272c5e0a8e7cc4b3c58ddd695d0947c" />
-    <Content Include="Scripts\dotdotdot-1.6.1\.git\objects\ac\5c7824249eb85bc7d4b48be1ede1c8ee242746" />
-    <Content Include="Scripts\dotdotdot-1.6.1\.git\objects\af\81ae051fe4e07aeb4e2ca15feb71d0a2507569" />
-    <Content Include="Scripts\dotdotdot-1.6.1\.git\objects\b2\c8d23a027a68da9f2a4a84f19de85ec85a4795" />
-    <Content Include="Scripts\dotdotdot-1.6.1\.git\objects\b2\dd394c69e8c947a155b98eb842c632e734ef4d" />
-    <Content Include="Scripts\dotdotdot-1.6.1\.git\objects\b6\f5d611ab62844e8cecf7ac7eced7749fe5b389" />
-    <Content Include="Scripts\dotdotdot-1.6.1\.git\objects\b9\e183bbb832e56f5c7cd060c61c4024b9216d3e" />
-    <Content Include="Scripts\dotdotdot-1.6.1\.git\objects\ba\6659b6e5615fc3110f9c85aa15277c6579729e" />
-    <Content Include="Scripts\dotdotdot-1.6.1\.git\objects\bc\1c705b88b438866c15ba06f0e90159c3600ff6" />
-    <Content Include="Scripts\dotdotdot-1.6.1\.git\objects\c0\65c54f486830ac64393422d710a5b3f20a9827" />
-    <Content Include="Scripts\dotdotdot-1.6.1\.git\objects\c4\69b84297d5653836c7279a9b085a37ebfcd7c9" />
-    <Content Include="Scripts\dotdotdot-1.6.1\.git\objects\c8\0d21e7e953f1a465948d607d5611759a1b7397" />
-    <Content Include="Scripts\dotdotdot-1.6.1\.git\objects\c8\c6526bf9752dea6033470593258c0ed195f298" />
-    <Content Include="Scripts\dotdotdot-1.6.1\.git\objects\c9\00e1f1c2f0774a3391bbe2e2acd70c45acbfc9" />
-    <Content Include="Scripts\dotdotdot-1.6.1\.git\objects\ca\58303af72295c05dc7355002e270952b5c7fcb" />
-    <Content Include="Scripts\dotdotdot-1.6.1\.git\objects\cb\1da6d40ac4aa5e8c1fd933c32a2aa51206c46c" />
-    <Content Include="Scripts\dotdotdot-1.6.1\.git\objects\cd\163c4e9e6a5d9cafc7cf2a392e10712a429eba" />
-    <Content Include="Scripts\dotdotdot-1.6.1\.git\objects\cd\3badae6eabef3cd68c39341005a6823e1ccaea" />
-    <Content Include="Scripts\dotdotdot-1.6.1\.git\objects\cd\bcc9cd396aef3bf33a709e0ce5b66ba47ea74d" />
-    <Content Include="Scripts\dotdotdot-1.6.1\.git\objects\ce\38dbea4d5d369cfb96baae15f668bb2b70ea86" />
-    <Content Include="Scripts\dotdotdot-1.6.1\.git\objects\d0\01beb90dd55d063c6f09eba5e4602c536cc193" />
-    <Content Include="Scripts\dotdotdot-1.6.1\.git\objects\d0\1973dd9ad745f85d3dad14eeeef81373cd8704" />
-    <Content Include="Scripts\dotdotdot-1.6.1\.git\objects\d1\5edf34ef44bfa11072faa74397cc0a90780383" />
-    <Content Include="Scripts\dotdotdot-1.6.1\.git\objects\d3\8325a503d86414f17f81c41b0bd43ab1a7d00c" />
-    <Content Include="Scripts\dotdotdot-1.6.1\.git\objects\d5\c9bf9121fc66af16c3e7ec3c5e32b58975c247" />
-    <Content Include="Scripts\dotdotdot-1.6.1\.git\objects\d7\c13621811160182a20323b3341bb5cbf1bcc2d" />
-    <Content Include="Scripts\dotdotdot-1.6.1\.git\objects\d8\9f59ae5b33b1533d483196a2fbc31fc3c5b7f6" />
-    <Content Include="Scripts\dotdotdot-1.6.1\.git\objects\da\cecba917be6a888fe36f594a3990a7a26774c3" />
-    <Content Include="Scripts\dotdotdot-1.6.1\.git\objects\da\dab6181af083aada9068c7656b4c848e946a8e" />
-    <Content Include="Scripts\dotdotdot-1.6.1\.git\objects\db\057e20736528ada9bcb46d0c33b8d83307ce9d" />
-    <Content Include="Scripts\dotdotdot-1.6.1\.git\objects\dc\be70f0643e2954076fa9e778ae19d4af3174f4" />
-    <Content Include="Scripts\dotdotdot-1.6.1\.git\objects\dd\7c78b94efcc68a1d6adaa9904f0fd729ecc717" />
-    <Content Include="Scripts\dotdotdot-1.6.1\.git\objects\e1\af942b2c4fe2d1abb0726ea27c237b8ff1c95d" />
-    <Content Include="Scripts\dotdotdot-1.6.1\.git\objects\e2\64234b12d74e933fd996882ecb5c9ea7d0e66b" />
-    <Content Include="Scripts\dotdotdot-1.6.1\.git\objects\e2\74775a2a271bb183ada451fb5d6bcf3d47b1bd" />
-    <Content Include="Scripts\dotdotdot-1.6.1\.git\objects\e3\3ab6c40a35d985c164beac97faa612820cf524" />
-    <Content Include="Scripts\dotdotdot-1.6.1\.git\objects\e4\6467fbfffcb5af24de88a14f3420573693122e" />
-    <Content Include="Scripts\dotdotdot-1.6.1\.git\objects\e9\cf1c170087fddfbc48db7182dba308882889b6" />
-    <Content Include="Scripts\dotdotdot-1.6.1\.git\objects\f1\4c17eaa89b8f623bd4a3a6e240d395ad40b641" />
-    <Content Include="Scripts\dotdotdot-1.6.1\.git\objects\f1\f5e07c1bde9017dc2acd832aa493d2d77112c3" />
-    <Content Include="Scripts\dotdotdot-1.6.1\.git\objects\f5\6701734d9d9227bc4e5ee0f6cbe192b8962b14" />
-    <Content Include="Scripts\dotdotdot-1.6.1\.git\objects\f7\d83ed083acd5e9e81e920a5a819ea56f5d437f" />
-    <Content Include="Scripts\dotdotdot-1.6.1\.git\objects\fb\644fce2afee5ec0c504a1541b5da43e3324321" />
-    <Content Include="Scripts\dotdotdot-1.6.1\.git\ORIG_HEAD" />
-    <Content Include="Scripts\dotdotdot-1.6.1\.git\refs\heads\master" />
-    <Content Include="Scripts\dotdotdot-1.6.1\.git\refs\remotes\origin\master" />
-    <Content Include="Scripts\dotdotdot-1.6.1\.git\refs\stash" />
     <Content Include="Scripts\bootstrap-rating\LICENSE" />
     <Content Include="Scripts\bootstrap-rating\README.md" />
     <Content Include="Content\ScrollyParallax\readme.md" />
@@ -7228,6 +7087,7 @@
     <None Include="MvcSiteMapSchema.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Properties\PublishProfiles\portugalrentalcottages.com - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -9057,6 +8917,8 @@
     <Content Include="Views\Account\PasswordChanged.cshtml" />
     <Content Include="Views\Account\PasswordChangedFailed.cshtml" />
     <Content Include="Views\Test\TestHtmlHelper.cshtml" />
+    <Content Include="Views\Customer\QuickCreateCustomer.cshtml" />
+    <Content Include="Views\BookingExtraSelection\QuickCreate.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -10011,9 +9873,6 @@
     <Folder Include="PropertyImages\PRCV37\swimming_Pool_Night\" />
     <Folder Include="PropertyImages\PRCV37\twin_Bedroom_3\" />
     <Folder Include="Scripts\breezejs\" />
-    <Folder Include="Scripts\dotdotdot-1.6.1\.git\objects\info\" />
-    <Folder Include="Scripts\dotdotdot-1.6.1\.git\objects\pack\" />
-    <Folder Include="Scripts\dotdotdot-1.6.1\.git\refs\tags\" />
     <Folder Include="Scripts\Spinner\" />
     <Folder Include="temp\" />
   </ItemGroup>

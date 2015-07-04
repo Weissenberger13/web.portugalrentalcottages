@@ -2,6 +2,8 @@
 @using BootstrapVillas.Content.Classes;
 @using PagedList.Mvc;
 @using PagedList;
+@using BootstrapVillas.Content.Classes.CurrencyConverter
+@using BootstrapVillas.HTMLHelper
 @model Property
 
 
@@ -11,6 +13,10 @@
 
 
     var count = 0;
+
+    var defaultCurrency = HttpRuntime.Cache["defaultCurrency"];
+    var currencySymbol = HttpRuntime.Cache["currencySymbol"];
+    var defaultCurrencyEnum = (CurrencyEnum)Enum.Parse(typeof(CurrencyEnum), (string)HttpRuntime.Cache["defaultCurrency"]);
 
 }
 
@@ -242,13 +248,13 @@
 
                                 From
                                 <b class="price">
-                                    @Session["defaultCurrencySymbol"]
+                                 
 
                                     <css-decorator id="originalCurrency@{@count}" class="priceTest">
                                         @{if (villaPriceRange.MinPrice.HasValue)
-                                        {
-                                            decimal temp = (decimal)villaPriceRange.MinPrice;@Decimal.Round(temp).ToString();
-                                        }}
+                                            {
+                                                decimal temp = (decimal)villaPriceRange.MinPrice;@Html.Currency()@Html.CurrencySymbol()@Decimal.Round(temp).ToString();
+                                            }}
                                     </css-decorator>
                                 </b>
                                 <b id="convertedCurrency@{@count}"></b>
@@ -399,11 +405,11 @@
                         max: 2000,
                         values: [1, 2000],
                         slide: function (event, ui) {
-                            $("#amount").val("£" + ui.values[0] + " - £" + ui.values[1]);
+                            $("#amount").val("@Html.Raw(currencySymbol)" + ui.values[0] + " - @Html.Raw(currencySymbol)" + ui.values[1]);
                         }
                     });
-                    $("#amount").val("£" + $("#slider-range").slider("values", 0) +
-                        " - £" + $("#slider-range").slider("values", 1));
+                    $("#amount").val("@Html.Raw(currencySymbol)" + $("#slider-range").slider("values", 0) +
+                        " - @Html.Raw(currencySymbol)" + $("#slider-range").slider("values", 1));
                 });
             });
         });
@@ -416,11 +422,11 @@
                 max: 2000,
                 values: [1, 2000],
                 slide: function (event, ui) {
-                    $("#amount2").val("£" + ui.values[0] + " - £" + ui.values[1]);
+                    $("#amount2").val("@Html.Raw(currencySymbol)" + ui.values[0] + " - @Html.Raw(currencySymbol)" + ui.values[1]);
                 }
             });
-            $("#amount2").val("£" + $("#slider-range2").slider("values", 0) +
-				" - £" + $("#slider-range2").slider("values", 1));
+            $("#amount2").val("@Html.Raw(currencySymbol)" + $("#slider-range2").slider("values", 0) +
+				" - @Html.Raw(currencySymbol)" + $("#slider-range2").slider("values", 1));
         });
 
 

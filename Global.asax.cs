@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.IO;
 using System.Linq;
 using System.Web;
@@ -16,6 +17,8 @@ using BootstrapVillas.Interfaces;
 using WebMatrix.WebData;
 using BootstrapVillas.Models;
 using System.Data.Entity;
+using System.Web.Caching;
+using BootstrapVillas.Content.Classes.CurrencyConverter;
 
 
 namespace BootstrapVillas
@@ -25,14 +28,18 @@ namespace BootstrapVillas
 
     public class MvcApplication : System.Web.HttpApplication
     {
+
+        //static variables for system
+        public string CurrencySymbol { get; private set; }
+        public string DefaultCurrency { get; private set; }
+        public CurrencyEnum DefaultCurrencyEnum { get; private set; }
+
+
         public void Session_OnStart()
         {
             DirectoryInfo ServerPath = new DirectoryInfo(Server.MapPath(@"~\"));
             Session["ServerPath"] = ServerPath;
 
-
-            Session["defaultCurrencySymbol"] = WebConfigurationManager.AppSettings["defaultCurrencySymbol"];
-            Session["defaultCurrency"] = WebConfigurationManager.AppSettings["defaultCurrency"];
 
         }
 
@@ -90,9 +97,13 @@ namespace BootstrapVillas
             GC.KeepAlive(currencyUpdateTimer);
 
 
+            InitCache();
 
-            Application["defaultCurrencySymbol"] = WebConfigurationManager.AppSettings["defaultCurrencySymbol"];
-            Application["defaultCurrency"] = WebConfigurationManager.AppSettings["defaultCurrency"];
+            this.CurrencySymbol = ConfigurationManager.AppSettings["defaultCurrencySymbol"];
+            this.DefaultCurrency = ConfigurationManager.AppSettings["defaultCurrency"];
+            this.DefaultCurrencyEnum = (CurrencyEnum)Enum.Parse(typeof(CurrencyEnum), ConfigurationManager.AppSettings["defaultCurrency"]);
+
+
 
         }
 
@@ -123,6 +134,42 @@ namespace BootstrapVillas
 
         }
 
+
+        private void InitCache()
+        {
+
+            //get values 
+            var currencySymbol = ConfigurationManager.AppSettings["defaultCurrencySymbol"];
+            var currency = ConfigurationManager.AppSettings["defaultCurrency"];
+            var defaultCurrencyEnum = (CurrencyEnum) Enum.Parse(typeof(CurrencyEnum),ConfigurationManager.AppSettings["defaultCurrency"]);
+
+            HttpRuntime.Cache.Add("defaultCurrency",
+                currency,
+                null,
+                Cache.NoAbsoluteExpiration,
+                Cache.NoSlidingExpiration,
+                CacheItemPriority.High,
+                onRemoveCallback: null);
+
+
+            HttpRuntime.Cache.Add("currencySymbol",
+                currencySymbol,
+                null,
+                Cache.NoAbsoluteExpiration,
+                Cache.NoSlidingExpiration,
+                CacheItemPriority.High,
+                onRemoveCallback: null);
+
+            HttpRuntime.Cache.Add("defaultCurrencyEnum",
+                defaultCurrencyEnum,
+                null,
+                Cache.NoAbsoluteExpiration,
+                Cache.NoSlidingExpiration,
+                CacheItemPriority.High,
+                onRemoveCallback: null);
+
+
+        }
 
 
         public string GetBingAPITranslationToken()

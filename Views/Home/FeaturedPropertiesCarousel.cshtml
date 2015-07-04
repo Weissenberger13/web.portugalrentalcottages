@@ -9,6 +9,7 @@
 @using System.Web.Mvc;
 @using System.Data.Entity;
 @using System.Linq.Dynamic;
+@using BootstrapVillas.HTMLHelper
 @using BootstrapVillas.Models.ViewModels;
 @using DotNetOpenAuth.Messaging
 
@@ -84,7 +85,7 @@
                 </ul>
             </div>*@
                 <div class="caption">
-                    <h4 class="pull-right"><small class="label label-success">From £@prop.propertyPriceRange.MinPrice</small></h4>
+                    <h4 class="pull-right"><small class="label label-success">From @Html.CurrencySymbol()@prop.propertyPriceRange.MinPrice</small></h4>
                     <h4 class="dot1">
                         <small><strong><a href="~/Home/FullPropertyResult?PropertyID=@prop.propertyID">@prop.PRCRef</a></strong></small>
                     </h4>
@@ -127,7 +128,7 @@
                             </strong>
                         </p>
                         <small class="span6 text-right" style="color: #2c3e50; margin: 0;">From<br />
-                            <strong>£@prop.propertyPriceRange.MinPrice Wk</strong>
+                            <strong>@Html.Currency()@prop.propertyPriceRange.MinPrice Wk</strong>
                         </small>
                     </div>
                     <div class="row-fluid">
@@ -177,7 +178,7 @@
                                 </p>
                                 <p class="span6 text-right" style="color: #2c3e50; margin: 0;">
                                     From<br />
-                                    <strong>£@prop.propertyPriceRange.MinPrice /night</strong>
+                                    <strong>@Html.Currency()@prop.propertyPriceRange.MinPrice /night</strong>
                                 </p>
                             </div>
                             <div class="row-fluid">
@@ -235,7 +236,7 @@
                                     </p>
                                     <p class="span6 text-right" style="color: #2c3e50; margin: 0;">
                                         From<br />
-                                        <strong>£@prop.propertyPriceRange.MinPrice /night</strong>
+                                        <strong>@Html.Currency()@prop.propertyPriceRange.MinPrice /night</strong>
                                     </p>
                                 </div>
                                 <div class="row-fluid">
@@ -281,7 +282,7 @@
                                     </p>
                                     <p class="span6 text-right" style="color: #2c3e50; margin: 0;">
                                         From<br />
-                                        <strong>£@prop.propertyPriceRange.MinPrice /night</strong>
+                                        <strong>@Html.Currency()@prop.propertyPriceRange.MinPrice /night</strong>
                                     </p>
                                 </div>
                                 <div class="row-fluid">

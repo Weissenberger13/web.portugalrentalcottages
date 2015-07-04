@@ -420,6 +420,8 @@ namespace BootstrapVillas.Controllers
                 if (theCustomer.Country.ToLower() != "united kingdom")
                 {
 
+                    //euro strategy
+
                     var baseCurrency = "GBP";
                     var newCurrency = "EUR";
 

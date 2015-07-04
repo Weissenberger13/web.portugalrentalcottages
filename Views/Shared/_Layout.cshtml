@@ -1,10 +1,17 @@
 ﻿@using BootstrapVillas.Content.Classes
 @using BootstrapVillas.Models
+@using BootstrapVillas.Content.Classes.CurrencyConverter;
 
 @{
+    //currencyDefaults
+    var defaultCurrency = HttpRuntime.Cache["defaultCurrency"];
+    var currencySymbol = HttpRuntime.Cache["currencySymbol"];
+    var defaultCurrencyEnum = (CurrencyEnum) Enum.Parse(typeof (CurrencyEnum), (string)HttpRuntime.Cache["defaultCurrency"]);
+
+
 
     //KEYWORDS
-    if (ViewBag.Keywords == null || ViewBag.Keywords == "")
+            if (ViewBag.Keywords == null || ViewBag.Keywords == "")
     {
         ViewBag.Keywords = "holiday portugal, portugal rental cottages, portugal holiday rental, holiday villa portugal,silver coast villas,portugal cheap holidays";
     }
@@ -411,34 +418,34 @@
 
         /* Pricing Slider Begins */
 
-        $(function () {
+        $(document).ready(function () {
             $("#slider-range14").slider({
                 range: true,
                 min: 1,
                 max: 2000,
                 values: [1, 2000],
                 slide: function (event, ui) {
-                    $("#amount14").val("£" + ui.values[0] + " - £" + ui.values[1]);
+                    $("#amount14").val("@Html.Raw(currencySymbol)" + ui.values[0] + " - @Html.Raw(currencySymbol)" + ui.values[1]);
                 }
             });
-            $("#amount14").val("£" + $("#slider-range14").slider("values", 0) +
-                " - £" + $("#slider-range14").slider("values", 1));
+            $("#amount14").val("@Html.Raw(currencySymbol)" + $("#slider-range14").slider("values", 0) +
+                " - @Html.Raw(currencySymbol)" + $("#slider-range14").slider("values", 1));
         });
 
 
         /* Side Search panel Slider for price */
-        $(function () {
+        $(document).ready(function () {
             $("#slider-range2").slider({
                 range: true,
                 min: 1,
                 max: 2000,
                 values: [1, 2000],
                 slide: function (event, ui) {
-                    $("#amount2").val("£" + ui.values[0] + " - £" + ui.values[1]);
+                    $("#amount2").val("@Html.Raw(currencySymbol)" + ui.values[0] + " - @Html.Raw(currencySymbol)" + ui.values[1]);
                 }
             });
-            $("#amount2").val("£" + $("#slider-range2").slider("values", 0) +
-                " - £" + $("#slider-range2").slider("values", 1));
+            $("#amount2").val("@Html.Raw(currencySymbol)" + $("#slider-range2").slider("values", 0) +
+                " - @Html.Raw(currencySymbol)" + $("#slider-range2").slider("values", 1));
         });
 
 
@@ -1795,17 +1802,7 @@
     });
 
 
-    //CURRENCY BLOCK
-
-    window.CURRENT_CURRENCY = "GBP";
-    window.CURRENT_CURRENCY_SYMBOL = "£";
-    window.CURRENT_CURRENCY_EXCHANGERATE = 1.00;
-
-
-
-
-
-
+  
 
     /*jQuery.extend({
         getValues: function() {

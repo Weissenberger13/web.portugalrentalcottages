@@ -1,4 +1,5 @@
 ﻿@model BootstrapVillas.Models.BookingExtraSelection
+@using BootstrapVillas.HTMLHelper
 @using BootstrapVillas.Models;
 
 
@@ -124,7 +125,7 @@
                                         </div>
                                         <!--/span-->
                                         <div class="span6">
-                                            <label>Number of Child seats - £10 per seat</label>
+                                            <label>Number of Child seats - @Html.CurrencySymbol()10 per seat</label>
                                             @*same ids as other modals *@
                                             <select name="NumberOfChildseats" class="makeValid">
                                                 @{
@@ -323,7 +324,7 @@
                                         </div>
                                         <!--/span-->
                                         <div class="span6">
-                                            <label>Number of Child seats - £10 per seat</label>
+                                            <label>Number of Child seats - @Html.CurrencySymbol()10 per seat</label>
                                             @*same ids as other modals *@
                                             <select name="NumberOfChildseats">
                                                 @{

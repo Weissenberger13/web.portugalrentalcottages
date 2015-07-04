@@ -2,6 +2,7 @@
 @using BootstrapVillas.Content.Classes;
 @model BookingExtra
 @using System;
+@using BootstrapVillas.HTMLHelper
 
 
 @{
@@ -53,7 +54,7 @@
         </div>
         <!-- carDetails end -->
         <div class="span2">
-            <span class="price"><span class="SubPriceText">£
+            <span class="price"><span class="SubPriceText">@Html.CurrencySymbol()
                                             @{
                                          decimal thePrice = (decimal)car.Price; 
                                                 @thePrice.ToString("n2");

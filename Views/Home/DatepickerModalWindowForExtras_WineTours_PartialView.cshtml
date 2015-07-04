@@ -1,4 +1,5 @@
 ﻿@model BootstrapVillas.Models.BookingExtraSelection
+@using BootstrapVillas.HTMLHelper
 @using BootstrapVillas.Models
 
 
@@ -89,7 +90,7 @@
                         }
 
                     </select><br />
-                    <p><strong><css-decorator class="toTranslate">Child Seats @@GB£@instanceExtraCharges.Where(x => x.PropertyTypeServicesID.Equals(9)).FirstOrDefault().ServicePriceGBP.ToString() per seat each way</css-decorator></strong></p>
+                    <p><strong><css-decorator class="toTranslate">Child Seats @Html.Currency()@Html.CurrencySymbol()@instanceExtraCharges.Where(x => x.PropertyTypeServicesID.Equals(9)).FirstOrDefault().ServicePriceGBP.ToString() per seat each way</css-decorator></strong></p>
                     <br />
 
                     <label>Any special requests or comments</label>

@@ -1,4 +1,5 @@
 ﻿@using System.Web.UI.WebControls
+@using BootstrapVillas.HTMLHelper
 @using BootstrapVillas.Models
 @model BootstrapVillas.Models.ViewModels.FinalBookingDetailViewModel
 @{
@@ -122,7 +123,7 @@
 
                         dynamicStepsTop++;
                     }
-                    }
+                    
 
 
 
@@ -189,7 +190,7 @@
                             decimal extraPrice = cleanPrice + linenPrice + heatingPrice + midCleanPrice + swimHeatPrice + towelsPrice;
 
                             <div id="step-@dynamicStepsBottom">
-                                <h2 class="StepTitle toTranslate">Property Booking - Price:£@booking.BookingPrice - Extra Services:£@extraPrice </h2>
+                                <h2 class="StepTitle toTranslate">Property Booking - Price:@Html.CurrencySymbol()@booking.BookingPrice - Extra Services:@Html.CurrencySymbol()@extraPrice </h2>
                                 @Html.Partial("~/Views/BookingProcessPartialViews/AddBookingPartial.cshtml", booking, new ViewDataDictionary(ViewData) { { "StepNo", dynamicStepsBottom }, { "bookingCount", bookingCount }, { "loopNo", validatonBookingCountCurrent } })
                             </div>
 
@@ -220,7 +221,7 @@
                             var totalPrice = price + extraPrice;
 
                             <div id="step-@dynamicStepsBottom">
-                                <h2 class="StepTitle toTranslate">Extra booking - Price:£@price -  Extra Services:£@extraPrice for @bes.BookingExtra.BookingExtraName</h2>
+                                <h2 class="StepTitle toTranslate">Extra booking - Price:@Html.CurrencySymbol()@price -  Extra Services:@Html.CurrencySymbol()@extraPrice for @bes.BookingExtra.BookingExtraName</h2>
                                 @Html.Partial("~/Views/BookingProcessPartialViews/AddBookingExtraSelectionPartial.cshtml", bes, new ViewDataDictionary(ViewData) { { "StepNo", dynamicStepsBottom }, { "count", besCount }, { "loopNo", validatonBESCountCurrent }, { "booking", bookingToPassToBES } })
                             </div>
 

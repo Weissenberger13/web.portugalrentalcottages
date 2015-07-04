@@ -2,6 +2,7 @@
 @using BootstrapVillas.Content.Classes;
 @model BookingExtra
 @using System;
+@using BootstrapVillas.HTMLHelper
 
 
 @{
@@ -97,7 +98,7 @@
                                         </tr>
                                         <tr>
                                             <td>Price:</td>
-                                            <td><span class="label label-info price">£00.00</span></td>
+                                            <td><span class="label label-info price">@Html.CurrencySymbol()00.00</span></td>
                                         </tr>
                                         <tr>
                                             <td>Reference:</td>
@@ -140,7 +141,7 @@
                                         </tr>
                                         <tr>
                                             <td>Price:</td>
-                                            <td><span class="label label-info price">£00.00</span></td>
+                                            <td><span class="label label-info price">@Html.CurrencySymbol()00.00</span></td>
                                         </tr>
                                         <tr>
                                             <td>Reference:</td>
@@ -161,7 +162,7 @@
 
                         <div class="row-fluid">
                             <div class="pull-right">
-                                <div id="price" class="label label-info price">Total: £3400.00</div>
+                                <div id="price" class="label label-info price">Total: @Html.CurrencySymbol()3400.00</div>
                             </div>
                             @*end of items*@
                         </div>

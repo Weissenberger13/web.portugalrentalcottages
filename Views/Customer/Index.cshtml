@@ -184,9 +184,9 @@
                     @Html.DisplayFor(modelItem => item.PreferredCurrencySymbol)
                 </td>
                 <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.CustomerID }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.CustomerID }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.CustomerID })
+                    @Html.ActionLink("Edit", "Edit", new { customerId = item.CustomerID }) |
+                    @Html.ActionLink("Details", "Details", new { customerId = item.CustomerID }) |
+                    @Html.ActionLink("Delete", "Delete", new { customerId = item.CustomerID })
                 </td>
             </tr>
         }

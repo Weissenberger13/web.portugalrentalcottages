@@ -9,7 +9,7 @@ using BootstrapVillas.Models;
 
 namespace BootstrapVillas.Controllers
 {
-      [Authorize(Roles = "Administrator")]
+    [Authorize(Roles = "Administrator")]
     public class BookingExtraSelectionController : Controller
     {
         private PortugalVillasContext db = new PortugalVillasContext();
@@ -61,6 +61,109 @@ namespace BootstrapVillas.Controllers
             ViewBag.BookingExtraID = new SelectList(db.BookingExtras, "BookingExtraID", "LegacyReference");
             ViewBag.BookingParentContainerID = new SelectList(db.BookingParentContainers, "BookingParentContainerID", "OverallBookingReference");
             ViewBag.CustomerID = new SelectList(db.Customers, "CustomerID", "Title");
+            return View();
+        }
+
+
+        public ActionResult QuickCreate()
+        {
+
+            ViewBag.AirportPickupLocationID = new SelectList(db.AirportDestinations, "AirportPickupLocationID", "AirportPickupLocationName");
+            ViewBag.BookingExtraID = new SelectList(db.BookingExtras, "BookingExtraID", "LegacyReference");
+            ViewBag.BookingParentContainerID = new SelectList(db.BookingParentContainers, "BookingParentContainerID", "OverallBookingReference");
+            ViewBag.CustomerID = new SelectList(db.Customers, "CustomerID", "Title");
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult QuickCreate(BookingExtraSelection bes)
+        {
+            using (var db = new PortugalVillasContext())
+            {
+                var cus = db.Customers.Find(bes.CustomerID);
+                
+
+                var account = new AccountController();
+                var eventService = new EventController();
+                var bookingRepo = new FinalBookingDetailGatheringController();
+
+                //parent
+                BookingParentContainer parentContainer = new BookingParentContainer();
+                parentContainer.CustomerID = cus.CustomerID;
+
+
+                parentContainer = bookingRepo.CreateBookingParentContainer(parentContainer, db);
+
+
+                var extraType = db.BookingExtras.Find((long)bes.BookingExtraID);
+                bes.BookingExtraID = extraType.BookingExtraID;
+                //link to parent booking
+                bes.BookingParentContainerID = parentContainer.BookingParentContainerID;
+
+
+                //need
+                //reference
+                //price fully done
+                //all extras on form fully taken care of for each one
+                var createdBes = bookingRepo.CreateBookingExtraSelection(bes, extraType, cus, db);
+
+                string EventTypeID = "";
+                //car 
+                if (extraType.BookingExtraTypeID == 1)
+                {
+                    if (cus.Country.ToLower() == "united kingdom")
+                    {
+                        EventTypeID = "43";
+                    }
+                    else
+                    {
+                        EventTypeID = "62";
+                    }
+                }
+                //wine
+                else if (extraType.BookingExtraTypeID == 2)
+                {
+                    if (cus.Country.ToLower() == "united kingdom")
+                    {
+                        EventTypeID = "45";
+                    }
+                    else
+                    {
+                        EventTypeID = "60";
+                    }
+                }
+                //airport
+                else if (extraType.BookingExtraTypeID == 3)
+                {
+                    if (cus.Country.ToLower() == "united kingdom")
+                    {
+                        EventTypeID = "31";
+                    }
+                    else
+                    {
+                        EventTypeID = "61";
+                    }
+                }
+                //tour
+                else if (extraType.BookingExtraTypeID == 4)
+                {
+                    if (cus.Country.ToLower() == "united kingdom")
+                    {
+                        EventTypeID = "33";
+                    }
+                    else
+                    {
+                        EventTypeID = "63";
+                    }
+                }
+
+                var form = new FormCollection();
+                form.Add("BookingExtraSelectionID", bes.BookingExtraSelectionID.ToString());
+                form.Add("EventTypeID", EventTypeID);
+             
+            }
+            
+
             return View();
         }
 

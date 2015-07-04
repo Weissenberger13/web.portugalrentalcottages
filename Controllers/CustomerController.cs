@@ -47,6 +47,34 @@ namespace BootstrapVillas.Controllers
             return View(customer);
         }
 
+
+
+        public ActionResult QuickCreateCustomer()
+        {
+
+
+
+
+
+            return View();
+
+        }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult QuickCreateCustomer(Customer customer)
+        {
+
+          
+            var redirect = Create(customer);
+
+            return this.RedirectToAction("Edit", customer);
+
+        }
+
+
+
         //
         // GET: /Customer/Create
 
@@ -77,8 +105,7 @@ namespace BootstrapVillas.Controllers
             db.Customers.Add(customer);
             db.SaveChanges();
 
-            return this.RedirectToAction(x=>x.Edit(customer));
-
+            return this.RedirectToAction("Edit", customer);
             
         }
 

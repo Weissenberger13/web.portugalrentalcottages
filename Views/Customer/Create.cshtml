@@ -1,4 +1,5 @@
-﻿@model BootstrapVillas.Models.Customer
+﻿@using BootstrapVillas.HTMLHelper
+@model BootstrapVillas.Models.Customer
 
 @{
     ViewBag.Title = "Create";
@@ -22,8 +23,8 @@
     @Html.ValidationSummary(true)
 
     <input type="hidden" name="WhoUpdated" id="WhoUpdated" value="@User.Identity.Name.ToString()" />
-    <input type="hidden" name="PreferredCurrency" id="PreferredCurrency" value="GBP" />
-    <input type="hidden" name="PreferredCurrencySymbol" id="PreferredCurrencySymbol" value="£" />
+    <input type="hidden" name="PreferredCurrency" id="PreferredCurrency" value="@Html.Currency()" />
+    <input type="hidden" name="PreferredCurrencySymbol" id="PreferredCurrencySymbol" value="@Html.CurrencySymbol()" />
 
     <fieldset>
         <legend>Customer</legend>

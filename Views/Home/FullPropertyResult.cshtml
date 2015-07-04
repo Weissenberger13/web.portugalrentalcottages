@@ -1,7 +1,7 @@
 ﻿@using BootstrapVillas.Models
 @using BootstrapVillas.Content.Classes;
 @using System.Globalization;
-
+@using BootstrapVillas.HTMLHelper
 
 @{
 
@@ -428,7 +428,7 @@
                                                 <td class="toTranslate">Per Wk From:</td>
                                                 <td>
                                                     <strong class="label label-info">
-                                                        £@{if (thePropertyPriceRange.Count > 0)
+                                                        @Html.Currency()@Html.CurrencySymbol()@{if (thePropertyPriceRange.Count > 0)
                                                         { @Math.Round(theProperty.PriceRange.MinPrice.GetValueOrDefault(), 2, MidpointRounding.ToEven)}}
                                                     </strong>
                                                 </td>
@@ -813,9 +813,10 @@
                                             Per Week
 
                                             <b class="price">
-                                                @Session["defaultCurrencySymbol"]
+                                               
 
                                                 <css-decorator id="originalCurrency@{@count}" class="priceTest">
+                                                    @Html.Currency()@Html.CurrencySymbol()                                     
                                                     @if (propPricing.Price != null)
                                                     {
                                                         @Math.Round((Decimal)propPricing.Price, 2)
@@ -903,16 +904,16 @@
 
                                     @{
     /*if (@theProperty@.MaxGuests> )*/
-    <td>£@towelsCleaningetc.Where(x => x.PropertyTypeServicesID.Equals(2) && x.Bedrooms >= theProperty.Bedrooms).FirstOrDefault().ServicePriceGBP</td>
+    <td>@Html.Currency()@Html.CurrencySymbol()@towelsCleaningetc.Where(x => x.PropertyTypeServicesID.Equals(2) && x.Bedrooms >= theProperty.Bedrooms).FirstOrDefault().ServicePriceGBP</td>
                                         <td>
                                             <css-decorator class="toTranslate">
-                                                Rental Rates DO NOT include cleaning and laundry after the visit. This is charged extra @@GB £@towelsCleaningetc.Where(x => x.PropertyTypeServicesID.Equals(4)).Where(y => y.PropertyTypeID == theProperty.PropertyTypeID).FirstOrDefault().ServicePriceGBP/- which will be added to your bill. If mid-vacation cleaning services are required, this can be arranged at an additional cost of @@GB £@towelsCleaningetc.Where(x => x.PropertyTypeServicesID.Equals(1)).FirstOrDefault().ServicePriceGBP/- per visit.
-                                                The cost of heating during winter visits or any other cold spells at other times of year, is charged @@GB £@towelsCleaningetc.Where(x => x.PropertyTypeServicesID.Equals(3) && x.Bedrooms >= theProperty.Bedrooms).FirstOrDefault().ServicePriceGBP/- per day. Swim towels extra @@GB £@towelsCleaningetc.Where(x => x.PropertyTypeServicesID.Equals(5)).FirstOrDefault().ServicePriceGBP per towel per week. Please check at the time of booking.
+                                                Rental Rates DO NOT include cleaning and laundry after the visit. This is charged extra @Html.Currency()@Html.CurrencySymbol()@towelsCleaningetc.Where(x => x.PropertyTypeServicesID.Equals(4)).Where(y => y.PropertyTypeID == theProperty.PropertyTypeID).FirstOrDefault().ServicePriceGBP/- which will be added to your bill. If mid-vacation cleaning services are required, this can be arranged at an additional cost of @Html.Currency()@Html.CurrencySymbol()@towelsCleaningetc.Where(x => x.PropertyTypeServicesID.Equals(1)).FirstOrDefault().ServicePriceGBP/- per visit.
+                                                The cost of heating during winter visits or any other cold spells at other times of year, is charged @Html.Currency()@Html.CurrencySymbol()@towelsCleaningetc.Where(x => x.PropertyTypeServicesID.Equals(3) && x.Bedrooms >= theProperty.Bedrooms).FirstOrDefault().ServicePriceGBP/- per day. Swim towels extra @Html.Currency()@Html.CurrencySymbol()@towelsCleaningetc.Where(x => x.PropertyTypeServicesID.Equals(5)).FirstOrDefault().ServicePriceGBP per towel per week. Please check at the time of booking.
                                             </css-decorator>
                                             <hr />
                                             <ul>
                                                 <li class="toTranslate">&bull; 30% Initial deposit payable by bank transfer 4 weeks prior to arrival. Then 70% is payable by bank transfer 4 weeks prior to arrival.</li>
-                                                <li class="toTranslate">&bull; A fully refundable breakage deposit of @@GB £@towelsCleaningetc.Where(x => x.PropertyTypeServicesID.Equals(2) && x.Bedrooms >= theProperty.Bedrooms).FirstOrDefault().ServicePriceGBP will apply to all bookings. This amount is payable, along with the final rental instalment, 4 weeks prior to arrival.</li>
+                                                <li class="toTranslate">&bull; A fully refundable breakage deposit of @Html.Currency()@Html.CurrencySymbol()@towelsCleaningetc.Where(x => x.PropertyTypeServicesID.Equals(2) && x.Bedrooms >= theProperty.Bedrooms).FirstOrDefault().ServicePriceGBP will apply to all bookings. This amount is payable, along with the final rental instalment, 4 weeks prior to arrival.</li>
                                                 <li class="toTranslate">&bull; The breakage deposit will be refunded within 10 working days after leaving the villa subject to any damage or breakage that occurs during your stay.</li>
                                                 <li class="toTranslate">&bull; If you are visiting from outside the European Union, then the breakage deposit should be paid in cash Euros on arrival. The caretaker will inspect the property and refund your deposit in cash Euros, on departure day, provided there is no damage or breakage at the property.</li>
                                             </ul>
@@ -924,7 +925,7 @@
                             </tbody>
                         </table>
                         <p>
-                        <p><strong><css-decorator class="toTranslate">NOTE</css-decorator>: </strong><css-decorator class="toTranslate">Please note the owner of this property accepts payment in the original currency specified (gbp), before use of conversion tool. the conversion tool is provided for your convenience only. the owner may accept other currencies if specifically agreed in advance</css-decorator>.</p>
+                        <p><strong><css-decorator class="toTranslate">NOTE</css-decorator>: </strong><css-decorator class="toTranslate">Please note the owner of this property accepts payment in the original currency specified (@Html.Currency()), before use of conversion tool. the conversion tool is provided for your convenience only. the owner may accept other currencies if specifically agreed in advance</css-decorator>.</p>
                         <!-- Button to trigger modal -->
                         <div class="row-fluid" style="margin-top: 20px;">
                             <div class="pull-right">

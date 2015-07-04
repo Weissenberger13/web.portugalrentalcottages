@@ -30,13 +30,7 @@ using Document = BootstrapVillas.Models.Document;
 namespace BootstrapVillas.Controllers
 {
     public class TestController : Controller
-    {
-        public ActionResult TestHtmlHelper()
-        {
-
-            return View();
-
-        }
+    { 
 
         public ActionResult TestAutoComplete()
         {
@@ -46,6 +40,15 @@ namespace BootstrapVillas.Controllers
 
 
         public ActionResult TestPOSTCustomer()
+        {
+
+            return View();
+        }
+
+   
+
+
+        public ActionResult TestHelper()
         {
 
             return View();

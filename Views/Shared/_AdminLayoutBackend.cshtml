@@ -412,10 +412,13 @@
         <div id="menu" role="navigation">
 
             <ul class="main-menu">
-                <li class="active"><a href="~/Booking/QuickCreateBooking"><i class="forms"></i>Add QuickBooking</a></li>
-                <li class="active"><a href="~/BookingExternal/Create"><i class="forms"></i>Add External Booking</a></li>
+                <li class="active"><a href="~/Customer/QuickCreateCustomer"><i class="forms"></i>Quick Customer</a></li>
+                <li class="active"><a href="~/Booking/QuickCreateBooking"><i class="forms"></i>Quick Booking</a></li>
+                <li class="active"><a href="~/BookingExternal/Create"><i class="forms"></i>External Booking</a></li>
+                <li class="active"><a href="~/BookingExtraSelection/QuickCreate"><i class="forms"></i> Booking Extra</a></li>
                 <li class="active"><a href="~/Booking/BookingCalendar"><i class="general"></i>View Booking Calendar</a></li>
-                <li class="active"><a href="~/AccountTransaction/Create"><i class="components"></i>Add Property Owner Payment</a></li>
+
+               <li class="active"><a href="~/AccountTransaction/Create"><i class="components"></i>Add Property Owner Payment</a></li>
                 @*
                     <li><a href="~/Booking/Index"><i class="components"></i>Bookings</a></li>
                     <li><a href="~/BookingParticipant/DataTableIndex"><i class="components"></i>Booking Participants</a></li>
@@ -453,13 +456,13 @@
                 <li><a href="~/BookingExtra/Index"><i class="general"></i>Booking Extra Types</a></li>
                 <li><a href="~/Newsletter/Index"><i class="general"></i>Newsletter</a></li>
                 <li><a href="~/Comment/Index"><i class="general"></i>Property Comments</a></li>
-                <li style="text-align: center"><h4 style="color:black">||Accounting||</h4></li>        
+                <li style="text-align: center"><h4 style="color:black">||Accounting||</h4></li>
                 <li><a href="~/PropertyOwnerAccount/SelectFromList"><i class="general"></i>Mange Owner Accounts</a></li>
                 <li><a href="~/PropertyOwnerAccount/PropertyOwnerIndex"><i class="general"></i>View All Owner Accounts</a></li>
                 <li><a href="~/AccountTransaction/PropertyAccountTransactionIndex"><i class="general"></i>View All Owner Transactions</a></li>
                 @*       <li><a href="~/PropertyOwnerAccount/ThirdPartyServiceIndex"><i class="general"></i>Third Party Accounts</a></li>
                     <li><a href="~/AccountTransaction/ThirdPartyAccountTransactionIndex"><i class="general"></i>Third Party Payment</a></li>*@
-               
+
 
 
                 @*
@@ -1166,6 +1169,21 @@
         ================================================== -->
 </body>
 </html>
+
+
+<script type="text/javascript">
+
+
+    $(document).ready(function () {
+
+        jQuery.validator.addClassRules("makeValid", {
+            required: true,
+            minlength: 2
+        });
+    });
+
+    $('.aFormToValidate').validate({});
+</script>
 
 <script type="text/javascript">
 

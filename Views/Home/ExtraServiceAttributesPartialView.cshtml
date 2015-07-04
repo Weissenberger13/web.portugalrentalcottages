@@ -1,10 +1,14 @@
-﻿@using BootstrapVillas.Models
+﻿@using BootstrapVillas.Content.Classes.CurrencyConverter
+@using BootstrapVillas.Models
 @model List<BootstrapVillas.Models.BookingExtra>
 
 @{
 
     var CarBookingExtras = Model;
 
+    var defaultCurrency = HttpRuntime.Cache["defaultCurrency"];
+    var currencySymbol = HttpRuntime.Cache["currencySymbol"];
+    var defaultCurrencyEnum = (CurrencyEnum)Enum.Parse(typeof(CurrencyEnum), (string)HttpRuntime.Cache["defaultCurrency"]);
 }
 
 
@@ -107,11 +111,11 @@
                         max: 2000,
                         values: [1, 2000],
                         slide: function (event, ui) {
-                            $("#amount").val("£" + ui.values[0] + " - £" + ui.values[1]);
+                            $("#amount").val("@Html.Raw(currencySymbol)" + ui.values[0] + " - @Html.Raw(currencySymbol)" + ui.values[1]);
                         }
                     });
-                    $("#amount").val("£" + $("#slider-range").slider("values", 0) +
-                        " - £" + $("#slider-range").slider("values", 1));
+                    $("#amount").val("@Html.Raw(currencySymbol)" + $("#slider-range").slider("values", 0) +
+                        " - @Html.Raw(currencySymbol)" + $("#slider-range").slider("values", 1));
                 });
 
 
@@ -123,11 +127,11 @@
                         max: 2000,
                         values: [1, 2000],
                         slide: function (event, ui) {
-                            $("#amount2").val("£" + ui.values[0] + " - £" + ui.values[1]);
+                            $("#amount2").val("@Html.Raw(currencySymbol)" + ui.values[0] + " - @Html.Raw(currencySymbol)" + ui.values[1]);
                         }
                     });
-                    $("#amount2").val("£" + $("#slider-range2").slider("values", 0) +
-                        " - £" + $("#slider-range2").slider("values", 1));
+                    $("#amount2").val("@Html.Raw(currencySymbol)" + $("#slider-range2").slider("values", 0) +
+                        " - @Html.Raw(currencySymbol)" + $("#slider-range2").slider("values", 1));
                 });
             });
         });
