@@ -352,7 +352,7 @@
                 <div id="price" class="price lightGrey">
                     <h4>
                         <label class="toTranslate">Total:</label> 
-                        <b>@Html.CurrencySymbol()</b><b id="originalCurrency@{@count}">@Decimal.Round(Convert.ToDecimal(runningTotalPrice.ToString()), 2)</b>                        
+                        <b>@Html.CurrencySymbol()</b><b id="originalCurrency@{@count}">@Html.CurrencyConvert(Decimal.Round(Convert.ToDecimal(runningTotalPrice.ToString()), 2), DependencyResolver.Current.GetService<ICurrencyConvert>())</b>                        
                         <b id="convertedCurrency@{@count}" hidden></b>
                         <br />
                         <small class="toTranslate">Inc. VAT</small>
