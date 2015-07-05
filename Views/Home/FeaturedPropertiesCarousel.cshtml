@@ -9,6 +9,7 @@
 @using System.Web.Mvc;
 @using System.Data.Entity;
 @using System.Linq.Dynamic;
+@using BootstrapVillas.Content.Classes.CurrencyConverter
 @using BootstrapVillas.HTMLHelper
 @using BootstrapVillas.Models.ViewModels;
 @using DotNetOpenAuth.Messaging
@@ -85,7 +86,7 @@
                 </ul>
             </div>*@
                 <div class="caption">
-                    <h4 class="pull-right"><small class="label label-success">From @Html.CurrencySymbol()@prop.propertyPriceRange.MinPrice</small></h4>
+                    <h4 class="pull-right"><small class="label label-success">From @Html.CurrencySymbol()@Html.CurrencyConvert(@prop.propertyPriceRange.MinPrice, DependencyResolver.Current.GetService<ICurrencyConvert>())</small></h4>
                     <h4 class="dot1">
                         <small><strong><a href="~/Home/FullPropertyResult?PropertyID=@prop.propertyID">@prop.PRCRef</a></strong></small>
                     </h4>

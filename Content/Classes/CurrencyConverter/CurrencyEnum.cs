@@ -8,6 +8,6 @@ namespace BootstrapVillas.Content.Classes.CurrencyConverter
 {
     public enum CurrencyEnum
     {
-        GBP = 0, USD = 1, CAD = 2, JPY = 3
+        GBP = 0, USD = 1, EUR = 2, CAD = 3, JPY = 4
     }
 }

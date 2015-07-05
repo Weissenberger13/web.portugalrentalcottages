@@ -18,7 +18,9 @@ using WebMatrix.WebData;
 using BootstrapVillas.Models;
 using System.Data.Entity;
 using System.Web.Caching;
+using BootstrapVillas.App_Start;
 using BootstrapVillas.Content.Classes.CurrencyConverter;
+using StructureMap;
 
 
 namespace BootstrapVillas
@@ -29,11 +31,7 @@ namespace BootstrapVillas
     public class MvcApplication : System.Web.HttpApplication
     {
 
-        //static variables for system
-        public string CurrencySymbol { get; private set; }
-        public string DefaultCurrency { get; private set; }
-        public CurrencyEnum DefaultCurrencyEnum { get; private set; }
-
+      
 
         public void Session_OnStart()
         {
@@ -99,10 +97,29 @@ namespace BootstrapVillas
 
             InitCache();
 
-            this.CurrencySymbol = ConfigurationManager.AppSettings["defaultCurrencySymbol"];
-            this.DefaultCurrency = ConfigurationManager.AppSettings["defaultCurrency"];
-            this.DefaultCurrencyEnum = (CurrencyEnum)Enum.Parse(typeof(CurrencyEnum), ConfigurationManager.AppSettings["defaultCurrency"]);
 
+            var defaultCurrencyEnum = (CurrencyEnum)Enum.Parse(typeof(CurrencyEnum), ConfigurationManager.AppSettings["defaultCurrency"]);
+            var currencies = new List<CurrencyExchange>();
+
+            using (var db = new PortVillasContext())
+            {
+                currencies = db.CurrencyExchanges.ToList();
+            }
+
+
+            //structuremap
+            IContainer container = new Container(cfg =>
+            {
+                cfg.Scan(x => x.WithDefaultConventions());
+
+                cfg.For<ICurrencyConvert>()
+                    .Singleton()
+                    .Use(() => CurrencyConverterFactory.GetCurrencyConverter(defaultCurrencyEnum, currencies));
+
+            }
+            
+            );
+            DependencyResolver.SetResolver(new StructureMapDependencyResolver(container));
 
 
         }

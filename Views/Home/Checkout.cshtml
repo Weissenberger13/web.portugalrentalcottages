@@ -1,6 +1,7 @@
 ﻿@using BootstrapVillas.Models
-@using BootstrapVillas.Content.Classes;
+@using BootstrapVillas.Content.Classes
 @using BootstrapVillas.HTMLHelper
+@using BootstrapVillas.Content.Classes.CurrencyConverter
 
 
 @{
@@ -190,7 +191,7 @@
                                                 <tr>
                                                     <td class="toTranslate">Price:</td>
                                                     <td>
-                                                        <b class="price">@Html.CurrencySymbol()</b><b id="originalCurrency@{@count}" class="priceTest">@prop.BookingPrice</b>
+                                                        <b class="price">@Html.CurrencySymbol()</b><b id="originalCurrency@{@count}" class="priceTest">@Html.CurrencyConvert(prop.BookingPrice, DependencyResolver.Current.GetService<ICurrencyConvert>())</b>
                                                     </td>
                                                     <td>                                                        
                                                         <b id="convertedCurrency@{@count}"></b>
@@ -203,7 +204,7 @@
                                                 <tr>
                                                     <td class="toTranslate">Extra Services Price:</td>
                                                     <td>
-                                                        <b class="price">@Html.CurrencySymbol()</b><b id="originalCurrency@{@count}" class="priceTest">@extraPrice</b>
+                                                        <b class="price">@Html.CurrencySymbol()</b><b id="originalCurrency@{@count}" class="priceTest">@Html.CurrencyConvert(extraPrice, DependencyResolver.Current.GetService<ICurrencyConvert>())</b>
                                                     </td>
                                                     <td>                                                       
                                                         <b id="convertedCurrency@{@count}"></b>
@@ -286,7 +287,7 @@
                                                 <tr>
                                                     <td class="toTranslate">Price:</td>
                                                     <td>
-                                                        <b class="price">@Html.CurrencySymbol()</b><b id="originalCurrency@{@count}" class="priceTest">@price</b>
+                                                        <b class="price">@Html.CurrencySymbol()</b><b id="originalCurrency@{@count}" class="priceTest">@Html.CurrencyConvert(price, DependencyResolver.Current.GetService<ICurrencyConvert>())</b>
                                                     </td>
                                                     <td>
                                                         <b id="convertedCurrency@{@count}"></b>
@@ -297,7 +298,7 @@
                                                 <tr>
                                                     <td class="toTranslate">Extra Services Price:</td>
                                                     <td>
-                                                        <b class="price">@Html.CurrencySymbol()</b><b id="originalCurrency@{@count}" class="pricetest">@extraPrice</b>
+                                                        <b class="price">@Html.CurrencySymbol()</b><b id="originalCurrency@{@count}" class="pricetest">@Html.CurrencyConvert(extraPrice, DependencyResolver.Current.GetService<ICurrencyConvert>())</b>
                                                     </td>
                                                     <td>
                                                         <b id="convertedCurrency@{@count}"></b>

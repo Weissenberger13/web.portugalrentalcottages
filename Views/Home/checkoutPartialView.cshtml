@@ -13,6 +13,7 @@
 @using System.Linq.Dynamic;
 @using BootstrapVillas.HTMLHelper
 @using BootstrapVillas.Models.ViewModels;
+@using BootstrapVillas.Content.Classes.CurrencyConverter
 
 
 @{
@@ -172,8 +173,8 @@
                             <ul>
                                 <li><css-decorator class="toTranslate">Ref</css-decorator>: <span style="font-weight: bold">@booking.Property.LegacyReference</span></li>
                                 <li><css-decorator class="toTranslate">Dates</css-decorator>: <span style="font-weight: bold">@(((DateTime)booking.StartDate).ToString("dd/MM/yyyy"))  - @(((DateTime)booking.EndDate).ToString("dd/MM/yyyy"))</span></li>
-                                <li><css-decorator class="toTranslate">Price of booking</css-decorator>: @Html.CurrencySymbol()@booking.BookingPrice<span style="font-weight: bold;"></span></li>
-                                <li><css-decorator class="toTranslate">Price of booking extras</css-decorator>: @Html.CurrencySymbol()@price<span style="font-weight: bold;"></span></li>
+                                <li><css-decorator class="toTranslate">Price of booking</css-decorator>: @Html.CurrencySymbol()@Html.CurrencyConvert(booking.BookingPrice, DependencyResolver.Current.GetService<ICurrencyConvert>())<span style="font-weight: bold;"></span></li>
+                                <li><css-decorator class="toTranslate">Price of booking extras</css-decorator>: @Html.CurrencySymbol()@Html.CurrencyConvert(price, DependencyResolver.Current.GetService<ICurrencyConvert>())<span style="font-weight: bold;"></span></li>
                                 <li class="remove">@Html.ActionLink("Remove", "DeleteItemFromSessionBookingCart", "PropertyView", new { StartDate = @DateToEmbeddInLink, PRCRef = @booking.Property.LegacyReference, SessionVariableToDeleteFrom = "Cart_PropertyBookings", BookingGUID = booking.BookingGUID }, null)</li>
                             </ul>
                         </div>
@@ -214,7 +215,7 @@
                             </div>
                             <ul>
                                 <li><css-decorator class="toTranslate">Name:</css-decorator> <span style="font-weight: bold">@BookingExtraSelection.GetBookingExtrasFromBookingExtraSelection(booking).BookingExtraName</span></li>
-                                <li><css-decorator class="toTranslate">Price</css-decorator>: <span style="font-weight: bold;">@Html.CurrencySymbol()@totalPrice</span></li>
+                                <li><css-decorator class="toTranslate">Price</css-decorator>: <span style="font-weight: bold;">@Html.CurrencySymbol()@Html.CurrencyConvert(totalPrice, DependencyResolver.Current.GetService<ICurrencyConvert>())</span></li>
                                 <li>
                                     <css-decorator class="toTranslate">
                                         Dates

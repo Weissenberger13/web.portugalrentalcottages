@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using BootstrapVillas.Content.Classes.CurrencyConverter;
 using HtmlTags;
 
 namespace BootstrapVillas.HTMLHelper
@@ -61,11 +62,25 @@ namespace BootstrapVillas.HTMLHelper
         /// Renders the correct pricing depending on the value in the config.
         /// </summary>
         /// <returns></returns>
-        public static IHtmlString CurrencyConvert(this HtmlHelper helper, decimal valueToconvert)
+        public static IHtmlString CurrencyConvert(this HtmlHelper helper, decimal valueToconvert, ICurrencyConvert converter)
         {
             //strategy to pick correct conversion
+            var newValue = decimal.Round(converter.Convert(valueToconvert), 2, MidpointRounding.AwayFromZero);
+            return new HtmlString(newValue.ToString());
 
-            return new HtmlString("er");
+        }
+
+        public static IHtmlString CurrencyConvert(this HtmlHelper helper, decimal? valueToconvert, ICurrencyConvert converter)
+        {
+            //strategy to pick correct conversion
+            if (valueToconvert != null)
+            {
+                var newValue = decimal.Round(converter.Convert((decimal)valueToconvert), 2, MidpointRounding.AwayFromZero);
+                return new HtmlString(newValue.ToString());
+            }
+
+            return new HtmlString("0.00");
+
 
         }
 

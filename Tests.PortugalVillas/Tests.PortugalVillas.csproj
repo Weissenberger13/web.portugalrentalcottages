@@ -150,6 +150,7 @@
   <ItemGroup>
     <Compile Include="ControllerTests\CustomerControllerTests.cs" />
     <Compile Include="ControllerTests\HomeControllerTests.cs" />
+    <Compile Include="CurrencyTests\CurrencyConverterFactorySpecs.cs" />
     <Compile Include="HTMLHelperTests\CurrencyHelperTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -167,7 +168,6 @@
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="CurrencyTests\" />
     <Folder Include="IntegrationTests\" />
     <Folder Include="UITests\" />
   </ItemGroup>

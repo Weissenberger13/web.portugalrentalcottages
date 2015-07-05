@@ -1,4 +1,5 @@
-﻿@using BootstrapVillas.HTMLHelper
+﻿@using BootstrapVillas.Content.Classes.CurrencyConverter
+@using BootstrapVillas.HTMLHelper
 @using BootstrapVillas.Models
 @model IEnumerable<BookingExtra>
 @{
@@ -56,7 +57,7 @@
         if (!car.Price.Equals(null))
         {
             decimal thePrice = (decimal)car.Price;
-            @thePrice.ToString("n2")
+            @Html.CurrencyConvert(thePrice, DependencyResolver.Current.GetService<ICurrencyConvert>())
 
         }
 

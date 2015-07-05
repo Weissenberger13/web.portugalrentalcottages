@@ -249,11 +249,11 @@
                                 From
                                 <b class="price">
                                  
-
+                                    @Html.Currency()@Html.CurrencySymbol()
                                     <css-decorator id="originalCurrency@{@count}" class="priceTest">
                                         @{if (villaPriceRange.MinPrice.HasValue)
                                             {
-                                                decimal temp = (decimal)villaPriceRange.MinPrice;@Html.Currency()@Html.CurrencySymbol()@Decimal.Round(temp).ToString();
+                                                decimal temp = (decimal)villaPriceRange.MinPrice;@Html.CurrencyConvert(Decimal.Round(temp), DependencyResolver.Current.GetService<ICurrencyConvert>())
                                             }}
                                     </css-decorator>
                                 </b>

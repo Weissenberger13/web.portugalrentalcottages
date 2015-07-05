@@ -1,4 +1,5 @@
 ﻿@using BootstrapVillas.Content.Classes
+@using BootstrapVillas.Content.Classes.CurrencyConverter
 @using BootstrapVillas.HTMLHelper
 @using BootstrapVillas.Models
 
@@ -114,7 +115,7 @@
                             <option>9</option>
                             <option>10</option>
                         </select>
-                        <css-decorator class="toTranslate">Swim Towels</css-decorator><strong><css-decorator class="toTranslate">@Html.Currency()@Html.CurrencySymbol()@towelPrice p/week</css-decorator></strong>
+                        <css-decorator class="toTranslate">Swim Towels</css-decorator><strong><css-decorator class="toTranslate">@Html.Currency()@Html.CurrencySymbol()@Html.CurrencyConvert(towelPrice, DependencyResolver.Current.GetService<ICurrencyConvert>()) p/week</css-decorator></strong>
                     </label>
 
                     <!-- checkbox 2 -->
@@ -132,7 +133,7 @@
                             <option>9</option>
                             <option>10</option>
                         </select>
-                        <css-decorator class="toTranslate"> Mid-vacation Cleaning</css-decorator> <strong><css-decorator class="toTranslate">@Html.Currency()@Html.CurrencySymbol()@midVacationCleaningPrice - per clean</css-decorator></strong>
+                        <css-decorator class="toTranslate"> Mid-vacation Cleaning</css-decorator> <strong><css-decorator class="toTranslate">@Html.Currency()@Html.CurrencySymbol()@Html.CurrencyConvert(midVacationCleaningPrice, DependencyResolver.Current.GetService<ICurrencyConvert>()) - per clean</css-decorator></strong>
                     </label>
 
                     <!-- checkbox 3 -->
@@ -150,7 +151,7 @@
                             <option>9</option>
                             <option>10</option>
                         </select>
-                        <css-decorator class="toTranslate">  Swimming pool heating </css-decorator><strong><css-decorator class="toTranslate">@Html.Currency()@Html.CurrencySymbol()@swimHeatingPrice - per night</css-decorator></strong>
+                        <css-decorator class="toTranslate">  Swimming pool heating </css-decorator><strong><css-decorator class="toTranslate">@Html.Currency()@Html.CurrencySymbol()@Html.CurrencyConvert(swimHeatingPrice, DependencyResolver.Current.GetService<ICurrencyConvert>()) - per night</css-decorator></strong>
                     </label>
 
                     <label for="Booking_Heating">
@@ -167,7 +168,7 @@
                             <option>9</option>
                             <option>10</option>
                         </select>
-                        <css-decorator class="toTranslate"> Property Heating <strong><css-decorator class="toTranslate">@Html.Currency()@Html.CurrencySymbol()@heatingPrice - per day</css-decorator></strong>
+                        <css-decorator class="toTranslate"> Property Heating <strong><css-decorator class="toTranslate">@Html.Currency()@Html.CurrencySymbol()@Html.CurrencyConvert(heatingPrice, DependencyResolver.Current.GetService<ICurrencyConvert>()) - per day</css-decorator></strong>
                     </label>
 
 
@@ -185,7 +186,7 @@
                             <option>9</option>
                             <option>10</option>
                         </select>
-                        <css-decorator class="toTranslate"> Extra set linen & towels <strong><css-decorator class="toTranslate">@Html.Currency()@Html.CurrencySymbol()@lininSetPrice - per set</css-decorator></strong>
+                        <css-decorator class="toTranslate"> Extra set linen & towels <strong><css-decorator class="toTranslate">@Html.Currency()@Html.CurrencySymbol()@Html.CurrencyConvert(lininSetPrice, DependencyResolver.Current.GetService<ICurrencyConvert>()) - per set</css-decorator></strong>
                     </label>
                 </div>
             </div>

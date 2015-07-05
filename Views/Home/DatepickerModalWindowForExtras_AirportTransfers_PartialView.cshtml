@@ -1,4 +1,5 @@
 ﻿@model BootstrapVillas.Models.BookingExtraSelection
+@using BootstrapVillas.Content.Classes.CurrencyConverter
 @using BootstrapVillas.HTMLHelper
 @using BootstrapVillas.Models
 
@@ -144,7 +145,7 @@
                         }
 
                     </select><br />
-                    <strong><css-decorator class="toTranslate">*Child Seats @Html.Currency()@Html.CurrencySymbol()@instanceExtraCharges.Where(x => x.PropertyTypeServicesID.Equals(9)).FirstOrDefault().ServicePriceGBP.ToString() per seat each way</css-decorator></strong>
+                    <strong><css-decorator class="toTranslate">*Child Seats @Html.Currency()@Html.CurrencySymbol()@Html.CurrencyConvert(instanceExtraCharges.Where(x => x.PropertyTypeServicesID.Equals(9)).FirstOrDefault().ServicePriceGBP, DependencyResolver.Current.GetService<ICurrencyConvert>()) per seat each way</css-decorator></strong>
                     <br /><br />
                     <label><css-decorator class="toTranslate">No of detours**</css-decorator></label>
                     <select name="Detours">
@@ -157,7 +158,7 @@
                     </select><br />
                     <strong>
                         <css-decorator class="toTranslate">
-                            **Any special detours within 15 mile of destination charged extra @Html.Currency()@Html.CurrencySymbol()@instanceExtraCharges.Where(x => x.PropertyTypeServicesID.Equals(8)).FirstOrDefault().ServicePriceGBP.ToString() each way.
+                            **Any special detours within 15 mile of destination charged extra @Html.Currency()@Html.CurrencySymbol()@Html.CurrencyConvert(instanceExtraCharges.Where(x => x.PropertyTypeServicesID.Equals(8)).FirstOrDefault().ServicePriceGBP, DependencyResolver.Current.GetService<ICurrencyConvert>()) each way.
                             This means when the client is collected from Lisbon city instead of the Airport, then the charge is levied one way, if  the departure day drop off is the Airport. If to a non-airport location, then charged both ways.
                             N.B It is also levied when there is a stop over to collect the local rental car each way on arrival and departure day.
                         </css-decorator>
@@ -172,7 +173,7 @@
                         }
 
                     </select><br />
-                    <strong>***<css-decorator class="toTranslate">Extra luggage is @Html.Currency()@Html.CurrencySymbol()@instanceExtraCharges.Where(x => x.PropertyTypeServicesID.Equals(10)).FirstOrDefault().ServicePriceGBP.ToString() per suitcase each way. Allowed maximum baggage is 1 suitcase +1 hand luggage per adult.</css-decorator></strong>
+                    <strong>***<css-decorator class="toTranslate">Extra luggage is @Html.Currency()@Html.CurrencySymbol() @Html.CurrencyConvert(instanceExtraCharges.Where(x => x.PropertyTypeServicesID.Equals(10)).FirstOrDefault().ServicePriceGBP, DependencyResolver.Current.GetService<ICurrencyConvert>()) per suitcase each way. Allowed maximum baggage is 1 suitcase +1 hand luggage per adult.</css-decorator></strong>
                     <br /><br />
 
                     @*

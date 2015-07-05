@@ -1,6 +1,7 @@
 ﻿@using BootstrapVillas.Models
 @using BootstrapVillas.Content.Classes;
 @using System.Globalization;
+@using BootstrapVillas.Content.Classes.CurrencyConverter
 @using BootstrapVillas.HTMLHelper
 
 @{
@@ -429,7 +430,11 @@
                                                 <td>
                                                     <strong class="label label-info">
                                                         @Html.Currency()@Html.CurrencySymbol()@{if (thePropertyPriceRange.Count > 0)
-                                                        { @Math.Round(theProperty.PriceRange.MinPrice.GetValueOrDefault(), 2, MidpointRounding.ToEven)}}
+                                                        {
+                                                            @Html.CurrencyConvert(Math.Round(theProperty.PriceRange.MinPrice.GetValueOrDefault(), 2, MidpointRounding.ToEven), DependencyResolver.Current.GetService<ICurrencyConvert>())
+                                                                     
+
+                                                            }}
                                                     </strong>
                                                 </td>
                                             </tr>
@@ -819,7 +824,8 @@
                                                     @Html.Currency()@Html.CurrencySymbol()                                     
                                                     @if (propPricing.Price != null)
                                                     {
-                                                        @Math.Round((Decimal)propPricing.Price, 2)
+                                                        @Html.CurrencyConvert(Math.Round((Decimal)propPricing.Price, 2), DependencyResolver.Current.GetService<ICurrencyConvert>())
+                                                        
                                                     }
                                                 </css-decorator>
                                             </b>
@@ -904,16 +910,17 @@
 
                                     @{
     /*if (@theProperty@.MaxGuests> )*/
-    <td>@Html.Currency()@Html.CurrencySymbol()@towelsCleaningetc.Where(x => x.PropertyTypeServicesID.Equals(2) && x.Bedrooms >= theProperty.Bedrooms).FirstOrDefault().ServicePriceGBP</td>
+    <td>@Html.Currency()@Html.CurrencySymbol()@Html.CurrencyConvert(towelsCleaningetc.Where(x => x.PropertyTypeServicesID.Equals(2) && x.Bedrooms >= theProperty.Bedrooms).FirstOrDefault().ServicePriceGBP, DependencyResolver.Current.GetService<ICurrencyConvert>())</td>
                                         <td>
                                             <css-decorator class="toTranslate">
-                                                Rental Rates DO NOT include cleaning and laundry after the visit. This is charged extra @Html.Currency()@Html.CurrencySymbol()@towelsCleaningetc.Where(x => x.PropertyTypeServicesID.Equals(4)).Where(y => y.PropertyTypeID == theProperty.PropertyTypeID).FirstOrDefault().ServicePriceGBP/- which will be added to your bill. If mid-vacation cleaning services are required, this can be arranged at an additional cost of @Html.Currency()@Html.CurrencySymbol()@towelsCleaningetc.Where(x => x.PropertyTypeServicesID.Equals(1)).FirstOrDefault().ServicePriceGBP/- per visit.
-                                                The cost of heating during winter visits or any other cold spells at other times of year, is charged @Html.Currency()@Html.CurrencySymbol()@towelsCleaningetc.Where(x => x.PropertyTypeServicesID.Equals(3) && x.Bedrooms >= theProperty.Bedrooms).FirstOrDefault().ServicePriceGBP/- per day. Swim towels extra @Html.Currency()@Html.CurrencySymbol()@towelsCleaningetc.Where(x => x.PropertyTypeServicesID.Equals(5)).FirstOrDefault().ServicePriceGBP per towel per week. Please check at the time of booking.
+                                                Rental Rates DO NOT include cleaning and laundry after the visit. This is charged extra @Html.Currency()@Html.CurrencySymbol()@Html.CurrencyConvert(towelsCleaningetc.Where(x => x.PropertyTypeServicesID.Equals(4)).Where(y => y.PropertyTypeID == theProperty.PropertyTypeID).FirstOrDefault().ServicePriceGBP, DependencyResolver.Current.GetService<ICurrencyConvert>())/- which will be added to your bill. If mid-vacation cleaning services are required, this can be arranged at an additional cost of @Html.Currency()@Html.CurrencySymbol()@Html.CurrencyConvert(towelsCleaningetc.Where(x => x.PropertyTypeServicesID.Equals(1)).FirstOrDefault().ServicePriceGBP, DependencyResolver.Current.GetService<ICurrencyConvert>())
+                                                /- per visit.
+                                                The cost of heating during winter visits or any other cold spells at other times of year, is charged @Html.Currency()@Html.CurrencySymbol()@Html.CurrencyConvert(towelsCleaningetc.Where(x => x.PropertyTypeServicesID.Equals(3) && x.Bedrooms >= theProperty.Bedrooms).FirstOrDefault().ServicePriceGBP, DependencyResolver.Current.GetService<ICurrencyConvert>())/- per day. Swim towels extra @Html.Currency()@Html.CurrencySymbol()@Html.CurrencyConvert(towelsCleaningetc.Where(x => x.PropertyTypeServicesID.Equals(5)).FirstOrDefault().ServicePriceGBP, DependencyResolver.Current.GetService<ICurrencyConvert>()) per towel per week. Please check at the time of booking.
                                             </css-decorator>
                                             <hr />
                                             <ul>
                                                 <li class="toTranslate">&bull; 30% Initial deposit payable by bank transfer 4 weeks prior to arrival. Then 70% is payable by bank transfer 4 weeks prior to arrival.</li>
-                                                <li class="toTranslate">&bull; A fully refundable breakage deposit of @Html.Currency()@Html.CurrencySymbol()@towelsCleaningetc.Where(x => x.PropertyTypeServicesID.Equals(2) && x.Bedrooms >= theProperty.Bedrooms).FirstOrDefault().ServicePriceGBP will apply to all bookings. This amount is payable, along with the final rental instalment, 4 weeks prior to arrival.</li>
+                                                <li class="toTranslate">&bull; A fully refundable breakage deposit of @Html.Currency()@Html.CurrencySymbol()@Html.CurrencyConvert(towelsCleaningetc.Where(x => x.PropertyTypeServicesID.Equals(2) && x.Bedrooms >= theProperty.Bedrooms).FirstOrDefault().ServicePriceGBP, DependencyResolver.Current.GetService<ICurrencyConvert>()) will apply to all bookings. This amount is payable, along with the final rental instalment, 4 weeks prior to arrival.</li>
                                                 <li class="toTranslate">&bull; The breakage deposit will be refunded within 10 working days after leaving the villa subject to any damage or breakage that occurs during your stay.</li>
                                                 <li class="toTranslate">&bull; If you are visiting from outside the European Union, then the breakage deposit should be paid in cash Euros on arrival. The caretaker will inspect the property and refund your deposit in cash Euros, on departure day, provided there is no damage or breakage at the property.</li>
                                             </ul>
