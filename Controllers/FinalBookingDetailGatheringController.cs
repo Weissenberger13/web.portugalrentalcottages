@@ -451,6 +451,8 @@ namespace BootstrapVillas.Controllers
                             (decimal)booking.BreakageDeposit);
                         booking.CleaningPostVisitPrice = cc.ConvertCurrency(baseCurrency, newCurrency,
                             (decimal)booking.CleaningPostVisitPrice);
+                        booking.HeatingPrice = cc.ConvertCurrency(baseCurrency, newCurrency,
+                            (decimal) booking.HeatingPrice);
 
                         booking.BookingCurrencyConversionSymbol = exchangeRateFromDB.CurrencyExchangeSymbol;
                         booking.BookingCurrencyExchangeRate = exchangeRateFromDB.CurrencyExchangeRate;
@@ -494,6 +496,8 @@ namespace BootstrapVillas.Controllers
                             (decimal)booking.BreakageDeposit);
                         booking.CleaningPostVisitPrice = cc.ConvertCurrency(baseCurrency, newCurrency,
                             (decimal)booking.CleaningPostVisitPrice);
+                        booking.HeatingPrice = cc.ConvertCurrency(baseCurrency, newCurrency,
+                            (decimal)booking.HeatingPrice);
 
                         booking.BookingCurrencyConversionSymbol = exchangeRateFromDB.CurrencyExchangeSymbol;
                         booking.BookingCurrencyExchangeRate = exchangeRateFromDB.CurrencyExchangeRate;
