@@ -152,6 +152,7 @@
     <Reference Include="EntityFramework, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -482,6 +483,10 @@
     <Compile Include="Migrations\201504181642162_EmailtemplateSubject.cs" />
     <Compile Include="Migrations\201504181642162_EmailtemplateSubject.Designer.cs">
       <DependentUpon>201504181642162_EmailtemplateSubject.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201507061830588_bookingUnitPrices.cs" />
+    <Compile Include="Migrations\201507061830588_bookingUnitPrices.Designer.cs">
+      <DependentUpon>201507061830588_bookingUnitPrices.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountModels.cs" />
@@ -9903,6 +9908,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201504181642162_EmailtemplateSubject.resx">
       <DependentUpon>201504181642162_EmailtemplateSubject.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201507061830588_bookingUnitPrices.resx">
+      <DependentUpon>201507061830588_bookingUnitPrices.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

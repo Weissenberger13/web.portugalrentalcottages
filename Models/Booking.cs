@@ -75,6 +75,15 @@ namespace BootstrapVillas.Models
         public Nullable<decimal> HeatingPrice { get; set; }
         public Nullable<int> HeatingNoNights { get; set; }
         public Nullable<decimal> CleaningPostVisitPrice { get; set; }
+
+
+        public Nullable<decimal> TowelsUnitPrice { get; set; }
+        public Nullable<decimal> MidVactionCleaningUnitPrice { get; set; }
+        public Nullable<decimal> SwimmingPoolHeatingUnitPrice { get; set; }
+        public Nullable<decimal> ExtraLininSetUnitPrice { get; set; }
+        public Nullable<decimal> HeatingUnitPrice { get; set; }    
+        public Nullable<decimal> CleaningPostVisitUnitPrice { get; set; }
+
         public string FlightArrivalTime { get; set; }
         public string FlightDepartureTime { get; set; }
         public Nullable<System.DateTime> FlightArrivalDate { get; set; }
