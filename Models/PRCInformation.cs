@@ -25,5 +25,7 @@ namespace BootstrapVillas.Models
         public string PRCBankAddressLine1 { get; set; }
         public string PRCBankAddressLine2 { get; set; }
         public string PRCNotificationEmailAddress { get; set; }
+        public string PRCNotificationEmailAddress2 { get; set; }
+        public string PRCNotificationEmailAddress3 { get; set; }
     }
 }

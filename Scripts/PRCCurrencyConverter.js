@@ -14,7 +14,7 @@ $(document).ready(function () {
    
     $('#currencyConverter').on('change', function () {
 
-
+        var newCurrency = $("#currencyConverter").val();
         console.log(currencyCurrency);
         console.log(systemDefaultCurrency);
 

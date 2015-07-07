@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Configuration;
 using System.Data;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
@@ -29,6 +30,7 @@ using DotNetOpenAuth.Messaging;
 using Microsoft.Ajax.Utilities;
 using Document = BootstrapVillas.Models.Document;
 using System.Data.Objects;
+using Aspose.Email.Mail;
 
 namespace BootstrapVillas.Controllers
 {
@@ -264,7 +266,7 @@ namespace BootstrapVillas.Controllers
 
                         //late booking form
 
-                        if (cus.Country.ToLower() == "united kingdom")
+                        if (cus.Country.ToLower() == "united kingdom" && ConfigurationManager.AppSettings["defaultCurrency"] == "GBP")
                         {
                             if (dateRemainderDays <= 30)
                             {
@@ -432,7 +434,11 @@ namespace BootstrapVillas.Controllers
                                                           + "</p>";
                     }
 
-                    mail.theAsposeMessage.To = prc.PRCNotificationEmailAddress;
+                    var addressees = new MailAddressCollection();
+                    addressees.Add(prc.PRCNotificationEmailAddress);
+                    if (prc.PRCNotificationEmailAddress2 != null) addressees.Add(prc.PRCNotificationEmailAddress2);
+                    if (prc.PRCNotificationEmailAddress3 != null) addressees.Add(prc.PRCNotificationEmailAddress3);
+                    
                     mail.SendEmail();
                 }
 

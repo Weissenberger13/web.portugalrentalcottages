@@ -65,7 +65,11 @@ namespace BootstrapVillas.Models
         public string BookingPreferredCurrency { get; set; }
         public Nullable<decimal> BookingCurrencyConversionPrice { get; set; }
         public string BookingCurrencyConversionSymbol { get; set; }
+        public string BookingCurrencyLongName { get; set; }
         public Nullable<decimal> BookingCurrencyExchangeRate { get; set; }
+
+
+
         public Nullable<long> CaseID { get; set; }
         public Nullable<bool> isDeleted { get; set; }
         public Nullable<decimal> TowelsPrice { get; set; }
@@ -83,6 +87,7 @@ namespace BootstrapVillas.Models
         public Nullable<decimal> ExtraLininSetUnitPrice { get; set; }
         public Nullable<decimal> HeatingUnitPrice { get; set; }    
         public Nullable<decimal> CleaningPostVisitUnitPrice { get; set; }
+        public Nullable<decimal> FirewoodUnitPrice { get; set; }
 
         public string FlightArrivalTime { get; set; }
         public string FlightDepartureTime { get; set; }

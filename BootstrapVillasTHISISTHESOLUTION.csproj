@@ -484,6 +484,18 @@
     <Compile Include="Migrations\201507061830588_bookingUnitPrices.Designer.cs">
       <DependentUpon>201507061830588_bookingUnitPrices.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201507071803025_notificationEmails.cs" />
+    <Compile Include="Migrations\201507071803025_notificationEmails.Designer.cs">
+      <DependentUpon>201507071803025_notificationEmails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201507071927533_currencyLongName.cs" />
+    <Compile Include="Migrations\201507071927533_currencyLongName.Designer.cs">
+      <DependentUpon>201507071927533_currencyLongName.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201507071958022_extraDocumentFieldsInBooking.cs" />
+    <Compile Include="Migrations\201507071958022_extraDocumentFieldsInBooking.Designer.cs">
+      <DependentUpon>201507071958022_extraDocumentFieldsInBooking.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\AccountTransaction.cs" />
@@ -8559,6 +8571,7 @@
     <Content Include="Scripts\waypoints.min.js" />
     <Content Include="sitemap.xml" />
     <Content Include="Test\TestTable.html" />
+    <Content Include="VersioningDocs\portugalrentalvillas.com\portugalrentalvillas.txt" />
     <Content Include="Views\Shared\DisplayTemplates\CanonicalHelperModel.ascx" />
     <Content Include="Views\Shared\DisplayTemplates\MenuHelperModel.ascx" />
     <Content Include="Views\Shared\DisplayTemplates\MetaRobotsHelperModel.ascx" />
@@ -9907,6 +9920,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201507061830588_bookingUnitPrices.resx">
       <DependentUpon>201507061830588_bookingUnitPrices.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201507071803025_notificationEmails.resx">
+      <DependentUpon>201507071803025_notificationEmails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201507071927533_currencyLongName.resx">
+      <DependentUpon>201507071927533_currencyLongName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201507071958022_extraDocumentFieldsInBooking.resx">
+      <DependentUpon>201507071958022_extraDocumentFieldsInBooking.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

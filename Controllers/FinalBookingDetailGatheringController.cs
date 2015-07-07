@@ -408,6 +408,10 @@ namespace BootstrapVillas.Controllers
 
             try
             {
+                var exchangeRateFromDB = new CurrencyExchange();
+                var baseCurrency = "";
+                var newCurrency = "";
+
                 booking.NumberOfNights = GeneralStaticHelperMethods.CalculateNoofNights(booking.StartDate,
                     booking.EndDate);
                 booking.CalculateBookingPricingForAPropertyBooking(db);
@@ -416,69 +420,28 @@ namespace BootstrapVillas.Controllers
                 booking.SetBreakageDepositDueDate(); //1 month before
                 booking.SetBreakageDepositAmount(); //depends on property
 
+                booking.BookingCurrencyLongName = "G.B. Pounds Sterling";
                 //NOW CONVERT CURRENCY IF NECESSARY SO OTHER CALCS ARE CORRECT
                 //CHANGE THIS!!! IT'S USING HIDDEN EXTERNAL DEPENDENY
-
+                booking.BookingCurrencyConversionSymbol = "£";
+                booking.BookingCurrencyExchangeRate = 1.00M;
+                booking.BookingPreferredCurrency = "GBP";
 
 
                 if (theCustomer.Country.ToLower() != "united kingdom" && ConfigurationManager.AppSettings["defaultCurrency"] == "GBP")
                 {
 
                     //euro strategy
-                    var baseCurrency = "GBP";
-                    var newCurrency = "EUR";
+                    baseCurrency = "GBP";
+                    newCurrency = "EUR";
 
-                    var exchangeRateFromDB =
-                        db.CurrencyExchanges.First(x => x.CurrencyExchangeName == "GBP-EUR");
 
                     //set exchange rate
                     booking.BookingCurrencyExchangeRate = exchangeRateFromDB.CurrencyExchangeRate;
-
-
-                    try
-                    {
-                        booking.BookingPrice = cc.ConvertCurrency(baseCurrency, newCurrency, (decimal)booking.BookingPrice);
-                        booking.BookingCurrencyConversionPrice = booking.BookingPrice;
-
-                        booking.TowelsPrice = cc.ConvertCurrency(baseCurrency, newCurrency, (decimal)booking.TowelsPrice);
-                        booking.MidVactionCleaningPrice = cc.ConvertCurrency(baseCurrency, newCurrency,
-                            (decimal)booking.MidVactionCleaningPrice);
-                        booking.SwimmingPoolHeatingPrice = cc.ConvertCurrency(baseCurrency, newCurrency,
-                            (decimal)booking.SwimmingPoolHeatingPrice);
-                        booking.ExtraLininSetPrice = cc.ConvertCurrency(baseCurrency, newCurrency,
-                            (decimal)booking.ExtraLininSetPrice);
-                        booking.BreakageDeposit = cc.ConvertCurrency(baseCurrency, newCurrency,
-                            (decimal)booking.BreakageDeposit);
-                        booking.CleaningPostVisitPrice = cc.ConvertCurrency(baseCurrency, newCurrency,
-                            (decimal)booking.CleaningPostVisitPrice);
-                        booking.HeatingPrice = cc.ConvertCurrency(baseCurrency, newCurrency,
-                            (decimal) booking.HeatingPrice);
-
-                        booking.BookingCurrencyConversionSymbol = exchangeRateFromDB.CurrencyExchangeSymbol;
-                        booking.BookingCurrencyExchangeRate = exchangeRateFromDB.CurrencyExchangeRate;
-                        booking.BookingPreferredCurrency = "EUR";
-
-                    }
-                    catch (Exception)
-                    {
-
-                        throw;
-                    }
-
-                }
-
-                //ALL BOOKINGS FOR US SYSTEM IN USD
-                else if (ConfigurationManager.AppSettings["defaultCurrency"] == "USD")
-                {
-                    var baseCurrency = "GBP";
-                    var newCurrency = "USD";
-
-                    var exchangeRateFromDB =
-                        db.CurrencyExchanges.First(x => x.CurrencyExchangeName == "GBP-USD");
-
-                    //set exchange rate
+                    booking.BookingCurrencyLongName = "Euros";
+                    booking.BookingCurrencyConversionSymbol = exchangeRateFromDB.CurrencyExchangeSymbol;
                     booking.BookingCurrencyExchangeRate = exchangeRateFromDB.CurrencyExchangeRate;
-
+                    booking.BookingPreferredCurrency = "EUR";
 
                     try
                     {
@@ -499,9 +462,9 @@ namespace BootstrapVillas.Controllers
                         booking.HeatingPrice = cc.ConvertCurrency(baseCurrency, newCurrency,
                             (decimal)booking.HeatingPrice);
 
-                        booking.BookingCurrencyConversionSymbol = exchangeRateFromDB.CurrencyExchangeSymbol;
-                        booking.BookingCurrencyExchangeRate = exchangeRateFromDB.CurrencyExchangeRate;
-                        booking.BookingPreferredCurrency = "USD";
+
+
+
 
                     }
                     catch (Exception)
@@ -512,7 +475,74 @@ namespace BootstrapVillas.Controllers
 
                 }
 
+                //ALL BOOKINGS FOR US SYSTEM IN USD
+                else if (ConfigurationManager.AppSettings["defaultCurrency"] == "USD")
+                {
+                    baseCurrency = "GBP";
+                    newCurrency = "USD";
 
+                    exchangeRateFromDB =
+                        db.CurrencyExchanges.First(x => x.CurrencyExchangeName == "GBP-USD");
+
+                    //set exchange rate and currencies
+                    booking.BookingCurrencyExchangeRate = exchangeRateFromDB.CurrencyExchangeRate;
+                    booking.BookingCurrencyLongName = "U.S. Dollars";
+                    booking.BookingCurrencyConversionSymbol = exchangeRateFromDB.CurrencyExchangeSymbol;
+                    booking.BookingCurrencyExchangeRate = exchangeRateFromDB.CurrencyExchangeRate;
+                    booking.BookingPreferredCurrency = "USD";
+
+
+
+
+                }
+
+                //do all cuurency conversions if not a UK booking
+                if (theCustomer.Country.ToLower() != "united kingdom" || !ConfigurationManager.AppSettings["defaultCurrency"].Equals("GBP"))
+                {
+                    try
+                    {
+                        booking.BookingPrice = cc.ConvertCurrency(baseCurrency, newCurrency,
+                            (decimal)booking.BookingPrice);
+                        booking.BookingCurrencyConversionPrice = booking.BookingPrice;
+
+                        booking.TowelsPrice = cc.ConvertCurrency(baseCurrency, newCurrency,
+                            (decimal)booking.TowelsPrice);
+                        booking.MidVactionCleaningPrice = cc.ConvertCurrency(baseCurrency, newCurrency,
+                            (decimal)booking.MidVactionCleaningPrice);
+                        booking.SwimmingPoolHeatingPrice = cc.ConvertCurrency(baseCurrency, newCurrency,
+                            (decimal)booking.SwimmingPoolHeatingPrice);
+                        booking.ExtraLininSetPrice = cc.ConvertCurrency(baseCurrency, newCurrency,
+                            (decimal)booking.ExtraLininSetPrice);
+                        booking.BreakageDeposit = cc.ConvertCurrency(baseCurrency, newCurrency,
+                            (decimal)booking.BreakageDeposit);
+                        booking.CleaningPostVisitPrice = cc.ConvertCurrency(baseCurrency, newCurrency,
+                            (decimal)booking.CleaningPostVisitPrice);
+                        booking.HeatingPrice = cc.ConvertCurrency(baseCurrency, newCurrency,
+                            (decimal)booking.HeatingPrice);
+
+
+                        booking.HeatingUnitPrice = cc.ConvertCurrency(baseCurrency, newCurrency,
+                            (decimal)booking.HeatingUnitPrice);
+                        booking.CleaningPostVisitUnitPrice = cc.ConvertCurrency(baseCurrency, newCurrency,
+                            (decimal)booking.CleaningPostVisitUnitPrice);
+                        booking.ExtraLininSetUnitPrice = cc.ConvertCurrency(baseCurrency, newCurrency,
+                            (decimal)booking.ExtraLininSetUnitPrice);
+                        booking.MidVactionCleaningUnitPrice = cc.ConvertCurrency(baseCurrency, newCurrency,
+                            (decimal)booking.MidVactionCleaningUnitPrice);
+                        booking.SwimmingPoolHeatingUnitPrice = cc.ConvertCurrency(baseCurrency, newCurrency,
+                            (decimal)booking.SwimmingPoolHeatingUnitPrice);
+                        booking.TowelsUnitPrice = cc.ConvertCurrency(baseCurrency, newCurrency,
+                            (decimal)booking.TowelsUnitPrice);
+                        booking.FirewoodUnitPrice = cc.ConvertCurrency(baseCurrency, newCurrency,
+                            (decimal)booking.FirewoodUnitPrice);
+
+                    }
+                    catch (Exception)
+                    {
+
+                        throw;
+                    }
+                }
 
             }
             catch (Exception ex)
@@ -700,7 +730,7 @@ namespace BootstrapVillas.Controllers
 
             }
 
-            else if(ConfigurationManager.AppSettings["defaultCurrency"] == "USD")
+            else if (ConfigurationManager.AppSettings["defaultCurrency"] == "USD")
             {
                 var baseCurrency = "GBP";
                 var newCurrency = "USD";

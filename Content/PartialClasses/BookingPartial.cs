@@ -496,6 +496,25 @@ namespace BootstrapVillas.Models
 
             }
 
+            //add all unit prices
+            try
+            {
+                booking.CleaningPostVisitUnitPrice = allTheServices.First(x => x.PropertyTypeServicesID.Equals(4)).ServicePriceGBP;
+                booking.ExtraLininSetUnitPrice= ( allTheServices.First(x => x.PropertyTypeServicesID.Equals(7)).ServicePriceGBP);
+                booking.HeatingUnitPrice = allTheServices.First(x => x.PropertyTypeServicesID.Equals(3)).ServicePriceGBP;
+                booking.MidVactionCleaningUnitPrice = allTheServices.First(x => x.PropertyTypeServicesID.Equals(1)).ServicePriceGBP;
+                booking.SwimmingPoolHeatingUnitPrice = allTheServices.First(x => x.PropertyTypeServicesID.Equals(6)).ServicePriceGBP;
+                booking.TowelsUnitPrice = allTheServices.First(x => x.PropertyTypeServicesID.Equals(5)).ServicePriceGBP;
+                booking.FirewoodUnitPrice = allTheServices.First(x => x.PropertyTypeServicesID.Equals(16)).ServicePriceGBP;
+            }
+            catch (Exception)
+            {
+                
+       
+            }
+
+          
+
         }
 
         internal void CalculateFinalRentalPaymentAmount()

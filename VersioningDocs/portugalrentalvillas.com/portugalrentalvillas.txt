@@ -1,0 +1,14 @@
+﻿Images:
+
+--_Layout--
+logo - --- ---	old
+logoNew.png -> logo.png
+
+
+--
+carouselimages - 
+
+
+
+
+
