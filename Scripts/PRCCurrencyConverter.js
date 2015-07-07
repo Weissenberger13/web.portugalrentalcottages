@@ -1,9 +1,11 @@
 ﻿
 //Disable currently selected currency
 $(document).ready(function () {
-    var currencyCurrency = window.CURRENT_CURRENCY; //THIS NEEDS TO BE SET IN LAYOUT
 
+    var currencyCurrency = window.CURRENT_CURRENCY; //THIS NEEDS TO BE SET IN LAYOUT
+    var systemDefaultCurrency = window.DEFAULT_CURRENCY;
     // $("#currencyConverter option[value='" + currencyCurrency + "']").selected();
+
 
     $("#currencyConverter").val(currencyCurrency);
 
@@ -13,21 +15,23 @@ $(document).ready(function () {
     $('#currencyConverter').on('change', function () {
 
 
+        console.log(currencyCurrency);
+        console.log(systemDefaultCurrency);
+
         //get the choice
-        var newCurrency = $("#currencyConverter").val();
+     
         //get the current currency
-        var currentCurrency = window.CURRENT_CURRENCY;
+      
 
-
-
-
-        var exchangeRatePattern = "GBP" + '-' + newCurrency;
+        var exchangeRatePattern = systemDefaultCurrency + '-' + newCurrency;
 
         //get price in GBP from original price
 
-        //  alert(exchangeRatePattern);
+       
 
-        if (newCurrency == "GBP") {
+       /* if (newCurrency == "GBP") {*/
+
+       if (newCurrency == systemDefaultCurrency) {
 
             $("*[id*='convertedCurrency']").each(function (i, el) {
                 $(this).hide();
