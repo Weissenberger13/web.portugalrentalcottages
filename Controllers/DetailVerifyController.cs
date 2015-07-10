@@ -414,7 +414,7 @@ namespace BootstrapVillas.Controllers
                     foreach (var booking in bookings)
                     {
                         mail.theAsposeMessage.HtmlBody += "<p>Booking: ID - " + booking.BookingID + "-" +
-                                                          booking.Property.LegacyReference + " for" +
+                                                          booking.Property.LegacyReference + " for " +
                                                           booking.NumberOfNights + " " + "nights starting " +
                                                           booking.StartDate.ToString().Substring(0, 10)
                                                           + "</p>";
@@ -433,14 +433,23 @@ namespace BootstrapVillas.Controllers
                                                           bes.NumberOfGuests + " people"
                                                           + "</p>";
                     }
-
-                    var addressees = new MailAddressCollection();
-                    addressees.Add(prc.PRCNotificationEmailAddress);
-                    if (prc.PRCNotificationEmailAddress2 != null) addressees.Add(prc.PRCNotificationEmailAddress2);
-                    if (prc.PRCNotificationEmailAddress3 != null) addressees.Add(prc.PRCNotificationEmailAddress3);
-                    
-                    mail.SendEmail();
                 }
+
+                var addressees = new MailAddressCollection();
+                    addressees.Add(prc.PRCNotificationEmailAddress);
+                    if (prc.PRCNotificationEmailAddress2 != null)
+                        if (prc.PRCNotificationEmailAddress2 != "")
+                        {
+                            addressees.Add(prc.PRCNotificationEmailAddress2);
+                        }
+                    if (prc.PRCNotificationEmailAddress3 != null)
+                        if (prc.PRCNotificationEmailAddress3 != "")
+                        {
+                            addressees.Add(prc.PRCNotificationEmailAddress3);
+                        }
+
+                    mail.SendEmail();
+               
 
 
                 return RedirectToAction("EndOfBookingProcess", "EndOfProcess");
