@@ -4,8 +4,8 @@
 
 @{
     //currencyDefaults
-    var defaultCurrency = HttpRuntime.Cache["defaultCurrency"];
-    var currencySymbol = HttpRuntime.Cache["currencySymbol"];
+    var defaultCurrency = (string)HttpRuntime.Cache["defaultCurrency"];
+    var currencySymbol = (string)HttpRuntime.Cache["currencySymbol"];
     var defaultCurrencyEnum = (CurrencyEnum) Enum.Parse(typeof (CurrencyEnum), (string)HttpRuntime.Cache["defaultCurrency"]);
 
 
@@ -1060,55 +1060,113 @@
             <div class="row-fluid ">
                 <div class="span3 offset1" style="position: absolute; z-index: 4000;">
                     <div class="PRClogo">
-                        <img src="/Images/logoNew.png">
+                        @if (defaultCurrency != "GBP")
+                        {
+                            <img src="/Images/logoNew.png">
+                        }
+                        else
+                        {
+                            <img src="/Images/logo.png">
+                        }
+
                     </div>
                 </div>
 
                 <div id="HomeCarousel" class="owl-carousel owl-theme">
 
+                    @if (defaultCurrency != "GBP")
+                    {
 
-
-                    <div class="item">
-                        @*<img src="~/Images/images/architecture-interior_00359882.jpeg" />*@
-                        <img src="~/Images/Backgrounds/PortugalPhotos/portTrain.jpg" />
-                        <div class="row-fluid owl-caption">
-                            <h1>Welcome!</h1>
-                            <p>to @phrInfo.PRCCompanyName</p>
-                            <p><a class="btn btn-success" href="~/Home/SearchProperties" role="button"><i class="fa fa-fw fa-search"></i>Browse Properties</a></p>
-                        </div>
-                    </div>
-                    <div class="item">
-                        @*<img src="~/Images/images/architecture-interior_00359882.jpeg">*@
-                        <img src="~/Images/Backgrounds/PortugalPhotos/portBridge.jpg" />
-                        <div class="row-fluid owl-caption">
-                            <h1>30% Off</h1>
-                            <p>our selected package deals</p>
-                            <p><a class="btn btn-success" href="~/Home/SearchProperties" role="button">See deals<i class="fa fa-fw fa-tag fa-block-success"></i></a></p>
-                        </div>
-                    </div>
-                    <div class="item">
-                        @*<img src="~/Images/images/beach-wallpaper-18.jpeg" />*@
-                        <img src="~/Images/Backgrounds/PortugalPhotos/portSight.jpg" />
-                        <div class="row-fluid owl-caption">
-                            <h1>Keep up to date</h1>
-                            <p>sign up to our newsletter</p>
-                            <div class="input-append">
-
-                                <input class="span10" id="newsletterEmailAddress" name="newsletterEmailAddress" type="text" placeholder="Email Address" style="height: 40px; border-bottom-right-radius: 0; border-top-right-radius: 0;">
-                                <button id="newsletterEmailAddressSubmit" class="add-on btn btn-success newsletterEmailAddressSubmit" style="height: 40px;">Go!</button>
-
+                        <div class="item">
+                            @*<img src="~/Images/images/architecture-interior_00359882.jpeg" />*@
+                            <img src="~/Images/Backgrounds/PortugalPhotos/portTrain.jpg"/>
+                            <div class="row-fluid owl-caption">
+                                <h1>Welcome!</h1>
+                                <p>to @phrInfo.PRCCompanyName</p>
+                                <p><a class="btn btn-success" href="~/Home/SearchProperties" role="button"><i class="fa fa-fw fa-search"></i>Browse Properties</a>
+                                </p>
                             </div>
                         </div>
-                    </div>
-                    <div class="item">
-                        @*<img src="~/Images/images/686151-1280x800-6.jpeg">*@
-                        <img src="~/Images/Backgrounds/PortugalPhotos/portBoat.jpg" />
-                        <div class="row-fluid owl-caption">
-                            <h1>Welcome!</h1>
-                            <p>to @phrInfo.PRCCompanyName</p>
-                            <p><a class="btn btn-success" href="#" role="button"><i class="fa fa-fw fa-search"></i>Browse Properties</a></p>
+                        <div class="item">
+                            @*<img src="~/Images/images/architecture-interior_00359882.jpeg">*@
+                            <img src="~/Images/Backgrounds/PortugalPhotos/portBridge.jpg"/>
+                            <div class="row-fluid owl-caption">
+                                <h1>30% Off</h1>
+                                <p>our selected package deals</p>
+                                <p><a class="btn btn-success" href="~/Home/SearchProperties" role="button">See deals<i class="fa fa-fw fa-tag fa-block-success"></i></a>
+                                </p>
+                            </div>
                         </div>
-                    </div>
+                        <div class="item">
+                            @*<img src="~/Images/images/beach-wallpaper-18.jpeg" />*@
+                            <img src="~/Images/Backgrounds/PortugalPhotos/portSight.jpg"/>
+                            <div class="row-fluid owl-caption">
+                                <h1>Keep up to date</h1>
+                                <p>sign up to our newsletter</p>
+                                <div class="input-append">
+
+                                    <input class="span10" id="newsletterEmailAddress" name="newsletterEmailAddress" type="text" placeholder="Email Address" style="height: 40px; border-bottom-right-radius: 0; border-top-right-radius: 0;">
+                                    <button id="newsletterEmailAddressSubmit" class="add-on btn btn-success newsletterEmailAddressSubmit" style="height: 40px;">Go!</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            @*<img src="~/Images/images/686151-1280x800-6.jpeg">*@
+                            <img src="~/Images/Backgrounds/PortugalPhotos/portBoat.jpg"/>
+                            <div class="row-fluid owl-caption">
+                                <h1>Welcome!</h1>
+                                <p>to @phrInfo.PRCCompanyName</p>
+                                <p><a class="btn btn-success" href="#" role="button"><i class="fa fa-fw fa-search"></i>Browse Properties</a>
+                                </p>
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="item">
+                            @*<img src="~/Images/images/architecture-interior_00359882.jpeg" />*@
+                            <img src="~/Images/Backgrounds/PortugalPhotos/Portugal-destino-turístico-mundial.jpg" />
+                            <div class="row-fluid owl-caption">
+                                <h1>Welcome!</h1>
+                                <p>to Portugal Holiday Rentals</p>
+                                <p><a class="btn btn-success" href="~/Home/SearchProperties" role="button"><i class="fa fa-fw fa-search"></i>Browse Properties</a></p>
+                            </div>
+                        </div>
+                        <div class="item">
+                            @*<img src="~/Images/images/architecture-interior_00359882.jpeg">*@
+                            <img src="~/Images/Backgrounds/PortugalPhotos/kanikuli v portugalii 2015.jpg" />
+                            <div class="row-fluid owl-caption">
+                                <h1>30% Off</h1>
+                                <p>our selected package deals</p>
+                                <p><a class="btn btn-success" href="~/Home/SearchProperties" role="button">See deals<i class="fa fa-fw fa-tag fa-block-success"></i></a></p>
+                            </div>
+                        </div>
+                        <div class="item">
+                            @*<img src="~/Images/images/beach-wallpaper-18.jpeg" />*@
+                            <img src="~/Images/Backgrounds/PortugalPhotos/portugal-coast-destinations-for-world-travel.jpg" />
+                            <div class="row-fluid owl-caption">
+                                <h1>Keep up to date</h1>
+                                <p>sign up to our newsletter</p>
+                                <div class="input-append">
+
+                                    <input class="span10" id="newsletterEmailAddress" name="newsletterEmailAddress" type="text" placeholder="Email Address" style="height: 40px; border-bottom-right-radius: 0; border-top-right-radius: 0;">
+                                    <button id="newsletterEmailAddressSubmit" class="add-on btn btn-success newsletterEmailAddressSubmit" style="height: 40px;">Go!</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            @*<img src="~/Images/images/686151-1280x800-6.jpeg">*@
+                            <img src="~/Images/Backgrounds/PortugalPhotos/Bonfim-Portugal.jpg" />
+                            <div class="row-fluid owl-caption">
+                                <h1>Welcome!</h1>
+                                <p>to Portugal Holiday Rentals</p>
+                                <p><a class="btn btn-success" href="#" role="button"><i class="fa fa-fw fa-search"></i>Browse Properties</a></p>
+                            </div>
+                        </div>
+
+                    }
                 </div>
             </div>
 
@@ -1147,7 +1205,15 @@
             <div class="row-fluid">
                 <div class="span3 offset1" style="position: absolute; z-index: 4000;">
                     <div class="PRClogo">
-                        <img src="/Images/logoNew.png">
+                        @if (defaultCurrency != "GBP")
+                        {
+                            <img src="/Images/logoNew.png">
+                        }
+                        else
+                        {
+                            <img src="/Images/logo.png">
+                        }
+
                     </div>
                 </div>
             </div>
@@ -1169,7 +1235,15 @@
             <div class="row-fluid">
                 <div class="span3 offset1" style="position: absolute; z-index: 4000;">
                     <div class="PRClogo">
-                        <img src="/Images/logoNew.png">
+                        @if (defaultCurrency != "GBP")
+                        {
+                            <img src="/Images/logoNew.png">
+                        }
+                        else
+                        {
+                            <img src="/Images/logo.png">
+                        }
+
                     </div>
                 </div>
             </div>
@@ -1191,7 +1265,15 @@
             <div class="row-fluid">
                 <div class="span3 offset1" style="position: absolute; z-index: 4000;">
                     <div class="PRClogo">
-                        <img src="/Images/logoNew.png">
+                        @if (defaultCurrency != "GBP")
+                        {
+                            <img src="/Images/logoNew.png">
+                        }
+                        else
+                        {
+                            <img src="/Images/logo.png">
+                        }
+
                     </div>
                 </div>
             </div>
@@ -1215,7 +1297,15 @@
             <div class="row-fluid">
                 <div class="span3 offset1" style="position: absolute; z-index: 4000;">
                     <div class="PRClogo">
-                        <img src="/Images/logoNew.png">
+                        @if (defaultCurrency != "GBP")
+                        {
+                            <img src="/Images/logoNew.png">
+                        }
+                        else
+                        {
+                            <img src="/Images/logo.png">
+                        }
+
                     </div>
                 </div>
                 @*            <div class="span4 pull-right" style="position: absolute; right:0; z-index: 4000;">
@@ -1681,8 +1771,8 @@
                         <h4 class="whiteText">Contact</h4>
 
 
-                        Apartado 194 2500<br>
-                        Caldas da Rainha, Portugal<br>
+                        @phrInfo.PRCAddress<br>
+                        @phrInfo.PRCCountry<br>
                         <abbr title="Phone">P:</abbr>
                         @phrInfo.PRCMobile1<br />
 
