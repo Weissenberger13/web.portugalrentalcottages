@@ -27,5 +27,7 @@ namespace BootstrapVillas.Models
         public string PRCNotificationEmailAddress { get; set; }
         public string PRCNotificationEmailAddress2 { get; set; }
         public string PRCNotificationEmailAddress3 { get; set; }
+        public string LogoFile { get; set; }
+
     }
 }

@@ -496,6 +496,10 @@
     <Compile Include="Migrations\201507071958022_extraDocumentFieldsInBooking.Designer.cs">
       <DependentUpon>201507071958022_extraDocumentFieldsInBooking.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201507112040554_logoFile.cs" />
+    <Compile Include="Migrations\201507112040554_logoFile.Designer.cs">
+      <DependentUpon>201507112040554_logoFile.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\AccountTransaction.cs" />
@@ -8972,6 +8976,7 @@
     <Folder Include="Data\QueriesLINQ\" />
     <Folder Include="Data\SQLCommand\" />
     <Folder Include="Documents\" />
+    <Folder Include="DocumentTemplates\US\" />
     <Folder Include="ExtraImages\PRCT-TABT\mainImage\" />
     <Folder Include="ExtraImages\PRCT-TBF\mainImage\" />
     <Folder Include="ExtraImages\PRCT-TLS\mainImage\" />
@@ -9929,6 +9934,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201507071958022_extraDocumentFieldsInBooking.resx">
       <DependentUpon>201507071958022_extraDocumentFieldsInBooking.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201507112040554_logoFile.resx">
+      <DependentUpon>201507112040554_logoFile.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

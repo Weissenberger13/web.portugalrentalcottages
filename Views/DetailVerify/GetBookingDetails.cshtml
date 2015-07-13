@@ -34,6 +34,8 @@
     int validatonBookingCountCurrent = 0;
     int validatonBESCountCurrent = 0;
 
+    var airportDest = (List<SelectListItem>)ViewBag.AirportDest;
+
 }
 <div class="row-fluid">
     <div class="span10 offset1" id="section1">
@@ -223,7 +225,7 @@
 
                             <div id="step-@dynamicStepsBottom">
                                 <h2 class="StepTitle toTranslate">Extra booking - Price:@Html.CurrencySymbol()@Html.CurrencyConvert(price, DependencyResolver.Current.GetService<ICurrencyConvert>()) -  Extra Services:@Html.CurrencySymbol()@Html.CurrencyConvert(extraPrice, DependencyResolver.Current.GetService<ICurrencyConvert>()) for @bes.BookingExtra.BookingExtraName</h2>
-                                @Html.Partial("~/Views/BookingProcessPartialViews/AddBookingExtraSelectionPartial.cshtml", bes, new ViewDataDictionary(ViewData) { { "StepNo", dynamicStepsBottom }, { "count", besCount }, { "loopNo", validatonBESCountCurrent }, { "booking", bookingToPassToBES } })
+                                @Html.Partial("~/Views/BookingProcessPartialViews/AddBookingExtraSelectionPartial.cshtml", bes, new ViewDataDictionary(ViewData) { { "StepNo", dynamicStepsBottom }, { "count", besCount }, { "loopNo", validatonBESCountCurrent }, { "booking", bookingToPassToBES }, { "airportDestinations", airportDest } })
                             </div>
 
                             dynamicStepsBottom++;

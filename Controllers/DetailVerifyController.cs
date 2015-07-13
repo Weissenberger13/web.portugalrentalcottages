@@ -96,6 +96,23 @@ namespace BootstrapVillas.Controllers
 
             //test if any bes in the cart, if so pass them into the model
 
+            List<AirportDestination>
+                apd = AirportDestination.GetAllAirportDestinations().ToList();
+            List<SelectListItem>
+                airportDestinations = new List<SelectListItem>
+                    ();
+
+            /*   
+               foreach (var airportDestination in apd)
+               {
+                   airportDestinations.Add(new SelectListItem { Text = @airportDestination.AirportPickupLocationName, Value = @airportDestination.AirportPickupLocationID.ToString() })
+                       ;
+               }*/
+
+
+            airportDestinations.Add(new SelectListItem { Selected = true, Value = "1", Text="BoggleWoggle"});
+
+            ViewBag.AirportDest = airportDestinations;
             ViewBag.Keywords = "cheap all inclusive holidays to portugal,holiday villa portugal,holiday apartments in portugal,portugal rental cottages,cheap package holidays to portugal, cheap holidays to portugal all inclusive";
             ViewBag.Title = "Search for villas townhouses, apartments in rural, seaside or city break settings. Book holidays in portugal's silver coast, in Foz do Arelho, Salir do Porto, Olho Marinho or Formigal. Book car rental, wine tours, site seeing tours with Portugal Rental Cottages. Rent Hyundai I20, Mitsubishi Lancer, Mitsubishi Grandis, go siteseeing with Lisbon City Tours or Sintra Palace Tours, get 9 Seater Van transport from the airport and have full Cleaning Service, Breakfast and Swimming Towels provided! Visit EXPO 98 & Ocenarium on your Portugal Holiday Rental!";
             return View(model);

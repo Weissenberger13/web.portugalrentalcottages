@@ -8,6 +8,7 @@ using Aspose.Words.Tables;
 using BootstrapVillas.Content.Classes;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.IO;
 using System.Linq;
@@ -54,10 +55,132 @@ namespace BootstrapVillas.Controllers
         public PRCDocument AssignPRCDocumentTypeTemplateURLs(PRCDocument prcDocument)
         {
             //test the type and assign the correct path
-            switch (prcDocument.Type)
+
+            //US
+            if ((string)ConfigurationManager.AppSettings["defaultCurrency"] == "USD")
             {
+                switch (prcDocument.Type)
+                {
+                    //request forms
+                    case PRCDocument.PRCDocumentType.UK_BookingRequestForm:
+                        prcDocument.ServerDocumentURL = "/DocumentTemplates/US/BOOKING_EU_BookingRequestFormTemplate.doc";
+                        prcDocument.MainDataTable.TableName = "BookingTable";
+                        prcDocument.SecondaryDataTable.TableName = "BookingParticipantTable";
+                        break;
+                    case PRCDocument.PRCDocumentType.EU_BookingRequestForm:
+                        prcDocument.ServerDocumentURL = "/DocumentTemplates/US/BOOKING_EU_BookingRequestFormTemplate.doc";
+                        prcDocument.MainDataTable.TableName = "BookingTable";
+                        prcDocument.SecondaryDataTable.TableName = "BookingParticipantTable";
+                        break;
+                    case PRCDocument.PRCDocumentType.UK_LateBookingRequestForm:
+                        prcDocument.ServerDocumentURL = "/DocumentTemplates/US/BOOKING_EU_LateBookingRequestFormTemplate.docx";
+                        prcDocument.MainDataTable.TableName = "BookingTable";
+                        prcDocument.SecondaryDataTable.TableName = "BookingParticipantTable";
+                        break;
+                    case PRCDocument.PRCDocumentType.EU_LateBookingRequestForm:
+                        prcDocument.ServerDocumentURL = "/DocumentTemplates/US/BOOKING_EU_LateBookingRequestFormTemplate.docx";
+                        prcDocument.MainDataTable.TableName = "BookingTable";
+                        prcDocument.SecondaryDataTable.TableName = "BookingParticipantTable";
+                        break;
+
+                    //confimation vouchers
+                    case PRCDocument.PRCDocumentType.UK_BookingConfirmationVoucher:
+                        prcDocument.ServerDocumentURL = "/DocumentTemplates/US/BOOKING_EU_StandardBookingConfirmationVoucherTemplate.doc";
+                        prcDocument.MainDataTable.TableName = "BookingTable";
+                        prcDocument.SecondaryDataTable.TableName = "BookingParticipantTable";
+                        break;
+                    case PRCDocument.PRCDocumentType.EU_BookingConfirmationVoucher:
+                        prcDocument.ServerDocumentURL = "/DocumentTemplates/US/BOOKING_EU_StandardBookingConfirmationVoucherTemplate.doc";
+                        prcDocument.MainDataTable.TableName = "BookingTable";
+                        prcDocument.SecondaryDataTable.TableName = "BookingParticipantTable";
+                        break;
 
 
+                    case PRCDocument.PRCDocumentType.UK_LateBookingConfirmationVoucher:
+                        prcDocument.ServerDocumentURL = "/DocumentTemplates/US/BOOKING_EU_LateBookingConfirmationVoucherTemplate.doc";
+                        prcDocument.MainDataTable.TableName = "BookingTable";
+                        prcDocument.SecondaryDataTable.TableName = "BookingParticipantTable";
+                        break;
+                    case PRCDocument.PRCDocumentType.EU_LateBookingConfirmationVoucher:
+                        prcDocument.ServerDocumentURL = "/DocumentTemplates/US/BOOKING_EU_LateBookingConfirmationVoucherTemplate.doc";
+                        prcDocument.MainDataTable.TableName = "BookingTable";
+                        prcDocument.SecondaryDataTable.TableName = "BookingParticipantTable";
+                        break;
+
+                    //other docs
+                    case PRCDocument.PRCDocumentType.LocalAreaInfo:
+                        prcDocument.ServerDocumentURL = "/DocumentTemplates/US/BOOKING_LocalAreaInfo.rtf";
+                        break;
+                    case PRCDocument.PRCDocumentType.BookingConfirmationTicket:
+                        prcDocument.ServerDocumentURL = "/DocumentTemplates/US/BOOKING_ConfirmationTicketTemplate.doc";
+                        break;
+                    case PRCDocument.PRCDocumentType.BookingMap:
+                        prcDocument.ServerDocumentURL = "/DocumentTemplates/US/BOOKING_Map.rtf";
+                        break;
+                    case PRCDocument.PRCDocumentType.BookingFAQ:
+                        prcDocument.ServerDocumentURL = "/DocumentTemplates/US/BOOKING_FAQ.rtf";
+                        break;
+                    case PRCDocument.PRCDocumentType.BookingHouseRules:
+                        prcDocument.ServerDocumentURL = "/DocumentTemplates/US/BOOKING_HouseRules.doc";
+                        break;
+
+                    case PRCDocument.PRCDocumentType.SecurityDeposit:
+                        prcDocument.ServerDocumentURL = "/DocumentTemplates/US/BOOKING_SecurityDepositTemplate.docx";
+                        prcDocument.MainDataTable.TableName = "BookingTable";
+                        prcDocument.SecondaryDataTable.TableName = "BookingParticipantTable";
+                        break;
+                    case PRCDocument.PRCDocumentType.RentalRemittanceAdvice:
+                        prcDocument.ServerDocumentURL = "/DocumentTemplates/US/BOOKING_HOMEOWNER_RemAdvice.docx";
+                        prcDocument.MainDataTable.TableName = "BookingTable";
+                        prcDocument.SecondaryDataTable.TableName = "BookingParticipantTable";
+                        break;
+                    case PRCDocument.PRCDocumentType.UK_WineTasting:
+                        prcDocument.ServerDocumentURL = "/DocumentTemplates/US/EXTRA_EU_WineTourVoucher.docx";
+                        prcDocument.MainDataTable.TableName = "BookingTable";
+                        prcDocument.SecondaryDataTable.TableName = "BookingParticipantTable";
+                        break;
+                    case PRCDocument.PRCDocumentType.EU_WineTasting:
+                        prcDocument.ServerDocumentURL = "/DocumentTemplates/US/EXTRA_EU_WineTourVoucher.docx";
+                        prcDocument.MainDataTable.TableName = "BookingTable";
+                        prcDocument.SecondaryDataTable.TableName = "BookingParticipantTable";
+                        break;
+                    case PRCDocument.PRCDocumentType.UK_AirportTransfer:
+                        prcDocument.ServerDocumentURL = "/DocumentTemplates/US/EXTRA_EU_AirportTransferTemplate.docx";
+                        prcDocument.MainDataTable.TableName = "BookingExtraTable";
+                        prcDocument.SecondaryDataTable.TableName = "BookingExtraParticipantTable";
+                        break;
+                    case PRCDocument.PRCDocumentType.EU_AirportTransfer:
+                        prcDocument.ServerDocumentURL = "/DocumentTemplates/US/EXTRA_EU_AirportTransferTemplate.docx";
+                        prcDocument.MainDataTable.TableName = "BookingExtraTable";
+                        prcDocument.SecondaryDataTable.TableName = "BookingExtraParticipantTable";
+                        break;
+
+                    case PRCDocument.PRCDocumentType.UK_CarRental:
+                        prcDocument.ServerDocumentURL = "/DocumentTemplates/US/EXTRA_EU_CarRentalVoucher.docx";
+                        prcDocument.MainDataTable.TableName = "BookingExtraTable";
+                        prcDocument.SecondaryDataTable.TableName = "BookingExtraParticipantTable";
+                        break;
+                    case PRCDocument.PRCDocumentType.EU_CarRental:
+                        prcDocument.ServerDocumentURL = "/DocumentTemplates/US/EXTRA_EU_CarRentalVoucher.docx";
+                        prcDocument.MainDataTable.TableName = "BookingExtraTable";
+                        prcDocument.SecondaryDataTable.TableName = "BookingExtraParticipantTable";
+                        break;
+                    case PRCDocument.PRCDocumentType.UK_CoachTour:
+                        prcDocument.ServerDocumentURL = "/DocumentTemplates/US/EXTRA_EU_CoachTourVoucher.docx";
+                        prcDocument.MainDataTable.TableName = "BookingExtraTable";
+                        prcDocument.SecondaryDataTable.TableName = "BookingExtraParticipantTable";
+                        break;
+                    case PRCDocument.PRCDocumentType.EU_CoachTour:
+                        prcDocument.ServerDocumentURL = "/DocumentTemplates/US/EXTRA_EU_CoachTourVoucher.docx";
+                        prcDocument.MainDataTable.TableName = "BookingExtraTable";
+                        prcDocument.SecondaryDataTable.TableName = "BookingExtraParticipantTable";
+                        break;
+                }
+            }
+
+            //UK
+            else switch (prcDocument.Type)
+            {                    
                 //request forms
                 case PRCDocument.PRCDocumentType.UK_BookingRequestForm:
                     prcDocument.ServerDocumentURL = "/DocumentTemplates/BOOKING_UK_BookingRequestFormTemplate.doc";
@@ -103,9 +226,7 @@ namespace BootstrapVillas.Controllers
                     prcDocument.MainDataTable.TableName = "BookingTable";
                     prcDocument.SecondaryDataTable.TableName = "BookingParticipantTable";
                     break;
-
-
-
+                    
                 //other docs
                 case PRCDocument.PRCDocumentType.LocalAreaInfo:
                     prcDocument.ServerDocumentURL = "/DocumentTemplates/BOOKING_LocalAreaInfo.rtf";
@@ -174,9 +295,6 @@ namespace BootstrapVillas.Controllers
                     prcDocument.MainDataTable.TableName = "BookingExtraTable";
                     prcDocument.SecondaryDataTable.TableName = "BookingExtraParticipantTable";
                     break;
-
-
-
 
             }
 
@@ -310,10 +428,21 @@ namespace BootstrapVillas.Controllers
                 //get top level item for same sub type to pull out attributes:
                 long? extraIDforAtts = null;
 
-                extraIDforAtts = db.BookingExtras.Where(x =>
-                        x.TopLevelItem == true)
-                        .Where(y => y.BookingExtraSubTypeID == bes.BookingExtra.BookingExtraSubTypeID)
-                        .FirstOrDefault().BookingExtraID;
+                try
+                {
+                    extraIDforAtts = db.BookingExtras.Where(x =>
+                                    x.TopLevelItem == true)
+                                    .Where(y => y.BookingExtraSubTypeID == bes.BookingExtra.BookingExtraSubTypeID)
+                                    .FirstOrDefault().BookingExtraID;
+                }
+                catch (Exception)
+                {
+                     extraIDforAtts = db.BookingExtras.Where(x =>
+                                    x.MaxPersons > 10)
+                                    .Where(y => y.BookingExtraSubTypeID == bes.BookingExtra.BookingExtraSubTypeID)
+                                    .FirstOrDefault().BookingExtraID;
+                    
+                }
 
                 //BES
                 tablesForMerge_PreMerge.Add(
