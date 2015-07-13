@@ -500,6 +500,10 @@
     <Compile Include="Migrations\201507112040554_logoFile.Designer.cs">
       <DependentUpon>201507112040554_logoFile.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201507131631103_depositExcessInstance.cs" />
+    <Compile Include="Migrations\201507131631103_depositExcessInstance.Designer.cs">
+      <DependentUpon>201507131631103_depositExcessInstance.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\AccountTransaction.cs" />
@@ -9937,6 +9941,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201507112040554_logoFile.resx">
       <DependentUpon>201507112040554_logoFile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201507131631103_depositExcessInstance.resx">
+      <DependentUpon>201507131631103_depositExcessInstance.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

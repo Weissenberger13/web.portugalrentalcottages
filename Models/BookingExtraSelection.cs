@@ -60,6 +60,8 @@ namespace BootstrapVillas.Models
         public Nullable<decimal> BESExtraServicesPrice { get; set; }
         public Nullable<decimal> BESExtraServicesCurrencyConversionPrice { get; set; }
         public Nullable<int> AirportPickupLocationID { get; set; }
+        public Nullable<int> DepositExcessEUROInstance { get; set; }
+        
         public string ExtraSummaryDescription { get; set; }
         public virtual ICollection<AccountTransaction> AccountTransactions { get; set; }
         public virtual AirportDestination AirportDestination { get; set; }

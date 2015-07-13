@@ -105,6 +105,7 @@ namespace BootstrapVillas.Models
                    * 
                   */
 
+                    
                     decimal runningTotal = 0.00M;
 
                     List<DateTime> DatesToCalulcuatePriceFor = new List<DateTime>();
@@ -349,6 +350,8 @@ namespace BootstrapVillas.Models
                         additionalCost +=
                             (bookingExtraSelection.NumberOfChildseats *
                             serviceChargeInstances.First(x => x.PropertyTypeServicesID == 12).ServicePriceGBP) * bookingExtraSelection.NumberOfDays ?? 0.00M;
+
+                       
                         break;
                     }
                 // it's EACH WAY

@@ -716,6 +716,7 @@ namespace BootstrapVillas.Controllers
                     bookingExtraSelection.BESExtraServicesPrice = cc.ConvertCurrency(baseCurrency, newCurrency, (decimal)bookingExtraSelection.BESExtraServicesPrice);
                     bookingExtraSelection.BESTotalServicesPrice = cc.ConvertCurrency(baseCurrency, newCurrency, (decimal)bookingExtraSelection.BESTotalServicesPrice);
 
+                
 
                     //set exchange rate
                     bookingExtraSelection.BESCurrencyConversionSymbol = exchangeRateFromDB.CurrencyExchangeSymbol;
