@@ -8,12 +8,13 @@ using BootstrapVillas.Models.ViewModels;
 
 namespace BootstrapVillas.Models
 {
-    public class System
+    public class PortugalSystem
     {
         [Key]
-        public int id { get; set; }
+        public int PortugalSystemId { get; set; }
         public string name { get; set; }
         public string URL { get; set; }
+      
 
 
         public ICollection<BookingExternal> BookingExternals { get; set; }

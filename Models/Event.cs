@@ -14,7 +14,7 @@ namespace BootstrapVillas.Models
         public long EventID { get; set; }
         public Nullable<long> CaseID { get; set; }
         public Nullable<long> EventTypeID { get; set; }
-        public DateTime WhenCreated { get; set; }
+        public Nullable<DateTime> WhenCreated { get; set; }
         public Nullable<long> BookingID { get; set; }
         public Nullable<long> BookingExtraSelectionID { get; set; }
         public bool IsDeleted { get; set; }

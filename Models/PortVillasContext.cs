@@ -99,7 +99,7 @@ namespace BootstrapVillas.Models
         public DbSet<PropertyTypeServicesChargeInstance> PropertyTypeServicesChargeInstances { get; set; }
         public DbSet<PropertyVacationType> PropertyVacationTypes { get; set; }
         public DbSet<Season> Seasons { get; set; }
-        public DbSet<System> Systems { get; set; }
+        public DbSet<PortugalSystem> PortugalSystem { get; set; }
         public DbSet<StandardSeason> StandardSeasons { get; set; }
         public DbSet<StoredSession> StoredSessions { get; set; }
         public DbSet<ThirdPartyService> ThirdPartyServices { get; set; }

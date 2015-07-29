@@ -14,13 +14,11 @@ namespace BootstrapVillas.Models
         public Nullable<DateTime> EndDate { get; set; }
         public long PropertyID { get; set; }
         public string Notes { get; set; }
+        public Nullable<bool> completed { get; set; }
         public virtual Property Property { get; set; }
 
        
        
-        public int SystemId { get; set; }
-        [ForeignKey("SystemId")]
-        [InverseProperty("BookingExternals")]
-        public virtual System System { get; set; }
+        public virtual PortugalSystem PortugalSystem { get; set; }
     }
 }

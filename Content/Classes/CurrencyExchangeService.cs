@@ -69,7 +69,7 @@ namespace BootstrapVillas.Content.Classes
             catch (Exception ex)
             {
                 //log
-                this.mailService.Mail("emailnadz@gmail.com!", "Problem in PRC with currency converter");
+               /* this.mailService.Mail("emailnadz@gmail.com!", "Problem in PRC with currency converter");*/
                 throw ex;
             }
         }

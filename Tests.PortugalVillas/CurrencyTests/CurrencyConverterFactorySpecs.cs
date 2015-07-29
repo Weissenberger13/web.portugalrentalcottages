@@ -4,7 +4,6 @@ using BootstrapVillas.Content.Classes.CurrencyConverter;
 using BootstrapVillas.Models;
 using NUnit.Framework;
 using Should;
-using SpecsFor;
 
 namespace Tests.PortugalVillas.CurrencyTests
 {

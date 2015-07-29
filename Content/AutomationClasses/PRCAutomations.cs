@@ -40,7 +40,7 @@ namespace BootstrapVillas.Content.AutomationClasses
             {
 
                 
-                throw ex;
+                
             }
             return -1;
 

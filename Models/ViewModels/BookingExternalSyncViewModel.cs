@@ -11,7 +11,7 @@ namespace BootstrapVillas.Models.ViewModels
 
         public string SystemId { get; set; }
         public DateTime StartDate { get; set; }
-        public DateTime StartEndDate { get; set; }
+        public DateTime EndDate { get; set; }
         public string PropertyReference { get; set; }
 
     }

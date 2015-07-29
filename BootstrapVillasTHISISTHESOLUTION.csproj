@@ -314,6 +314,7 @@
     <Compile Include="App_Start\StructureMapDependencyResolver.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Content\AutomationClasses\PRCAutomations.cs" />
+    <Compile Include="Content\BookingSyncClient\BookingSyncClient.cs" />
     <Compile Include="Content\Classes\CurrencyConverter\CurrencyConverterFactory.cs" />
     <Compile Include="Content\Classes\CurrencyConverter\CurrencyEnum.cs" />
     <Compile Include="Content\Classes\CurrencyConverter\ICurrencyConvert.cs" />
@@ -342,6 +343,7 @@
     <Compile Include="Content\CustomAttribute\MVCUrlAttribute.cs" />
     <Compile Include="Content\CustomExceptions\NoMatchException.cs" />
     <Compile Include="Content\EmailTemplates\StandardTemplates.cs" />
+    <Compile Include="Content\BookingSyncClient\IBookingSyncClient.cs" />
     <Compile Include="Content\Interfaces\IContactable.cs" />
     <Compile Include="Content\Interfaces\ISortable.cs" />
     <Compile Include="Content\PartialClasses\AirportDestiantionPartial.cs" />
@@ -449,6 +451,7 @@
     <Compile Include="Controllers\PropertyViewController.cs" />
     <Compile Include="Controllers\TestAjaxController.cs" />
     <Compile Include="Controllers\TestController.cs" />
+    <Compile Include="Controllers\TestSyncController.cs" />
     <Compile Include="Controllers\ThirdPartyServiceController.cs" />
     <Compile Include="CustomModelBinders\DateTimeUKModelBinder.cs" />
     <Compile Include="Data\DataAdapters\PVillaDataAdapter.cs" />
@@ -465,6 +468,10 @@
     <Compile Include="HTMLHelper\CurrencyHelper.cs" />
     <Compile Include="Interfaces\ICurrencyConvertable.cs" />
     <Compile Include="Interfaces\IMailService.cs" />
+    <Compile Include="Migrations\201507031529270_whereAreWe.cs" />
+    <Compile Include="Migrations\201507031529270_whereAreWe.Designer.cs">
+      <DependentUpon>201507031529270_whereAreWe.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\AccountTransaction.cs" />
@@ -649,7 +656,7 @@
     <Compile Include="Models\StandardSeason.cs" />
     <Compile Include="Models\StoredSession.cs" />
     <Compile Include="Models\sysdiagram.cs" />
-    <Compile Include="Models\System.cs" />
+    <Compile Include="Models\PortugalSystem.cs" />
     <Compile Include="Models\ThirdPartyService.cs" />
     <Compile Include="Models\Title.cs" />
     <Compile Include="Models\ViewModels\BookingExternalSyncViewModel.cs" />
@@ -9880,6 +9887,11 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201507031529270_whereAreWe.resx">
+      <DependentUpon>201507031529270_whereAreWe.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

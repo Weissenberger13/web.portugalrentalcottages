@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BootstrapVillasTHISISTHESOL
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests.PortugalVillas", "Tests.PortugalVillas\Tests.PortugalVillas.csproj", "{2A1ECDA6-7E23-436B-8C79-A18B7E0DA2C3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookingSyncClient", "..\BookingSyncClient\BookingSyncClient.csproj", "{21648B25-4A27-48A9-B632-E1571EBC4D8E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -36,6 +38,14 @@ Global
 		{2A1ECDA6-7E23-436B-8C79-A18B7E0DA2C3}.Release|Any CPU.Build.0 = Release|Any CPU
 		{2A1ECDA6-7E23-436B-8C79-A18B7E0DA2C3}.Release|x86.ActiveCfg = Release|Any CPU
 		{2A1ECDA6-7E23-436B-8C79-A18B7E0DA2C3}.Release|x86.Build.0 = Release|Any CPU
+		{21648B25-4A27-48A9-B632-E1571EBC4D8E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{21648B25-4A27-48A9-B632-E1571EBC4D8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{21648B25-4A27-48A9-B632-E1571EBC4D8E}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{21648B25-4A27-48A9-B632-E1571EBC4D8E}.Debug|x86.Build.0 = Debug|Any CPU
+		{21648B25-4A27-48A9-B632-E1571EBC4D8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{21648B25-4A27-48A9-B632-E1571EBC4D8E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{21648B25-4A27-48A9-B632-E1571EBC4D8E}.Release|x86.ActiveCfg = Release|Any CPU
+		{21648B25-4A27-48A9-B632-E1571EBC4D8E}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

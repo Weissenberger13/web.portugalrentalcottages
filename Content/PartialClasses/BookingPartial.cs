@@ -9,6 +9,7 @@ using BootstrapVillas.Interfaces;
 using BootstrapVillas.Models;
 using System.Data.Entity;
 using BootstrapVillas.Content.Classes;
+using BootstrapVillas.Models.ViewModels;
 
 //namespace must be the same
 using WebGrease.Css.Extensions;
@@ -46,6 +47,25 @@ namespace BootstrapVillas.Models
 
             return aBooking;
         }
+
+
+        public static IEnumerable<BookingExternalSyncRequest> ToBookingExternalSyncRequests(IEnumerable<Booking> bookings)
+        {
+            var externals = new List<BookingExternalSyncRequest>();
+            foreach (var b in bookings)
+            {
+                externals.Add(new BookingExternalSyncRequest
+                {
+                    StartDate =  (DateTime)b.StartDate,
+                    EndDate = (DateTime)b.EndDate,
+                    PropertyReference = b.Property.LegacyReference                                       
+                });
+            }
+
+            return externals;
+            
+        }
+
 
         //get an individual booking by Booking Reference -- NEED TO TEST FOR EMPTY RESULT
         public static Booking GetBookingByRef(string bookingRef)
